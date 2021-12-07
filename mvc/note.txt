@@ -1,0 +1,17 @@
+*client
+	home
+	tra cứu
+	tìm kiếm
+	chi tiết sản phẩm
+	giỏ hàng
+	so sánh
+	đặt hàng
+*admin
+	discount (add, edit, delete)
+	laptop (add, edit, delete)
+	laptop_type (add, edit, delete)
+	manufacturer (add, edit, delete)
+	user (edit, delete)
+	order (view)
+	review (view ,delete)
+	
