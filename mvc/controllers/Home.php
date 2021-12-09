@@ -4,8 +4,7 @@ class Home extends Controller{
      {
           $teo = $this->model("SinhVienModel");
           echo $teo->GetSV();
-          echo $teo->GetSV();
-         
+          a;
      }
 
      function Show($a,$b){
