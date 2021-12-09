@@ -4,8 +4,12 @@
                require_once "./mvc/models/".$model.".php";
                return new $model;
           }
-          public function view($view, $data=[]){
-              require_once "./mvc/views/".$view.".php";
+          public function view($layout, $data=[]){
+               if(@file_exists("./mvc/views/layout/".$layout.".php")){
+                    require_once "./mvc/views/layout/".$layout.".php";
+               }
+               else require_once "./mvc/views/layout/NonLayout.php";
+              
           }
      }
-?> 
+?>

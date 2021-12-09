@@ -1,26 +1,19 @@
 <?php
 class Home extends Controller{
-     function SayHi()
+     // action mặc định
+     function DefaultAction()
      {
-          $data = $this->model("ManufacturerModel");
-          foreach ($data->Get() as $key => $value) {
-               echo "</br>";
-               echo "---------------";
-               print_r($value);
-               echo "</br>";
-          }
+          $dManu = $this->model("ManufacturerModel");
+          $this->view("Layout1",
+               ["page"=>"Home",
+               "SV"=>$dManu->Get()
+          ]);
      }
 
-     // function Show($a,$b){
-     //      // gọi model
-     //      $data = $this->model("LaptopModel");
-     //      $tong = $data->Tong($a,$b);
-
-     //      // view
-     //      $this->view("aodep",
-     //           ["page"=>"",
-     //           "number"=>$tong,
-     //           "SV"=>$data->SinhVien()
-     //      ]);
-     // }
+     function Show($a,$b){
+          // gọi model
+          $data = $this->model("LaptopModel");
+          // view
+          
+     }
 }
