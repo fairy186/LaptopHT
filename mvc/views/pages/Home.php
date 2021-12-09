@@ -1,1 +1,2 @@
-<h1>Home</h1>
+<?php
+print_r($data["dLap"]);
