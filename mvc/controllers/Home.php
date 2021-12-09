@@ -13,4 +13,3 @@ class Home extends Controller{
           $this->view("aoxau",["page"=>"news","number"=>$tong,"SV"=>$teo->SinhVien()]);
      }
 }
-?>
