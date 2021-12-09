@@ -11,10 +11,11 @@
      </style>
 </head>
 <body>
+     
     <div id="header"></div>
     <div id="content">
                     <?php
-                              require_once "./mvc/views/pages/".$data['page'].".php"
+                         @require_once "./mvc/views/pages/".$data['page'].".php";
                     ?>
     </div>
     <div id="footer"></div>
