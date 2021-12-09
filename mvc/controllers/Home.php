@@ -2,20 +2,25 @@
 class Home extends Controller{
      function SayHi()
      {
-          $teo = $this->model("SinhVienModel");
-          echo $teo->GetSV();
+          $data = $this->model("LaptopModel");
+          foreach ($data->Get() as $key => $value) {
+               echo "</br>";
+               echo "---------------";
+               print_r($value);
+               echo "</br>";
+          }
      }
 
      function Show($a,$b){
           // gọi model
-          $teo = $this->model("SinhVienModel");
-          $tong = $teo->Tong($a,$b);
+          $data = $this->model("LaptopModel");
+          $tong = $data->Tong($a,$b);
 
           // view
           $this->view("aodep",
-               ["page"=>"news",
+               ["page"=>"",
                "number"=>$tong,
-               "SV"=>$teo->SinhVien()
+               "SV"=>$data->SinhVien()
           ]);
      }
 }
