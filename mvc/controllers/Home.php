@@ -3,17 +3,11 @@ class Home extends Controller{
      // action mặc định
      function DefaultAction()
      {
-          $dManu = $this->model("ManufacturerModel");
+          $dLap = $this->model("ManufacturerModel");
           $this->view("Layout1",
                ["page"=>"Home",
-               "SV"=>$dManu->Get()
+               "dLap"=>$dLap->Get()
           ]);
      }
-
-     function Show($a,$b){
-          // gọi model
-          $data = $this->model("LaptopModel");
-          // view
-          
-     }
 }
+?>
