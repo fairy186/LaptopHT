@@ -7,9 +7,17 @@ class Home extends Controller{
           echo $teo->GetSV();
          
      }
+
      function Show($a,$b){
+          // gọi model
           $teo = $this->model("SinhVienModel");
           $tong = $teo->Tong($a,$b);
-          $this->view("aoxau",["page"=>"news","number"=>$tong,"SV"=>$teo->SinhVien()]);
+
+          // view
+          $this->view("aodep",
+               ["page"=>"news",
+               "number"=>$tong,
+               "SV"=>$teo->SinhVien()
+          ]);
      }
 }

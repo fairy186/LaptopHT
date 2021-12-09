@@ -4,6 +4,7 @@ class App
      protected $controller = "Home";
      protected $action = "SayHi";
      protected $params = [];
+
      function __construct()
      {
           $arr = $this->UrlProcess();
@@ -21,7 +22,7 @@ class App
           }
           unset($arr[1]);
           // Xử lý Params
-          $this->params = $arr? array_values($arr):[];
+          $this->params = $arr ? array_values($arr):[];
           // echo $this->controller."</br>";
           // echo $this->action."</br>";
           // print_r($this->params);
