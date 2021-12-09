@@ -2,7 +2,7 @@
 class Home extends Controller{
      function SayHi()
      {
-          $data = $this->model("LaptopModel");
+          $data = $this->model("ManufacturerModel");
           foreach ($data->Get() as $key => $value) {
                echo "</br>";
                echo "---------------";
@@ -11,16 +11,16 @@ class Home extends Controller{
           }
      }
 
-     function Show($a,$b){
-          // gọi model
-          $data = $this->model("LaptopModel");
-          $tong = $data->Tong($a,$b);
+     // function Show($a,$b){
+     //      // gọi model
+     //      $data = $this->model("LaptopModel");
+     //      $tong = $data->Tong($a,$b);
 
-          // view
-          $this->view("aodep",
-               ["page"=>"",
-               "number"=>$tong,
-               "SV"=>$data->SinhVien()
-          ]);
-     }
+     //      // view
+     //      $this->view("aodep",
+     //           ["page"=>"",
+     //           "number"=>$tong,
+     //           "SV"=>$data->SinhVien()
+     //      ]);
+     // }
 }
