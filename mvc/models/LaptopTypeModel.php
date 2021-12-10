@@ -11,8 +11,10 @@
                return $kq;
           }
 
-          public function Add(){
-               
+          public function Add($id, $name){
+               $qr="INSERT INTO `laptop_type`(`ID_Type`, `Name_Type`) VALUES ('[$id]','[$name]')";
+               $sql=mysqli_query($this->con,$qr);
+               return $sql;
           }
      }
 ?>
