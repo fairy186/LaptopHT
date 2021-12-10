@@ -10,5 +10,9 @@
                // $kq=json_encode($kq);
                return $kq;
           }
+
+          public function Add(){
+               
+          }
      }
 ?>
