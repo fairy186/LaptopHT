@@ -9,7 +9,6 @@
                     require_once "./mvc/views/layout/".$layout.".php";
                }
                else require_once "./mvc/views/layout/NonLayout.php";
-              
           }
      }
 ?>

@@ -12,7 +12,19 @@
           }
 
           public function Add($id, $name){
-               $qr="INSERT INTO `laptop_type`(`ID_Type`, `Name_Type`) VALUES ('[$id]','[$name]')";
+               $qr="INSERT INTO `laptop_type`(`ID_Type`, `Name_Type`) VALUES ('$id','$name')";
+               $sql=mysqli_query($this->con,$qr);
+               return $sql;
+          }
+
+          public function Edit($id, $name){
+               $qr="UPDATE `laptop_type` SET `Name_Type`='$name' WHERE `ID_Type`='$id'";
+               $sql=mysqli_query($this->con,$qr);
+               return $sql;
+          }
+
+          public function Delete($id){
+               $qr="DELETE FROM `laptop_type` WHERE `ID_Type` = '$id'";
                $sql=mysqli_query($this->con,$qr);
                return $sql;
           }
