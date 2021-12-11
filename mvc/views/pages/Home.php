@@ -1,4 +1,5 @@
-<?php 
+<div class="row row-cols-1 row-cols-md-2 g-4">
+     <?php 
 $dLap=$data['dLap'];
 // print_r($dLap);
 for ($i=0; $i < count($dLap) ; $i++) {
@@ -10,11 +11,12 @@ for ($i=0; $i < count($dLap) ; $i++) {
      $screen=$dLap[$i]['Screen'];
      $pin=$dLap[$i]['Battery'];
      $rt=$dLap[$i]['Release_Time'];
-     echo "<div class='card mb-3' style='max-width: 640px;'>
+     echo "<div class='col'>
+     <div class='card mb-3' style='max-width: 640px;'>
      <div class='row g-0'>
        <div class='col-md-8'>
          <img src='$img' class='img-fluid rounded-start' alt='...'>
-         <h5 class='card-title'>$name</h5>
+         <h6 class='card-title'>$name</h6>
        </div>
        <div class='col-md-4'>
          <div class='card-body'>
@@ -26,6 +28,9 @@ for ($i=0; $i < count($dLap) ; $i++) {
          </div>
        </div>
      </div>
-   </div>";
+   </div>
+   </div>
+   ";
 }
 ?>
+</div>
