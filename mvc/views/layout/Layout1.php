@@ -19,13 +19,13 @@
 </head>
 
 <body>
-     <div id="header"></div>
+     <div id="header"> <h1>Header</h1></div>
      <div id="content">
           <?php
            require_once "./mvc/views/pages/" . $data['page'] . ".php"
           ?>
      </div>
-     <div id="footer"></div>
+     <div id="footer"><h1> Footer</h1></div>
 </body>
 
 </html>
