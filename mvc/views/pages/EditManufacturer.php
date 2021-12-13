@@ -1,12 +1,12 @@
-<h1 style='color: blue;' align='center'> CHỈNH SỬA LOẠI LAPTOP</h1>
+<h1 style='color: blue;' align='center'>CHỈNH SỬA HÃNG SẢN XUẤT</h1>
 	<form action="" method="post">
 		<table align="center">
 			<tr>
-				<td>Mã loại laptop </td>
+				<td>Mã hãng sản xuất </td>
 				<td><input type="text" name="ma" value="<?php echo $data['id']?>" required></td>
 			</tr>
 			<tr>
-				<td>Tên loại laptop </td>
+				<td>Tên hãng sản xuất </td>
 				<td><input type="text" name="ten" required></td>
 			</tr>
 			<tr>
@@ -15,8 +15,8 @@
 		</table>
 	</form>
 <?php
-	if(isset($data['dType'])){
-		if($data['dType']==1)
+	if(isset($data['dManu'])){
+		if($data['dManu']==1)
 			echo "Đã chỉnh sửa";
 		else
 			echo "Vui lòng nhập lại";
