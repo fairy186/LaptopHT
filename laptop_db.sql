@@ -20,7 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `laptop_db`
 --
-
+DROP DATABASE IF EXISTS `laptop_db`;
+CREATE DATABASE `laptop_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `laptop_db`;
 -- --------------------------------------------------------
 
 --
@@ -29,7 +31,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `ID_Lap` varchar(10) NOT NULL,
-  `ID_User` int(11) NOT NULL,
+  `ID_User` int(10) UNSIGNED NOT NULL,
   `Quantity` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,9 +42,9 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `discount` (
-  `ID_Dis` int(11) NOT NULL,
+  `ID_Dis` int(10) UNSIGNED NOT NULL,
   `ID_Lap` varchar(10) NOT NULL,
-  `Reduce` int(11) NOT NULL,
+  `Reduce` int(10) UNSIGNED NOT NULL,
   `Start_Date` date NOT NULL,
   `End_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -56,7 +58,7 @@ CREATE TABLE `discount` (
 CREATE TABLE `laptop` (
   `ID_Lap` varchar(10) NOT NULL,
   `Name_Lap` varchar(100) NOT NULL,
-  `Price` int(11) NOT NULL,
+  `Price` int(10) UNSIGNED NOT NULL,
   `Insurance` varchar(100) DEFAULT '36 tháng',
   `ID_Type` varchar(10) NOT NULL,
   `ID_Manu` varchar(10) NOT NULL,
@@ -135,7 +137,7 @@ INSERT INTO `manufacturer` (`Id_Manu`, `Name_Manu`) VALUES
 --
 
 CREATE TABLE `order_details` (
-  `ID_Order` int(11) NOT NULL,
+  `ID_Order` int(10) UNSIGNED NOT NULL,
   `ID_Lap` varchar(10) NOT NULL,
   `Quantity` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -147,8 +149,8 @@ CREATE TABLE `order_details` (
 --
 
 CREATE TABLE `order_info` (
-  `ID_Order` int(11) NOT NULL,
-  `ID_User` int(11) NOT NULL,
+  `ID_Order` int(10) UNSIGNED NOT NULL,
+  `ID_User` int(10) UNSIGNED NOT NULL,
   `Time_Order` datetime NOT NULL DEFAULT current_timestamp(),
   `Status_Order` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -160,9 +162,9 @@ CREATE TABLE `order_info` (
 --
 
 CREATE TABLE `review` (
-  `ID_Rev` int(11) NOT NULL,
+  `ID_Rev` int(10) UNSIGNED NOT NULL,
   `ID_Lap` varchar(10) NOT NULL,
-  `ID_User` int(11) NOT NULL,
+  `ID_User` int(10) UNSIGNED NOT NULL,
   `Star` int(1) NOT NULL,
   `Time_Rev` datetime DEFAULT current_timestamp(),
   `Content` varchar(255) NOT NULL
@@ -175,7 +177,7 @@ CREATE TABLE `review` (
 --
 
 CREATE TABLE `slider` (
-  `ID_Slider` int(11) NOT NULL,
+  `ID_Slider` int(10) UNSIGNED NOT NULL,
   `Title` varchar(255) NOT NULL,
   `Image` varchar(255) NOT NULL,
   `Status` tinyint(1) NOT NULL DEFAULT 1
@@ -188,7 +190,7 @@ CREATE TABLE `slider` (
 --
 
 CREATE TABLE `user` (
-  `ID_User` int(11) NOT NULL,
+  `ID_User` int(10) UNSIGNED NOT NULL,
   `First_Name` varchar(100) DEFAULT NULL,
   `Last_Name` varchar(20) DEFAULT NULL,
   `Address` varchar(255) DEFAULT NULL,
@@ -282,31 +284,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `discount`
 --
 ALTER TABLE `discount`
-  MODIFY `ID_Dis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Dis` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_info`
 --
 ALTER TABLE `order_info`
-  MODIFY `ID_Order` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `ID_Rev` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Rev` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `ID_Slider` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Slider` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_User` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
