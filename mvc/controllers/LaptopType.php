@@ -71,4 +71,5 @@ class LaptopType extends Controller
           }
           $this->view("Layout1", $data);
      }
+     
 }

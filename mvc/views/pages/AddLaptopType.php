@@ -2,15 +2,15 @@
 
 <form action="./Add" method="post" class="row g-3 needs-validation" novalidate>
 	<div class="col-12 my-0 p-1">
-		<input type="text" class="form-control" name="ma" placeholder="Mã Loại Laptop" id="validationCustom01" required>
-		<label>
+		<input id="ma" type="text" class="form-control" name="ma" placeholder="Mã Loại Laptop" id="validationCustom01" required>
+		<label id="IDmessage">
 			
 		</label>
 	</div>
 
 	<div class="col-12 my-0 p-1">
 		<input type="text" class="form-control" name="ten" placeholder="Tên Loại Laptop" id="validationCustom02" required>
-		<label>a</label>
+		<label id="NameMessage" ></label>
 	</div>
 
 	<div class="col-12 my-0 p-1">
