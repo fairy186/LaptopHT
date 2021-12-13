@@ -7,9 +7,9 @@
 	so sánh
 	đặt hàng
 *admin
+	laptop_type (add, edit, delete)
 	discount (add, edit, delete)
 	laptop (add, edit, delete)
-	laptop_type (add, edit, delete)
 	manufacturer (add, edit, delete)
 	user (edit, delete)
 	order (view)
