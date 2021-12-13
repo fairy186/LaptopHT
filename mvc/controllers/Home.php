@@ -1,23 +1,20 @@
 <?php
-class Home extends Controller{
+class Home extends Controller
+{
      protected $dLap;
-     protected $dManu;
-     protected $dType;
      function __construct()
      {
-          $this->dLap = $this->model("LaptopModel");
-          $this->dManu = $this->model("ManufacturerModel");
-          $this->dType = $this->model("LaptopTypeModel");
+          $this->dLap = $this->model("Join")->Get([["laptop", "laptop_type", "ID_Type"], ["laptop", "manufacturer", "ID_Manu"]]);
      }
      // action mặc định
      function DefaultAction()
      {
-          $this->view("Layout1",
-               ["page"=>"Home",
-               "dLap"=>$this->dLap->Get(),
-               "dManu"=>$this->dLap->Get(),
-               "dType"=>$this->dLap->Get()
-          ]);
+          $this->view(
+               "Layout1",
+               [
+                    "page" => "Home",
+                    "dLap" => $this->dLap
+               ]
+          );
      }
 }
-?>
