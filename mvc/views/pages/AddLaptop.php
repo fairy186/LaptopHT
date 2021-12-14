@@ -1,5 +1,5 @@
 <h1 style='color: blue;' align='center'>THÊM LAPTOP</h1>
-<form action="" class="row g-3 needs-validation" novalidate>
+<form action="./Add" class="row g-3" method="post">
 
     <div class="col-12 my-0 p-1">
         <input type="text" class="form-control" name="id" placeholder="Mã Laptop" id="validationCustom01" required>
@@ -22,34 +22,39 @@
     </div>
 
     <div class="col-4 my-0 p-1">
-        <select class="form-select" id="validationCustom04" required>
+        <select class="form-select" name="laptype" id="validationCustom04" required>
             <option selected disabled value="">Loại Laptop</option>
             <?php
                 $dtype=$data['dType'];
                 for ($i=0; $i < count($dtype); $i++) { 
                     $dty=$dtype[$i];
-                    echo "<option>$dty[Name_Type]</option>";
+                    echo "<option selected value='$dty[ID_Type]'>$dty[Name_Type]</option>";
                 }            
             ?>
         </select>
     </div>
 
     <div class="col-4 my-0 p-1">
-        <select class="form-select" id="validationCustom04" required>
+        <select class="form-select" name="manu" id="validationCustom04" required>
             <option selected disabled value="">Hãng sản xuất</option>
             <?php
                 $dmanu=$data['dManu'];
                 for ($i=0; $i < count($dmanu); $i++) { 
                     $dman=$dmanu[$i];
-                    echo "<option>$dman[Name_Manu]</option>";
+                    echo "<option selected value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
                 }            
             ?>
         </select>
     </div>
 
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="formFile" class="form-label">Hình ảnh</label>
-        <input class="form-control" type="file" id="formFile">
+        <input class="form-control" name="img" type="file" id="formFile">
+    </div> -->
+
+    <div class="col-12 my-0 p-1">
+        <input type="text" class="form-control" name="img" placeholder="Hình ảnh" id="validationCustom01" required>
+        <label id="img_id"></label>
     </div>
 
     <div class="col-12 my-0 p-1">

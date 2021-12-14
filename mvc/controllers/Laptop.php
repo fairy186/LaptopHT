@@ -11,7 +11,6 @@ class Laptop extends Controller
         $this->dLap = $this->model("LaptopModel");
         $this->dType = $this->model("LaptopTypeModel");
         $this->dManu = $this->model("ManufacturerModel");
-
     }
 
     // action mặc định
@@ -32,7 +31,7 @@ class Laptop extends Controller
         if (isset($_POST['sm'])) {
             $data = [
                 "page" => "AddLaptop",
-                "dLap" => $this->dLap->Add($_POST['name'], $_POST['']),
+                "dLap" => $this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']),
                 "dType" => $this->dType->Get(),
                 "dManu" => $this->dManu->Get()
             ];
@@ -46,5 +45,25 @@ class Laptop extends Controller
         $this->view("Layout1", $data);
     }
 
-
+    function Edit($id)
+    {
+        if (isset($_POST['sm'])) {
+            $data = [
+                "page" => "EditLaptop",
+                "id" => $id,
+                "name" => $id,
+                "dLap" => $this->dLap->Edit($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']),
+                "dType" => $this->dType->Get(),
+                "dManu" => $this->dManu->Get()
+            ];
+        } else {
+            $data = [
+                "page" => "EditLaptop",
+                "id" => $id,
+                "dType" => $this->dType->Get(),
+                "dManu" => $this->dManu->Get()
+            ];
+        }
+        $this->view("Layout1", $data);
+    }
 }

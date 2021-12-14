@@ -14,11 +14,11 @@ for ($i=0; $i < count($dmanu) ; $i++) {
      $stt=$i+1;
      echo "<tr>
                <td>$stt</td>
-               <td>$dman[Id_Manu]</td>
+               <td>$dman[ID_Manu]</td>
                <td>$dman[Name_Manu]</td>
                <td>
-                    <a href='./Manufacturer/Edit/$dman[Id_Manu]'>Edit</a> |
-                    <a href='./Manufacturer/Delete/$dman[Id_Manu]'>Delete</a>               
+                    <a href='./Manufacturer/Edit/$dman[ID_Manu]'>Edit</a> |
+                    <a href='./Manufacturer/Delete/$dman[ID_Manu]'>Delete</a>               
                </td>
           </tr>
           ";

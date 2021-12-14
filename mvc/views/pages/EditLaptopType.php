@@ -3,7 +3,7 @@
 		<table align="center">
 			<tr>
 				<td>Mã loại laptop </td>
-				<td><input type="text" name="ma" value="<?php echo $data['id']?>" required></td>
+				<td><input type="text" name="ma" value="<?php echo $data['id']?>" disabled required></td>
 			</tr>
 			<tr>
 				<td>Tên loại laptop </td>
