@@ -1,3 +1,4 @@
+
 function validate(fieldname, idmessage) {
   $("input[name=" + fieldname + "]").keyup(function () {
     var val = $(this).val();
@@ -8,19 +9,32 @@ function validate(fieldname, idmessage) {
         val: val,
       },
       function (data) {
-           var d =JSON.parse(data);
-        
-        if(d[0]==1){
-          $("#" + idmessage).html("<i class='bi bi-check2-circle'></i> "+name+" "+d[1]);
+        var d = JSON.parse(data);
+
+        if (d[0] == 1) {
+          $("#" + idmessage).html(
+            "<i class='bi bi-check2-circle'></i> " + name + " " + d[1]
+          );
           $("#" + idmessage).css("color", "blue");
+          $("#" + idmessage).addClass("blue");
+          $("#" + idmessage).removeClass("red");
+        } else {
+          $("#" + idmessage).html(
+            "<i class='bi bi-x-circle'></i> " + name + " " + d[1]
+          );
+          $("#" + idmessage).css("color", "red");
+          $("#" + idmessage).addClass("red");
+          $("#" + idmessage).removeClass("blue");
         }
-          else 
-          {    
-               $("#" + idmessage).html("<i class='bi bi-x-circle'></i> "+name+" "+d[1]);
-               $("#" + idmessage).css("color", "red");
-          }
       }
     );
+    var mess = $(".mess");
+    var messblue = $(".blue");
+    if (mess.length == messblue.length)
+      $("button[name='sm']").removeClass("disabled");
+    else
+      $("button[name='sm']").addClass("disabled");
+      
   });
 }
 
