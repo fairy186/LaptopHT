@@ -8,6 +8,9 @@ class App
      function __construct()
      {
           $arr = $this->UrlProcess();
+          // $arr= array_unique($arr);
+          // array_splice($arr,0,0);
+          // print_r($arr);
           // Xử lý Controllers
           if(@file_exists("./mvc/controllers/$arr[0].php")){
                $this->controller= $arr[0];

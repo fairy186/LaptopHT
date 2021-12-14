@@ -14,11 +14,8 @@
 			</tr>
 		</table>
 	</form>
-<?php
-	if(isset($data['dType'])){
-		if($data['dType']==1)
-			echo "Đã chỉnh sửa";
-		else
-			echo "Vui lòng nhập lại";
-	}
+	<?php
+if (isset($data['tb'])) {
+     echo $data['tb'];
+}
 ?>

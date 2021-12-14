@@ -25,10 +25,21 @@ class LaptopType extends Controller
      function Add()
      {
           if (isset($_POST['sm'])) {
-               $data = [
-                    "page" => "AddLaptopType",
-                    "dType" => $this->dType->Add($_POST['ma'], $_POST['ten'])
-               ];
+               $check = $this->dType->CheckID($_POST['ma'])[0] &&$this->dType->CheckName($_POST['ten'])[0];
+               if ($check) {
+                    $this->dType->Add($_POST['ma'], $_POST['ten']);
+                    $data = [
+                         "page" => "AddLaptopType",
+                         "dType" => $this->dType->Add($_POST['ma'], $_POST['ten']),
+                         "url"=> "../LaptopType",
+                         "tb" => "Đã thêm"
+                    ];
+               } else {
+                    $data = [
+                         "page" => "AddLaptopType",
+                         "tb" => "Lỗi"
+                    ];
+               }
           } else {
                $data = [
                     "page" => "AddLaptopType",
@@ -41,15 +52,26 @@ class LaptopType extends Controller
      function Edit($id)
      {
           if (isset($_POST['sm'])) {
-               $data = [
-                    "page" => "EditLaptopType",
-                    "id" => $id,
-                    "dType" => $this->dType->Edit($_POST['ma'], $_POST['ten'])
-               ];
+               $check = $this->dType->CheckID($_POST['ma'])[0] &&$this->dType->CheckName($_POST['ten'])[0];
+               if ($check) {
+                    $this->dType->Edit($_POST['ma'], $_POST['ten']);
+                    $data = [
+                         "page" => "EditLaptopType",
+                         "dType" => $this->dType->Edit($_POST['ma'], $_POST['ten']),
+                         "url"=> "../../LaptopType",
+                         "tb" => "Đã thêm"
+                    ];
+               } else {
+                    $data = [
+                         "page" => "EditLaptopType",
+                         "id"=> $id,
+                         "tb" => "Lỗi"
+                    ];
+               }
           } else {
                $data = [
                     "page" => "EditLaptopType",
-                    "id" => $id
+                    "id"=> $id
                ];
           }
           $this->view("Layout1", $data);
@@ -58,10 +80,11 @@ class LaptopType extends Controller
      function Delete($id)
      {
           if (isset($_POST['sm'])) {
+               $this->dType->Delete($_POST['ma']);
                $data = [
                     "page" => "DeleteLaptopType",
                     "id" => $id,
-                    "dType" => $this->dType->Delete($_POST['ma'])
+                    "url" => "../../LaptopType"
                ];
           } else {
                $data = [

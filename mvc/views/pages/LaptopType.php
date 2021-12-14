@@ -1,5 +1,11 @@
 <h1>Danh Sách</h1>
-<h3><a href='./LaptopType/Add'>Add</a></h3>
+<?php
+if (isset($data['tb'])) {
+     echo $data['tb'];
+}
+?>
+<h3><a href='LaptopType/Add'>Add</a></h3>
+
 <?php
 $dtype = $data['dType'];
 echo "<table align='center' width='800' border='1' cellpadding='2' cellspacing='2' style='border-collapse:collapse;' ><tr style='background-color: #0084ab;' align='center'>

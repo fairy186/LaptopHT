@@ -33,18 +33,19 @@ class LaptopTypeModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
-     function CheckID($id)
+     function CheckID($val)
      {   
-          $pattern = "/[A-Za-z0-9]/u";
-          if (strlen($id) < 4 || strlen($id) > 10) return "<div style='color:red;'>Độ dài phải từ 4 đến 10 ký tự</div>";
-          if (!preg_match($pattern, $id)) return "<div style='color:red;'>Không gồm ký tự đặc biệt</div>";
-          return "Hợp lệ";
+          $pattern = "/[^A-Za-z0-9]/u";
+          if (strlen($val) < 4 || strlen($val) > 10) return [0,"độ dài phải từ 4 đến 10 ký tự"];
+          if (preg_match($pattern, $val)) return [0,"chỉ gồm chữ số và chữ cái không dấu"];
+          return [1,"Hợp lệ"];
      }
-     function CheckName($id)
+     function CheckName($val)
      {
-          $pattern = "/[A-Za-z]/u";
-          if (strlen($id) < 1 || strlen($id) > 100) return "<div style='color:red;'>Độ dài phải từ 1 đến 100 ký tự</div>";
-          if (!preg_match($pattern, $id)) return "<div style='color:red;'>không gồm ký tự đặc biệt hoặc chữ số</div>";
-          return "Hợp lệ";
+          $pattern = "/^([a-zA-Z0-9\s]+)$/i";
+          // $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
+          if (strlen($val) < 1 || strlen($val) > 100) return [0," độ dài phải từ 1 đến 100 ký tự"];
+          if (!preg_match($pattern, $val)) return [0,"không gồm ký tự đặc biệt hoặc chữ số"];
+          return [1," Hợp lệ"];
      }
 }
