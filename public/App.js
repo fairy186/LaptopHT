@@ -3,6 +3,8 @@ function validate(fieldname, idmessage) {
   $("input[name=" + fieldname + "]").keyup(function () {
     var val = $(this).val();
     var name = $(this).attr("placeholder");
+    var mess = $(".mess");
+    var messblue = $(".blue");
     $.post(
       "../Ajax/Check/" + fieldname + "",
       {
@@ -28,8 +30,7 @@ function validate(fieldname, idmessage) {
         }
       }
     );
-    var mess = $(".mess");
-    var messblue = $(".blue");
+   
     if (mess.length == messblue.length)
       $("button[name='sm']").removeClass("disabled");
     else
