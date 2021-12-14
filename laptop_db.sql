@@ -112,7 +112,7 @@ INSERT INTO `laptop_type` (`ID_Type`, `Name_Type`) VALUES
 --
 
 CREATE TABLE `manufacturer` (
-  `Id_Manu` varchar(10) NOT NULL,
+  `ID_Manu` varchar(10) NOT NULL,
   `Name_Manu` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -120,7 +120,7 @@ CREATE TABLE `manufacturer` (
 -- Dumping data for table `manufacturer`
 --
 
-INSERT INTO `manufacturer` (`Id_Manu`, `Name_Manu`) VALUES
+INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
 ('LM001', 'MacBook'),
 ('LM002', 'Asus'),
 ('LM003', 'Lenovo'),
@@ -238,7 +238,7 @@ ALTER TABLE `laptop_type`
 -- Indexes for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
-  ADD PRIMARY KEY (`Id_Manu`);
+  ADD PRIMARY KEY (`ID_Manu`);
 
 --
 -- Indexes for table `order_details`
@@ -332,7 +332,7 @@ ALTER TABLE `discount`
 --
 ALTER TABLE `laptop`
   ADD CONSTRAINT `laptop_ibfk_1` FOREIGN KEY (`ID_Type`) REFERENCES `laptop_type` (`ID_Type`),
-  ADD CONSTRAINT `laptop_ibfk_2` FOREIGN KEY (`ID_Manu`) REFERENCES `manufacturer` (`Id_Manu`);
+  ADD CONSTRAINT `laptop_ibfk_2` FOREIGN KEY (`ID_Manu`) REFERENCES `manufacturer` (`ID_Manu`);
 
 --
 -- Constraints for table `order_details`

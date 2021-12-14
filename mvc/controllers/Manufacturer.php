@@ -41,10 +41,11 @@ class Manufacturer extends Controller
      function Edit($id)
      {
           if (isset($_POST['sm'])) {
+               print_r($_POST);
                $data = [
                     "page" => "EditManufacturer",
                     "id" => $id,
-                    "dManu" => $this->dManu->Edit($_POST['ma'], $_POST['ten'])
+                    "dManu" => $this->dManu->Edit($id, $_POST['ten'])
                ];
           } else {
                $data = [

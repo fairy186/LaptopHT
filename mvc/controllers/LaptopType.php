@@ -52,9 +52,10 @@ class LaptopType extends Controller
      function Edit($id)
      {
           if (isset($_POST['sm'])) {
-               $check = $this->dType->CheckID($_POST['ma'])[0] &&$this->dType->CheckName($_POST['ten'])[0];
+               print_r($_POST);
+               $check =$this->dType->CheckName($_POST['ten'])[0];
                if ($check) {
-                    $this->dType->Edit($_POST['ma'], $_POST['ten']);
+                    $this->dType->Edit($id, $_POST['ten']);
                     $data = [
                          "page" => "EditLaptopType",
                          "dType" => $this->dType->Edit($_POST['ma'], $_POST['ten']),
