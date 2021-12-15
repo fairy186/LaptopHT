@@ -48,11 +48,9 @@ class LaptopType extends Controller
           $this->view("Layout1", $data);
      }
 
-
      function Edit($id)
      {
           $name = $this->dType->GetByID($id)["Name_Type"];
-
           if (isset($_POST['sm'])) {
                //sau khi submit
                // print_r($_POST);
@@ -64,14 +62,13 @@ class LaptopType extends Controller
                          "dType" => $this->dType->Edit($_POST['ma'], $_POST['ten']),
                          "url" => "../../LaptopType",
                          "tb" => "Đã thêm",
-
                     ];
                } else {
                     $data = [
                          "page" => "EditLaptopType",
                          "id" => $id,
-                         "tb" => "Lỗi",
-                         "name" => $name
+                         "name" => $name,
+                         "tb" => "Lỗi"
                     ];
                }
           } else {

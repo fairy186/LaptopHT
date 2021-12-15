@@ -11,6 +11,17 @@ class LaptopModel extends DB
           }
           return $kq;
      }
+
+     public function GetByID($id)
+     {
+          $qr = "SELECT * FROM `laptop` WHERE `ID_Lap` ='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          $row = ["Name_Lap" => ""];
+          if (mysqli_num_rows($sql) == 1)
+               $row = mysqli_fetch_array($sql);
+          return $row;
+     }
+
      public function Add(
           $id,
           $name,
@@ -32,7 +43,8 @@ class LaptopModel extends DB
           $battery,
           $os,
           $r_t
-     ) {
+     ) 
+     {
           $qr = "INSERT INTO `laptop`(`ID_Lap`,`Name_Lap`, `Price`, `Insurance`, 
                                         `ID_Type`, `ID_Manu`, `Images`, `CPU`, 
                                         `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, 
@@ -81,5 +93,33 @@ class LaptopModel extends DB
                                    `OS`='$os',`Release_Time`='$r_t' WHERE `ID_Lap`='$id'";
           $sql = mysqli_query($this->con, $qr);
           return $sql;
+     }
+
+     public function Delete($id)
+     {
+          $qr = "DELETE FROM `laptop` WHERE `ID_Lap` = '$id'";
+          $sql = mysqli_query($this->con, $qr);
+          return $sql;
+     }
+     
+     function CheckID($val)
+     {
+          $qr = "SELECT * FROM `laptop` WHERE `ID_Lap` = '$val'";
+          $sql = mysqli_query($this->con, $qr);
+          if (mysqli_num_rows($sql) > 0)
+               return [0, "đã tồn tại"];
+          $pattern = "/[^A-Za-z0-9]/u";
+          if (strlen($val) < 4 || strlen($val) > 10) return [0, "độ dài phải từ 4 đến 10 ký tự"];
+          if (preg_match($pattern, $val)) return [0, "chỉ gồm chữ số và chữ cái không dấu"];
+          return [1, "Hợp lệ"];
+     }
+
+     function CheckName($val)
+     {
+          // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
+          $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
+          if (strlen($val) < 1 || strlen($val) > 100) return [0, " độ dài phải từ 1 đến 100 ký tự"];
+          if (!preg_match($pattern, $val)) return [0, "không gồm ký tự đặc biệt hoặc chữ số"];
+          return [1, " Hợp lệ"];
      }
 }

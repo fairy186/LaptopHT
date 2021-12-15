@@ -12,12 +12,13 @@ class LaptopTypeModel extends DB
           // $kq=json_encode($kq);
           return $kq;
      }
+
      public function GetByID($id)
      {
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` ='$id'";
           $sql = mysqli_query($this->con, $qr);
-          $row=["Name_Type"=>""];
-          if(mysqli_num_rows($sql)==1)
+          $row = ["Name_Type" => ""];
+          if (mysqli_num_rows($sql) == 1)
                $row = mysqli_fetch_array($sql);
           return $row;
      }
@@ -42,8 +43,9 @@ class LaptopTypeModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
+     
      function CheckID($val)
-     {   
+     {
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` = '$val'";
           $sql = mysqli_query($this->con, $qr);
           if(mysqli_num_rows($sql)>0)
@@ -53,6 +55,7 @@ class LaptopTypeModel extends DB
           if (preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Mã loại laptop chỉ gồm chữ số và chữ cái không dấu"];
           return [1,"<i class='bi bi-check2-circle'></i> Hợp lệ"];
      }
+
      function CheckName($val)
      {
           // $pattern = "/^([a-zA-Z0-9\s]+)$/i";

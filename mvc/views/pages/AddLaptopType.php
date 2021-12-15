@@ -1,6 +1,3 @@
-
-
-
 <h1 style='color: blue;' align='center'>THÊM LOẠI LAPTOP</h1>
 
 <form action="/php/LaptopHT/LaptopType/Add" method="post" class="row g-3">
@@ -16,7 +13,7 @@
           </label>
      </div>
      <div class="col-12 my-0 p-1">
-          <button class="btn btn-primary disabled"  type="submit" name="sm">Thêm</button>
+          <button class="btn btn-primary disabled" type="submit" name="sm">Thêm</button>
      </div>
 </form>
 <?php
