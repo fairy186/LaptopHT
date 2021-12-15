@@ -1,7 +1,7 @@
 <?php
-     if(isset($data['url']))
-          header('location:'.$data['url']);
-          // echo("<script>location.href = '".$_SERVER["PHP_SELF"]."</script>");
+if (isset($data['url']))
+     header('location:' . $data['url']);
+// echo("<script>location.href = '".$_SERVER["PHP_SELF"]."</script>");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +17,17 @@
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <title>Document</title>
      <style>
-          #content,#header,#footer{
+          #content,
+          #header,
+          #footer {
                padding: 20px;
           }
-          label{
+
+          label {
                margin: 5px;
-               color:blue;
+               color: blue;
           }
+
           #header,
           #footer {
                background-color: yellow;
@@ -44,7 +48,6 @@
           <h1> Footer</h1>
      </div>
      <script src="../public/App.js">
-
      </script>
 </body>
 
