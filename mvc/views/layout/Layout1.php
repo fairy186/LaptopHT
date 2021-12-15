@@ -41,7 +41,6 @@ if (isset($data['url']))
      </div>
      <div id="content">
           <?php
-          if(isset($tb)) echo "<script> arlet($tb)</script>";
           require_once "./mvc/views/pages/" . $data['page'] . ".php"
           ?>
      </div>
@@ -49,6 +48,7 @@ if (isset($data['url']))
           <h1> Footer</h1>
      </div>
      <script src="../public/App.js">
+          
      </script>
 </body>
 
