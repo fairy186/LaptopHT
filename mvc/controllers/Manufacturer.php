@@ -17,6 +17,7 @@ class Manufacturer extends Controller
                "Layout1",
                [
                     "page" => "Manufacturer",
+                    "title" => "Hảng Laptop",
                     "dManu" => $this->dManu->Get()
                ]
           );
@@ -45,6 +46,7 @@ class Manufacturer extends Controller
                     "page" => "AddManufacturer",
                ];
           }
+          $data['title'] = "Thêm Hảng";
           $this->view("Layout1", $data);
      }
 
@@ -80,6 +82,7 @@ class Manufacturer extends Controller
                     "name" => $name
                ];
           }
+          $data['title'] = "Sửa Hảng";
           $this->view("Layout1", $data);
      }
 
@@ -98,6 +101,7 @@ class Manufacturer extends Controller
                     "id" => $id
                ];
           }
+          $data['title'] = "Xóa Hảng";
           $this->view("Layout1", $data);
      }
 }

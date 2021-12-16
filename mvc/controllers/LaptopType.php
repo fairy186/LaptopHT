@@ -17,6 +17,7 @@ class LaptopType extends Controller
                "Layout1",
                [
                     "page" => "LaptopType",
+                    "title" => "Loại Laptop",
                     "dType" => $this->dType->Get()
                ]
           );
@@ -45,6 +46,7 @@ class LaptopType extends Controller
                     "page" => "AddLaptopType",
                ];
           }
+          $data['title'] = "Thêm Loại Laptop";
           $this->view("Layout1", $data);
      }
 
@@ -61,7 +63,7 @@ class LaptopType extends Controller
                          "page" => "EditLaptopType",
                          "dType" => $this->dType->Edit($_POST['ma'], $_POST['ten']),
                          "url" => "../../LaptopType",
-                         "tb" => "Đã thêm",
+                         "tb" => "Đã thêm"
                     ];
                } else {
                     $data = [
@@ -79,6 +81,7 @@ class LaptopType extends Controller
                     "name" => $name
                ];
           }
+          $data['title'] = "Sửa Loại Laptop";
           $this->view("Layout1", $data);
      }
 
@@ -97,6 +100,7 @@ class LaptopType extends Controller
                     "id" => $id
                ];
           }
+          $data['title'] = "Xóa Loại Laptop";
           $this->view("Layout1", $data);
      }
 }

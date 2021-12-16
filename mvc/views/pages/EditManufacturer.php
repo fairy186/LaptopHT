@@ -1,4 +1,4 @@
-<h1 style='color: blue;' align='center'>CHỈNH SỬA HÃNG SẢN XUẤT</h1>
+<h1 style='color: blue;' align='center'>CHỈNH SỬA HẢNG SẢN XUẤT</h1>
 <form action="" method="post">
 	<table align="center">
 		<tr>

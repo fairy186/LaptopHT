@@ -21,6 +21,7 @@ class Laptop extends Controller
             "Layout1",
             [
                 "page" => "Laptop",
+                "title" => "Laptop",
                 "dLap" => $this->dLap->Get()
             ]
         );
@@ -55,6 +56,7 @@ class Laptop extends Controller
                 "dManu" => $this->dManu->Get()
             ];
         }
+        $data['title'] = "Thêm Laptop";
         $this->view("Layout1", $data);
     }
 
@@ -98,6 +100,7 @@ class Laptop extends Controller
                 "dManu" => $this->dManu->Get()
             ];
         }
+        $data['title'] = "Sửa Laptop";
         $this->view("Layout1", $data);
     }
 }

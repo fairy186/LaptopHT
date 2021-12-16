@@ -8,6 +8,8 @@
 		<tr>
 			<td>Tên loại laptop </td>
 			<td><input type="text" name="ten" value="<?php echo $data['name'] ?>" required></td>
+			<label mess="ten">
+		</label>
 		</tr>
 		<tr>
 			<td colspan="2">

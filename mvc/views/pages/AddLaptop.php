@@ -68,64 +68,279 @@
         <label id="gpu_id"></label>
     </div>
 
-        <div class="col-12 my-0 p-1">
-            <input type="text" class="form-control" name="ram" placeholder="RAM" required>
-            <label id="ram_id"></label>
-        </div>
-        <div class="col-12 my-0 p-1">
-            <input type="text" class="form-control" name="ram" placeholder="Loại RAM" required>
-            <label id="ram_id"></label>
-        </div>
-
     <div class="col-12 my-0 p-1">
         <input type="text" class="form-control" name="storage" placeholder="Ổ cứng" required>
         <label id="storage_id"></label>
     </div>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="screen" placeholder="Màn hình" required>
-        <label id="screen_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>RAM</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Dung lượng RAM
+            </td>
+            <td>
+                <div class="col-10 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Loại RAM
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Tốc độ Bus RAM
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Hỗ trợ RAM tối đa
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="audio" placeholder="Âm thanh" required>
-        <label id="audio_id"></label>
-    </div>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="connec" placeholder="Kết nối" required>
-        <label id="connec_id"></label>
-    </div>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="o_f" placeholder="Tính năng khác" required>
-        <label id="of_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Màn hình</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Kích thước màn hình
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Độ phân giải
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Tần số quét
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Công nghệ màn hình
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="d_w" placeholder="Kích thước" required>
-        <label id="dw_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Kết nối & Tính năng khác</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Cổng giao tiếp
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="connec" required>
+                    <label id="connec_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Kết nối không dây
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="connec" required>
+                    <label id="connec_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Webcam
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="o_f" required>
+                    <label id="of_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Tính năng khác
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="o_f" required>
+                    <label id="of_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="mate" placeholder="Chất liệu" required>
-        <label id="mate_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Âm thanh</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Công nghệ âm thanh
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="audio" required>
+                    <label id="audio_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="batte" placeholder="Pin" required>
-        <label id="batte_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Kích thước & Trọng lượng</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Dài
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Rộng
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Dày
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Nặng
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Chất liệu
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="mate" required>
+                    <label id="mate_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="os" placeholder="Hệ điều hành" required>
-        <label id="os_id"></label>
-    </div>
-
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="r_t" placeholder="Thời gian phát hành" required>
-        <label id="rt_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Thông tin khác</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Pin
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="batte" required>
+                    <label id="batte_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Hệ điều hành
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="os" required>
+                    <label id="os_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Thời điểm ra mắt
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="r_t" required>
+                    <label id="rt_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
     <div class="col-12 my-0 p-1">
         <button class="btn btn-primary" name="sm" type="submit">Thêm</button>
