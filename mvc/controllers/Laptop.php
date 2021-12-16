@@ -60,9 +60,9 @@ class Laptop extends Controller
 
     function Edit($id)
     {
-        $rows = $this->dLap->GetByID($id)["Name_Lap"];
-        $rows1 = $this->dLap->GetByID($id)["Price"];
-        echo $rows1;
+        $rows = $this->dLap->GetByID($id);
+        // $rows1 = $this->dLap->GetByID($id)["Price"];
+        // echo $rows1;
         // $name = $this->dLap->GetByID($id)["Name_Lap"];
         // $price = $this->dLap->GetByID($id)["Price"];
         // ["Price"]["Insurance"]["ID_Type"]["ID_Manu"]["Images"]["CPU"]["GPU"]["RAM"]["Storage"]["Screen"]["Audio"]["Connection"]["Other_Feature"]["Dimen_Wei"]["Material"]["Battery"]["OS"]["Release_Time"];
@@ -84,7 +84,7 @@ class Laptop extends Controller
                 $data = [
                     "page" => "EditLaptop",
                     "id" => $id,
-                    // "name" => $name,
+                    "name" => $rows['Name_Lap'],
                     "tb" => "Lỗi"
                 ];
             }
