@@ -14,6 +14,8 @@ if (isset($data['url']))
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <title><?php echo $data['title'] ?></title>
      <style>
@@ -46,6 +48,7 @@ if (isset($data['url']))
      <div id="footer">
           <h1> Footer</h1>
      </div>
+<<<<<<< HEAD
      <script>
           $(document).ready(function() {
                $("input[type='text']").keyup(function() {
@@ -77,6 +80,10 @@ if (isset($data['url']))
 
                });
           });
+=======
+     <script src="../public/App.js">
+
+>>>>>>> 7de2334a06af9ff075f5c864e217945338a422e6
      </script>
 </body>
 

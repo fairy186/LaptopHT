@@ -1,27 +1,24 @@
-<h1 style='color: blue;' align='center'>CHỈNH SỬA LAPTOP</h1>
+<h1 style='color: blue;' align='center'>SỬA LAPTOP</h1>
+
 <form action="./Edit" class="row g-3" method="post">
 
     <div class="col-12 my-0 p-1">
-        <label for="validationCustom01" class="form-label">Mã Laptop</label>
-        <input type="text" class="form-control" name="id" value="<?php echo $data['id']?>" id="validationCustom01" required>
+        <input type="text" class="form-control" name="id" value="<?php echo $data['id'] ?>" id="validationCustom01" required>
         <label id="ID"></label>
     </div>
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Tên Laptop</label>
-        <input type="text" class="form-control" name="name" id="validationCustom01" required>
+        <input type="text" class="form-control" name="name" placeholder="Tên Laptop" required>
         <label id="name_id"></label>
     </div>
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Giá</label>
-        <input type="text" class="form-control" name="price" id="validationCustom01" required>
+        <input type="text" class="form-control" name="price" placeholder="Giá" required>
         <label id="price_id"></label>
     </div>
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Bảo hành</label>
-        <input type="text" class="form-control" name="insur" id="validationCustom01" required>
+        <input type="text" class="form-control" name="insur" placeholder="Bảo hành" required>
         <label id="insur_id"></label>
     </div>
 
@@ -57,88 +54,293 @@
     </div> -->
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Hình ảnh</label>
-        <input type="text" class="form-control" name="img" id="validationCustom01" required>
+        <input type="text" class="form-control" name="img" placeholder="Hình ảnh" required>
         <label id="img_id"></label>
     </div>
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">CPU</label>
-        <input type="text" class="form-control" name="cpu" id="validationCustom01" required>
+        <input type="text" class="form-control" name="cpu" placeholder="CPU" required>
         <label id="cpu_id"></label>
     </div>
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">GPU</label>
-        <input type="text" class="form-control" name="gpu" id="validationCustom01" required>
+        <input type="text" class="form-control" name="gpu" placeholder="GPU" required>
         <label id="gpu_id"></label>
     </div>
 
     <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">RAM</label>
-        <input type="text" class="form-control" name="ram" id="validationCustom01" required>
-        <label id="ram_id"></label>
-    </div>
-
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Ổ cứng</label>
-        <input type="text" class="form-control" name="storage" id="validationCustom01" required>
+        <input type="text" class="form-control" name="storage" placeholder="Ổ cứng" required>
         <label id="storage_id"></label>
     </div>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Màn hình</label>
-        <input type="text" class="form-control" name="screen" id="validationCustom01" required>
-        <label id="screen_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>RAM</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Dung lượng RAM
+            </td>
+            <td>
+                <div class="col-10 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Loại RAM
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Tốc độ Bus RAM
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Hỗ trợ RAM tối đa
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="ram" required>
+                    <label id="ram_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Âm thanh</label>
-        <input type="text" class="form-control" name="audio" id="validationCustom01" required>
-        <label id="audio_id"></label>
-    </div>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Kết nối</label>
-        <input type="text" class="form-control" name="connec" id="validationCustom01" required>
-        <label id="connec_id"></label>
-    </div>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Tính năng khác</label>
-        <input type="text" class="form-control" name="o_f" id="validationCustom01" required>
-        <label id="of_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Màn hình</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Kích thước màn hình
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Độ phân giải
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Tần số quét
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Công nghệ màn hình
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="screen" required>
+                    <label id="screen_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Kích thước</label>
-        <input type="text" class="form-control" name="d_w" id="validationCustom01" required>
-        <label id="dw_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Kết nối & Tính năng khác</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Cổng giao tiếp
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="connec" required>
+                    <label id="connec_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Kết nối không dây
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="connec" required>
+                    <label id="connec_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Webcam
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="o_f" required>
+                    <label id="of_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Tính năng khác
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="o_f" required>
+                    <label id="of_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Chất liệu</label>
-        <input type="text" class="form-control" name="mate" id="validationCustom01" required>
-        <label id="mate_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Âm thanh</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Công nghệ âm thanh
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="audio" required>
+                    <label id="audio_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Pin</label>
-        <input type="text" class="form-control" name="batte" id="validationCustom01" required>
-        <label id="batte_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Kích thước & Trọng lượng</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Dài
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Rộng
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Dày
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Nặng
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="d_w" required>
+                    <label id="dw_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Chất liệu
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="mate" required>
+                    <label id="mate_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Hệ điều hành</label>
-        <input type="text" class="form-control" name="os" id="validationCustom01" required>
-        <label id="os_id"></label>
-    </div>
-
-    <div class="col-12 my-0 p-1">
-    <label for="validationCustom01" class="form-label">Thời gian phát hành</label>
-        <input type="text" class="form-control" name="r_t" id="validationCustom01" required>
-        <label id="rt_id"></label>
-    </div>
+    <table>
+        <tr>
+            <h4>Thông tin khác</h4>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Pin
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="batte" required>
+                    <label id="batte_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Hệ điều hành
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="os" required>
+                    <label id="os_id"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                Thời điểm ra mắt
+            </td>
+            <td>
+                <div class="col-10 my-0 p-1">
+                    <input type="text" class="form-control" name="r_t" required>
+                    <label id="rt_id"></label>
+                </div>
+            </td>
+        </tr>
+    </table>
 
     <div class="col-12 my-0 p-1">
         <button class="btn btn-primary" name="sm" type="submit">Thêm</button>
