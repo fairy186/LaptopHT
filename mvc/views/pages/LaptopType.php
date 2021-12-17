@@ -8,17 +8,20 @@ if (isset($data['tb'])) {
 
 <?php
 $dtype = $data['dType'];
-echo "<table align='center' width='800' border='1' cellpadding='2' cellspacing='2' style='border-collapse:collapse;' ><tr style='background-color: #0084ab;' align='center'>
+echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
+<thead class='table-primary'>
+<tr align='center'>
      <th>STT</th>
      <th>Mã</th>
      <th>Tên</th>
      <th>Tùy chọn</th>
-     </tr>";
+     </tr>
+     </thead>";
 
 for ($i=0; $i < count($dtype) ; $i++) { 
      $dty=$dtype[$i];
      $stt=$i+1;
-     echo "<tr>
+     echo "<tr align='center'>
                <td>$stt</td>
                <td>$dty[ID_Type]</td>
                <td>$dty[Name_Type]</td>
@@ -26,8 +29,7 @@ for ($i=0; $i < count($dtype) ; $i++) {
                     <a href='./LaptopType/Edit/$dty[ID_Type]'>Edit</a> |
                     <a href='./LaptopType/Delete/$dty[ID_Type]'>Delete</a>               
                </td>
-          </tr>
-          ";
+          </tr>";
 }
 echo "</table>";
 

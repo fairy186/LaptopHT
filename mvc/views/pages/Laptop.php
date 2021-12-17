@@ -2,7 +2,9 @@
 <h3><a href='./Laptop/Add'>Add</a></h3>
 <?php
 $dlaptop = $data['dLap'];
-echo "<table align='center' width='800' border='1' cellpadding='2' cellspacing='2' style='border-collapse:collapse;' ><tr style='background-color: #0084ab;' align='center'>
+echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2' style='border-collapse:collapse;'>
+     <thead class='table-info'>
+     <tr align='center' style='vertical-align: middle;'>
      <th>STT</th>
      <th>Mã</th>
      <th>Tên</th>
@@ -24,12 +26,12 @@ echo "<table align='center' width='800' border='1' cellpadding='2' cellspacing='
      <th>Hệ điều hành</th>
      <th>Thời gian phát hành</th>
      <th>Tùy chọn</th>
-     </tr>";
+     </tr></thead>";
 
-for ($i=0; $i < count($dlaptop) ; $i++) { 
-     $dlap=$dlaptop[$i];
-     $stt=$i+1;
-     echo "<tr>
+for ($i = 0; $i < count($dlaptop); $i++) {
+     $dlap = $dlaptop[$i];
+     $stt = $i + 1;
+     echo "<tr align='center'>
                <td>$stt</td>
                <td>$dlap[ID_Lap]</td>
                <td>$dlap[Name_Lap]</td>
@@ -54,8 +56,7 @@ for ($i=0; $i < count($dlaptop) ; $i++) {
                     <a href='./Laptop/Edit/$dlap[ID_Lap]'>Edit</a> |
                     <a href='./Laptop/Delete/$dlap[ID_Lap]'>Delete</a>               
                </td>
-          </tr>
-          ";
+          </tr>";
 }
 echo "</table>";
 
