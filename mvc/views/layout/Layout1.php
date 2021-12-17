@@ -41,23 +41,23 @@ if (isset($data['url']))
           <h1>Header</h1>
      </div>
      <table>
-     <?php
-          foreach ($_SERVER as $key => $value) {
-              echo "<tr><td>$key</td><td>$value</td></tr>";
-          }
-     ?>
+          <?php
+          // foreach ($_SERVER as $key => $value) {
+          //     echo "<tr><td>$key</td><td>$value</td></tr>";
+          // }
+          ?>
      </table>
      <div class="container row">
           <div class="col-2">
                <ul class="nav flex-column" style="font-weight:bold;">
-                    <li class="nav-item ">
-                         <a class="nav-link" aria-current="page" href="php/LaptopHT/LaptopType">Laptop Type</a>
+                    <li class="nav-item <?php if (strlen(strstr($_GET['url'] . "/", "LaptopType" . "/")) > 0) echo "border border-primary rounded" ?>">
+                         <a class="nav-link" aria-current="page" href="/LaptopHT/LaptopType">Laptop Type</a>
                     </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="./Manufacturer">Manufacturer</a>
+                    <li class="nav-item <?php if (strlen(strstr($_GET['url'] . "/", "Manufacturer" . "/")) > 0) echo "border border-primary rounded" ?>">
+                         <a class="nav-link" href="/LaptopHT/Manufacturer">Manufacturer</a>
                     </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="./Laptop">Laptop</a>
+                    <li class="nav-item <?php if (strlen(strstr($_GET['url'] . "/", "Laptop" . "/")) > 0) echo "border border-primary rounded" ?>">
+                         <a class="nav-link" href="/LaptopHT/Laptop">Laptop</a>
                     </li>
                </ul>
           </div>
@@ -72,7 +72,6 @@ if (isset($data['url']))
      </div>
      <script>
           $(document).ready(function() {
-               $(".nav-item").
                $("input[type='text']").keyup(function() {
                     var val = $(this).val();
                     var n = $(this).attr("name");
