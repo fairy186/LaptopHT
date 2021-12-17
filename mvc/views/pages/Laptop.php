@@ -1,5 +1,5 @@
 <h1>Danh Sách</h1>
-<h3><a href='./Laptop/Add'>Add</a></h3>
+<h3><a href='./Laptop/Add'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dlaptop = $data['dLap'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2' style='border-collapse:collapse;'>

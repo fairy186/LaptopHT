@@ -1,5 +1,5 @@
 <h1>Danh Sách</h1>
-<h3><a href='./Manufacturer/Add'>Add</a></h3>
+<h3><a href='./Manufacturer/Add'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dmanu = $data['dManu'];
 echo "<table class='table table-bordered table-striped' align='center' cellpadding='2' cellspacing='2'>

@@ -14,6 +14,7 @@ if (isset($data['url']))
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <title><?php echo $data['title'] ?></title>
      <style>
@@ -27,6 +28,7 @@ if (isset($data['url']))
                margin: 5px;
                color: blue;
           }
+
           #header,
           #footer {
                background-color: yellow;
@@ -38,17 +40,39 @@ if (isset($data['url']))
      <div id="header">
           <h1>Header</h1>
      </div>
-     <div id="content">
-          <?php
-          require_once "./mvc/views/pages/" . $data['page'] . ".php"
-          ?>
+     <table>
+     <?php
+          foreach ($_SERVER as $key => $value) {
+              echo "<tr><td>$key</td><td>$value</td></tr>";
+          }
+     ?>
+     </table>
+     <div class="container row">
+          <div class="col-2">
+               <ul class="nav flex-column" style="font-weight:bold;">
+                    <li class="nav-item ">
+                         <a class="nav-link" aria-current="page" href="php/LaptopHT/LaptopType">Laptop Type</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="./Manufacturer">Manufacturer</a>
+                    </li>
+                    <li class="nav-item">
+                         <a class="nav-link" href="./Laptop">Laptop</a>
+                    </li>
+               </ul>
+          </div>
+          <div id="content" class="col-10">
+               <?php
+               require_once "./mvc/views/pages/" . $data['page'] . ".php"
+               ?>
+          </div>
      </div>
      <div id="footer">
           <h1> Footer</h1>
      </div>
-<<<<<<< HEAD
      <script>
           $(document).ready(function() {
+               $(".nav-item").
                $("input[type='text']").keyup(function() {
                     var val = $(this).val();
                     var n = $(this).attr("name");
@@ -78,10 +102,6 @@ if (isset($data['url']))
 
                });
           });
-=======
-     <script src="../public/App.js">
-
->>>>>>> 7de2334a06af9ff075f5c864e217945338a422e6
      </script>
 </body>
 

@@ -4,8 +4,7 @@ if (isset($data['tb'])) {
      echo $data['tb'];
 }
 ?>
-<h3><a href='LaptopType/Add'>Add</a></h3>
-
+<h3><a href='LaptopType/Add'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dtype = $data['dType'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
