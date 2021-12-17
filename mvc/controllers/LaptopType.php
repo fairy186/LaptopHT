@@ -44,6 +44,7 @@ class LaptopType extends Controller
           } else {
                $data = [
                     "page" => "AddLaptopType",
+                    "js"=>$this->findJS("App.js")
                ];
           }
           $data['title'] = "Thêm Loại Laptop";
@@ -78,7 +79,8 @@ class LaptopType extends Controller
                $data = [
                     "page" => "EditLaptopType",
                     "id" => $id,
-                    "name" => $name
+                    "name" => $name,
+                    "js"=>$this->findJS("App.js")
                ];
           }
           $data['title'] = "Sửa Loại Laptop";
@@ -88,7 +90,7 @@ class LaptopType extends Controller
      function Delete($id)
      {
           if (isset($_POST['sm'])) {
-               $this->dType->Delete($_POST['ma']);
+               $this->dType->Delete($id);
                $data = [
                     "page" => "DeleteLaptopType",
                     "id" => $id,

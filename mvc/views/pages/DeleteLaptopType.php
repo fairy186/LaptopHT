@@ -1,20 +1,17 @@
 <h1 style='color: blue;' align='center'>XÓA LOẠI LAPTOP</h1>
-	<form action="" method="post">
-		<table align="center">
-			<tr>
-				<td>Mã loại laptop </td>
-				<td><input type="text" name="ma" value="<?php echo $data['id']?>" required></td>
-			</tr>
-			<tr>
-				<td colspan="2"><center><input type="submit" name="sm" value="Xóa"></center></td>
-			</tr>
-		</table>
-	</form>
+<form action="" method="post">
+	<div class="col-12 my-0 p-1">
+		<center>Bạn có chắc muốn xóa loại lap top có id là <?php echo $data['id']?> không ?</center>
+	</div>
+	<div class="col-12 my-0 p-1">
+		<center><button class="btn btn-primary" type="submit" name="sm">Xác nhận</button></center>
+	</div>
+</form>
 <?php
-	if(isset($data['dType'])){
-		if($data['dType']==1)
-			echo "Đã xóa";
-		else
-			echo "Lỗi";
-	}
+if (isset($data['dType'])) {
+	if ($data['dType'] == 1)
+		echo "Đã xóa";
+	else
+		echo "Lỗi";
+}
 ?>
