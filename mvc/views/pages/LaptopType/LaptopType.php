@@ -4,7 +4,7 @@ if (isset($data['tb'])) {
      echo $data['tb'];
 }
 ?>
-<h3><a href='LaptopType/Add'><i class="bi bi-plus-circle"></i></a></h3>
+<h3><a href='<?php echo "/".$data['domain']."/".$data['controller']."/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dtype = $data['dType'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
@@ -25,8 +25,8 @@ for ($i=0; $i < count($dtype) ; $i++) {
                <td>$dty[ID_Type]</td>
                <td>$dty[Name_Type]</td>
                <td>
-                    <a href='./LaptopType/Edit/$dty[ID_Type]'>Edit</a> |
-                    <a href='./LaptopType/Delete/$dty[ID_Type]'>Delete</a>               
+                    <a href='/$data[domain]/$data[controller]/Edit/$dty[ID_Type]'>Edit</a> |
+                    <a href='/$data[domain]/$data[controller]/Delete/$dty[ID_Type]'>Delete</a>               
                </td>
           </tr>";
 }

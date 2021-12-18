@@ -3,106 +3,62 @@ class LaptopType extends Controller
 {
      protected $dType;
      protected $data;
-
      function __construct()
      {
           $this->dType = $this->model("LaptopTypeModel");
+          $this->data["domain"] = $this->domain;
+          $this->data["controller"] = get_class($this);
+          $this->data["dir"] = $this->fixDir("App.js");
+          $this->data["url"] = "/".$this->data['domain']."/".$this->data['controller'];
      }
-
      // action mặc định
-
      function DefaultAction()
      {
-          $this->view(
-               "Layout1",
-               [
-                    "page" => "LaptopType",
-                    "title" => "Loại Laptop",
-                    "dType" => $this->dType->Get()
-               ]
-          );
+          $this->data["page"] = "LaptopType";
+          $this->data['title'] = "Loại laptop";
+          $this->data['dType'] = $this->dType->Get();
+          $this->view("AdminLayout", $this->data);
      }
-
      function Add()
      {
+          $this->data["page"] = "AddLaptopType";
+          $this->data['title'] = "Thêm loại laptop";
+          $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
+               // validate  check = 1 nếu tất cả các input đều đúng
                $check = $this->dType->CheckID($_POST['ma'])[0] && $this->dType->CheckName($_POST['ten'])[0];
-               if ($check) {
-                    $this->dType->Add($_POST['ma'], $_POST['ten']);
-                    $data = [
-                         "page" => "AddLaptopType",
-                         "dType" => $this->dType->Add($_POST['ma'], $_POST['ten']),
-                         "url" => "../LaptopType",
-                         "tb" => "Đã thêm"
-                    ];
-               } else {
-                    $data = [
-                         "page" => "AddLaptopType",
-                         "tb" => "Lỗi"
-                    ];
-               }
-          } else {
-               $data = [
-                    "page" => "AddLaptopType",
-                    "js"=>$this->findJS("App.js")
-               ];
+               if ($check) 
+                    $this->data["goDefault"]=$this->dType->Add($_POST['ma'], $_POST['ten']);
+               else
+                    $this->data["tb"] = "Lỗi";
           }
-          $data['title'] = "Thêm Loại Laptop";
-          $this->view("Layout1", $data);
+          $this->view("AdminLayout", $this->data);
      }
-
      function Edit($id)
      {
-          $name = $this->dType->GetByID($id)["Name_Type"];
+          $this->data["page"] = "EditLaptopType";
+          $this->data['title'] = "Sửa loại laptop";
+          $this->data['action'] = "Edit";
+          $this->data["id"] = $id;
+          $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];;
           if (isset($_POST['sm'])) {
-               //sau khi submit
-               // print_r($_POST);
                $check = $this->dType->CheckName($_POST['ten'])[0];
-               if ($check) {
-                    $this->dType->Edit($id, $_POST['ten']);
-                    $data = [
-                         "page" => "EditLaptopType",
-                         "dType" => $this->dType->Edit($_POST['ma'], $_POST['ten']),
-                         "url" => "../../LaptopType",
-                         "tb" => "Đã thêm"
-                    ];
-               } else {
-                    $data = [
-                         "page" => "EditLaptopType",
-                         "id" => $id,
-                         "name" => $name,
-                         "tb" => "Lỗi"
-                    ];
-               }
-          } else {
-               //trước khi submit
-               $data = [
-                    "page" => "EditLaptopType",
-                    "id" => $id,
-                    "name" => $name,
-                    "js"=>$this->findJS("App.js")
-               ];
+               if ($check) 
+                    $this->data["goDefault"]=$this->dType->Edit($id, $_POST['ten']);
+               else 
+                    $this->data["tb"] = "Lỗi";
           }
-          $data['title'] = "Sửa Loại Laptop";
-          $this->view("Layout1", $data);
+          $this->view("AdminLayout", $this->data);
      }
-
      function Delete($id)
      {
+          $this->data["page"] = "DeleteLaptopType";
+          $this->data['title'] = "Xóa loại laptop";
+          $this->data['action'] = "Delete";
+          $this->data['id'] = $id;
           if (isset($_POST['sm'])) {
-               $this->dType->Delete($id);
-               $data = [
-                    "page" => "DeleteLaptopType",
-                    "id" => $id,
-                    "url" => "../../LaptopType"
-               ];
-          } else {
-               $data = [
-                    "page" => "DeleteLaptopType",
-                    "id" => $id
-               ];
+               $this->data["goDefault"]=$this->dType->Delete($id);
           }
-          $data['title'] = "Xóa Loại Laptop";
-          $this->view("Layout1", $data);
+          $this->view("AdminLayout", $this->data);
      }
 }

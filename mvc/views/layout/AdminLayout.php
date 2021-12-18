@@ -1,7 +1,16 @@
 <?php
-if (isset($data['url']))
-     header('location:' . $data['url']);
-// echo("<script>location.href = '".$_SERVER["PHP_SELF"]."</script>");
+// print_r($data);
+// if (isset($data['goDefault'], $data['url']))
+//      header('location:' . $data['url']);
+function listitem($controller, $itemname)
+{
+     $item = "<li class='nav-item'>
+     <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'>$itemname</a></li>";
+     if (strlen(strstr($_GET['url'] . '/', $controller . '/')))
+          $item = "<li class='nav-item border border-primary rounded'>
+          <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'>$itemname</a></li>";
+     echo $item;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +23,6 @@ if (isset($data['url']))
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <title><?php echo $data['title'] ?></title>
      <style>
@@ -24,9 +32,13 @@ if (isset($data['url']))
                padding: 20px;
           }
 
-          label {
+          label[mess] {
                margin: 5px;
-               color: blue;
+          }
+
+          .form-label {
+               color: blueviolet;
+               font-weight: bolder;
           }
 
           #header,
@@ -36,34 +48,23 @@ if (isset($data['url']))
      </style>
 </head>
 
-<body>
+<body class="container-fruilt">
      <div id="header">
           <h1>Header</h1>
      </div>
-     <table>
-          <?php
-          // foreach ($_SERVER as $key => $value) {
-          //     echo "<tr><td>$key</td><td>$value</td></tr>";
-          // }
-          ?>
-     </table>
-     <div class="container row">
-          <div class="col-2">
+
+     <div class="row">
+          </p>
+          <div class="col-2 border">
                <ul class="nav flex-column" style="font-weight:bold;">
-                    <li class="nav-item <?php if (strlen(strstr($_GET['url'] . "/", "LaptopType" . "/")) > 0) echo "border border-primary rounded" ?>">
-                         <a class="nav-link" aria-current="page" href="/LaptopHT/LaptopType">Laptop Type</a>
-                    </li>
-                    <li class="nav-item <?php if (strlen(strstr($_GET['url'] . "/", "Manufacturer" . "/")) > 0) echo "border border-primary rounded" ?>">
-                         <a class="nav-link" href="/LaptopHT/Manufacturer">Manufacturer</a>
-                    </li>
-                    <li class="nav-item <?php if (strlen(strstr($_GET['url'] . "/", "Laptop" . "/")) > 0) echo "border border-primary rounded" ?>">
-                         <a class="nav-link" href="/LaptopHT/Laptop">Laptop</a>
-                    </li>
+                    <?php listitem("LaptopType", "Loại laptop") ?>
+                    <?php listitem("Manufacturer", "Hảng Laptop") ?>
+                    <?php listitem("Laptop", "Laptop") ?>
                </ul>
           </div>
-          <div id="content" class="col-10">
+          <div id="content" class="col-10 border">
                <?php
-               require_once "./mvc/views/pages/" . $data['page'] . ".php"
+               require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
                ?>
           </div>
      </div>
@@ -76,12 +77,12 @@ if (isset($data['url']))
                     var val = $(this).val();
                     var n = $(this).attr("name");
                     $.post(
-                         "<?php echo $data['js'] ?>" + "Ajax/Check/" + n, {
+                         "<?php echo $data['dir'] ?>" + "Ajax/Check/" + n, {
                               val: val,
                          },
                          function(data) {
                               var d = JSON.parse(data);
-                              $("label[mess=" + n + "]").html(d[1]);
+                              $("label[mess=" + n + "]").html(d[1] + " !");
                               if (d[0] == 1) {
                                    $("label[mess=" + n + "]").css("color", "blue");
                                    $("label[mess=" + n + "]").addClass("blue");

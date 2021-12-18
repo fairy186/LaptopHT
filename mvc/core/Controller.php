@@ -1,6 +1,7 @@
 <?php
 class controller
 {
+     protected $domain = "LaptopHT";
      public function model($model)
      {
           require_once "./mvc/models/" . $model . ".php";
@@ -12,7 +13,7 @@ class controller
                require_once "./mvc/views/layout/" . $layout . ".php";
           } else require_once "./mvc/views/layout/NonLayout.php";
      }
-     public function findJS()
+     public function fixDir()
      {
           $dir = "";
           if (isset($_GET['url'])) {
