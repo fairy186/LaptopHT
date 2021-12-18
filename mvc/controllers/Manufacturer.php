@@ -7,101 +7,64 @@ class Manufacturer extends Controller
      function __construct()
      {
           $this->dManu = $this->model("ManufacturerModel");
+          $this->data["domain"] = $this->domain;
+          $this->data["controller"] = get_class($this);
+          $this->data["dir"] = $this->fixDir("App.js");
+          $this->data["url"] = "/".$this->data['domain']."/".$this->data['controller'];
      }
 
      // action mặc định
 
      function DefaultAction()
      {
-          $this->view(
-               "Layout1",
-               [
-                    "page" => "Manufacturer",
-                    "title" => "Hảng Laptop",
-                    "dManu" => $this->dManu->Get()
-               ]
-          );
+          $this->data["page"] = "Manufacturer";
+          $this->data['title'] = "Hảng Laptop";
+          $this->data['dManu'] = $this->dManu->Get();
+          $this->view("AdminLayout", $this->data);
      }
 
      function Add()
      {
+          $this->data["page"] = "AddManufacturer";
+          $this->data['title'] = "Thêm Hảng";
+          $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
+               // validate  check = 1 nếu tất cả các input đều đúng
                $check = $this->dManu->CheckID($_POST['ma'])[0] && $this->dManu->CheckName($_POST['ten'])[0];
-               if ($check) {
-                    $this->dManu->Add($_POST['ma'], $_POST['ten']);
-                    $data = [
-                         "page" => "AddManufacturer",
-                         "dManu" => $this->dManu->Add($_POST['ma'], $_POST['ten']),
-                         "url" => "../Manufacturer",
-                         "tb" => "Đã thêm"
-                    ];
-               } else {
-                    $data = [
-                         "page" => "AddManufacturer",
-                         "tb" => "Lỗi"
-                    ];
-               }
-          } else {
-               $data = [
-                    "page" => "AddManufacturer",
-               ];
+               if ($check) 
+                    $this->data["goDefault"]=$this->dManu->Add($_POST['ma'], $_POST['ten']);
+               else
+                    $this->data["tb"] = "Lỗi";
           }
-          $data['title'] = "Thêm Hảng";
-          $this->view("Layout1", $data);
+          $this->view("AdminLayout", $this->data);
      }
 
      function Edit($id)
      {
-          $name = $this->dManu->GetByID($id)["Name_Manu"];
-
+          $this->data["page"] = "EditManufacturer";
+          $this->data['title'] = "Sửa Hảng";
+          $this->data['action'] = "Edit";
+          $this->data["id"] = $id;
+          $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
           if (isset($_POST['sm'])) {
-               //sau khi submit
-               // print_r($_POST);
                $check = $this->dManu->CheckName($_POST['ten'])[0];
-               if ($check) {
-                    $this->dManu->Edit($id, $_POST['ten']);
-                    $data = [
-                         "page" => "EditManufacturer",
-                         "dManu" => $this->dManu->Edit($_POST['ma'], $_POST['ten']),
-                         "url" => "../../Manufacturer",
-                         "tb" => "Đã thêm",
-                    ];
-               } else {
-                    $data = [
-                         "page" => "EditManufacturer",
-                         "id" => $id,
-                         "tb" => "Lỗi",
-                         "name" => $name
-                    ];
-               }
-          } else {
-               //trước khi submit
-               $data = [
-                    "page" => "EditManufacturer",
-                    "id" => $id,
-                    "name" => $name
-               ];
+               if ($check) 
+                    $this->data["goDefault"]=$this->dManu->Edit($id, $_POST['ten']);
+               else 
+                    $this->data["tb"] = "Lỗi";
           }
-          $data['title'] = "Sửa Hảng";
-          $this->view("Layout1", $data);
+          $this->view("AdminLayout", $this->data);
      }
 
      function Delete($id)
      {
+          $this->data["page"] = "DeleteManufacturer";
+          $this->data['title'] = "Xóa Hảng";
+          $this->data['action'] = "Delete";
+          $this->data['id'] = $id;
           if (isset($_POST['sm'])) {
-               $this->dManu->Delete($_POST['ma']);
-               $data = [
-                    "page" => "DeleteManufacturer",
-                    "id" => $id,
-                    "url" => "../../Manufacturer"
-               ];
-          } else {
-               $data = [
-                    "page" => "DeleteManufacturer",
-                    "id" => $id
-               ];
+               $this->data["goDefault"]=$this->dManu->Delete($id);
           }
-          $data['title'] = "Xóa Hảng";
-          $this->view("Layout1", $data);
+          $this->view("AdminLayout", $this->data);
      }
 }
