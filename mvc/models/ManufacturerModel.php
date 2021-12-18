@@ -43,7 +43,6 @@ class ManufacturerModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
-
      function CheckID($val)
      {
           $qr = "SELECT * FROM `manufacturer` WHERE `ID_Manu` = '$val'";
@@ -55,7 +54,6 @@ class ManufacturerModel extends DB
           if (preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Mã hảng chỉ gồm chữ số và chữ cái không dấu"];
           return [1,"<i class='bi bi-check2-circle'></i> Hợp lệ"];
      }
-
      function CheckName($val)
      {
           // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
