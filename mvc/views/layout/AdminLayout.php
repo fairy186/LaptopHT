@@ -1,7 +1,7 @@
 <?php
 // print_r($data);
-// if (isset($data['goDefault'], $data['url']))
-//      header('location:' . $data['url']);
+if (isset($data['goDefault'], $data['url']))
+     header('location:' . $data['url']);
 function listitem($controller, $itemname)
 {
      $item = "<li class='nav-item'>
