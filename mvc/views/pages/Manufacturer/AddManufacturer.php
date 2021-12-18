@@ -15,7 +15,6 @@
 	<div class="col-12 my-0 p-1">
 		<center><button class="btn btn-primary disabled" type="submit" name="sm">Thêm</button></center>
 	</div>
-
 	<div class="col-12 my-0 p-1">
           <label>
                <?php
