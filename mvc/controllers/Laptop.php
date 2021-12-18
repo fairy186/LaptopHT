@@ -11,96 +11,67 @@ class Laptop extends Controller
         $this->dLap = $this->model("LaptopModel");
         $this->dType = $this->model("LaptopTypeModel");
         $this->dManu = $this->model("ManufacturerModel");
+        $this->data["domain"] = $this->domain;
+        $this->data["controller"] = get_class($this);
+        $this->data["dir"] = $this->fixDir("App.js");
+        $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
     }
 
     // action mặc định
 
     function DefaultAction()
     {
-        $this->view(
-            "Layout1",
-            [
-                "page" => "Laptop",
-                "title" => "Laptop",
-                "dLap" => $this->dLap->Get()
-            ]
-        );
+        $this->data["page"] = "Laptop";
+        $this->data['title'] = "Laptop";
+        $this->data['dLap'] = $this->dLap->Get();
+        $this->view("AdminLayout", $this->data);
     }
 
     function Add()
     {
+        $this->data["page"] = "AddLaptop";
+        $this->data['title'] = "Thêm laptop";
+        $this->data['action'] = "Add";
+        $this->data['dType'] = $this->dType->Get();
+        $this->data['dManu'] = $this->dManu->Get();
         if (isset($_POST['sm'])) {
             $check = $this->dLap->CheckID($_POST['ma'])[0];
-            if ($check) {
-                $this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
-                $data = [
-                    "page" => "AddLaptopType",
-                    "dLap" => $this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']),
-                    "dType" => $this->dType->Get(),
-                    "dManu" => $this->dManu->Get(),
-                    "url" => "../LaptopType",
-                    "tb" => "Đã thêm"
-                ];
-            } else {
-                $data = [
-                    "page" => "AddLaptopType",
-                    "dType" => $this->dType->Get(),
-                    "dManu" => $this->dManu->Get(),
-                    "tb" => "Lỗi"
-                ];
-            }
-        } else {
-            $data = [
-                "page" => "AddLaptop",
-                "dType" => $this->dType->Get(),
-                "dManu" => $this->dManu->Get()
-            ];
+            if ($check)
+                $this->data["goDefault"] = $this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
+            else
+                $this->data["tb"] = "Lỗi";
         }
-        $data['title'] = "Thêm Laptop";
-        $this->view("Layout1", $data);
+        $this->view("AdminLayout", $this->data);
     }
 
     function Edit($id)
     {
-        $rows = $this->dLap->GetByID($id);
-        // $rows1 = $this->dLap->GetByID($id)["Price"];
-        // echo $rows1;
-        // $name = $this->dLap->GetByID($id)["Name_Lap"];
-        // $price = $this->dLap->GetByID($id)["Price"];
-        // ["Price"]["Insurance"]["ID_Type"]["ID_Manu"]["Images"]["CPU"]["GPU"]["RAM"]["Storage"]["Screen"]["Audio"]["Connection"]["Other_Feature"]["Dimen_Wei"]["Material"]["Battery"]["OS"]["Release_Time"];
+        $this->data["page"] = "EditLaptop";
+        $this->data['title'] = "Sửa laptop";
+        $this->data['action'] = "Edit";
+        $this->data['dType'] = $this->dType->Get();
+        $this->data['dManu'] = $this->dManu->Get();
+        $this->data["id"] = $id;
+        $this->data["name"] = $this->dLap->GetByID($id)["Name_Lap"];;
         if (isset($_POST['sm'])) {
-            //sau khi submit
-            // print_r($_POST);
-            $check = $this->dLap->CheckName($_POST['id'])[0];
-            if ($check) {
-                $this->dLap->Edit($id, $_POST['name']);
-                $data = [
-                    "page" => "EditLaptop",
-                    "dLap" => $this->dLap->Edit($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']),
-                    "dType" => $this->dType->Get(),
-                    "dManu" => $this->dManu->Get(),
-                    "url" => "../../Laptop",
-                    "tb" => "Đã thêm",
-                ];
-            } else {
-                $data = [
-                    "page" => "EditLaptop",
-                    "id" => $id,
-                    "name" => $rows['Name_Lap'],
-                    "tb" => "Lỗi"
-                ];
-            }
-        } else {
-            //trước khi submit
-            $data = [
-                "page" => "EditLaptop",
-                "id" => $id,
-                // "name" => $name,
-                "dType" => $this->dType->Get(),
-                "dManu" => $this->dManu->Get()
-            ];
+            $check = $this->dLap->CheckName($_POST['name'])[0];//cái này xử lý bên model nè
+            if ($check)
+                $this->data["goDefault"] = $this->dLap->Edit($id, $_POST['ten'],  $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
+            else
+                $this->data["tb"] = "Lỗi";
         }
-        $data['title'] = "Sửa Laptop";
-        $this->view("Layout1", $data);
+        $this->view("AdminLayout", $this->data);
+    }
+
+    function Delete($id)
+    {
+        $this->data["page"] = "DeleteLaptop";
+        $this->data['title'] = "Xóa laptop";
+        $this->data['action'] = "Delete";
+        $this->data['id'] = $id;
+        if (isset($_POST['sm'])) {
+            $this->data["goDefault"] = $this->dLap->Delete($id);
+        }
+        $this->view("AdminLayout", $this->data);
     }
 }

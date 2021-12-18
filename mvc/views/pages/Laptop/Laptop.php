@@ -1,5 +1,10 @@
-<h1>Danh Sách</h1>
-<h3><a href='./Laptop/Add'><i class="bi bi-plus-circle"></i></a></h3>
+<h1>Danh Sách Laptop</h1>
+<?php
+if (isset($data['tb'])) {
+     echo $data['tb'];
+}
+?>
+<h3><a href='<?php echo "/".$data['domain']."/".$data['controller']."/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dlaptop = $data['dLap'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2' style='border-collapse:collapse;'>
@@ -53,8 +58,8 @@ for ($i = 0; $i < count($dlaptop); $i++) {
                <td>$dlap[OS]</td>
                <td>$dlap[Release_Time]</td>
                <td>
-                    <a href='./Laptop/Edit/$dlap[ID_Lap]'>Edit</a> |
-                    <a href='./Laptop/Delete/$dlap[ID_Lap]'>Delete</a>               
+                    <a href='/$data[domain]/$data[controller]/Edit/$dlap[ID_Lap]'>Edit</a> |
+                    <a href='/$data[domain]/$data[controller]/Delete/$dlap[ID_Lap]'>Delete</a>               
                </td>
           </tr>";
 }

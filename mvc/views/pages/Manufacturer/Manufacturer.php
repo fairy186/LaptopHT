@@ -1,5 +1,10 @@
-<h1>Danh Sách</h1>
-<h3><a href='./Manufacturer/Add'><i class="bi bi-plus-circle"></i></a></h3>
+<h1>Danh Sách Hảng Laptop</h1>
+<?php
+if (isset($data['tb'])) {
+     echo $data['tb'];
+}
+?>
+<h3><a href='<?php echo "/".$data['domain']."/".$data['controller']."/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dmanu = $data['dManu'];
 echo "<table class='table table-bordered table-striped' align='center' cellpadding='2' cellspacing='2'>
@@ -21,8 +26,8 @@ for ($i = 0; $i < count($dmanu); $i++) {
           <td>$dman[ID_Manu]</td>
           <td>$dman[Name_Manu]</td>
           <td>
-               <a href='./Manufacturer/Edit/$dman[ID_Manu]'>Edit</a> |
-               <a href='./Manufacturer/Delete/$dman[ID_Manu]'>Delete</a>               
+               <a href='/$data[domain]/$data[controller]/Edit/$dman[ID_Manu]'>Edit</a> |
+               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'>Delete</a>               
           </td>
      </tr>";
 }

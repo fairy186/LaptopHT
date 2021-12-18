@@ -1,6 +1,6 @@
 <h1 style='color: blue;' align='center'>THÊM LAPTOP</h1>
 
-<form action="./Add" class="row g-3" method="post">
+<form action="/<?php echo $data['domain'] ?>/Laptop/Add" class="row g-3" method="post">
 
     <div class="col-12 my-0 p-1">
         <input type="text" class="form-control" name="id" placeholder="Mã Laptop" required>
