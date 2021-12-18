@@ -49,7 +49,7 @@ class LaptopTypeModel extends DB
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` = '$val'";
           $sql = mysqli_query($this->con, $qr);
           if(mysqli_num_rows($sql)>0)
-               return [0,"<i class='bi bi-x-circle'></i> Mã lap top đã đã tồn tại"];
+               return [0,"<i class='bi bi-x-circle'></i> Mã laptop đã tồn tại"];
           $pattern = "/[^A-Za-z0-9]/u";
           if (strlen($val) < 4 || strlen($val) > 10) return [0,"<i class='bi bi-x-circle'></i> Độ dài mã loại laptop chỉ được từ 4 đến 10 ký tự"];
           if (preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Mã loại laptop chỉ gồm chữ số và chữ cái không dấu"];

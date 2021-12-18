@@ -1,19 +1,24 @@
 <?php
-class Ajax extends controller{
-     protected $dType;
+class Ajax extends controller
+{
+     protected $md;
      protected $val;
      function __construct()
      {
-          $this->dType = $this->model("LaptopTypeModel");
           $this->val = $_POST['val'];
+          $this->md = $this->model($_POST['md'] . "Model");
+          $this->fn = $_POST['fn'];
      }
 
-     public function Check($fn)
+     public function Check()
      {
-          if($fn=='ma')
-               echo json_encode($this->dType->CheckID($this->val)) ;
-          else
-               echo json_encode($this->dType->CheckName($this->val)) ;
+          switch ($this->fn) {
+               case "ma":
+                    echo json_encode($this->md->CheckID($this->val));
+                    break;
+               case "ten":
+                    echo json_encode($this->md->CheckName($this->val));
+                    break;
+          }
      }
 }
-?>

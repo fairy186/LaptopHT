@@ -3,7 +3,6 @@ class Manufacturer extends Controller
 {
      protected $dManu;
      protected $data;
-
      function __construct()
      {
           $this->dManu = $this->model("ManufacturerModel");
@@ -12,9 +11,7 @@ class Manufacturer extends Controller
           $this->data["dir"] = $this->fixDir("App.js");
           $this->data["url"] = "/".$this->data['domain']."/".$this->data['controller'];
      }
-
      // action mặc định
-
      function DefaultAction()
      {
           $this->data["page"] = "Manufacturer";
@@ -22,7 +19,6 @@ class Manufacturer extends Controller
           $this->data['dManu'] = $this->dManu->Get();
           $this->view("AdminLayout", $this->data);
      }
-
      function Add()
      {
           $this->data["page"] = "AddManufacturer";
@@ -38,7 +34,6 @@ class Manufacturer extends Controller
           }
           $this->view("AdminLayout", $this->data);
      }
-
      function Edit($id)
      {
           $this->data["page"] = "EditManufacturer";
@@ -55,7 +50,6 @@ class Manufacturer extends Controller
           }
           $this->view("AdminLayout", $this->data);
      }
-
      function Delete($id)
      {
           $this->data["page"] = "DeleteManufacturer";

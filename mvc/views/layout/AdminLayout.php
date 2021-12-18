@@ -77,8 +77,10 @@ function listitem($controller, $itemname)
                     var val = $(this).val();
                     var n = $(this).attr("name");
                     $.post(
-                         "<?php echo $data['dir'] ?>" + "Ajax/Check/" + n, {
+                         "/<?php echo $data['domain'] ?>/Ajax/Check/", {
                               val: val,
+                              md: '<?php echo $data["controller"] ?>',
+                              fn: n
                          },
                          function(data) {
                               var d = JSON.parse(data);
