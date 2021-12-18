@@ -58,7 +58,7 @@ function listitem($controller, $itemname)
           <div class="col-2 border">
                <ul class="nav flex-column" style="font-weight:bold;">
                     <?php listitem("LaptopType", "Loại laptop") ?>
-                    <?php listitem("Manufacturer", "Hảng Laptop") ?>
+                    <?php listitem("Manufacturer", "Hảng laptop") ?>
                     <?php listitem("Laptop", "Laptop") ?>
                </ul>
           </div>
