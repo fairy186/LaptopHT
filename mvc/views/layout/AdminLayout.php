@@ -31,7 +31,10 @@ function listitem($controller, $itemname)
           #footer {
                padding: 20px;
           }
-
+          .row{
+               margin: 0;
+               padding: 0;
+          }
           label[mess] {
                margin: 5px;
           }
@@ -48,7 +51,7 @@ function listitem($controller, $itemname)
      </style>
 </head>
 
-<body class="container-fruilt">
+<body class="container-fruilt m-0 p-0">
      <div id="header">
           <h1>Header</h1>
      </div>
