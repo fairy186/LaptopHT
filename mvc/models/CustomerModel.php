@@ -52,11 +52,20 @@ class CustomerModel extends DB
           return $sql;
      }
 
-     function CheckName($val)
+     function CheckFirstName($val)
      {
           // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
           $pattern = "/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
           if (strlen($val) < 1 || strlen($val) > 100) return [0,"<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 100 ký tự"];
+          if (!preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
+          return [1,"<i class='bi bi-check2-circle'></i> Hợp lệ"];
+     }
+
+     function CheckLastName($val)
+     {
+          // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
+          $pattern = "/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
+          if (strlen($val) < 1 || strlen($val) > 100) return [0,"<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 20 ký tự"];
           if (!preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
           return [1,"<i class='bi bi-check2-circle'></i> Hợp lệ"];
      }

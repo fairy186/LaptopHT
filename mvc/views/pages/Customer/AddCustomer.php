@@ -3,14 +3,14 @@
 <form action="/<?php echo $data['domain'] ?>/Customer/Add" method="post" class="row g-3">
 
     <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="firstname" placeholder="Họ và tên đệm" value='<?php if (isset($_POST["firstname"])) echo $_POST["firstname"] ?>' required>
-        <label mess="ten">
+        <input type="text" class="form-control" name="firstname" placeholder="Họ" value='<?php if (isset($_POST["firstname"])) echo $_POST["firstname"] ?>' required>
+        <label mess="firstname">
         </label>
     </div>
 
     <div class="col-12 my-0 p-1">
         <input type="text" class="form-control" name="lastname" placeholder="Tên" value='<?php if (isset($_POST["lastname"])) echo $_POST["lastname"] ?>' required>
-        <label mess="ten">
+        <label mess="lastname">
         </label>
     </div>
 
