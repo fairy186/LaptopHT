@@ -3,7 +3,7 @@ class LaptopModel extends DB
 {
      public function Get()
      {
-          $qr = "Select * from laptop";
+          $qr = "SELECT * FROM `laptop`";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
           while ($row = mysqli_fetch_array($sql)) {

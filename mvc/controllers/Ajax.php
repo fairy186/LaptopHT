@@ -19,6 +19,12 @@ class Ajax extends controller
                case "ten":
                     echo json_encode($this->md->CheckName($this->val));
                     break;
+               case "firstname":
+                    echo json_encode($this->md->CheckFirstName($this->val));
+                    break;
+               case "lastname":
+                    echo json_encode($this->md->CheckLastName($this->val));
+                    break;
                case "img[]":
                     echo "aaaaaa";
                     break;

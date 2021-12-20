@@ -63,6 +63,8 @@ function listitem($controller, $itemname)
                     <?php listitem("LaptopType", "Loại laptop") ?>
                     <?php listitem("Manufacturer", "Hảng laptop") ?>
                     <?php listitem("Laptop", "Laptop") ?>
+                    <?php listitem("Customer", "Khách hàng") ?>
+                    <?php listitem("Cart", "Giỏ hàng") ?>
                </ul>
           </div>
           <div id="content" class="col-10 border">

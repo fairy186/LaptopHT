@@ -40,7 +40,7 @@ class LaptopType extends Controller
           $this->data['title'] = "Sửa loại laptop";
           $this->data['action'] = "Edit";
           $this->data["id"] = $id;
-          $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];;
+          $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];
           if (isset($_POST['sm'])) {
                $check = $this->dType->CheckName($_POST['ten'])[0];
                if ($check) 
