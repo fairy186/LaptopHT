@@ -36,8 +36,14 @@ class Laptop extends Controller
         $this->data['dManu'] = $this->dManu->Get();
         if (isset($_POST['sm'])) {
             $check = $this->dLap->CheckID($_POST['ma'])[0];
+            $img = $this->upFile($_POST['ma']);
+            $ram = json_encode(["memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']]);
+            $screen = json_encode(["sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']]);
+            $connection = json_encode(["port" => $_POST['port'], "wireless" => $_POST['wireless']]);
+            $other_feature = json_encode(["webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']]);
+            $dimem_wei = json_encode(["width" => $_POST['width'], "depth" => $_POST['depth'], "height" => $_POST['height'], "weight" => $_POST['weight']]);
             if ($check)
-                $this->data["goDefault"] = $this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
+                $this->data["goDefault"] = $this->dLap->Add($_POST['ma'], $_POST['ten'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $dimem_wei, $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']);
             else
                 $this->data["tb"] = "Lỗi";
         }
@@ -54,7 +60,7 @@ class Laptop extends Controller
         $this->data["id"] = $id;
         $this->data["name"] = $this->dLap->GetByID($id)["Name_Lap"];;
         if (isset($_POST['sm'])) {
-            $check = $this->dLap->CheckName($_POST['name'])[0];//cái này xử lý bên model nè
+            $check = $this->dLap->CheckName($_POST['name'])[0]; //cái này xử lý bên model nè
             if ($check)
                 $this->data["goDefault"] = $this->dLap->Edit($id, $_POST['ten'],  $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
             else
@@ -73,5 +79,57 @@ class Laptop extends Controller
             $this->data["goDefault"] = $this->dLap->Delete($id);
         }
         $this->view("AdminLayout", $this->data);
+    }
+    function upFile($forderName)
+    {
+        $imgdata = [];
+        $target_dir = "images/$forderName/";
+        $forder = "images/$forderName";
+        if (!is_dir($forder))
+            mkdir($forder);
+        $files = glob("$forder/*"); // get all file names
+        foreach ($files as $file) { // iterate files
+            if (is_file($file)) {
+                unlink($file); // delete file
+            }
+        }
+        foreach ($_FILES["img"]["name"] as $key => $value) {
+            $target_file = $target_dir . basename($_FILES["img"]["name"][$key]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $check = getimagesize($_FILES["img"]["tmp_name"][$key]);
+            if ($check !== false) {
+                // echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                // echo "File is not an image.";
+                $uploadOk = 0;
+            }
+            // Check file size
+            if ($_FILES["img"]["size"][$key] > 40 * 1024 * 1024) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+            // Allow certain file formats
+            if (
+                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+                // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($_FILES["img"]["tmp_name"][$key], $target_file)) {
+                    $imgdata[] = htmlspecialchars(basename($_FILES["img"]["name"][$key]));
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
+        }
+        return json_encode($imgdata);
     }
 }

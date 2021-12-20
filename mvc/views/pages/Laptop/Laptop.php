@@ -17,19 +17,7 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
      <th>Mã loại laptop</th>
      <th>Mã hãng</th>
      <th>Hình ảnh</th>
-     <th>CPU</th>
-     <th>GPU</th>
-     <th>RAM</th>
-     <th>Ổ cứng</th>
-     <th>Màn hình</th>
-     <th>Âm thanh</th>
-     <th>Kết nối</th>
-     <th>Tính năng khác</th>
-     <th>Kích thước</th>
-     <th>Chất liệu</th>
-     <th>Pin</th>
-     <th>Hệ điều hành</th>
-     <th>Thời gian phát hành</th>
+     <th>Thời điểm ra mắt</th>
      <th>Tùy chọn</th>
      </tr></thead>";
 
@@ -44,18 +32,6 @@ for ($i = 0; $i < count($dlaptop); $i++) {
                <td>$dlap[ID_Type]</td>
                <td>$dlap[ID_Manu]</td>
                <td>$dlap[Images]</td>
-               <td>$dlap[CPU]</td>
-               <td>$dlap[GPU]</td>
-               <td>$dlap[RAM]</td>
-               <td>$dlap[Storage]</td>
-               <td>$dlap[Screen]</td>
-               <td>$dlap[Audio]</td>
-               <td>$dlap[Connection]</td>
-               <td>$dlap[Other_Feature]</td>
-               <td>$dlap[Dimen_Wei]</td>
-               <td>$dlap[Material]</td>
-               <td>$dlap[Battery]</td>
-               <td>$dlap[OS]</td>
                <td>$dlap[Release_Time]</td>
                <td>
                     <a href='/$data[domain]/$data[controller]/Edit/$dlap[ID_Lap]'>Edit</a> |

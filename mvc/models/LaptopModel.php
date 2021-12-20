@@ -43,8 +43,7 @@ class LaptopModel extends DB
           $battery,
           $os,
           $r_t
-     ) 
-     {
+     ) {
           $qr = "INSERT INTO `laptop`(`ID_Lap`,`Name_Lap`, `Price`, `Insurance`, 
                                         `ID_Type`, `ID_Manu`, `Images`, `CPU`, 
                                         `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, 
@@ -54,7 +53,6 @@ class LaptopModel extends DB
                          '$id_manu','$img','$cpu','$gpu','$ram','$storage',
                          '$screen','$audio','$connec','$o_f','$d_w','$material',
                          '$battery','$os','$r_t')";
-          echo $qr;
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
@@ -80,8 +78,7 @@ class LaptopModel extends DB
           $battery,
           $os,
           $r_t
-     ) 
-     {
+     ) {
           $qr = "UPDATE `laptop` SET `Name_Lap`='$name',`Price`='$price',
                                    `Insurance`='$insur',`ID_Type`='$id_type',
                                    `ID_Manu`='$id_manu',`Images`='$img',
@@ -101,7 +98,7 @@ class LaptopModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
-     
+
      function CheckID($val)
      {
           $qr = "SELECT * FROM `laptop` WHERE `ID_Lap` = '$val'";
