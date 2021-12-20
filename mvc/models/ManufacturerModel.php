@@ -3,7 +3,7 @@ class ManufacturerModel extends DB
 {
      public function Get()
      {
-          $qr = "Select * from manufacturer";
+          $qr = "SELECT * FROM `manufacturer`";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
           while ($row = mysqli_fetch_array($sql)) {
