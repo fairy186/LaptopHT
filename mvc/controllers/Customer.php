@@ -26,7 +26,7 @@ class Customer extends Controller
         $this->data['action'] = "Add";
         if (isset($_POST['sm'])) {
             // validate  check = 1 nếu tất cả các input đều đúng
-            $check = $this->dCus->CheckFirstName($_POST['firstname'])[0] && $this->dCus->CheckLastName($_POST['lastname'])[0];
+            $check = $this->dCus->CheckFirstName($_POST['firstname'])[0] && $this->dCus->CheckLastName($_POST['lastname'])[0] && $this->dCus->CheckPhone($_POST['phone'])[0] && $this->dCus->CheckAccount($_POST['account'])[0];
             if ($check)
                 $this->data["goDefault"] = $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
             else
@@ -41,7 +41,7 @@ class Customer extends Controller
         $this->data['action'] = "Edit";
         $this->data["customer"] = $this->dCus->GetByID($id);
         if (isset($_POST['sm'])) {
-            $check = $this->dCus->CheckName($_POST['firstname'])[0] && $this->dCus->CheckName($_POST['lastname'])[0] ;
+            $check = $this->dCus->CheckFirstName($_POST['firstname'])[0] && $this->dCus->CheckLastName($_POST['lastname'])[0] && $this->dCus->CheckPhone($_POST['phone'])[0] && $this->dCus->CheckAccount($_POST['account'])[0];
             if ($check)
                 $this->data["goDefault"] = $this->dCus->Edit($id, $_POST['firstname'], $_POST['lastname'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
             else

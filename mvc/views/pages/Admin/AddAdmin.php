@@ -1,6 +1,6 @@
-<h1 style='color: blue;' align='center'>THÊM KHÁCH HÀNG</h1>
+<h1 style='color: blue;' align='center'>THÊM QUẢN TRỊ VIÊN</h1>
 
-<form action="/<?php echo $data['domain'] ?>/Customer/Add" method="post" class="row g-3">
+<form action="/<?php echo $data['domain'] ?>/Admin/Add" method="post" class="row g-3">
 
     <div class="col-12 my-0 p-1">
         <input type="text" class="form-control" name="firstname" placeholder="Họ" value='<?php if (isset($_POST["firstname"])) echo $_POST["firstname"] ?>' required>
@@ -10,22 +10,6 @@
     <div class="col-12 my-0 p-1">
         <input type="text" class="form-control" name="lastname" placeholder="Tên" value='<?php if (isset($_POST["lastname"])) echo $_POST["lastname"] ?>' required>
         <label mess="lastname">
-    </div>
-
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>' required>
-        <label mess="address">
-    </div>
-
-    <div class="col-12 my-0 p-1">
-        <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" value='<?php if (isset($_POST["phone"])) echo $_POST["phone"] ?>' required>
-        <label mess="phone">
-    </div>
-
-    <div class="col-12 my-0 p-1 input-group mb-3">
-        <input type="text" class="form-control" name="email" placeholder="Email" value='<?php if (isset($_POST["email"])) echo $_POST["email"] ?>' required>
-        <label mess="email">
-        <!-- <span class="input-group-text" id="basic-addon2">@gmail.com</span> -->
     </div>
 
     <div class="col-12 my-0 p-1">

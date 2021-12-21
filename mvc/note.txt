@@ -12,6 +12,7 @@
 	laptop (add, edit, delete)
 	customer (edit, delete)
 	cart (view)
-	order (view)
+	orderinfo (view, edit)
+	orderdetail (view)
 	review (view ,delete)
 	discount (add, edit, delete)
