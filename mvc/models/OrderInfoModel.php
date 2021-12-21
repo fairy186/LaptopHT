@@ -13,6 +13,18 @@ class OrderInfoModel extends DB
           return $kq;
      }
 
+     public function GetFullInfo()
+     {
+          $qr = "SELECT * FROM `order_info`,`customer` WHERE order_info.ID_Cus = customer.ID_Cus";
+          $sql = mysqli_query($this->con, $qr);
+          $kq = array();
+          while ($row = mysqli_fetch_array($sql)) {
+               $kq[] = $row;
+          }
+          // $kq=json_encode($kq);
+          return $kq;
+     }
+
      public function GetByID($id)
      {
           $qr = "SELECT * FROM `order_info` WHERE `ID_Order` ='$id'";

@@ -67,7 +67,6 @@ function listitem($controller, $itemname)
                     <?php listitem("Customer", "Khách hàng") ?>
                     <?php listitem("Cart", "Giỏ hàng") ?>
                     <?php listitem("OrderInfo", "Đơn hàng") ?>
-                    <?php listitem("OrderDetails", "Chi tiết đơn hàng") ?>
                     <?php listitem("Admin", "Quản trị") ?>
                </ul>
           </div>
