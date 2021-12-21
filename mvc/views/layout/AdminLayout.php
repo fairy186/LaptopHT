@@ -31,10 +31,12 @@ function listitem($controller, $itemname)
           #footer {
                padding: 20px;
           }
-          .row{
+
+          .row {
                margin: 0;
                padding: 0;
           }
+
           label[mess] {
                font-style: italic;
                margin: 5px;
@@ -52,7 +54,7 @@ function listitem($controller, $itemname)
      </style>
 </head>
 
-<body class="container-fruilt m-0 p-0">
+<body class="container-fruilt m-0 p-0" <?php if(isset($data['action']) && $data['action']=="Edit") echo"onload='validate()'"?>>
      <div id="header">
           <h1>Header</h1>
      </div>
@@ -80,44 +82,18 @@ function listitem($controller, $itemname)
      <div id="footer">
           <h1> Footer</h1>
      </div>
+     <script src='<?php echo "$data[dir]"?>public/App.js'></script>
      <script>
           $(document).ready(function() {
                $("input[type='text']").keyup(function() {
-                    var inp =$(this);
-                    var val = $(this).val();
-                    var n = $(this).attr("name");
-                    $.post(
-                         "/<?php echo $data['domain'] ?>/Ajax/Check/", {
-                              val: val,
-                              md: '<?php echo $data["controller"] ?>',
-                              fn: n
-                         },
-                         function(data) {
-                              var d = JSON.parse(data);
-                              $("label[mess=" + n + "]").html(d[0]);
-                              if (d.length ==1) {
-                                   inp.removeClass("border-danger");
-                                   inp.addClass("border-primary")
-                                   $("label[mess=" + n + "]").css("color", "blue");
-                                   $("label[mess=" + n + "]").addClass("blue");
-                                   $("label[mess=" + n + "]").removeClass("red");
-                              } else {
-                                   inp.addClass("border-danger");
-                                   inp.removeClass("border-primary")
-                                   $("label[mess=" + n + "]").css("color", "red");
-                                   $("label[mess=" + n + "]").addClass("red");
-                                   $("label[mess=" + n + "]").removeClass("blue");
-                              }
-                              var mess = $("label[mess]");
-                              var messblue = $(".blue");
-                              if (mess.length == messblue.length)
-                                   $("button[name='sm']").removeClass("disabled");
-                              else $("button[name='sm']").addClass("disabled");
-                         }
-                    );
-
+                    check(this,"<?php echo $data['domain'] ?>","<?php echo $data['controller'] ?>");
                });
           });
+          function validate() {
+               $("input[type='text']").each(function(){
+                    check(this,"<?php echo $data['domain'] ?>","<?php echo $data['controller'] ?>");
+               });
+          }
      </script>
 </body>
 
