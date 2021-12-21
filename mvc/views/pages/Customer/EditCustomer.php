@@ -4,9 +4,11 @@ $customer = $data['customer'];
 <h1 style='color: blue;' align='center'> CHỈNH SỬA KHÁCH HÀNG</h1>
 <form action="" method="post">
     <div class="row">
-        <div class="col-8 mb-3">
-            <label for="field1" class="form-label">Mã khách hàng</label>
-            <input id="field1" type="text" name="ma" value="<?php echo $customer['ID_Cus'] ?>" class="form-control" disabled>
+        <div class="col-12 mb-3">
+            <div class="col-sm-1">
+                <label for="field1" class="form-label">Mã khách hàng</label>
+                <input id="field1" type="text" name="ma" value="<?php echo $customer['ID_Cus'] ?>" class="form-control" disabled>
+            </div>
         </div>
         <div class="col-5 mb-3">
             <label for="field2" class="form-label">Họ</label>

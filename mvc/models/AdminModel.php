@@ -23,10 +23,10 @@ class AdminModel extends DB
         return $row;
     }
 
-    public function Add($id, $first_name, $last_name, $account, $password)
+    public function Add($first_name, $last_name, $account, $password)
     {
-        $qr = "INSERT INTO `admin`(`ID_Admin`,`First_Name`,`Last_Name`,`Account`, `Password`)
-               VALUES ('$id','$first_name','$last_name','$account','$password')";
+        $qr = "INSERT INTO `admin`(`First_Name`,`Last_Name`,`Account`, `Password`)
+               VALUES ('$first_name','$last_name','$account','$password')";
         $sql = mysqli_query($this->con, $qr);
         return $sql;
     }
@@ -48,28 +48,16 @@ class AdminModel extends DB
 
     function CheckFirstName($val)
     {
-        // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
-        $pattern = "/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
-        if (strlen($val) < 1 || strlen($val) > 100) return [0, "<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 100 ký tự"];
-        if (!preg_match($pattern, $val)) return [0, "<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
-        return [1, "<i class='bi bi-check2-circle'></i> Hợp lệ"];
+        return $this->check($val, 1, 100, 11100);
     }
 
     function CheckLastName($val)
     {
-        // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
-        $pattern = "/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
-        if (strlen($val) < 1 || strlen($val) > 20) return [0, "<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 20 ký tự"];
-        if (!preg_match($pattern, $val)) return [0, "<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
-        return [1, "<i class='bi bi-check2-circle'></i> Hợp lệ"];
+        return $this->check($val, 1, 20, 11100);
     }
 
     function CheckAccount($val)
     {
-        // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
-        $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
-        if (strlen($val) < 10 || strlen($val) > 32) return [0, "<i class='bi bi-x-circle'></i>  Độ dài tên tài khoản phải được từ 10 đến 32 ký tự"];
-        if (!preg_match($pattern, $val)) return [0, "<i class='bi bi-x-circle'></i> Tên tài khoản không gồm ký tự đặc biệt"];
-        return [1, "<i class='bi bi-check2-circle'></i> Hợp lệ"];
+        return $this->check($val, 8, 32, 10010);
     }
 }
