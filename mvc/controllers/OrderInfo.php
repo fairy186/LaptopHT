@@ -20,8 +20,9 @@ class OrderInfo extends Controller
     {
         $this->data["page"] = "OrderInfo";
         $this->data['title'] = "Đơn hàng";
-        $this->data['dOrIn'] = $this->dOrIn->Get();
+        $this->data['dOr_Cus'] = $this->dOrIn->GetFullInfo();
         $this->view("AdminLayout", $this->data);
+
     }
     function Edit($id)
     {
