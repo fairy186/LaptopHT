@@ -36,6 +36,7 @@ function listitem($controller, $itemname)
                padding: 0;
           }
           label[mess] {
+               font-style: italic;
                margin: 5px;
           }
 
@@ -79,6 +80,7 @@ function listitem($controller, $itemname)
      <script>
           $(document).ready(function() {
                $("input[type='text']").keyup(function() {
+                    var inp =$(this);
                     var val = $(this).val();
                     var n = $(this).attr("name");
                     $.post(
@@ -89,12 +91,16 @@ function listitem($controller, $itemname)
                          },
                          function(data) {
                               var d = JSON.parse(data);
-                              $("label[mess=" + n + "]").html(d[1] + " !");
-                              if (d[0] == 1) {
+                              $("label[mess=" + n + "]").html(d[0]);
+                              if (d.length ==1) {
+                                   inp.removeClass("border-danger");
+                                   inp.addClass("border-primary")
                                    $("label[mess=" + n + "]").css("color", "blue");
                                    $("label[mess=" + n + "]").addClass("blue");
                                    $("label[mess=" + n + "]").removeClass("red");
                               } else {
+                                   inp.addClass("border-danger");
+                                   inp.removeClass("border-primary")
                                    $("label[mess=" + n + "]").css("color", "red");
                                    $("label[mess=" + n + "]").addClass("red");
                                    $("label[mess=" + n + "]").removeClass("blue");

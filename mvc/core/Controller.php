@@ -13,6 +13,14 @@ class controller
                require_once "./mvc/views/layout/" . $layout . ".php";
           } else require_once "./mvc/views/layout/NonLayout.php";
      }
+     function validate($allcheck)
+     {
+          foreach ($allcheck as $value){
+               if($value!=1)
+                    return 0;
+          }
+          return 1;
+     }
      public function fixDir()
      {
           $dir = "";

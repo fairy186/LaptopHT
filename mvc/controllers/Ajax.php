@@ -12,22 +12,28 @@ class Ajax extends controller
 
      public function Check()
      {
+          $mess = 1;
           switch ($this->fn) {
                case "ma":
-                    echo json_encode($this->md->CheckID($this->val));
+                    $mess = $this->md->CheckID($this->val);
                     break;
                case "ten":
-                    echo json_encode($this->md->CheckName($this->val));
+                    $mess = $this->md->CheckName($this->val);
                     break;
                case "firstname":
-                    echo json_encode($this->md->CheckFirstName($this->val));
+                    $mess = $this->md->CheckFirstName($this->val);
                     break;
                case "lastname":
-                    echo json_encode($this->md->CheckLastName($this->val));
+                    $mess = $this->md->CheckLastName($this->val);
                     break;
-               case "img[]":
-                    echo "aaaaaa";
+               case "price":
+                    $mess = $this->md->Check($this->val, 3, 10, 10);
                     break;
+          }
+          if ($mess == 1)
+               echo json_encode(["<i class='bi bi-check2-circle'></i>"]);
+          else {
+               echo json_encode([$mess, 0]);
           }
      }
 }

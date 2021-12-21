@@ -35,21 +35,19 @@ class Laptop extends Controller
         $this->data['dType'] = $this->dType->Get();
         $this->data['dManu'] = $this->dManu->Get();
         if (isset($_POST['sm'])) {
-            $check = $this->dLap->CheckID($_POST['ma'])[0];
+            $check = $this->validate([$this->dLap->CheckID($_POST['ma']),$this->dLap->CheckName($_POST['ten'])]);
             $img = $this->upFile($_POST['ma']);
             $ram = json_encode(["memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']]);
             $screen = json_encode(["sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']]);
             $connection = json_encode(["port" => $_POST['port'], "wireless" => $_POST['wireless']]);
             $other_feature = json_encode(["webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']]);
-            $dimem_wei = json_encode(["width" => $_POST['width'], "depth" => $_POST['depth'], "height" => $_POST['height'], "weight" => $_POST['weight']]);
             if ($check)
-                $this->data["goDefault"] = $this->dLap->Add($_POST['ma'], $_POST['ten'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $dimem_wei, $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']);
+                $this->data["goDefault"] = $this->dLap->Add($_POST['ma'], $_POST['ten'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']);
             else
                 $this->data["tb"] = "Lỗi";
         }
         $this->view("AdminLayout", $this->data);
     }
-
     function Edit($id)
     {
         $this->data["page"] = "EditLaptop";
@@ -60,7 +58,7 @@ class Laptop extends Controller
         $this->data["id"] = $id;
         $this->data["name"] = $this->dLap->GetByID($id)["Name_Lap"];;
         if (isset($_POST['sm'])) {
-            $check = $this->dLap->CheckName($_POST['name'])[0]; //cái này xử lý bên model nè
+            $check = $this->validate([$this->dLap->CheckName($_POST['ten'])]);
             if ($check)
                 $this->data["goDefault"] = $this->dLap->Edit($id, $_POST['ten'],  $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
             else

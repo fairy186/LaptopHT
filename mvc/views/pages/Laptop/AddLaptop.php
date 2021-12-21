@@ -1,45 +1,35 @@
 <style>
-    img {
-        margin: 5px;
-        border: 1px blue solid;
-    }
 </style>
 <h1 style='color: blue;' align='center'>THÊM LAPTOP</h1>
-<form action="/<?php echo $data['domain'] ?>/Laptop/Add" method="post" enctype="multipart/form-data">
-    <div class="col-12 m-0 p-0 row">
-        <div class="col-12 col-xl-6 my-0 p-3 border">
-            <h4>Sản phẩm</h4>
+<form action="/<?php echo $data['domain'] ?>/Laptop/Add" class="row" method="post" enctype="multipart/form-data">
+    <div class="col-12 m-0 p-3 row border">
+        <div class="col-12 col-xl-6">
+            <h4>Thông tin cơ bản</h4>
             <div class="row">
                 <label class="col-sm-4 col-form-label">Mã laptop</label>
                 <div class="col-sm-8">
                     <input type="text" name="ma" class="form-control">
-                    <label mess1="ma"></label>
+                    <label mess="ma"></label>
                 </div>
             </div>
             <div class="row">
                 <label class="col-sm-4 col-form-label">Tên laptop</label>
                 <div class="col-sm-8">
                     <input type="text" name="ten" class="form-control">
-                    <label mess1="ten"></label>
+                    <label mess="ten"></label>
                 </div>
             </div>
             <div class="row">
                 <label class="col-sm-4 col-form-label">Giá</label>
                 <div class="col-sm-8">
                     <input type="text" name="price" class="form-control">
-                    <label mess1="price"></label>
+                    <label mess="price"></label>
                 </div>
             </div>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Bảo hành</label>
-                <div class="col-sm-8">
-                    <input type="text" name="insu" class="form-control">
-                    <label mess1="insu"></label>
-                </div>
-            </div>
+
         </div>
-        <div class="col-12 col-xl-6 my-0 p-3 border">
-            <h4>Cấu hình</h4>
+        <div class="col-12 col-xl-6">
+            <h4 class="d-none d-xl-block" style="visibility:hidden"> Cấu hình</h4>
             <div class="row">
                 <label class="col-sm-4 col-form-label">CPU</label>
                 <div class="col-sm-8">
@@ -61,85 +51,59 @@
                     <label mess1="disk"></label>
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-xl-6">
             <div class="row">
-                <label class="col-sm-4 col-form-label">Âm thanh</label>
+                <label class="col-sm-4 col-form-label">Bảo hành</label>
                 <div class="col-sm-8">
-                    <input type="text" name="audio" class="form-control">
-                    <label mess1="audio"></label>
+                    <input type="text" name="insu" class="form-control">
+                    <label mess1="insu"></label>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Năm ra mắt</label>
+                <div class="col-sm-8">
+                    <input type="text" name="release" class="form-control">
+                    <label mess1="release"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <select class=" form-select" name="type" required>
+                        <option selected disabled value="">Loại Laptop</option>
+                        <?php
+                        $dtype = $data['dType'];
+                        for ($i = 0; $i < count($dtype); $i++) {
+                            $dty = $dtype[$i];
+                            echo "<option value='$dty[ID_Type]'>$dty[Name_Type]</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <select class="form-select" name="manu" required>
+                        <option selected disabled value="">Hãng sản xuất</option>
+                        <?php
+                        $dmanu = $data['dManu'];
+                        for ($i = 0; $i < count($dmanu); $i++) {
+                            $dman = $dmanu[$i];
+                            echo "<option value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 m-0 p-0 row">
-        <div class="col-12 col-xl-6 my-0 p-3 border">
-            <h4>Danh mục & ảnh</h4>
-            <select class="form-select" name="type" required>
-                <option selected disabled value="">Loại Laptop</option>
-                <?php
-                $dtype = $data['dType'];
-                for ($i = 0; $i < count($dtype); $i++) {
-                    $dty = $dtype[$i];
-                    echo "<option value='$dty[ID_Type]'>$dty[Name_Type]</option>";
-                }
-                ?>
-            </select>
-            <label mess1="type"></label>
-            <select class="form-select" name="manu" required>
-                <option selected disabled value="">Hãng sản xuất</option>
-                <?php
-                $dmanu = $data['dManu'];
-                for ($i = 0; $i < count($dmanu); $i++) {
-                    $dman = $dmanu[$i];
-                    echo "<option value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
-                }
-                ?>
-            </select>
-            <label mess1="manu"></label>
+        <div class="col-12 col-xl-6 mt-3 mt-xl-0">
             <div class="input-group">
                 <span class="input-group-text border-0 bg-transparent"> Hình ảnh</span>
                 <input id="gallery-photo-add" type="file" accept="image/*" class="form-control" name="img[]" required multiple>
             </div>
-            <div class="gallery mt-1"></div>
+            <div class="gallery mt-1 row row-cols-5 g-2 g-lg-3"></div>
+        </div>
+    </div>
+    <div class="col-12 m-0 p-0 row">
 
-        </div>
-        <div class="col-12 col-xl-6 my-0 p-3 border">
-            <h4>Kết nối & Tính năng</h4>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Cổng kết nối</label>
-                <div class="col-sm-8">
-                    <input type="text" name="port" class="form-control">
-                    <label mess1="port"></label>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Kết nối không dây</label>
-                <div class="col-sm-8">
-                    <input type="text" name="wireless" class="form-control">
-                    <label mess1="wireless"></label>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Webcam</label>
-                <div class="col-sm-8">
-                    <input type="text" name="webcam" class="form-control">
-                    <label mess1="webcam"></label>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Đèn bàn phím</label>
-                <div class="col-sm-8">
-                    <input type="text" name="ledKB" class="form-control">
-                    <label mess1="ledKB"></label>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Tính năng khác</label>
-                <div class="col-sm-8">
-                    <input type="text" name="otherF" class="form-control">
-                    <label mess1="otherF"></label>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="col-12 m-0 p-0 row">
         <div class="col-12 col-xl-6 my-0 p-3 border">
@@ -208,38 +172,52 @@
     </div>
     <div class="col-12 m-0 p-0 row">
         <div class="col-12 col-xl-6 my-0 p-3 border">
-            <h4>Kích thước & Trọng lượng</h4>
+            <h4>Kết nối & Tính năng</h4>
             <div class="row">
-                <label class="col-sm-4 col-form-label">Dài</label>
+                <label class="col-sm-4 col-form-label">Cổng kết nối</label>
                 <div class="col-sm-8">
-                    <input type="text" name="width" class="form-control">
-                    <label mess1="width"></label>
+                    <input type="text" name="port" class="form-control">
+                    <label mess1="port"></label>
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-4 col-form-label">Rộng</label>
+                <label class="col-sm-4 col-form-label">Kết nối không dây</label>
                 <div class="col-sm-8">
-                    <input type="text" name="depth" class="form-control">
-                    <label mess1="depth"></label>
+                    <input type="text" name="wireless" class="form-control">
+                    <label mess1="wireless"></label>
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-4 col-form-label">Dày</label>
+                <label class="col-sm-4 col-form-label">Âm thanh</label>
                 <div class="col-sm-8">
-                    <input type="text" name="height" class="form-control">
-                    <label mess1="height"></label>
+                    <input type="text" name="audio" class="form-control">
+                    <label mess1="audio"></label>
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-4 col-form-label">Nặng</label>
+                <label class="col-sm-4 col-form-label">Webcam</label>
                 <div class="col-sm-8">
-                    <input type="text" name="weight" class="form-control">
-                    <label mess1="weight"></label>
+                    <input type="text" name="webcam" class="form-control">
+                    <label mess1="webcam"></label>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Đèn bàn phím</label>
+                <div class="col-sm-8">
+                    <input type="text" name="ledKB" class="form-control">
+                    <label mess1="ledKB"></label>
                 </div>
             </div>
         </div>
         <div class="col-12 col-xl-6 my-0 p-3 border">
             <h4>Thông tin khác</h4>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Thông số vật lý</label>
+                <div class="col-sm-8">
+                    <input type="text" name="d_w" class="form-control">
+                    <label mess1="d_w"></label>
+                </div>
+            </div>
             <div class="row">
                 <label class="col-sm-4 col-form-label">Chất liệu</label>
                 <div class="col-sm-8">
@@ -255,17 +233,17 @@
                 </div>
             </div>
             <div class="row">
+                <label class="col-sm-4 col-form-label">Tính năng khác</label>
+                <div class="col-sm-8">
+                    <input type="text" name="otherF" class="form-control">
+                    <label mess1="otherF"></label>
+                </div>
+            </div>
+            <div class="row">
                 <label class="col-sm-4 col-form-label">Hệ điều hành</label>
                 <div class="col-sm-8">
                     <input type="text" name="os" class="form-control">
                     <label mess1="os"></label>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-sm-4 col-form-label">Năm ra mắt</label>
-                <div class="col-sm-8">
-                    <input type="text" name="release" class="form-control">
-                    <label mess1="release"></label>
                 </div>
             </div>
         </div>
@@ -288,9 +266,10 @@
 
                 for (i = 0; i < filesAmount; i++) {
                     var reader = new FileReader();
-
                     reader.onload = function(event) {
-                        $($.parseHTML('<img>')).attr('src', event.target.result).css("height", "100px").appendTo(placeToInsertImagePreview);
+                        // $($.parseHTML('<img>')).attr('src', event.target.result).addClass("col p-2").appendTo(placeToInsertImagePreview);
+                        var khung = $($.parseHTML('<div>')).addClass("p-1 col p-1").appendTo(placeToInsertImagePreview);
+                        $($.parseHTML('<img>')).attr('src', event.target.result).css("width", "100%").addClass("border").appendTo(khung);
                     }
                     reader.readAsDataURL(input.files[i]);
                 }

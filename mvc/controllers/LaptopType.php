@@ -25,8 +25,7 @@ class LaptopType extends Controller
           $this->data['title'] = "Thêm loại laptop";
           $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
-               // validate  check = 1 nếu tất cả các input đều đúng
-               $check = $this->dType->CheckID($_POST['ma'])[0] && $this->dType->CheckName($_POST['ten'])[0];
+               $check = $this->validate([$this->dType->CheckID($_POST['ma']),$this->dType->CheckName($_POST['ten'])]);
                if ($check) 
                     $this->data["goDefault"]=$this->dType->Add($_POST['ma'], $_POST['ten']);
                else
@@ -42,7 +41,7 @@ class LaptopType extends Controller
           $this->data["id"] = $id;
           $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];
           if (isset($_POST['sm'])) {
-               $check = $this->dType->CheckName($_POST['ten'])[0];
+               $check = $this->validate([$this->dType->CheckName($_POST['ten'])]);
                if ($check) 
                     $this->data["goDefault"]=$this->dType->Edit($id, $_POST['ten']);
                else 

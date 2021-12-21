@@ -25,8 +25,7 @@ class Manufacturer extends Controller
           $this->data['title'] = "Thêm Hảng";
           $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
-               // validate  check = 1 nếu tất cả các input đều đúng
-               $check = $this->dManu->CheckID($_POST['ma'])[0] && $this->dManu->CheckName($_POST['ten'])[0];
+               $check = $this->validate([$this->dManu->CheckID($_POST['ma']),$this->dManu->CheckName($_POST['ten'])]);
                if ($check) 
                     $this->data["goDefault"]=$this->dManu->Add($_POST['ma'], $_POST['ten']);
                else
@@ -42,7 +41,7 @@ class Manufacturer extends Controller
           $this->data["id"] = $id;
           $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
           if (isset($_POST['sm'])) {
-               $check = $this->dManu->CheckName($_POST['ten'])[0];
+               $check = $this->validate([$this->dManu->CheckName($_POST['ten'])]);
                if ($check) 
                     $this->data["goDefault"]=$this->dManu->Edit($id, $_POST['ten']);
                else 
