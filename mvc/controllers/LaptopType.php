@@ -58,6 +58,10 @@ class LaptopType extends Controller
           $this->data['title'] = "Xóa loại laptop";
           $this->data['action'] = "Delete";
           $this->data['id'] = $id;
+          $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];
+          if($this->data["name"]==""){
+               header("Location: /$this->domain/".$this->data['controller']);
+          }
           if (isset($_POST['sm'])) {
                $this->data["goDefault"]=$this->dType->Delete($id);
           }
