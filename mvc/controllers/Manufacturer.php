@@ -9,7 +9,7 @@ class Manufacturer extends Controller
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
           $this->data["dir"] = $this->fixDir("App.js");
-          $this->data["url"] = "/".$this->data['domain']."/".$this->data['controller'];
+          $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
      }
      // action mặc định
      function DefaultAction()
@@ -25,9 +25,9 @@ class Manufacturer extends Controller
           $this->data['title'] = "Thêm Hảng";
           $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
-               $check = $this->validate([$this->dManu->CheckID($_POST['ma']),$this->dManu->CheckName($_POST['ten'])]);
-               if ($check) 
-                    $this->data["goDefault"]=$this->dManu->Add($_POST['ma'], $_POST['ten']);
+               $check = $this->validate([$this->dManu->CheckID($_POST['ma']), $this->dManu->CheckName($_POST['ten'])]);
+               if ($check)
+                    $this->data["goDefault"] = $this->dManu->Add($_POST['ma'], $_POST['ten']);
                else
                     $this->data["tb"] = "Lỗi";
           }
@@ -40,14 +40,14 @@ class Manufacturer extends Controller
           $this->data['action'] = "Edit";
           $this->data["id"] = $id;
           $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
-          if($this->data["name"]==""){
-               header("Location: /$this->domain/".$this->data['controller']);
+          if ($this->data["name"] == "") {
+               header("Location: /$this->domain/" . $this->data['controller']);
           }
           if (isset($_POST['sm'])) {
                $check = $this->validate([$this->dManu->CheckName($_POST['ten'])]);
-               if ($check) 
-                    $this->data["goDefault"]=$this->dManu->Edit($id, $_POST['ten']);
-               else 
+               if ($check)
+                    $this->data["goDefault"] = $this->dManu->Edit($id, $_POST['ten']);
+               else
                     $this->data["tb"] = "Lỗi";
           }
           $this->view("AdminLayout", $this->data);
@@ -58,8 +58,12 @@ class Manufacturer extends Controller
           $this->data['title'] = "Xóa Hảng";
           $this->data['action'] = "Delete";
           $this->data['id'] = $id;
+          $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
+          if ($this->data["name"] == "") {
+               header("Location: /$this->domain/" . $this->data['controller']);
+          }
           if (isset($_POST['sm'])) {
-               $this->data["goDefault"]=$this->dManu->Delete($id);
+               $this->data["goDefault"] = $this->dManu->Delete($id);
           }
           $this->view("AdminLayout", $this->data);
      }

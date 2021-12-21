@@ -76,6 +76,9 @@ class Laptop extends Controller
         $this->data['title'] = "Xóa laptop";
         $this->data['action'] = "Delete";
         $this->data['id'] = $id;
+        if($this->data["name"]==""){
+            header("Location: /$this->domain/".$this->data['controller']);
+       }
         if (isset($_POST['sm'])) {
             $this->data["goDefault"] = $this->dLap->Delete($id);
         }
