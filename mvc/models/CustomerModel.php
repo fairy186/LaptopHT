@@ -24,7 +24,7 @@ class CustomerModel extends DB
           return $row;
      }
 
-     public function Add($id, $first_name, $last_name, $address, $phone, $email, $account, $password )
+     public function Add($id, $first_name, $last_name, $address, $phone, $email, $account, $password)
      {
           $qr = "INSERT INTO `customer`(`ID_Cus`, `First_Name`, 
                                         `Last_Name`, `Address`, 
@@ -56,17 +56,35 @@ class CustomerModel extends DB
      {
           // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
           $pattern = "/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
-          if (strlen($val) < 1 || strlen($val) > 100) return [0,"<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 100 ký tự"];
-          if (!preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
-          return [1,"<i class='bi bi-check2-circle'></i> Hợp lệ"];
+          if (strlen($val) < 1 || strlen($val) > 100) return [0, "<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 100 ký tự"];
+          if (!preg_match($pattern, $val)) return [0, "<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
+          return [1, "<i class='bi bi-check2-circle'></i> Hợp lệ"];
      }
 
      function CheckLastName($val)
      {
           // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
           $pattern = "/^([a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
-          if (strlen($val) < 1 || strlen($val) > 100) return [0,"<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 20 ký tự"];
-          if (!preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
+          if (strlen($val) < 1 || strlen($val) > 20) return [0, "<i class='bi bi-x-circle'></i>  Độ dài tên chỉ được từ 1 đến 20 ký tự"];
+          if (!preg_match($pattern, $val)) return [0, "<i class='bi bi-x-circle'></i> Tên không gồm ký tự đặc biệt"];
+          return [1, "<i class='bi bi-check2-circle'></i> Hợp lệ"];
+     }
+
+     function CheckPhone($val)
+     {
+          // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
+          $pattern = "/^([0-9]+)$/i";
+          if (strlen($val) < 1 || strlen($val) > 10) return [0, "<i class='bi bi-x-circle'></i>  Độ dài số điện thoại chỉ được từ 1 đến 10 ký tự"];
+          if (!preg_match($pattern, $val)) return [0, "<i class='bi bi-x-circle'></i> Số điện thoại chỉ bao gồm số"];
+          return [1, "<i class='bi bi-check2-circle'></i> Hợp lệ"];
+     }
+
+     function CheckAccount($val)
+     {
+          // $pattern = "/^([a-zA-Z0-9\s]+)$/i";
+          $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
+          if (strlen($val) < 10 || strlen($val) > 32) return [0,"<i class='bi bi-x-circle'></i>  Độ dài tên tài khoản phải được từ 10 đến 32 ký tự"];
+          if (!preg_match($pattern, $val)) return [0,"<i class='bi bi-x-circle'></i> Tên tài khoản không gồm ký tự đặc biệt"];
           return [1,"<i class='bi bi-check2-circle'></i> Hợp lệ"];
      }
 }

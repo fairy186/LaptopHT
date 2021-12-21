@@ -28,6 +28,15 @@ class Ajax extends controller
                     break;
                case "price":
                     $mess = $this->md->Check($this->val, 3, 10, 10);
+               case "phone":
+                    echo json_encode($this->md->CheckPhone($this->val));
+                    break;
+               case "account":
+                    echo json_encode($this->md->CheckAccount($this->val));
+                    break;
+
+               case "img[]":
+                    echo "aaaaaa";
                     break;
           }
           if ($mess == 1)
