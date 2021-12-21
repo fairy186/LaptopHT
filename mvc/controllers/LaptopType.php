@@ -40,6 +40,9 @@ class LaptopType extends Controller
           $this->data['action'] = "Edit";
           $this->data["id"] = $id;
           $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];
+          if($this->data["name"]==""){
+               header("Location: /$this->domain/".$this->data['controller']);
+          }
           if (isset($_POST['sm'])) {
                $check = $this->validate([$this->dType->CheckName($_POST['ten'])]);
                if ($check) 

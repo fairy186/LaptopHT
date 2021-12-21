@@ -57,6 +57,9 @@ class Laptop extends Controller
         $this->data['dManu'] = $this->dManu->Get();
         $this->data["id"] = $id;
         $this->data["name"] = $this->dLap->GetByID($id)["Name_Lap"];;
+        if($this->data["name"]==""){
+            header("Location: /$this->domain/".$this->data['controller']);
+       }
         if (isset($_POST['sm'])) {
             $check = $this->validate([$this->dLap->CheckName($_POST['ten'])]);
             if ($check)

@@ -40,6 +40,9 @@ class Manufacturer extends Controller
           $this->data['action'] = "Edit";
           $this->data["id"] = $id;
           $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
+          if($this->data["name"]==""){
+               header("Location: /$this->domain/".$this->data['controller']);
+          }
           if (isset($_POST['sm'])) {
                $check = $this->validate([$this->dManu->CheckName($_POST['ten'])]);
                if ($check) 
