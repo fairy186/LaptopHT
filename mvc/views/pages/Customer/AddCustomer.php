@@ -18,15 +18,15 @@
             <label mess="password"></label>
         </div>
         <div>
-            <input type="text" class="form-control" name="address" placeholder="Địa chỉ" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>'>
+            <input type="text" vali class="form-control" name="address" placeholder="Địa chỉ" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>'>
             <label mess="address"></label>
         </div>
         <div>
-            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" value='<?php if (isset($_POST["phone"])) echo $_POST["phone"] ?>'>
+            <input type="text" vali class="form-control" name="phone" placeholder="Số điện thoại" value='<?php if (isset($_POST["phone"])) echo $_POST["phone"] ?>'>
             <label mess="phone"></label>
         </div>
         <div>
-            <input type="email" class="form-control" name="email" placeholder="Email" value='<?php if (isset($_POST["email"])) echo $_POST["email"] ?>'>
+            <input type="email" vali class="form-control" name="email" placeholder="Email" value='<?php if (isset($_POST["email"])) echo $_POST["email"] ?>'>
             <label mess="email"></label>
         </div>
         <div>
