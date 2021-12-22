@@ -26,11 +26,13 @@ class Customer extends Controller
         $this->data['action'] = "Add";
         if (isset($_POST['sm'])) {
             // validate  check = 1 nếu tất cả các input đều đúng
-            $check = $this->validate([$this->dCus->CheckFirstName($_POST['firstname']), 
-                                      $this->dCus->CheckLastName($_POST['lastname']),
-                                      $this->dCus->CheckPhone($_POST['phone']), 
-                                      $this->dCus->CheckAccount($_POST['account']), 
-                                      $this->dCus->CheckPassword($_POST['password'])]);
+            $check = $this->validate([
+                $this->dCus->CheckFirstName($_POST['firstname']),
+                $this->dCus->CheckLastName($_POST['lastname']),
+                $this->dCus->CheckPhone($_POST['phone']),
+                $this->dCus->CheckAccount($_POST['account']),
+                $this->dCus->CheckPassword($_POST['password'])
+            ]);
             if ($check)
                 $this->data["goDefault"] = $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
             else
@@ -45,11 +47,13 @@ class Customer extends Controller
         $this->data['action'] = "Edit";
         $this->data["customer"] = $this->dCus->GetByID($id);
         if (isset($_POST['sm'])) {
-            $check = $this->validate([$this->dCus->CheckFirstName($_POST['firstname']), 
-                                      $this->dCus->CheckLastName($_POST['lastname']), 
-                                      $this->dCus->CheckPhone($_POST['phone']), 
-                                      $this->dCus->CheckAccount($_POST['account']), 
-                                      $this->dCus->CheckPassword($_POST['password'])]);
+            $check = $this->validate([
+                $this->dCus->CheckFirstName($_POST['firstname']),
+                $this->dCus->CheckLastName($_POST['lastname']),
+                $this->dCus->CheckPhone($_POST['phone']),
+                $this->dCus->CheckAccount($_POST['account']),
+                $this->dCus->CheckPassword($_POST['password'])
+            ]);
             if ($check)
                 $this->data["goDefault"] = $this->dCus->Edit($id, $_POST['firstname'], $_POST['lastname'], $_POST['address'], $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
             else

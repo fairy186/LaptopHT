@@ -1,4 +1,4 @@
-<h1>Danh Sách Hảng Laptop</h1>
+<h1 align="center">Danh Sách Hảng Laptop</h1>
 <?php
 if (isset($data['tb'])) {
      echo $data['tb'];
@@ -9,11 +9,11 @@ if (isset($data['tb'])) {
 $dmanu = $data['dManu'];
 echo "<table class='table table-bordered table-striped' align='center' cellpadding='2' cellspacing='2'>
 <thead class='table-warning'>
-     <tr align='center' >
-          <th>STT</th>
+     <tr align='center' style='font-size:20px'>
+          <th width='150px'>STT</th>
           <th>Mã</th>
           <th>Tên</th>
-          <th>Tùy chọn</th>
+          <th width='150px'>Tùy chọn</th>
      </tr>
 </thead>";
 
@@ -26,8 +26,8 @@ for ($i = 0; $i < count($dmanu); $i++) {
           <td>$dman[ID_Manu]</td>
           <td>$dman[Name_Manu]</td>
           <td>
-               <a href='/$data[domain]/$data[controller]/Edit/$dman[ID_Manu]'><i class='bi bi-pencil-square'></i></a> 
-               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill'></i></a>               
+               <a href='/$data[domain]/$data[controller]/Edit/$dman[ID_Manu]'><i class='bi bi-pencil-square' style='color:lime'></i></a> 
+               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill' style='color:black'></i></a>               
           </td>
      </tr>";
 }

@@ -24,6 +24,15 @@ class CustomerModel extends DB
           return $row;
      }
 
+     public function CheckLogin($account, $password)
+     {
+          $qr = "SELECT * FROM `customer` WHERE `Account`='$account' AND `Password`='$password'";
+          $sql = mysqli_query($this->con, $qr);
+          if (mysqli_num_rows($sql) > 0)
+               return 1;
+          return 0;
+     }
+
      public function Add($first_name, $last_name, $address, $phone, $email, $account, $password)
      {
           $qr = "INSERT INTO `customer`(`First_Name`, 

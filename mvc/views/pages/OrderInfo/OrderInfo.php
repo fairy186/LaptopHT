@@ -1,4 +1,4 @@
-<h1>Danh Sách Đơn Hàng</h1>
+<h1 align="center">Danh Sách Đơn Hàng</h1>
 <?php
 if (isset($data['tb'])) {
      echo $data['tb'];
@@ -8,7 +8,7 @@ if (isset($data['tb'])) {
 $dorcus = $data['dOr_Cus'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
-<tr align='center'>
+<tr align='center' style='font-size:20px'>
      <th>Mã đơn hàng</th>
      <th>Mã khách hàng</th>
      <th>Tên khách hàng</th>

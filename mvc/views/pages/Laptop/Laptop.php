@@ -1,4 +1,4 @@
-<h1>Danh Sách Laptop</h1>
+<h1 align="center">Danh Sách Laptop</h1>
 <?php
 if (isset($data['tb'])) {
      echo $data['tb'];

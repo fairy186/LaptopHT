@@ -1,4 +1,4 @@
-<h1>Danh Sách Quản Trị Viên</h1>
+<h1 align="center">Danh Sách Quản Trị Viên</h1>
 <?php
 if (isset($data['tb'])) {
      echo $data['tb'];
@@ -8,7 +8,7 @@ if (isset($data['tb'])) {
 <?php
 $dadmin = $data['dAdmin'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
-<thead class='table-primary'>
+<thead class='table-primary' style='font-size:20px'>
 <tr align='center'>
      <th>Mã</th>
      <th>Họ</th>

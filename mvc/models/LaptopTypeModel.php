@@ -11,6 +11,7 @@ class LaptopTypeModel extends DB
           }
           return $kq;
      }
+
      public function GetByID($id)
      {
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` ='$id'";

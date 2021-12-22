@@ -1,4 +1,4 @@
-<h1>Danh Sách</h1>
+<h1 align="center">Danh Sách</h1>
 <?php
 if (isset($data['tb'])) {
      echo $data['tb'];
@@ -10,7 +10,7 @@ if (isset($data['tb'])) {
 $dtype = $data['dType'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
-<tr align='center'>
+<tr align='center' style='font-size:20px'>
      <th>STT</th>
      <th>Mã</th>
      <th>Tên</th>

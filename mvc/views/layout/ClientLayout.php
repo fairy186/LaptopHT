@@ -56,7 +56,7 @@
           </div>
           <div id="content" class="col-10 border">
                <?php
-               require_once "./mvc/views/pages/" . $data['page'] . ".php"
+                require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
                ?>
           </div>
      </div>
