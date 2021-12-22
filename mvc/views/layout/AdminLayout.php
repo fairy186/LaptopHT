@@ -4,11 +4,11 @@ if (isset($data['goDefault'], $data['url']))
      header('location:' . $data['url']);
 function listitem($controller, $itemname)
 {
-     $item = "<li class='nav-item'>
-     <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'>$itemname</a></li>";
+     $item = "<li class='nav-item border-bottom'>
+     <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
      if (strlen(strstr($_GET['url'] . '/', $controller . '/')))
           $item = "<li class='nav-item border border-dark bg-primary bg-opacity-10'>
-          <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'>$itemname</a></li>";
+          <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
      echo $item;
 }
 ?>
@@ -47,7 +47,6 @@ function listitem($controller, $itemname)
                color: blueviolet;
                font-weight: bolder;
           }
-
           #header,
           #footer {
                background-color: yellow;
