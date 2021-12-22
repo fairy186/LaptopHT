@@ -28,6 +28,7 @@ class Ajax extends controller
                     break;
                case "price":
                     $mess = $this->md->Check($this->val, 3, 10, 10);
+                    break;
                case "phone":
                     $mess = $this->md->CheckPhone($this->val);
                     break;
@@ -37,8 +38,11 @@ class Ajax extends controller
                case "password":
                     $mess = $this->md->CheckPassword($this->val);
                     break;
-               case "img[]":
-                    echo "aaaaaa";
+               case "email":
+                    $mess = $this->md->CheckEmail($this->bal);
+                    break;
+               case "address":
+                    $mess = $this->md->CheckAddress($this->val);
                     break;
           }
           if ($mess == 1)
