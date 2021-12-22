@@ -17,10 +17,9 @@ class ManufacturerModel extends DB
      {
           $qr = "SELECT * FROM `manufacturer` WHERE `ID_Manu` ='$id'";
           $sql = mysqli_query($this->con, $qr);
-          $row = ["Name_Manu" => ""];
-          if (mysqli_num_rows($sql) == 1)
-               $row = mysqli_fetch_array($sql);
-          return $row;
+          if (mysqli_num_rows($sql) > 0)
+               return mysqli_fetch_array($sql);
+          return 0;
      }
 
      public function Add($id, $name)

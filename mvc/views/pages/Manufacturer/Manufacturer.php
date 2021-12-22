@@ -26,8 +26,8 @@ for ($i = 0; $i < count($dmanu); $i++) {
           <td>$dman[ID_Manu]</td>
           <td>$dman[Name_Manu]</td>
           <td>
-               <a href='/$data[domain]/$data[controller]/Edit/$dman[ID_Manu]'>Edit</a> |
-               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'>Delete</a>               
+               <a href='/$data[domain]/$data[controller]/Edit/$dman[ID_Manu]'><i class='bi bi-pencil-square'></i></a> 
+               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill'></i></a>               
           </td>
      </tr>";
 }

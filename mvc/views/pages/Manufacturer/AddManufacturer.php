@@ -1,27 +1,26 @@
-<h1 style='color: blue;' align='center'>THÊM HẢNG LAPTOP</h1>
-
-<form action="/<?php echo $data['domain'] ?>/Manufacturer/Add" method="post" class="row g-3">
-	<div class="col-12 my-0 p-1">
-		<input type="text" class="form-control" name="ma" placeholder="Mã hảng" value='<?php if (isset($_POST["ma"])) echo $_POST["ma"] ?>' required>
-		<label mess="ma">
-		</label>
-	</div>
-
-	<div class="col-12 my-0 p-1">
-		<input type="text" class="form-control" name="ten" placeholder="Tên hảng" value='<?php if (isset($_POST["ten"])) echo $_POST["ten"] ?>' required>
-		<label mess="ten">
-		</label>
-	</div>
-	<div class="col-12 my-0 p-1">
-		<center><button class="btn btn-primary disabled" type="submit" name="sm">Thêm</button></center>
-	</div>
-	<div class="col-12 my-0 p-1">
-          <label>
-               <?php
-               if (isset($data['tb'])) {
-                    echo $data['tb'];
-               }
-               ?>
-          </label>
+<h1 style='color: blue;' align='center'>THÊM HẢNG</h1>
+<form action="" method="post" class="col-12 col-xl-6 container">
+     <div>
+          <label for="field1" class="form-label">Mã hảng</label>
+          <input id="field1" type="text" name="ma" vali value="<?php echo @$_POST['ma'] ?>" class="form-control">
+          <label mess="ma"></label>
      </div>
+     <div>
+          <label for="field2" class="form-label">Tên hảng</label>
+          <input id="field2" type="text" name="ten" vali value="<?php echo @$_POST['ten'] ?>" class="form-control">
+          <label mess="ten"></label>
+     </div>
+     <div>
+          <center>
+               <button class="btn btn-outline-dark mt-3" name="sm" type="submit">
+                    <h4 class="mx-3 my-1">Xác nhận</h4>
+               </button>
+          </center>
+     </div>
+     <div class="col-12 my-0 p-1">
 </form>
+<?php
+if (isset($data['tb'])) {
+     echo "<script>alert('$data[tb]')</script>";
+}
+?>

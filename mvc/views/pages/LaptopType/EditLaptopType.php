@@ -7,7 +7,7 @@
 	</div>
 	<div>
 		<label for="field2" class="form-label">Tên loại laptop</label>
-		<input id="field2" type="text" name="ten" value="<?php echo @$data['dl']['Name_Type'] ?>" class="form-control">
+		<input id="field2" type="text" name="ten" vali value="<?php echo @$data['dl']['Name_Type'] ?>" class="form-control">
 		<label mess="ten"></label>
 	</div>
 	<div>
