@@ -84,12 +84,12 @@ function listitem($controller, $itemname)
      <script src='<?php echo "$data[dir]"?>public/App.js'></script>
      <script>
           $(document).ready(function() {
-               $("input[type='text']").keyup(function() {
+               $("input[vali]").keyup(function() {
                     check(this,"<?php echo $data['domain'] ?>","<?php echo $data['controller'] ?>");
                });
           });
           function validate() {
-               $("input[type='text']").each(function(){
+               $("input[vali]").each(function(){
                     check(this,"<?php echo $data['domain'] ?>","<?php echo $data['controller'] ?>");
                });
           }
