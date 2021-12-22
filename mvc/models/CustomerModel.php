@@ -76,6 +76,14 @@ class CustomerModel extends DB
      {
           return $this->check($val, 8, 32, 10011);
      }
+     function CheckEmail($val)
+     {
+          return $this->check($val, 8, 32, 10011);
+     }
+     function CheckAddress($val)
+     {
+          return $this->check($val, 8, 32, 10011);
+     }
 
 
 }
