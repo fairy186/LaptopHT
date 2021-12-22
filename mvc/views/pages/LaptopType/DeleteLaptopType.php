@@ -1,17 +1,28 @@
 <h1 style='color: blue;' align='center'>XÓA LOẠI LAPTOP</h1>
-<form action="" method="post">
-	<div class="col-12 my-0 p-1">
-		<center>Bạn có chắc muốn xóa loại laptop có id là <?php echo $data['id']?> không ?</center>
+<form action="" method="post" class="col-12 col-xl-6 container">
+	<div>
+		<label for="field1" class="form-label">Mã loại laptop</label>
+		<input id="field1" type="text" name="ma" value="<?php echo @$data['dl']['ID_Type'] ?>" class="form-control" disabled>
+		<label></label>
 	</div>
-	<div class="col-12 my-0 p-1">
-		<center><button class="btn btn-primary" type="submit" name="sm">Xác nhận</button></center>
+	<div>
+		<label for="field2" class="form-label">Tên loại laptop</label>
+		<input id="field2" type="text" name="ten" value="<?php echo @$data['dl']['Name_Type'] ?>" class="form-control" disabled>
+		<label></label>
+	</div>
+	<div>
+		<center>
+			<h5>Bạn có chắc muốn xóa loại laptop này không ?</h5>
+		</center>
+		<center>
+			<button class="btn btn-outline-dark mt-3" name="sm" type="submit">
+				<h4 class="mx-3 my-1">Xác nhận</h4>
+			</button>
+		</center>
 	</div>
 </form>
 <?php
-if (isset($data['dType'])) {
-	if ($data['dType'] == 1)
-		echo "Đã xóa";
-	else
-		echo "Lỗi";
+if (isset($data['tb'])) {
+	echo "<script>alert('$data[tb]')</script>";
 }
 ?>

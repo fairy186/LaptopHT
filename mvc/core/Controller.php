@@ -15,8 +15,8 @@ class controller
      }
      function validate($allcheck)
      {
-          foreach ($allcheck as $value){
-               if($value!=1)
+          foreach ($allcheck as $value) {
+               if ($value != 1)
                     return 0;
           }
           return 1;
@@ -25,9 +25,9 @@ class controller
      {
           $dir = "";
           if (isset($_GET['url'])) {
-               $url= explode('/', filter_var(trim($_GET['url'], '/')));
-               $i = count($url)-1;
-               while ($i>0) {
+               $url = explode('/', filter_var(trim($_GET['url'], '/')));
+               $i = count($url) - 1;
+               while ($i > 0) {
                     $dir = "../" . $dir;
                     $i--;
                }

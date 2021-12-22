@@ -9,20 +9,16 @@ class LaptopTypeModel extends DB
           while ($row = mysqli_fetch_array($sql)) {
                $kq[] = $row;
           }
-          // $kq=json_encode($kq);
           return $kq;
      }
-
      public function GetByID($id)
      {
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` ='$id'";
           $sql = mysqli_query($this->con, $qr);
-          $row = ["Name_Type" => ""];
-          if (mysqli_num_rows($sql) == 1)
-               $row = mysqli_fetch_array($sql);
-          return $row;
+          if (mysqli_num_rows($sql) > 0)
+               return mysqli_fetch_array($sql);
+          return 0;
      }
-
      public function Add($id, $name)
      {
           $qr = "INSERT INTO `laptop_type`(`ID_Type`, `Name_Type`) VALUES ('$id','$name')";
@@ -36,14 +32,12 @@ class LaptopTypeModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
-
      public function Delete($id)
      {
           $qr = "DELETE FROM `laptop_type` WHERE `ID_Type` = '$id'";
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
-
      function CheckID($val)
      {
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` = '$val'";

@@ -7,11 +7,10 @@ class LaptopType extends Controller
      {
           $this->dType = $this->model("LaptopTypeModel");
           $this->data["domain"] = $this->domain;
+          $this->data["dir"] = $this->fixDir();
           $this->data["controller"] = get_class($this);
-          $this->data["dir"] = $this->fixDir("App.js");
-          $this->data["url"] = "/".$this->data['domain']."/".$this->data['controller'];
+          $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
      }
-     // action mặc định
      function DefaultAction()
      {
           $this->data["page"] = "LaptopType";
@@ -25,10 +24,13 @@ class LaptopType extends Controller
           $this->data['title'] = "Thêm loại laptop";
           $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
-               $check = $this->validate([$this->dType->CheckID($_POST['ma']),$this->dType->CheckName($_POST['ten'])]);
-               if ($check) 
-                    $this->data["goDefault"]=$this->dType->Add($_POST['ma'], $_POST['ten']);
-               else
+               $check = $this->validate([$this->dType->CheckID($_POST['ma']), $this->dType->CheckName($_POST['ten'])]);
+               if ($check) {
+                    $this->data["goDefault"] = $this->dType->Add($_POST['ma'], $_POST['ten']);
+                    if ($this->data["goDefault"] == 0) {
+                         $this->data["tb"] = "Vui lòng điền thông tin chính xác";
+                    }
+               } else
                     $this->data["tb"] = "Lỗi";
           }
           $this->view("AdminLayout", $this->data);
@@ -38,17 +40,18 @@ class LaptopType extends Controller
           $this->data["page"] = "EditLaptopType";
           $this->data['title'] = "Sửa loại laptop";
           $this->data['action'] = "Edit";
-          $this->data["id"] = $id;
-          $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];
-          if($this->data["name"]==""){
-               header("Location: /$this->domain/".$this->data['controller']);
-          }
+          $this->data["dl"] = $this->dType->GetByID($id);
+          if ($this->data["dl"] == 0)
+               header("Location: /$this->domain/" . $this->data['controller']);
           if (isset($_POST['sm'])) {
                $check = $this->validate([$this->dType->CheckName($_POST['ten'])]);
-               if ($check) 
-                    $this->data["goDefault"]=$this->dType->Edit($id, $_POST['ten']);
-               else 
-                    $this->data["tb"] = "Lỗi";
+               if ($check) {
+                    $this->data["goDefault"] = $this->dType->Edit($id, $_POST['ten']);
+                    if ($this->data["goDefault"] == 0) {
+                         $this->data["tb"] = "Vui lòng điền thông tin chính xác";
+                    }
+               } else
+                    $this->data["tb"] = "Vui lòng thông tin chính xác";
           }
           $this->view("AdminLayout", $this->data);
      }
@@ -57,13 +60,13 @@ class LaptopType extends Controller
           $this->data["page"] = "DeleteLaptopType";
           $this->data['title'] = "Xóa loại laptop";
           $this->data['action'] = "Delete";
-          $this->data['id'] = $id;
-          $this->data["name"] = $this->dType->GetByID($id)["Name_Type"];
-          if($this->data["name"]==""){
-               header("Location: /$this->domain/".$this->data['controller']);
-          }
+          $this->data["dl"] = $this->dType->GetByID($id);
+          if ($this->data["dl"] == 0)
+               header("Location: /$this->domain/" . $this->data['controller']);
           if (isset($_POST['sm'])) {
-               $this->data["goDefault"]=$this->dType->Delete($id);
+               $this->data["goDefault"] = $this->dType->Delete($id);
+               if ($this->data["goDefault"] == 0)
+                    $this->data["tb"] = "Lỗi";
           }
           $this->view("AdminLayout", $this->data);
      }

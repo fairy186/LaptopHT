@@ -7,7 +7,7 @@ function listitem($controller, $itemname)
      $item = "<li class='nav-item'>
      <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'>$itemname</a></li>";
      if (strlen(strstr($_GET['url'] . '/', $controller . '/')))
-          $item = "<li class='nav-item border border-primary rounded'>
+          $item = "<li class='nav-item border border-dark bg-primary bg-opacity-10'>
           <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'>$itemname</a></li>";
      echo $item;
 }
@@ -36,13 +36,14 @@ function listitem($controller, $itemname)
                margin: 0;
                padding: 0;
           }
-
+          
           label[mess] {
                font-style: italic;
-               margin: 5px;
+               margin:5px 15px;
           }
-
           .form-label {
+               margin: 0;
+               padding: 0;
                color: blueviolet;
                font-weight: bolder;
           }
@@ -54,15 +55,15 @@ function listitem($controller, $itemname)
      </style>
 </head>
 
-<body class="container-fruilt m-0 p-0" <?php if(isset($data['action']) && $data['action']=="Edit") echo"onload='validate()'"?>>
+<body class="container-fruilt m-0 p-0" <?php if(@$data['action']=="Edit"|| isset($_POST['sm'])) echo"onload='validate()'"?>>
      <div id="header">
           <h1>Header</h1>
      </div>
 
-     <div class="row">
-          </p>
-          <div class="col-2 border">
-               <ul class="nav flex-column" style="font-weight:bold;">
+     <div class="d-flex flex-row " style="margin-bottom:95px; ">
+          <p></p>
+          <div class="border m-0 p-0" style="min-width: 150px !important;">
+               <ul class="nav flex-column d-block" style="font-weight:bold;">
                     <?php listitem("LaptopType", "Loại laptop") ?>
                     <?php listitem("Manufacturer", "Hảng laptop") ?>
                     <?php listitem("Laptop", "Laptop") ?>
@@ -72,13 +73,13 @@ function listitem($controller, $itemname)
                     <?php listitem("Admin", "Quản trị") ?>
                </ul>
           </div>
-          <div id="content" class="col-10 border">
+          <div id="content" class="flex-grow-1 border">
                <?php
                require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
                ?>
           </div>
      </div>
-     <div id="footer">
+     <div id="footer" class="fixed-bottom">
           <h1> Footer</h1>
      </div>
      <script src='<?php echo "$data[dir]"?>public/App.js'></script>

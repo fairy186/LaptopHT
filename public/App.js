@@ -3,26 +3,25 @@ function check(ele, domain, control) {
      var val = $(ele).val();
      var n = $(ele).attr("name");
      $.post(
-          "/"+domain+"/Ajax/Check/", {
+          "/" + domain + "/Ajax/Check/",
+          {
                val: val,
                md: control,
-               fn: n
+               fn: n,
           },
-          function(data) {
+          function (data) {
                var d = JSON.parse(data);
                $("label[mess=" + n + "]").html(d[0]);
                if (d.length == 1) {
-                    inp.removeClass("border-danger");
-                    inp.addClass("border-primary")
-                    $("label[mess=" + n + "]").css("color", "blue");
-                    $("label[mess=" + n + "]").addClass("blue");
-                    $("label[mess=" + n + "]").removeClass("red");
+                    console.log(inp.attr("disabled"));
+                    inp.removeClass("border-danger").addClass("border-primary");
+                    $("label[mess=" + n + "]").css("color", "blue").addClass("blue").removeClass("red");
                } else {
-                    inp.addClass("border-danger");
-                    inp.removeClass("border-primary")
-                    $("label[mess=" + n + "]").css("color", "red");
-                    $("label[mess=" + n + "]").addClass("red");
-                    $("label[mess=" + n + "]").removeClass("blue");
+                    if (!inp.attr("disabled")) {
+                         inp.addClass("border-danger").removeClass("border-primary");
+                    }
+                    console.log(inp.attr("disabled"));
+                    $("label[mess=" + n + "]").css("color", "red").addClass("red").removeClass("blue");
                }
                var mess = $("label[mess]");
                var messblue = $(".blue");
