@@ -4,7 +4,8 @@ if (isset($data['tb'])) {
      echo $data['tb'];
 }
 ?>
-<h3><a href='<?php echo "/".$data['domain']."/".$data['controller']."/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
+<h3><a href='<?php echo "/" . $data['domain'] . "/" . $data['controller'] . "/Add" ?>'><i
+            class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dtype = $data['dType'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
@@ -17,9 +18,9 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
      </tr>
      </thead>";
 
-for ($i=0; $i < count($dtype) ; $i++) { 
-     $dty=$dtype[$i];
-     $stt=$i+1;
+for ($i = 0; $i < count($dtype); $i++) {
+     $dty = $dtype[$i];
+     $stt = $i + 1;
      echo "<tr align='center'>
                <td>$stt</td>
                <td>$dty[ID_Type]</td>

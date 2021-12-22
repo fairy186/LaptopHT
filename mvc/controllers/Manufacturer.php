@@ -7,8 +7,8 @@ class Manufacturer extends Controller
      {
           $this->dManu = $this->model("ManufacturerModel");
           $this->data["domain"] = $this->domain;
+          $this->data["dir"] = $this->fixDir();
           $this->data["controller"] = get_class($this);
-          $this->data["dir"] = $this->fixDir("App.js");
           $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
      }
      // action mặc định
@@ -26,9 +26,12 @@ class Manufacturer extends Controller
           $this->data['action'] = "Add";
           if (isset($_POST['sm'])) {
                $check = $this->validate([$this->dManu->CheckID($_POST['ma']), $this->dManu->CheckName($_POST['ten'])]);
-               if ($check)
+               if ($check) {
                     $this->data["goDefault"] = $this->dManu->Add($_POST['ma'], $_POST['ten']);
-               else
+                    if ($this->data["goDefault"] == 0) {
+                         $this->data["tb"] = "Vui lòng điền thông tin chính xác";
+                    }
+               } else
                     $this->data["tb"] = "Lỗi";
           }
           $this->view("AdminLayout", $this->data);
@@ -38,16 +41,17 @@ class Manufacturer extends Controller
           $this->data["page"] = "EditManufacturer";
           $this->data['title'] = "Sửa Hảng";
           $this->data['action'] = "Edit";
-          $this->data["id"] = $id;
-          $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
-          if ($this->data["name"] == "") {
+          $this->data["dl"] = $this->dManu->GetByID($id);;
+          if ($this->data["dl"] == 0)
                header("Location: /$this->domain/" . $this->data['controller']);
-          }
           if (isset($_POST['sm'])) {
                $check = $this->validate([$this->dManu->CheckName($_POST['ten'])]);
-               if ($check)
+               if ($check) {
                     $this->data["goDefault"] = $this->dManu->Edit($id, $_POST['ten']);
-               else
+                    if ($this->data["goDefault"] == 0) {
+                         $this->data["tb"] = "Vui lòng điền thông tin chính xác";
+                    }
+               } else
                     $this->data["tb"] = "Lỗi";
           }
           $this->view("AdminLayout", $this->data);
@@ -57,13 +61,13 @@ class Manufacturer extends Controller
           $this->data["page"] = "DeleteManufacturer";
           $this->data['title'] = "Xóa Hảng";
           $this->data['action'] = "Delete";
-          $this->data['id'] = $id;
-          $this->data["name"] = $this->dManu->GetByID($id)["Name_Manu"];;
-          if ($this->data["name"] == "") {
+          $this->data["dl"] = $this->dManu->GetByID($id);
+          if ($this->data["dl"] == "")
                header("Location: /$this->domain/" . $this->data['controller']);
-          }
           if (isset($_POST['sm'])) {
                $this->data["goDefault"] = $this->dManu->Delete($id);
+               if ($this->data["goDefault"] == 0)
+                    $this->data["tb"] = "Lỗi";
           }
           $this->view("AdminLayout", $this->data);
      }
