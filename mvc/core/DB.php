@@ -12,8 +12,8 @@ class DB
           mysqli_select_db($this->con, $this->dbname);
           mysqli_query($this->con, "SET NAMES 'utf8'");
      }
-     
-     function Check($val, $minLen, $maxLen, $char = "10010") //char gồm 5 số nhị phân ghép lại
+
+     function Check($val, $minLen, $maxLen, $char = "10010") //char gồm 5 số ghép lại
      {
           if (strlen($val) < $minLen || strlen($val) > $maxLen)
                return "Độ dài chỉ được từ $minLen đến $maxLen ký tự";
@@ -27,8 +27,12 @@ class DB
           $char = floor($char / 10);
           $c1 = $char % 10; // chứa chữ cái
           if ($c5 == 0) {
-               $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s_\.]+)$/i";
+               $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s]+)$/i";
                if (!preg_match($pattern, $val)) return "Không gồm ký tự đặc biệt";
+          } else
+          if ($c5 == 1) {
+               $pattern = "/^([a-zA-Z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s_\.]+)$/i";
+               if (!preg_match($pattern, $val)) return "Không gồm ký tự đặc biệt ngoài _ .";
           }
           if ($c3 == 0) {
                $pattern = "/[\s]/i";
