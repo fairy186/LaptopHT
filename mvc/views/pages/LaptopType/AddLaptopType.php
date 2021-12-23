@@ -12,7 +12,7 @@
      </div>
      <div>
           <center>
-               <button class="btn btn-outline-dark mt-3" name="sm" type="submit">
+               <button class="btn btn-outline-dark mt-3 disabled" name="sm" type="submit">
                     <h4 class="mx-3 my-1">Xác nhận</h4>
                </button>
           </center>
