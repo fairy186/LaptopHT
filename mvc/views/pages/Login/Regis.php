@@ -21,8 +21,46 @@
             <input type="password" vali class="form-control" name="password" placeholder="Xác nhận mật khẩu" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
             <label mess="password"></label>
         </div>
-        <div>
-            <input type="text" vali class="form-control" name="address" placeholder="Địa chỉ" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>'>
+        <div class="row">
+            <div class="col-3">
+                <select class="form-select" name="province" required>
+                    <option selected disabled value="">Tỉnh</option>
+                    <?php
+                    $dprovince = $data['dProvince'];
+                    for ($i = 0; $i < count($dprovince); $i++) {
+                        $pv = $dprovince[$i];
+                        echo "<option value='$pv[_name]'>$pv[_name]</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-3">
+                <select class="form-select" name="district" required>
+                    <option selected disabled value="">Quận, Huyện, Thị xã, Thành phố</option>
+                    <?php
+                    $ddistrict = $data['dDistrict'];
+                    for ($i = 0; $i < count($ddistrict); $i++) {
+                        $dt = $ddistrict[$i];
+                        echo "<option value='$dt[_prefix] $dt[_name]'>$dt[_prefix] $dt[_name]</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-3">
+                <select class="form-select" name="ward" required>
+                    <option selected disabled value="">Xã, Phường, Thị trấn</option>
+                    <?php
+                    $dward = $data['dWard'];
+                    for ($i = 0; $i < count($dward); $i++) {
+                        $w = $dward[$i];
+                        echo "<option value='$w[_prefix] $w[_name]'>$w[_prefix] $w[_name]</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-3">
+                <input type="text" vali class="form-control" name="spe" placeholder="Số nhà, đường" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>'>
+            </div>
             <label mess="address"></label>
         </div>
         <div>
@@ -36,7 +74,7 @@
         <div>
             <center>
                 <button class="btn btn-outline-dark mt-3" name="sm" type="submit">
-                    <h4 class="mx-3 my-1">Đăng ký</h4>
+                    <h4 class="mx-3 my-1">Xác nhận đăng ký</h4>
                 </button>
             </center>
         </div>

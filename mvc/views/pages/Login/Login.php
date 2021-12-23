@@ -9,5 +9,5 @@
         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
     </div>
     <button type="submit" name="sm" class="btn btn-primary">Đăng nhập</button>
-    <a href=""><button class="btn btn-primary">Xác nhận đăng ký</button></a>
+    <a href=""></a>
 </form>

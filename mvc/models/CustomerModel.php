@@ -33,6 +33,8 @@ class CustomerModel extends DB
           return 0;
      }
 
+     
+
      public function Add($first_name, $last_name, $address, $phone, $email, $account, $password)
      {
           $qr = "INSERT INTO `customer`(`First_Name`, 
