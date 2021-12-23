@@ -1,9 +1,3 @@
-<?php
-// print_r($data);
-// if (isset($data['goDefault'], $data['url']))
-//      header('location:' . $data['url']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,20 +39,10 @@
           <h1>Header</h1>
      </div>
 
-     <div class="row">
-          </p>
-          <div class="col-2 border">
-               <ul class="nav flex-column" style="font-weight:bold;">
-                    <li class='nav-item'>
-                         <a class='nav-link' aria-current='page' href='#'>Home</a>
-                    </li>
-               </ul>
-          </div>
-          <div id="content" class="col-10 border">
-               <?php
-                require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
-               ?>
-          </div>
+     <div id="content" class="border">
+          <?php
+          require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
+          ?>
      </div>
      <div id="footer">
           <h1> Footer</h1>
