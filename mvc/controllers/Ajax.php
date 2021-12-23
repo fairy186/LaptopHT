@@ -8,43 +8,12 @@ class Ajax extends controller
           $this->val = $_POST['val'];
           $this->md = $this->model($_POST['md'] . "Model");
           $this->fn = $_POST['fn'];
+          $this->mt = "Check_".$_POST['fn'];
      }
-
      public function Check()
      {
           $mess = 1;
-          switch ($this->fn) {
-               case "ma":
-                    $mess = $this->md->CheckID($this->val);
-                    break;
-               case "ten":
-                    $mess = $this->md->CheckName($this->val);
-                    break;
-               case "firstname":
-                    $mess = $this->md->CheckFirstName($this->val);
-                    break;
-               case "lastname":
-                    $mess = $this->md->CheckLastName($this->val);
-                    break;
-               case "price":
-                    $mess = $this->md->Check($this->val, 3, 10, 10);
-                    break;
-               case "phone":
-                    $mess = $this->md->CheckPhone($this->val);
-                    break;
-               case "account":
-                    $mess = $this->md->CheckAccount($this->val);
-                    break;
-               case "password":
-                    $mess = $this->md->CheckPassword($this->val);
-                    break;
-               case "email":
-                    $mess = $this->md->CheckEmail($this->bal);
-                    break;
-               case "address":
-                    $mess = $this->md->CheckAddress($this->val);
-                    break;
-          }
+          $mess=call_user_func_array([$this->md,$this->mt],[$this->val]);
           if ($mess == 1)
                echo json_encode(["<i class='bi bi-check2-circle'></i>"]);
           else {

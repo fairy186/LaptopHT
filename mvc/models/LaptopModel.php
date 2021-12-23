@@ -99,7 +99,7 @@ class LaptopModel extends DB
           return $sql;
      }
 
-     function CheckID($val)
+     function Check_id($val)
      {
           $qr = "SELECT * FROM `laptop` WHERE `ID_Lap` = '$val'";
           $sql = mysqli_query($this->con, $qr);
@@ -107,8 +107,64 @@ class LaptopModel extends DB
                return "Mã laptop đã tồn tại";
           return ($this->check($val, 4, 10));
      }
-     function CheckName($val)
+     function Check_name($val)
      {
-          return $this->check($val, 1, 100, 11100);
+          return $this->check($val, 1, 100, 11110);
+     }
+     function Check_price($val)
+     {
+          return $this->check($val, 7, 10, 10);
+     }
+     function Check_cpu($val)
+     {
+          return $this->check($val, 1, 100, 11010);
+     }
+     function Check_gpu($val)
+     {
+          return $this->check($val, 1, 100, 11010);
+     }
+     function Check_disk($val)
+     {
+          return $this->check($val, 1, 100, 11113);
+     }
+     function Check_insu($val)
+     {
+          return $this->check($val, 1, 100, 11110);
+     }
+     function Check_release($val)
+     {
+          return $this->check($val, 1, 100, 11110);
+     }
+     function Check_sizeSC($val)
+     {
+          return $this->check($val, 1, 100, 11110);
+     }
+     function Check_resoSC($val)
+     {
+          return $this->check($val, 1, 100);
+     }
+     function Check_freSC($val)
+     {
+          return $this->check($val, 1, 100);
+     }
+     function Check_techSC($val)
+     {
+          return $this->check($val, 1, 100, 11111);
+     }
+     function Check_memRAM($val)
+     {
+          return $this->check($val, 1, 100);
+     }
+     function Check_typeRAM($val)
+     {
+          return $this->check($val, 1, 100);
+     }
+     function Check_busRAM($val)
+     {
+          return $this->check($val, 1, 100);
+     }
+     function Check_maxRAM($val)
+     {
+          return $this->check($val, 1, 100);
      }
 }

@@ -67,22 +67,18 @@ class CustomerModel extends DB
      {
           return $this->check($val, 1, 100, 11100);
      }
-
      function CheckLastName($val)
      {
           return $this->check($val, 1, 20, 11100);
      }
-
      function CheckPhone($val)
      {
           return $this->check($val, 10, 10, 10);
      }
-
      function CheckAccount($val)
      {
-          return $this->check($val, 8, 32, 10010);
+          return $this->check($val, 8, 32, 10011);
      }
-     
      function CheckPassword($val)
      {
           return $this->check($val, 8, 32, 10011);
@@ -95,6 +91,4 @@ class CustomerModel extends DB
      {
           return $this->check($val, 8, 32, 10011);
      }
-
-
 }
