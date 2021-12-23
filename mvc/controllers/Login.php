@@ -36,11 +36,11 @@ class Login extends Controller
         $this->data['dWard'] = $this->dAddress->GetWard();
         if (isset($_POST['sm'])) {
             $check = $this->validate([
-                $this->dCus->CheckFirstName($_POST['firstname']),
-                $this->dCus->CheckLastName($_POST['lastname']),
-                $this->dCus->CheckPhone($_POST['phone']),
-                $this->dCus->CheckAccount($_POST['account']),
-                $this->dCus->CheckPassword($_POST['password'])
+                $this->dCus->Check_firstName($_POST['firstname']),
+                $this->dCus->Check_lastName($_POST['lastname']),
+                $this->dCus->Check_phone($_POST['phone']),
+                $this->dCus->Check_account($_POST['account']),
+                $this->dCus->Check_password($_POST['password'])
             ]);
             if ($check) {
                 $address = $_POST['spe']  . ", " . $_POST['ward'] . ", " . $_POST['district'] . ", " .  $_POST['province'];

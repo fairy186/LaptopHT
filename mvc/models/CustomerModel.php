@@ -33,7 +33,6 @@ class CustomerModel extends DB
           return 0;
      }
 
-     
 
      public function Add($first_name, $last_name, $address, $phone, $email, $account, $password)
      {
@@ -63,32 +62,17 @@ class CustomerModel extends DB
           return $sql;
      }
 
-     function CheckFirstName($val)
+     public function Check_account($account)
      {
-          return $this->check($val, 1, 100, 11100);
+          $qr = "SELECT * FROM `customer` WHERE `Account`='$account'";
+          $sql = mysqli_query($this->con, $qr);
+          if (mysqli_num_rows($sql) > 0)
+               return 0;
+          return 1;
      }
-     function CheckLastName($val)
+
+     public function Check_confirmPassword()
      {
-          return $this->check($val, 1, 20, 11100);
-     }
-     function CheckPhone($val)
-     {
-          return $this->check($val, 10, 10, 10);
-     }
-     function CheckAccount($val)
-     {
-          return $this->check($val, 8, 32, 10011);
-     }
-     function CheckPassword($val)
-     {
-          return $this->check($val, 8, 32, 10011);
-     }
-     function CheckEmail($val)
-     {
-          return $this->check($val, 8, 32, 10011);
-     }
-     function CheckAddress($val)
-     {
-          return $this->check($val, 8, 32, 10011);
+          
      }
 }
