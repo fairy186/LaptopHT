@@ -18,8 +18,8 @@
             <label mess="password"></label>
         </div>
         <div>
-            <input type="password" vali class="form-control" name="password" placeholder="Xác nhận mật khẩu" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
-            <label mess="password"></label>
+            <input type="password" vali class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
+            <label mess="confirmPassword"></label>
         </div>
         <div class="row">
             <div class="col-3">

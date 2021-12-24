@@ -35,14 +35,8 @@ class Login extends Controller
         $this->data['dDistrict'] = $this->dAddress->GetDistrict();
         $this->data['dWard'] = $this->dAddress->GetWard();
         if (isset($_POST['sm'])) {
-            $check = $this->validate([
-                $this->dCus->Check_firstName($_POST['firstname']),
-                $this->dCus->Check_lastName($_POST['lastname']),
-                $this->dCus->Check_phone($_POST['phone']),
-                $this->dCus->Check_account($_POST['account']),
-                $this->dCus->Check_password($_POST['password'])
-            ]);
-            if ($check) {
+            $check = $this->validate($this->dCus, $_POST);
+            if ($check && $this->dCus->confirmPassword($_POST['password'], $_POST['confirmPassword'])) {
                 $address = $_POST['spe']  . ", " . $_POST['ward'] . ", " . $_POST['district'] . ", " .  $_POST['province'];
                 print_r($_POST);
                 $this->data["goDefault"] = $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);

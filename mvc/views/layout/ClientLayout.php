@@ -47,6 +47,21 @@
      <div id="footer">
           <h1> Footer</h1>
      </div>
+     <script src='<?php echo "$data[dir]" ?>public/App.js'></script>
+     <script>
+          $(document).ready(function() {
+               $("input[vali]").keyup(function() {
+                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+               }).change(function() {
+                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+               });
+          });
+          function validate() {
+               $("input[vali]").each(function() {
+                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+               });
+          }
+     </script>
 </body>
 
 </html>

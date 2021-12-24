@@ -62,17 +62,45 @@ class CustomerModel extends DB
           return $sql;
      }
 
-     public function Check_account($account)
+     // check họ
+     public function Check_firstname($val)
      {
-          $qr = "SELECT * FROM `customer` WHERE `Account`='$account'";
-          $sql = mysqli_query($this->con, $qr);
-          if (mysqli_num_rows($sql) > 0)
-               return 0;
-          return 1;
+          return $this->Check($val, 1, 100, 200);
      }
 
-     public function Check_confirmPassword()
+     public function Check_lastname($val)
      {
-          
+          return $this->Check($val, 1, 100, 200);
+     }
+
+     public function Check_account($val)
+     {
+          $qr = "SELECT * FROM `customer` WHERE `Account`='$val'";
+          $sql = mysqli_query($this->con, $qr);
+          if (mysqli_num_rows($sql) > 0)
+               return "Tài khoản đã tồn tại";
+          return $this->Check($val, 8, 32, 111);
+     }
+
+     public function Check_password($val)
+     {
+          return $this->Check($val, 8, 32, 112);
+     }
+
+     public function confirmPassword($val1, $val2)
+     {
+          if ($val1==$val2)
+               return 1;
+          return 0;
+     }
+
+     public function Check_phone($val)
+     {
+          return $this->Check($val, 10, 10, 10);
+     }
+
+     public function Check_email($val)
+     {
+          return $this->Check($val, 8, 32);
      }
 }
