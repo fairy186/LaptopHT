@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2021 at 08:40 AM
+-- Generation Time: Dec 24, 2021 at 08:15 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -23,6 +23,7 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `laptop_db`;
 CREATE DATABASE `laptop_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `laptop_db`;
+
 
 -- --------------------------------------------------------
 
@@ -48,6 +49,37 @@ CREATE TABLE `cart` (
   `ID_Lap` varchar(10) NOT NULL,
   `ID_Cus` int(10) UNSIGNED NOT NULL,
   `Quantity` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `ID_Comm` int(10) UNSIGNED NOT NULL,
+  `ID_Lap` varchar(10) NOT NULL,
+  `ID_Cus` int(10) UNSIGNED NOT NULL,
+  `Time_Comm` datetime DEFAULT current_timestamp(),
+  `Content` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `ID_Cus` int(10) UNSIGNED NOT NULL,
+  `First_Name` varchar(100) DEFAULT NULL,
+  `Last_Name` varchar(20) DEFAULT NULL,
+  `Address` varchar(255) DEFAULT NULL,
+  `Phone` varchar(10) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Account` varchar(32) NOT NULL,
+  `Password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -805,7 +837,7 @@ CREATE TABLE `laptop` (
   `Insurance` varchar(100) DEFAULT '36 tháng',
   `ID_Type` varchar(10) NOT NULL,
   `ID_Manu` varchar(10) NOT NULL,
-  `Images` varchar(255) NOT NULL,
+  `Images` text NOT NULL,
   `CPU` varchar(255) NOT NULL,
   `GPU` varchar(255) NOT NULL,
   `RAM` varchar(255) NOT NULL,
@@ -818,16 +850,16 @@ CREATE TABLE `laptop` (
   `Material` varchar(255) DEFAULT NULL,
   `Battery` varchar(255) DEFAULT NULL,
   `OS` varchar(100) DEFAULT 'Win 10',
-  `Release_Time` int(4) DEFAULT NULL
+  `Release_Time` int(4) DEFAULT NULL,
+  `Add_Time` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `laptop`
 --
 
-INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID_Manu`, `Images`, `CPU`, `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, `Connection`, `Other_Feature`, `Dimen_Wei`, `Material`, `Battery`, `OS`, `Release_Time`) VALUES
-('L0001', 'Laptop Dell Inspiron 7400 i5 1135G7/16GB/512GB/2GB MX350/Win10 (N4I5134W) ', 30490000, '36 tháng', 'LT01', 'LM006', '', 'Intel Core i5 Tiger Lake - 1135G7', '@', '16 GB', '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB)', '14.5 inch', NULL, '2 x USB 3.2\r\nHDMI\r\nJack tai nghe 3.5 mm\r\nThunderbolt 4 USB-C', NULL, 'Dài 321.7 mm - Rộng 224.5 mm - Dày 16.75 mm - Nặng 1.35 kg', 'Vỏ nhựa - nắp lưng bằng kim loại', '4-cell Li-ion, 52 Wh', 'Windows 10 Home SL', NULL),
-('L0002', 'Laptop Asus TUF Gaming FX506HC i5 11400H/8GB/512GB/4GB RTX3050/144Hz/Win10 (HN002T)', 24190000, '36 tháng', 'LT01', 'LM002', 'A', '\r\nIntel Core i5 Tiger Lake - 11400H', '@', '\r\n8 GB', '\r\n512 GB SSD NVMe PCIeHỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '\r\n15.6 inch', NULL, 'Jack tai nghe 3.5 mm\r\nThunderbolt 4 USB-C\r\n3 x USB 3.2\r\nHDMI\r\nLAN (RJ45)', NULL, 'Dài 359 mm - Rộng 256 mm - Dày 24.9 mm - Nặng 2.3 kg', 'Vỏ nhựa - nắp lưng bằng kim loại', '3-cell Li-ion, 48 Wh', 'Windows 10 Home SL', NULL);
+INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID_Manu`, `Images`, `CPU`, `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, `Connection`, `Other_Feature`, `Dimen_Wei`, `Material`, `Battery`, `OS`, `Release_Time`, `Add_Time`) VALUES
+('LT001', 'Laptop Acer Nitro 5 Gaming AN515 57 727J', 29000000, '3 năm', 'LT01', 'LM007', '[\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-1-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-2-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-3-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-4-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-5-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-6-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-7-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-8-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-9-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-10-600x600.jpg\"]', 'i7-11800H', 'NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\"8 GB\",\"typeRAM\":\"2 khe DDR4\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)  Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB)  Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Acer ComfyView,  LED Backlit,  Tu1ea5m nu1ec1n IPS\"}', '', '{\"port\":\"\",\"wireless\":\"\"}', '{\"webcam\":\"\",\"ledKB\":\"\",\"otherF\":\"\"}', '', '', '', '', 2021, '2021-12-24 12:46:21');
 
 -- --------------------------------------------------------
 
@@ -846,7 +878,8 @@ CREATE TABLE `laptop_type` (
 
 INSERT INTO `laptop_type` (`ID_Type`, `Name_Type`) VALUES
 ('LT01', 'Gaming'),
-('LT02', 'Macbook');
+('LT02', 'Macbook'),
+('LT03', 'Văn phòng');
 
 -- --------------------------------------------------------
 
@@ -870,8 +903,7 @@ INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
 ('LM004', 'HP'),
 ('LM005', 'Acer'),
 ('LM006', 'Dell'),
-('LM007', 'MSI'),
-('LM008', 'LG2');
+('LM007', 'MSI');
 
 -- --------------------------------------------------------
 
@@ -982,20 +1014,6 @@ INSERT INTO `province` (`id`, `_name`, `_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
---
-
-CREATE TABLE `comment` (
-  `ID_Comm` int(10) UNSIGNED NOT NULL,
-  `ID_Lap` varchar(10) NOT NULL,
-  `ID_Cus` int(10) UNSIGNED NOT NULL,
-  `Time_Comm` datetime DEFAULT current_timestamp(),
-  `Content` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `slider`
 --
 
@@ -1004,23 +1022,6 @@ CREATE TABLE `slider` (
   `Title` varchar(255) NOT NULL,
   `Image` varchar(255) NOT NULL,
   `Status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `ID_Cus` int(10) UNSIGNED NOT NULL,
-  `First_Name` varchar(100) DEFAULT NULL,
-  `Last_Name` varchar(20) DEFAULT NULL,
-  `Address` varchar(255) DEFAULT NULL,
-  `Phone` varchar(10) DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `Account` varchar(32) NOT NULL,
-  `Password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -12350,6 +12351,20 @@ ALTER TABLE `cart`
   ADD KEY `ID_Lap` (`ID_Lap`);
 
 --
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`ID_Comm`),
+  ADD KEY `ID_Lap` (`ID_Lap`),
+  ADD KEY `ID_Cus` (`ID_Cus`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`ID_Cus`);
+
+--
 -- Indexes for table `discount`
 --
 ALTER TABLE `discount`
@@ -12406,24 +12421,10 @@ ALTER TABLE `province`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`ID_Comm`),
-  ADD KEY `ID_Lap` (`ID_Lap`),
-  ADD KEY `ID_Cus` (`ID_Cus`);
-
---
 -- Indexes for table `slider`
 --
 ALTER TABLE `slider`
   ADD PRIMARY KEY (`ID_Slider`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`ID_Cus`);
 
 --
 -- Indexes for table `ward`
@@ -12441,6 +12442,18 @@ ALTER TABLE `ward`
 --
 ALTER TABLE `admin`
   MODIFY `ID_Admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `ID_Comm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `discount`
@@ -12467,22 +12480,10 @@ ALTER TABLE `province`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `ID_Comm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
   MODIFY `ID_Slider` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ward`
@@ -12500,6 +12501,13 @@ ALTER TABLE `ward`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`);
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
 
 --
 -- Constraints for table `discount`
@@ -12532,13 +12540,6 @@ ALTER TABLE `order_details`
 --
 ALTER TABLE `order_info`
   ADD CONSTRAINT `order_info_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
-
---
--- Constraints for table `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
 
 --
 -- Constraints for table `ward`
