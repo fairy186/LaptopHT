@@ -19,8 +19,3 @@
      </div>
      <div class="col-12 my-0 p-1">
 </form>
-<?php
-if (isset($data['tb'])) {
-     echo "<script>alert('$data[tb]')</script>";
-}
-?>

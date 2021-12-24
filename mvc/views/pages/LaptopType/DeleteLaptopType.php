@@ -21,8 +21,3 @@
 		</center>
 	</div>
 </form>
-<?php
-if (isset($data['tb'])) {
-	echo "<script>alert('$data[tb]')</script>";
-}
-?>

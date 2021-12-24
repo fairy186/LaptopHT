@@ -16,10 +16,9 @@ class LaptopModel extends DB
      {
           $qr = "SELECT * FROM `laptop` WHERE `ID_Lap` ='$id'";
           $sql = mysqli_query($this->con, $qr);
-          $row = ["Name_Lap" => ""];
           if (mysqli_num_rows($sql) == 1)
-               $row = mysqli_fetch_array($sql);
-          return $row;
+               return mysqli_fetch_array($sql);
+          return 0;
      }
 
      public function Add(
@@ -105,11 +104,11 @@ class LaptopModel extends DB
           $sql = mysqli_query($this->con, $qr);
           if (mysqli_num_rows($sql) > 0)
                return "Mã laptop đã tồn tại";
-          return ($this->check($val, 4, 10));
+          return ($this->check($val, 4, 10, 110));
      }
      function Check_name($val)
      {
-          return $this->check($val, 1, 100, 11110);
+          return $this->check($val, 1, 100);
      }
      function Check_price($val)
      {
@@ -117,27 +116,27 @@ class LaptopModel extends DB
      }
      function Check_cpu($val)
      {
-          return $this->check($val, 1, 100, 11010);
+          return $this->check($val, 1, 100);
      }
      function Check_gpu($val)
      {
-          return $this->check($val, 1, 100, 11010);
+          return $this->check($val, 1, 100);
      }
      function Check_disk($val)
      {
-          return $this->check($val, 1, 100, 11113);
+          return $this->check($val, 1, 255);
      }
      function Check_insu($val)
      {
-          return $this->check($val, 1, 100, 11110);
+          return $this->check($val, 1, 100, 210);
      }
      function Check_release($val)
      {
-          return $this->check($val, 1, 100, 11110);
+          return $this->check($val, 1, 100, 210);
      }
      function Check_sizeSC($val)
      {
-          return $this->check($val, 1, 100, 11110);
+          return $this->check($val, 1, 100);
      }
      function Check_resoSC($val)
      {
@@ -145,26 +144,26 @@ class LaptopModel extends DB
      }
      function Check_freSC($val)
      {
-          return $this->check($val, 1, 100);
+          return $this->check($val, 1, 100, 110);
      }
      function Check_techSC($val)
      {
-          return $this->check($val, 1, 100, 11111);
+          return $this->check($val, 1, 100);
      }
      function Check_memRAM($val)
      {
-          return $this->check($val, 1, 100);
+          return $this->check($val, 1, 100, 110);
      }
      function Check_typeRAM($val)
      {
-          return $this->check($val, 1, 100);
+          return $this->check($val, 1, 100, 110);
      }
      function Check_busRAM($val)
      {
-          return $this->check($val, 1, 100);
+          return $this->check($val, 1, 100, 110);
      }
      function Check_maxRAM($val)
      {
-          return $this->check($val, 1, 100);
+          return $this->check($val, 1, 100, 110);
      }
 }

@@ -36,17 +36,19 @@ function listitem($controller, $itemname)
                margin: 0;
                padding: 0;
           }
-          
+
           label[mess] {
                font-style: italic;
-               margin:5px 15px;
+               margin: 5px 15px;
           }
+
           .form-label {
                margin: 0;
                padding: 0;
                color: blueviolet;
                font-weight: bolder;
           }
+
           #header,
           #footer {
                background-color: yellow;
@@ -54,7 +56,7 @@ function listitem($controller, $itemname)
      </style>
 </head>
 
-<body class="container-fruilt m-0 p-0" <?php if(@$data['action']=="Edit"|| isset($_POST['sm'])) echo"onload='validate()'"?>>
+<body class="container-fruilt m-0 p-0" <?php if (@$data['action'] == "Edit" || isset($_POST['sm'])) echo "onload='validate()'" ?>>
      <div id="header">
           <h1>Header</h1>
      </div>
@@ -81,19 +83,26 @@ function listitem($controller, $itemname)
      <div id="footer" class="fixed-bottom">
           <h1> Footer</h1>
      </div>
-     <script src='<?php echo "$data[dir]"?>public/App.js'></script>
+     <script src='<?php echo "$data[dir]" ?>public/App.js'></script>
      <script>
           $(document).ready(function() {
                $("input[vali]").keyup(function() {
-                    check(this,"<?php echo $data['domain'] ?>","<?php echo $data['controller'] ?>");
+                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+               }).change(function() {
+                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
           });
           function validate() {
-               $("input[vali]").each(function(){
-                    check(this,"<?php echo $data['domain'] ?>","<?php echo $data['controller'] ?>");
+               $("input[vali]").each(function() {
+                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
           }
      </script>
 </body>
 
 </html>
+<?php
+if (isset($data['tb'])) {
+     echo "<script>alert('$data[tb]')</script>";
+}
+?>

@@ -1,11 +1,5 @@
 <h1 align="center">Danh Sách</h1>
-<?php
-if (isset($data['tb'])) {
-     echo $data['tb'];
-}
-?>
-<h3><a href='<?php echo "/" . $data['domain'] . "/" . $data['controller'] . "/Add" ?>'><i
-            class="bi bi-plus-circle"></i></a></h3>
+<h3><a href='<?php echo "/" . $data['domain'] . "/" . $data['controller'] . "/Add" ?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dtype = $data['dType'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
@@ -32,5 +26,4 @@ for ($i = 0; $i < count($dtype); $i++) {
           </tr>";
 }
 echo "</table>";
-
 ?>

@@ -13,11 +13,16 @@ class controller
                require_once "./mvc/views/layout/" . $layout . ".php";
           } else require_once "./mvc/views/layout/NonLayout.php";
      }
-     function validate($allcheck)
+     function validate($model, $data)
      {
-          foreach ($allcheck as $value) {
-               if ($value != 1)
-                    return 0;
+          $all_check = get_class_methods($model);
+          $pattern = "/^Check_/i";
+          foreach ($all_check as $key => $value) {
+               if (preg_match($pattern, $value)) {
+                    $param = explode("_", $value, 2);
+                    if (call_user_func([$model, $value], $data[$param[1]]) == 0)
+                         return 0;
+               }
           }
           return 1;
      }

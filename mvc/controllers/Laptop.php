@@ -35,14 +35,14 @@ class Laptop extends Controller
         $this->data['dType'] = $this->dType->Get();
         $this->data['dManu'] = $this->dManu->Get();
         if (isset($_POST['sm'])) {
-            $check = $this->validate([$this->dLap->CheckID($_POST['ma']),$this->dLap->CheckName($_POST['ten'])]);
-            $img = $this->upFile($_POST['ma']);
-            $ram = json_encode(["memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']]);
-            $screen = json_encode(["sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']]);
-            $connection = json_encode(["port" => $_POST['port'], "wireless" => $_POST['wireless']]);
-            $other_feature = json_encode(["webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']]);
-            if ($check)
-                $this->data["goDefault"] = $this->dLap->Add($_POST['ma'], $_POST['ten'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']);
+            $check = $this->validate($this->dLap, $_POST);
+            $img = $this->upFile($_POST['id']);
+            $ram = json_encode(array("memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']), JSON_UNESCAPED_UNICODE);
+            $screen = json_encode(array("sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']), JSON_UNESCAPED_UNICODE);
+            $connection = json_encode(array("port" => $_POST['port'], "wireless" => $_POST['wireless']), JSON_UNESCAPED_UNICODE);
+            $other_feature = json_encode(array("webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']), JSON_UNESCAPED_UNICODE);
+            if ($check && $this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']))
+                $this->data["goDefault"] = 1;
             else
                 $this->data["tb"] = "Lỗi";
         }
@@ -55,15 +55,21 @@ class Laptop extends Controller
         $this->data['action'] = "Edit";
         $this->data['dType'] = $this->dType->Get();
         $this->data['dManu'] = $this->dManu->Get();
-        $this->data["id"] = $id;
-        $this->data["name"] = $this->dLap->GetByID($id)["Name_Lap"];;
-        if($this->data["name"]==""){
-            header("Location: /$this->domain/".$this->data['controller']);
-       }
+        $this->data["dLap"] = $this->dLap->GetByID($id);
+        if ($this->data["dLap"] == 0) {
+            header("Location: /$this->domain/" . $this->data['controller']);
+        }
         if (isset($_POST['sm'])) {
-            $check = $this->validate([$this->dLap->CheckName($_POST['ten'])]);
-            if ($check)
-                $this->data["goDefault"] = $this->dLap->Edit($id, $_POST['ten'],  $_POST['name'], $_POST['price'], $_POST['insur'], $_POST['laptype'], $_POST['manu'], $_POST['img'], $_POST['cpu'], $_POST['gpu'], $_POST['ram'], $_POST['storage'], $_POST['screen'], $_POST['audio'], $_POST['connec'], $_POST['o_f'], $_POST['d_w'], $_POST['mate'], $_POST['batte'], $_POST['os'], $_POST['r_t']);
+            $check = $this->validate($this->dLap, $_POST);
+            if ($_FILES['img']['name'][0] != '')
+                $img = $this->upFile($id);
+            else $img = $this->data['dLap']['Images'];
+            $ram = json_encode(["memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']]);
+            $screen = json_encode(["sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']]);
+            $connection = json_encode(["port" => $_POST['port'], "wireless" => $_POST['wireless']]);
+            $other_feature = json_encode(["webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']]);
+            if ($check && $this->dLap->Edit($id, $_POST['name'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']))
+                $this->data["goDefault"] = 1;
             else
                 $this->data["tb"] = "Lỗi";
         }
@@ -75,23 +81,28 @@ class Laptop extends Controller
         $this->data["page"] = "DeleteLaptop";
         $this->data['title'] = "Xóa laptop";
         $this->data['action'] = "Delete";
-        $this->data['id'] = $id;
-        if($this->data["name"]==""){
-            header("Location: /$this->domain/".$this->data['controller']);
-       }
+        $this->data["dLap"] = $this->dLap->GetByID($id);
+        if ($this->data["dLap"] == 0) {
+            header("Location: /$this->domain/" . $this->data['controller']);
+        }
         if (isset($_POST['sm'])) {
-            $this->data["goDefault"] = $this->dLap->Delete($id);
+            $success = $this->dLap->Delete($id);
+            if ($success) {
+                $this->data["goDefault"] = 1;
+                $this->delFile($id);
+            } else
+                $this->data["tb"] = "Lỗi";
         }
         $this->view("AdminLayout", $this->data);
     }
-    function upFile($forderName)
+    function upFile($folderName)
     {
         $imgdata = [];
-        $target_dir = "images/$forderName/";
-        $forder = "images/$forderName";
-        if (!is_dir($forder))
-            mkdir($forder);
-        $files = glob("$forder/*"); // get all file names
+        $target_dir = "images/$folderName/";
+        $folder = "images/$folderName";
+        if (!is_dir($folder))
+            mkdir($folder);
+        $files = glob("$folder/*"); // get all file names
         foreach ($files as $file) { // iterate files
             if (is_file($file)) {
                 unlink($file); // delete file
@@ -134,6 +145,19 @@ class Laptop extends Controller
                 }
             }
         }
-        return json_encode($imgdata);
+        return json_encode($imgdata, JSON_UNESCAPED_UNICODE);
+    }
+    function delFile($folderName)
+    {
+        $folder = "images/$folderName";
+        if (is_dir($folder)) {
+            $files = glob("$folder/*"); // get all file names
+            foreach ($files as $file) { // iterate files
+                if (is_file($file)) {
+                    unlink($file); // delete file
+                }
+            }
+            rmdir($folder);
+        }
     }
 }
