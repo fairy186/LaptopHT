@@ -74,7 +74,7 @@
         <div>
             <center>
                 <button class="btn btn-outline-dark mt-3" name="sm" type="submit">
-                    <h4 class="mx-3 my-1">Xác nhận đăng ký</h4>
+                    <h4 class="mx-3 my-1">Đăng ký</h4>
                 </button>
             </center>
         </div>
