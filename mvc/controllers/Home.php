@@ -10,7 +10,7 @@ class Home extends Controller
      function DefaultAction()
      {
           $this->view(
-               "Layout2",
+               "ClientLayout",
                [
                     "page" => "Home",
                     "dLap" => $this->dLap
