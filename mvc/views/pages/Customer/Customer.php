@@ -10,7 +10,7 @@ $dcus = $data['dCus'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
-     <th>Mã</th>
+     <th width='150px'>Mã</th>
      <th>Họ</th>
      <th>Tên</th>
      <th>Địa chỉ</th>
@@ -18,7 +18,7 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
      <th>Email</th>
      <th>Tài khoản</th>
      <th>Mật khẩu</th>
-     <th>Tùy chọn</th>
+     <th width='150px'>Tùy chọn</th>
      </tr>
      </thead>";
 
@@ -34,8 +34,8 @@ for ($i = 0; $i < count($dcus); $i++) {
                <td>$dctm[Account]</td>
                <td>$dctm[Password]</td>
                <td>
-                    <a href='/$data[domain]/$data[controller]/Edit/$dctm[ID_Cus]'>Edit</a> |
-                    <a href='/$data[domain]/$data[controller]/Delete/$dctm[ID_Cus]'>Delete</a>               
+                    <a href='/$data[domain]/$data[controller]/Edit/$dctm[ID_Cus]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
+                    <a href='/$data[domain]/$data[controller]/Delete/$dctm[ID_Cus]'><i class='bi bi-trash-fill' style='color:red'></i></a>               
                </td>
           </tr>";
 }

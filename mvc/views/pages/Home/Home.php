@@ -1,30 +1,32 @@
+
 <div class="row row-cols-1 row-cols-md-2 g-4">
      <?php 
 $dLap=$data['dLap'];
 // print_r($dLap);
 for ($i=0; $i < count($dLap) ; $i++) {
-     $img="./images/".$dLap[$i]['ID_Lap']."/h1.jpg";
+     $id=$dLap[$i]['ID_Lap'];
+     $images = json_decode($dLap[$i]['Images']);
      $name=$dLap[$i]['Name_Lap'];
-     $cpu=$dLap[$i]['CPU'];
-     $gpu=$dLap[$i]['GPU'];
      $price=$dLap[$i]['Price'];
-     $screen=$dLap[$i]['Screen'];
-     $pin=$dLap[$i]['Battery'];
-     $rt=$dLap[$i]['Release_Time'];
+     $insur=$dLap[$i]['Insurance'];
+     $type=$dLap[$i]['Name_Type'];
+     $manu=$dLap[$i]['Name_Manu'];
+     $r_t=$dLap[$i]['Release_Time'];
      echo "<div class='col'>
      <div class='card mb-3' style='max-width: 640px;'>
      <div class='row g-0'>
        <div class='col-md-8'>
-         <img src='$img' class='img-fluid rounded-start' alt='...'>
+         <img class='col' src='$data[dir]images/$id/$images[0]' style='max-height:200px;'/>
          <h6 class='card-title'>$name</h6>
        </div>
        <div class='col-md-4'>
          <div class='card-body'>
-           <p class='card-text'>$screen</p>
-           <p class='card-text'>$cpu</p>
-           <p class='card-text'>$gpu</p>
-           <p class='card-text'>$pin</p>
+           <p class='card-text'>$manu</p>
+           <p class='card-text'>$type</p>
+           <p class='card-text'>$r_t</p>
+           <p class='card-text'>$insur</p>
            <h5 class='card-title'>$price</h5>
+           <a href='/$data[domain]/Home/LaptopDetails'>Chi tiết</a>
          </div>
        </div>
      </div>

@@ -8,9 +8,9 @@ if (isset($data['tb'])) {
 <?php
 $dlaptop = $data['dLap'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
-     <thead class='table-info'>
-     <tr align='center' style='vertical-align: middle;'>
-     <th>STT</th>
+     <thead class='table-primary'>
+     <tr align='center' style='vertical-align: middle; font-size:20px;' >
+     <th width='150px'>STT</th>
      <th>Mã</th>
      <th>Tên</th>
      <th>Giá</th>
@@ -19,7 +19,7 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
      <th>Mã hãng</th>
      <th>Hình ảnh</th>
      <th>Thời điểm ra mắt</th>
-     <th>Tùy chọn</th>
+     <th width='150px'>Tùy chọn</th>
      </tr></thead>";
 for ($i = 0; $i < count($dlaptop); $i++) {
      $dlap = $dlaptop[$i];
@@ -36,8 +36,8 @@ for ($i = 0; $i < count($dlaptop); $i++) {
                <td><img class='col' src='$data[dir]images/$dlap[ID_Lap]/$images[0]' style='max-height:80px;'/></td>
                <td>$dlap[Release_Time]</td>
                <td>
-                    <a href='/$data[domain]/$data[controller]/Edit/$dlap[ID_Lap]'>Edit</a>
-                    <a href='/$data[domain]/$data[controller]/Delete/$dlap[ID_Lap]'>Delete</a>  
+                    <a href='/$data[domain]/$data[controller]/Edit/$dlap[ID_Lap]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
+                    <a href='/$data[domain]/$data[controller]/Delete/$dlap[ID_Lap]'><i class='bi bi-trash-fill' style='color:red'></i></a>  
                </td>
           </tr>";
 }

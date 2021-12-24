@@ -8,14 +8,14 @@ if (isset($data['tb'])) {
 <?php
 $dadmin = $data['dAdmin'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
-<thead class='table-primary' style='font-size:20px'>
-<tr align='center'>
-     <th>Mã</th>
+<thead class='table-primary' >
+<tr align='center' style='font-size:20px'>
+     <th width='150px'>Mã</th>
      <th>Họ</th>
      <th>Tên</th>
      <th>Tài khoản</th>
      <th>Mật khẩu</th>
-     <th>Tùy chọn</th>
+     <th width='150px'>Tùy chọn</th>
      </tr>
      </thead>";
 
@@ -28,8 +28,8 @@ for ($i = 0; $i < count($dadmin); $i++) {
                <td>$dad[Account]</td>
                <td>$dad[Password]</td>
                <td>
-                    <a href='/$data[domain]/$data[controller]/Edit/$dad[ID_Admin]'>Edit</a> |
-                    <a href='/$data[domain]/$data[controller]/Delete/$dad[ID_Admin]'>Delete</a>               
+                    <a href='/$data[domain]/$data[controller]/Edit/$dad[ID_Admin]'><i class='bi bi-pencil-square' style='color:lime'></a>
+                    <a href='/$data[domain]/$data[controller]/Delete/$dad[ID_Admin]'><i class='bi bi-trash-fill' style='color:black'></a>               
                </td>
           </tr>";
 }

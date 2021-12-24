@@ -5,10 +5,10 @@ $dtype = $data['dType'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
-     <th>STT</th>
+     <th width='150px'>STT</th>
      <th>Mã</th>
      <th>Tên</th>
-     <th>Tùy chọn</th>
+     <th width='150px'>Tùy chọn</th>
      </tr>
      </thead>";
 
@@ -20,8 +20,8 @@ for ($i = 0; $i < count($dtype); $i++) {
                <td>$dty[ID_Type]</td>
                <td>$dty[Name_Type]</td>
                <td>
-                    <a href='/$data[domain]/$data[controller]/Edit/$dty[ID_Type]'>Edit</a> |
-                    <a href='/$data[domain]/$data[controller]/Delete/$dty[ID_Type]'>Delete</a>               
+                    <a href='/$data[domain]/$data[controller]/Edit/$dty[ID_Type]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
+                    <a href='/$data[domain]/$data[controller]/Delete/$dty[ID_Type]'><i class='bi bi-trash-fill' style='color:black'></i></a>               
                </td>
           </tr>";
 }

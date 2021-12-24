@@ -9,26 +9,29 @@ $dorcus = $data['dOr_Cus'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
+     <th width='150px'>STT</th>
      <th>Mã đơn hàng</th>
      <th>Mã khách hàng</th>
      <th>Tên khách hàng</th>
      <th>Thời gian đặt hàng</th>
      <th>Trạng thái</th>
-     <th>Tùy chọn</th>
+     <th width='150px'>Tùy chọn</th>
      </tr>
      </thead>";
 
 for ($i = 0; $i < count($dorcus); $i++) {
      $dfull = $dorcus[$i];
+     $stt = $i + 1;
      echo "<tr align='center'>
+               <td>$stt</td>
                <td>$dfull[ID_Order]</td>
                <td>$dfull[ID_Cus]</td>
                <td>$dfull[First_Name] $dfull[Last_Name]</td>
                <td>$dfull[Time_Order]</td>
                <td>$dfull[Status_Order]</td>
                <td>
-                    <a href='/$data[domain]/$data[controller]/Edit/$dfull[ID_Order]'>Edit</a> |
-                    <a href='/$data[domain]/OrderDetails/$dfull[ID_Order]'>Details</a>
+                    <a href='/$data[domain]/$data[controller]/Edit/$dfull[ID_Order]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
+                    <a href='/$data[domain]/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
                </td>
           </tr>";
 }

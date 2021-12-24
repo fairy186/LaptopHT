@@ -8,7 +8,7 @@ if (isset($data['tb'])) {
 <?php
 $dmanu = $data['dManu'];
 echo "<table class='table table-bordered table-striped' align='center' cellpadding='2' cellspacing='2'>
-<thead class='table-warning'>
+<thead class='table-primary'>
      <tr align='center' style='font-size:20px'>
           <th width='150px'>STT</th>
           <th>Mã</th>
@@ -27,7 +27,7 @@ for ($i = 0; $i < count($dmanu); $i++) {
           <td>$dman[Name_Manu]</td>
           <td>
                <a href='/$data[domain]/$data[controller]/Edit/$dman[ID_Manu]'><i class='bi bi-pencil-square' style='color:lime'></i></a> 
-               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill' style='color:black'></i></a>               
+               <a href='/$data[domain]/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill' style='color:red'></i></a>               
           </td>
      </tr>";
 }

@@ -6,6 +6,7 @@ class Home extends Controller
      function __construct()
      {
           $this->dLap = $this->model("LaptopModel");
+          $this->data['dLap'] = $this->dLap->GetFullInfo();
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
           $this->data["dir"] = $this->fixDir("App.js");
@@ -16,7 +17,13 @@ class Home extends Controller
      {
           $this->data["page"] = "Home";
           $this->data['title'] = "Trang chủ";
-          $this->data['dLap'] = $this->dLap->Get();
+          $this->view("ClientLayout", $this->data);
+     }
+
+     function LaptopDetails()
+     {
+          $this->data["page"] = "LaptopDetails";
+          $this->data["title"] = "Chi tiết sản phẩm";
           $this->view("ClientLayout", $this->data);
      }
 }

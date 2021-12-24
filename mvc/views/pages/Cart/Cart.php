@@ -9,7 +9,7 @@ $dcart = $data['dCart'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
-     <th>STT</th>
+     <th width='150px'>STT</th>
      <th>Mã laptop</th>
      <th>Mã khách hàng</th>
      <th>Số lượng</th>
