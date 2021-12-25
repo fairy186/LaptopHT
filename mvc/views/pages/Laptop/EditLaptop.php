@@ -1,10 +1,10 @@
 <?php
 $folder = $data['dLap']['ID_Lap'];
-$images = json_decode($data['dLap']['Images'],1);
-$ram = json_decode($data['dLap']['RAM'],1);
-$connection = json_decode($data['dLap']['Connection'],1);
-$other_Feature = json_decode($data['dLap']['Other_Feature'],1);
-$screen = json_decode($data['dLap']['Screen'],1);
+$images = json_decode($data['dLap']['Images'], 1);
+$ram = json_decode($data['dLap']['RAM'], 1);
+$connection = json_decode($data['dLap']['Connection'], 1);
+$other_Feature = json_decode($data['dLap']['Other_Feature'], 1);
+$screen = json_decode($data['dLap']['Screen'], 1);
 ?>
 <h1 style='color: blue;' align='center'>EDIT LAPTOP</h1>
 <form action="" class="row" method="post" enctype="multipart/form-data">
@@ -75,12 +75,12 @@ $screen = json_decode($data['dLap']['Screen'],1);
             <div class="row">
                 <div class="col-6">
                     <select class=" form-select" name="type" required>
-                        <option  disabled value="">Loại Laptop</option>
+                        <option disabled value="">Loại Laptop</option>
                         <?php
                         $dtype = $data['dType'];
                         for ($i = 0; $i < count($dtype); $i++) {
                             $dty = $dtype[$i];
-                            if($dty['ID_Type']!=$data['ID_Type'])
+                            if ($dty['ID_Type'] != $data['ID_Type'])
                                 echo "<option value='$dty[ID_Type]'>$dty[Name_Type]</option>";
                             else
                                 echo "<option selected value='$dty[ID_Type]'>$dty[Name_Type]</option>";
@@ -90,15 +90,15 @@ $screen = json_decode($data['dLap']['Screen'],1);
                 </div>
                 <div class="col-6">
                     <select class="form-select" name="manu" required>
-                        <option  disabled value="">Hãng sản xuất</option>
+                        <option disabled value="">Hãng sản xuất</option>
                         <?php
                         $dmanu = $data['dManu'];
                         for ($i = 0; $i < count($dmanu); $i++) {
                             $dman = $dmanu[$i];
-                            if($dty['ID_Manu']!=$data['ID_Manu'])
+                            if ($dty['ID_Manu'] != $data['ID_Manu'])
                                 echo "<option value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
                             else
-                                    echo "<option selected value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
+                                echo "<option selected value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
                         }
                         ?>
                     </select>
@@ -112,10 +112,10 @@ $screen = json_decode($data['dLap']['Screen'],1);
             </div>
             <div class="gallery mt-1 row row-cols-5 g-2 g-lg-3">
                 <?php
-                    foreach ($images as $value){
-                        
-                        echo "<div class='p-1 col p-1'><img src='$data[dir]images/$folder/$value' style='width:100%'/></div>";
-                    }
+                foreach ($images as $value) {
+
+                    echo "<div class='p-1 col p-1'><img src='$data[dir]images/$folder/$value' style='width:100%'/></div>";
+                }
                 ?>
             </div>
         </div>

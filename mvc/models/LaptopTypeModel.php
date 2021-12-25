@@ -39,16 +39,16 @@ class LaptopTypeModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
-     function CheckID($val)
+     function Check_id($val)
      {
           $qr = "SELECT * FROM `laptop_type` WHERE `ID_Type` = '$val'";
           $sql = mysqli_query($this->con, $qr);
           if (mysqli_num_rows($sql) > 0)
                return "Mã loại đã tồn tại";
-          return $this->check($val, 4, 10);
+          return $this->check($val, 4, 10, 110);
      }
-     function CheckName($val)
+     function Check_name($val)
      {
-          return $this->check($val, 1, 100, 11100);
+          return $this->check($val, 1, 100, 200);
      }
 }

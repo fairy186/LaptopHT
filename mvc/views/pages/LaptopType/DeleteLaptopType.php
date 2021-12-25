@@ -2,12 +2,12 @@
 <form action="" method="post" class="col-12 col-xl-6 container">
 	<div>
 		<label for="field1" class="form-label">Mã loại laptop</label>
-		<input id="field1" type="text" name="ma" value="<?php echo @$data['dl']['ID_Type'] ?>" class="form-control" disabled>
+		<input id="field1" type="text" name="id" value="<?php echo @$data['dType']['ID_Type'] ?>" class="form-control" disabled>
 		<label></label>
 	</div>
 	<div>
 		<label for="field2" class="form-label">Tên loại laptop</label>
-		<input id="field2" type="text" name="ten" value="<?php echo @$data['dl']['Name_Type'] ?>" class="form-control" disabled>
+		<input id="field2" type="text" name="name" value="<?php echo @$data['dType']['Name_Type'] ?>" class="form-control" disabled>
 		<label></label>
 	</div>
 	<div>

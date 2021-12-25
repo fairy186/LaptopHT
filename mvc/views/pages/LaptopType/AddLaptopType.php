@@ -2,13 +2,13 @@
 <form action="" method="post" class="col-12 col-xl-6 container">
      <div>
           <label for="field1" class="form-label">Mã loại laptop</label>
-          <input id="field1" type="text" name="ma" vali value="<?php echo @$_POST['ma'] ?>" class="form-control">
-          <label mess="ma"></label>
+          <input id="field1" type="text" name="id" vali value="<?php echo @$_POST['id'] ?>" class="form-control">
+          <label mess="id"></label>
      </div>
      <div>
           <label for="field2" class="form-label">Tên loại laptop</label>
-          <input id="field2" type="text" name="ten" vali value="<?php echo @$_POST['ten'] ?>" class="form-control">
-          <label mess="ten"></label>
+          <input id="field2" type="text" name="name" vali value="<?php echo @$_POST['name'] ?>" class="form-control">
+          <label mess="name"></label>
      </div>
      <div>
           <center>

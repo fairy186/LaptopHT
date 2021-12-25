@@ -2,12 +2,12 @@
 <form action="" method="post" class="col-12 col-xl-6 container">
 	<div>
 		<label for="field1" class="form-label">Mã hảng</label>
-		<input id="field1" type="text" name="ma" value="<?php echo @$data['dl']['ID_Manu'] ?>" class="form-control" disabled>
+		<input id="field1" type="text" name="id" value="<?php echo @$data['dManu']['ID_Manu'] ?>" class="form-control" disabled>
 		<label></label>
 	</div>
 	<div>
 		<label for="field2" class="form-label">Tên hảng</label>
-		<input id="field2" type="text" name="ten" value="<?php echo @$data['dl']['Name_Manu'] ?>" class="form-control" disabled>
+		<input id="field2" type="text" name="name" value="<?php echo @$data['dManu']['Name_Manu'] ?>" class="form-control" disabled>
 		<label></label>
 	</div>
 	<div>
@@ -21,8 +21,3 @@
 		</center>
 	</div>
 </form>
-<?php
-if (isset($data['tb'])) {
-	echo "<script>alert('$data[tb]')</script>";
-}
-?>

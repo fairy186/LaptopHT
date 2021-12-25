@@ -1,5 +1,4 @@
 <?php
-// print_r($data);
 if (isset($data['goDefault'], $data['url']))
      header('location:' . $data['url']);
 function listitem($controller, $itemname)
@@ -101,8 +100,3 @@ function listitem($controller, $itemname)
 </body>
 
 </html>
-<?php
-if (isset($data['tb'])) {
-     echo "<script>alert('$data[tb]')</script>";
-}
-?>
