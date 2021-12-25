@@ -1,87 +1,165 @@
-<div class="row row-cols-1">
-    <?php
-  $dLap = $data['dLap'];
-  // print_r($dLap);
-  for ($i = 0; $i < count($dLap); $i++) {
-    $id = $dLap[$i]['ID_Lap'];
-    $images = json_decode($dLap[$i]['Images']);
-    $name = $dLap[$i]['Name_Lap'];
-    $price = $dLap[$i]['Price'];
-    $insur = $dLap[$i]['Insurance'];
-    $type = $dLap[$i]['Name_Type'];
-    $manu = $dLap[$i]['Name_Manu'];
-    $r_t = $dLap[$i]['Release_Time'];
-    $cpu = $dLap[$i]['CPU'];
-    $gpu = $dLap[$i]['GPU'];
-    $ram = $dLap[$i]['RAM'];
-    $st = $dLap[$i]['Storage'];
-    $sr = $dLap[$i]['Screen'];
-    $audio = $dLap[$i]['Audio'];
-    $cn = $dLap[$i]['Connection'];
-    $o_f = $dLap[$i]['Other_Feature'];
-    $d_w = $dLap[$i]['Dimen_Wei'];
-    $mate = $dLap[$i]['Material'];
-    $batt = $dLap[$i]['Battery'];
-    $os = $dLap[$i]['OS'];
-    echo "
-    <div class='col-12'>
-    <div class='card mb-3' style='width: 640px; '>
-        <div class='row'>
-            <div class='col-12' align='center'>
-                <img class='col' src='$data[dir]images/$id/$images[0]' style='max-height:400px;' />
-                <h3 class='card-title'>$name</h3>
+<?php
+$id = $data['dLap']['ID_Lap'];
+$name = $data['dLap']['Name_Lap'];
+$audio = $data['dLap']['Audio'];
+$images = json_decode($data['dLap']['Images'], 1);
+$ram = json_decode($data['dLap']['RAM'], 1);
+$connection = json_decode($data['dLap']['Connection'], 1);
+$other_Feature = json_decode($data['dLap']['Other_Feature'], 1);
+$screen = json_decode($data['dLap']['Screen'], 1);
+
+?>
+<div class="container-fruit row">
+    <div class="col-6">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                foreach ($images as $key => $value) {
+                    if ($key == 0) {
+                        echo "<div class='carousel-item active'>
+                                <img src='$data[dir]images/$id/$value' class='d-block w-100'>
+                            </div>";
+                    } else {
+                        echo "<div class='carousel-item'>
+                                <img src='$data[dir]images/$id/$value' class='d-block w-100'>
+                            </div>";
+                    }
+                }
+                ?>
             </div>
-            <div class='col-12'>
-                <div class='card-body'>
-                    <p class='card-text'>Hảng: $manu</p>
-                    <p class='card-text'>Loại: $type</p>
-                    <p class='card-text'>Năm: $r_t</p>
-                    <p class='card-text'>Bảo hành: $insur</p>
-
-                    <div class='card border-light card-header'>Bộ xử lí</div>
-                    <div class='card-body'>
-                        <p class='card-text'>CPU: $cpu</p>
-                        <p class='card-text'>GPU: $gpu</p>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-6">
+        <h3><?php echo $name ?></h3>
+        <div class="card border-light mb-3" style="max-width: 100rem;">
+            <div class="col-12 ">
+                <h5 class="card-header">Tổng quan</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <label class="card-title col-md-4 col-label">CPU</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['CPU'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">GPU</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['GPU'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Bảo hành</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['Insurance'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Năm ra mắt</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['Release_Time'] ?></p>
+                        </div>
                     </div>
+                </div>
 
-                    <div class='card border-light card-header'>Bộ nhớ RAM, Ổ cứng</div>
-                    <div class='card-body'>
-                        <p class='card-text'>RAM: $ram</p>
-                        <p class='card-text'>Ổ cứng: $st</p>
+                <h5 class="card-header">Bộ nhớ RAM, Ổ cứng</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <label class="card-title col-md-4 col-label">Dung lượng</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $ram['memRAM'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Loại RAM</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $ram['typeRAM'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Bus RAM</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $ram['busRAM'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Hỗ trợ tối đa</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $ram['maxRAM'] ?></p>
+                        </div>
                     </div>
-                    <div class='card border-light card-header'>Màn hình và Âm thanh </div>
-                    <div class='card-body'>
-                        <p class='card-text'>Màn hình: $sr</p>
-                    <p class='card-text'>Ảm thanh: $audio</p>
+                </div>
 
+                <h5 class="card-header">Màn hình</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <label class="card-title col-md-4 col-label">Kích thước</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $screen['sizeSC'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Độ phân giải</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $screen['resoSC'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Tần số quét</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $screen['freSC'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Công nghệ</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $screen['techSC'] ?></p>
+                        </div>
                     </div>
+                </div>
 
-                    <div class='card border-light card-header'>Cổng kết nối và Tính năng khác</div>
-                    <div class='card-body'>
-                    <p class='card-text'>Kết nối: $cn</p>
-                    <p class='card-text'>Tính năng khác: $o_f</p>
+                <h5 class="card-header">Kết nối & Tính năng</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <label class="card-title col-md-4 col-label">Cổng kết nối</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $connection['port'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Kết nối không dây</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $connection['wireless'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Âm thanh</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $audio ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Webcam</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $other_Feature['webcam'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Đèn bàn phím</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $other_Feature['ledKB'] ?></p>
+                        </div>
                     </div>
-                    
+                </div>
 
-                    <div class='card border-light card-header'>Kích thước và Trọng lượng</div>
-                    <div class='card-body'>
-                    <p class='card-text'>Trọng lượng & kích thước: $d_w</p>
-                    <p class='card-text'>Chất liệu: $mate</p>
+                <h5 class="card-header">Thông tin khác</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <label class="card-title col-md-4 col-label">Thông số vật lý</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['Dimen_Wei'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Chất liệu</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['Material'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Pin</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['Battery'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Tính năng khác</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $other_Feature['otherF'] ?></p>
+                        </div>
+                        <label class="card-title col-md-4 col-label">Hệ điều hành</label>
+                        <div class="col-md-8 ">
+                            <p class="card-text"><?php echo $data['dLap']['OS'] ?></p>
+                        </div>
                     </div>
-
-                    <div class='card border-light card-header'>Thông tin khác</div>
-                    <div class='card-body'>
-                    <p class='card-text'>Pin: $batt</p>
-                    <p class='card-text'>Hệ điều hành: $os</p>
-                    </div>
-                    
-                    <h1 class='card-title' style='text-align: right;'>$price</h1>
                 </div>
             </div>
         </div>
+        <h2 style="" align="right"> Giá <?php echo $data['dLap']['Price'] ?></h2>
     </div>
-</div>
-   ";
-  }
-  ?>
 </div>

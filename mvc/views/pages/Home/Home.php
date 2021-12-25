@@ -26,7 +26,7 @@ for ($i=0; $i < count($dLap) ; $i++) {
            <p class='card-text'>$r_t</p>
            <p class='card-text'>$insur</p>
            <h5 class='card-title'>$price</h5>
-           <a href='/$data[domain]/Home/LaptopDetails'>Chi tiết</a>
+           <a href='/$data[domain]/Home/LaptopDetails/$id'>Chi tiết</a>
          </div>
        </div>
      </div>

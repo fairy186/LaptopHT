@@ -33,6 +33,17 @@ class LaptopModel extends DB
           return $kq;
      }
 
+     public function GetFullInfoByID($id)
+     {
+          $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
+                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type
+                                        WHERE laptop.ID_Lap='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          if(mysqli_num_rows($sql) > 0)
+               return mysqli_fetch_array($sql);
+          return 0;
+     }
+
      public function Add(
           $id,
           $name,
