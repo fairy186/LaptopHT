@@ -22,10 +22,6 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <style>
-          #content {
-               padding: 20px;
-          }
-
           label[mess] {
                margin: 5px;
           }
@@ -35,16 +31,12 @@
                font-weight: bolder;
           }
 
-          #header,
-          #footer {
-               background-color: yellow;
-          }
      </style>
 </head>
 
 <body class="container-fruilt">
-     <div id="header">
-          <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+     <div id="header" class="bg-dark">
+          <nav class="navbar navbar-expand-sm navbar-dark bg-dark container">
                <div class="container-fluid d-flex">
                     <a class="navbar-brand text-danger fw-bold fst-italic" href="#"><i class="bi bi-laptop"></i> LaptopHT</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +70,7 @@
           </nav>
      </div>
 
-     <div id="content" class="border">
+     <div id="content" class="container">
           <?php
           require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
           ?>
