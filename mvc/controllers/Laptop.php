@@ -64,10 +64,10 @@ class Laptop extends Controller
             if ($_FILES['img']['name'][0] != '')
                 $img = $this->upFile($id);
             else $img = $this->data['dLap']['Images'];
-            $ram = json_encode(["memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']]);
-            $screen = json_encode(["sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']]);
+            $ram = json_encode(["memRAM" => $_POST['memRAM'], "typeRAM" => $_POST['typeRAM'], "busRAM" => $_POST['busRAM'], "maxRAM" => $_POST['maxRAM']],JSON_UNESCAPED_UNICODE);
+            $screen = json_encode(["sizeSC" => $_POST['sizeSC'], "resoSC" => $_POST['resoSC'], "freSC" => $_POST['freSC'], "techSC" => $_POST['techSC']],JSON_UNESCAPED_UNICODE);
             $connection = json_encode(["port" => $_POST['port'], "wireless" => $_POST['wireless']]);
-            $other_feature = json_encode(["webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']]);
+            $other_feature = json_encode(["webcam" => $_POST['webcam'], "ledKB" => $_POST['ledKB'], "otherF" => $_POST['otherF']],JSON_UNESCAPED_UNICODE);
             if ($check && $this->dLap->Edit($id, $_POST['name'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release']))
                 $this->data["goDefault"] = 1;
             else
