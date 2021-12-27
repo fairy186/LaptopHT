@@ -36,9 +36,17 @@ class App
           }
           // Xử lý Params
           // $this->params = $arr ? array_values($arr):[];
-          // echo $this->controller."</br>";
-          // echo $this->action."</br>";
-          // print_r($this->params);
+          $url = @$_GET['url'];
+          if (!isset($_SESSION['url'])) {
+               $_SESSION['url'] = array();
+               $_SESSION['url'][] = $url;
+          } else
+               if ($url != $_SESSION['url'][count($_SESSION['url']) - 1])
+               $_SESSION['url'][] = $url;
+          if (count($_SESSION['url']) > 2)
+               $_SESSION['url'] = array_slice($_SESSION['url'], 1, count($_SESSION['url']));
+          print_r($_SESSION);
+
           $this->controller = new $this->controller;
           call_user_func_array([$this->controller, $this->action], $this->params);
      }

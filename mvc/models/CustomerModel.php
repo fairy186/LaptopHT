@@ -23,13 +23,12 @@ class CustomerModel extends DB
                $row = mysqli_fetch_array($sql);
           return $row;
      }
-
-     public function CheckLogin($account, $password)
+     public function Login($account, $password)
      {
           $qr = "SELECT * FROM `customer` WHERE `Account`='$account' AND `Password`='$password'";
           $sql = mysqli_query($this->con, $qr);
           if (mysqli_num_rows($sql) > 0)
-               return 1;
+               return mysqli_fetch_assoc($sql);;
           return 0;
      }
 
@@ -89,11 +88,10 @@ class CustomerModel extends DB
 
      public function confirmPassword($val1, $val2)
      {
-          if ($val1==$val2)
+          if ($val1 == $val2)
                return 1;
           return 0;
      }
-
      public function Check_phone($val)
      {
           return $this->Check($val, 10, 10, 10);
