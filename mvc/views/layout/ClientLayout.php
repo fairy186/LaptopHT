@@ -30,7 +30,6 @@
                color: blueviolet;
                font-weight: bolder;
           }
-
      </style>
 </head>
 
@@ -38,34 +37,43 @@
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand-sm navbar-dark bg-dark container">
                <div class="container-fluid d-flex">
-                    <a class="navbar-brand text-danger fw-bold fst-italic" href="#"><i class="bi bi-laptop"></i> LaptopHT</a>
+                    <a class="navbar-brand text-danger fw-bold fst-italic" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> LaptopHT</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                          <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                         <form class="mb-0">
+                         <form class="mb-0 mx-auto" action="<?php echo "/$data[domain]/Search" ?>" method="post">
                               <div class="input-group">
-                                   <input class="form-control border-1 border-primary" type="search" placeholder="Search" aria-label="Search">
-                                   <button class="btn btn-outline-primary border-1 border-primary" type="submit"><i class="bi bi-search"></i></button>
+                                   <input class="form-control border-2 border-primary" name="info" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                                   <button class="btn btn-outline-light border-2 border-primary" type="submit"><i class="bi bi-search"></i></button>
                               </div>
                          </form>
-                         <div class="mx-auto"></div>
                          <ul class="navbar-nav">
-                              <li class="nav-item dropdown">
-                                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-person-circle"></i> <?php echo @$_SESSION['user']['ten']  ?>
+                              <li class="nav-item">
+                                   <a class="nav-link py-0" href='<?php echo "/$data[domain]/GioHang"; ?>'> <button class="btn btn-outline-success p-2 " type="button"><i class="bi bi-cart4"></i> Giỏ hàng</button></a>
+                              </li>
+                              <?php if (isset($_SESSION['user'])) echo "<li class='nav-item dropdown border border-primary rounded '>
+                                   <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                        <i class='bi bi-person-circle'></i>  " . $_SESSION['user']['ten'] . "
                                    </a>
-                                   <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                                        <li class="nav-item">
-                                             <a class="nav-link" href='<?php echo "/$data[domain]/Login"; ?>'>Đăng Nhập</a>
-                                        </li>
-                                        <li class="nav-item bg-dark">
-                                             <a class="nav-link" href='<?php echo "/$data[domain]/Login/SignOut"; ?> '>Đăng xuất</a>
+                                   <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
+                                        <li class='nav-item bg-dark'>
+                                             <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
                                         </li>
                                    </ul>
-                              </li>
+                              </li>";
+                              else {
+                                   echo "<li class='nav-item'>
+                                   <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
+                                        </li>";
+                              }
+
+                              ?>
+
                          </ul>
                     </div>
+
+
                </div>
           </nav>
      </div>
@@ -75,8 +83,10 @@
           require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
           ?>
      </div>
-     <div id="footer">
-          <h1> Footer</h1>
+     <div id="footer" class="bg-dark text-light fixed-bottom p-3">
+          <div class="container fst-italic" align="center">
+               <label> @Copyright: LaptopHT</label>
+          </div>
      </div>
      <script src='<?php echo "$data[dir]" ?>public/App.js'></script>
      <script>

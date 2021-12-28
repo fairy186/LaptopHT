@@ -1,4 +1,4 @@
-<div class="container col-12 col-xl-6">
+<div class="container" style="max-width: 600px;">
     <h1 style='color: blue;' align='center'>ĐĂNG KÝ</h1>
     <form action="" method="post" class="row">
         <div class="col-12 col-sm-6">

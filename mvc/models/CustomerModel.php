@@ -25,16 +25,21 @@ class CustomerModel extends DB
      }
      public function Login($account, $password)
      {
-          $qr = "SELECT * FROM `customer` WHERE `Account`='$account' AND `Password`='$password'";
+          $password = password_hash($password, PASSWORD_DEFAULT);
+          $qr = "SELECT * FROM `customer` WHERE `Account`='$account'";
           $sql = mysqli_query($this->con, $qr);
-          if (mysqli_num_rows($sql) > 0)
-               return mysqli_fetch_assoc($sql);;
+          if (mysqli_num_rows($sql) > 0){
+               $kq= mysqli_fetch_assoc($sql);;
+               if(password_verify($kq['Password'],$password));
+                    return $kq;
+          }
           return 0;
      }
 
 
      public function Add($first_name, $last_name, $address, $phone, $email, $account, $password)
      {
+          $password = password_hash($password, PASSWORD_DEFAULT);
           $qr = "INSERT INTO `customer`(`First_Name`, 
                                         `Last_Name`, `Address`, 
                                         `Phone`, `Email`, `Account`, `Password`)

@@ -3,15 +3,15 @@
   $dLap = $data['dLap'];
   // print_r($dLap);
   if ($dLap != 0)
-    for ($i = 0; $i < count($dLap); $i++) {
-      $id = $dLap[$i]['ID_Lap'];
-      $images = json_decode($dLap[$i]['Images']);
-      $name = $dLap[$i]['Name_Lap'];
-      $price = $dLap[$i]['Price'];
-      $insur = $dLap[$i]['Insurance'];
-      $type = $dLap[$i]['Name_Type'];
-      $manu = $dLap[$i]['Name_Manu'];
-      $r_t = $dLap[$i]['Release_Time'];
+    foreach ($dLap as $key => $value){
+      $id = $value['ID_Lap'];
+      $images = json_decode($value['Images']);
+      $name = $value['Name_Lap'];
+      $price = $value['Price'];
+      $insur = $value['Insurance'];
+      $type = $value['Name_Type'];
+      $manu = $value['Name_Manu'];
+      $r_t = $value['Release_Time'];
       echo "<div class='col'>
      <div class='card mb-3' style='max-width: 640px;'>
      <div class='row g-0'>
