@@ -20,17 +20,17 @@ class Login extends Controller
         $this->data["page"] = "Login";
         $this->data['title'] = "Đăng nhập";
         $this->data['action'] = "";
-        if(isset($_SESSION['user'])){
+        if (isset($_SESSION['user'])) {
             header("Location: /$this->domain/" . @$_SESSION['url'][0]);
         }
         if (isset($_POST['sm'])) {
             $u = $this->dCus->Login($_POST['account'], $_POST['password']);
             if ($u != 0) {
                 $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]"];
-                    header("Location: /$this->domain/" . @$_SESSION['url'][0]);
+                header("Location: /$this->domain/" . @$_SESSION['url'][0]);
             }
         }
-       
+
         $this->view("", $this->data);
     }
     function SignOut()
@@ -50,11 +50,13 @@ class Login extends Controller
             $check = $this->validate($this->dCus, $_POST);
             if ($check && $this->dCus->confirmPassword($_POST['password'], $_POST['confirmPassword'])) {
                 $address = $_POST['spe']  . ", " . $_POST['ward'] . ", " . $_POST['district'] . ", " .  $_POST['province'];
-                print_r($_POST);
-                $this->data["goDefault"] = $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
+                $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
+                $u = $this->dCus->Login($_POST['account'], $_POST['password']);
+                $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]"];
+                header("Location: /$this->domain");
             } else
                 $this->data["tb"] = "Lỗi";
         }
-        $this->view("ClientLayout", $this->data);
+        $this->view("", $this->data);
     }
 }

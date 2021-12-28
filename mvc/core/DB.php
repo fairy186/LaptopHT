@@ -12,11 +12,6 @@ class DB
           mysqli_select_db($this->con, $this->dbname);
           mysqli_query($this->con, "SET NAMES 'utf8'");
      }
-     function str_to_num ($str){
-          $arr = explode(".", $str);
-          return join("", $arr);
-     }
-     
      function Check($val, $minLen, $maxLen, $char = 213) //char gồm 3 số ghép lại
      {
           $valLen = strlen($val);

@@ -166,7 +166,7 @@
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
-<div class="login">
+<div class="login mt-5">
     <h2 class="active"> sign in </h2>
     <form action="" method="post">
         <input type="text" name="account" class="text" name="username">
@@ -179,9 +179,9 @@
         <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
         <label for="checkbox-1-1">Keep me Signed in</label>
         <button class="signin" type="submit" name="sm">
-            Sign In
+            Đăng nhập
         </button>
-        <a href="#">Forgot Password?</a>
+        <a href='<?php echo "/$data[domain]/Login/SignUp";?>'>Chưa có tài khoản?</a>
         <hr>
     </form>
 

@@ -32,6 +32,21 @@ class LaptopModel extends DB
           }
           return $kq;
      }
+     public function Search($info)
+     {
+          $data = $this->GetFullInfo();
+          $kq = [];
+          foreach ($data as $key => $value) {
+               foreach ($value as $key => $val){
+                    $pattern = "/$info/i";
+                    if(preg_match($pattern, $val)){
+                         $kq[]=$value;
+                         break;
+                    }
+               }
+          }
+          return $kq;
+     }
 
      public function GetFullInfoByID($id)
      {
