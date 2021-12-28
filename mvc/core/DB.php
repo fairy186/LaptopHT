@@ -16,16 +16,7 @@ class DB
           $arr = explode(".", $str);
           return join("", $arr);
      }
-     function num_to_str($num)
-     {
-          $str="";
-          while($num > 0){
-               $spe=$num%1000;
-               $str=$spe.$str;
-               $num=floor($num/1000);
-          }
-          return $str;
-     }
+     
      function Check($val, $minLen, $maxLen, $char = 213) //char gồm 3 số ghép lại
      {
           $valLen = strlen($val);

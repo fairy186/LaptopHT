@@ -7,11 +7,13 @@ $ram = json_decode($data['dLap']['RAM'], 1);
 $connection = json_decode($data['dLap']['Connection'], 1);
 $other_Feature = json_decode($data['dLap']['Other_Feature'], 1);
 $screen = json_decode($data['dLap']['Screen'], 1);
+$price = num_to_price($data['dLap']['Price']);
 
+// print_r($data['dComm']);
 ?>
 <div class="container-fruit row">
     <div class="col-6">
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php
                 foreach ($images as $key => $value) {
@@ -36,12 +38,58 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+
+        <div>
+            <h2>Đánh giá <?php echo $name ?></h2>
+
+            <div>
+                <?php
+                foreach ($data['dComm'] as $key => $value) {
+                    $time_comm = format_date($value['Time_Comm']);
+                    echo "
+                    <div class='border container'>
+                        <div class='row col-10 mt-3'>
+                            <div class='col-4'>
+                                <h6>$value[First_Name] $value[Last_Name]</h6>
+                            </div>
+                            <div class='col-6'>
+                                <p>$time_comm</p>
+                            </div>                  
+                        </div>
+                        <div>
+                            <p style='margin-left: 20px;'>$value[Content]</p>
+                        </div>
+
+                        <div class='row col-8 mb-3'>
+                            <div class='col-3'>
+                                <a href='' style='text-decoration: none;'>
+                                    <i class='bi bi-hand-thumbs-up'></i>
+                                    <span>Thích</span>
+                                </a>
+                            </div>
+                            <div class='col-5'>
+                                <a href='' style='text-decoration: none;'>
+                                    <i class='bi bi-pen'></i>
+                                    <span>Bình luận</span>
+                                </a>
+                            </div>
+                        </div>  
+                    </div>
+                    ";
+                }
+                ?>
+            </div>
+
+        </div>
     </div>
     <div class="col-6">
-        <h3><?php echo $name ?></h3>
+        <h2><?php echo $name ?></h2>
+        <div>
+            <h5 style="color: red;">Giá <?php echo $price ?></h5>
+        </div>
         <div class="card border-light mb-3" style="max-width: 100rem;">
             <div class="col-12 ">
-                <h5 class="card-header">Tổng quan</h5>
+                <h5 class="card-header" style="background-color: #C6DEF7;">Tổng quan</h5>
                 <div class="card-body">
                     <div class="row">
                         <label class="card-title col-md-4 col-label">CPU</label>
@@ -63,7 +111,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                     </div>
                 </div>
 
-                <h5 class="card-header">Bộ nhớ RAM, Ổ cứng</h5>
+                <h5 class="card-header" style="background-color: #C6DEF7;">Bộ nhớ RAM, Ổ cứng</h5>
                 <div class="card-body">
                     <div class="row">
                         <label class="card-title col-md-4 col-label">Dung lượng</label>
@@ -85,7 +133,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                     </div>
                 </div>
 
-                <h5 class="card-header">Màn hình</h5>
+                <h5 class="card-header" style="background-color: #C6DEF7;">Màn hình</h5>
                 <div class="card-body">
                     <div class="row">
                         <label class="card-title col-md-4 col-label">Kích thước</label>
@@ -107,7 +155,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                     </div>
                 </div>
 
-                <h5 class="card-header">Kết nối & Tính năng</h5>
+                <h5 class="card-header" style="background-color: #C6DEF7;">Kết nối & Tính năng</h5>
                 <div class="card-body">
                     <div class="row">
                         <label class="card-title col-md-4 col-label">Cổng kết nối</label>
@@ -133,7 +181,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                     </div>
                 </div>
 
-                <h5 class="card-header">Thông tin khác</h5>
+                <h5 class="card-header" style="background-color: #C6DEF7;">Thông tin khác</h5>
                 <div class="card-body">
                     <div class="row">
                         <label class="card-title col-md-4 col-label">Thông số vật lý</label>
@@ -160,6 +208,5 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                 </div>
             </div>
         </div>
-        <h2 style="" align="right"> Giá <?php echo $data['dLap']['Price'] ?></h2>
     </div>
 </div>
