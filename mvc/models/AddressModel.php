@@ -12,7 +12,28 @@ class AddressModel extends DB
         }
         return $kq;
     }
-
+    public function GetAddress($id_prov, $id_dist, $id_ward)
+    {
+        $qr = "SELECT * FROM `province` WHERE `id`='$id_prov'";
+        $sql = mysqli_query($this->con, $qr);
+        if (mysqli_num_rows($sql) == 0)
+            return 0;
+        $row = mysqli_fetch_assoc($sql);
+        $province = $row['_name'];
+        $qr = "SELECT * FROM `district` WHERE `id`='$id_dist'";
+        $sql = mysqli_query($this->con, $qr);
+        if (mysqli_num_rows($sql) == 0)
+            return 0;
+        $row = mysqli_fetch_assoc($sql);
+        $district = $row['_prefix'] . " " . $row['_name'];
+        $qr = "SELECT * FROM `ward` WHERE `id`='$id_ward'";
+        $sql = mysqli_query($this->con, $qr);
+        if (mysqli_num_rows($sql) == 0)
+            return 0;
+        $row = mysqli_fetch_assoc($sql);
+        $ward = $row['_prefix'] . " " . $row['_name'];
+        return $ward . ", " . $district . ", " . $province;
+    }
     public function GetDistrict($id)
     {
         $qr = "SELECT * FROM `district` WHERE `_province_id`='$id'";
