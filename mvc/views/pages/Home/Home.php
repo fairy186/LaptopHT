@@ -12,6 +12,8 @@
       $cpu = $value['CPU'];
       $gpu = $value['GPU'];
       $pin = $value['Battery'];
+      $ram = json_decode($value['RAM'], 1);
+
 
       echo "
 
@@ -38,9 +40,9 @@
                             <div class='col-md-8'>
                                 <p class='card-text'>$gpu</p>
                             </div>
-                            <label class='card-title col-md-4 col-label'>Pin</label>
+                            <label class='card-title col-md-4 col-label'>RAM</label>
                             <div class='col-md-8'>
-                                <p class='card-text'>$pin</p>
+                                <p class='card-text'>$ram[memRAM]</p>
                             </div>
                         </div>
                     </div>
