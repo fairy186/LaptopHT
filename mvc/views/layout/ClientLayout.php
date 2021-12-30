@@ -63,12 +63,12 @@ function format_date($str)
                          <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                         <form class="mb-0 mx-auto" action="<?php echo "/$data[domain]/Search" ?>" method="post">
+                         <div class="mb-0 mx-auto">
                               <div class="input-group">
-                                   <input class="form-control border-2 border-primary" name="info" type="search" placeholder="Tìm kiếm" aria-label="Search">
-                                   <button class="btn btn-outline-light border-2 border-primary" type="submit"><i class="bi bi-search"></i></button>
+                                   <input id="search" class="form-control border-2 border-primary" name="info" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
+                                   <button class="btn btn-outline-light border-2 border-primary" type="button" onclick="search()"><i class="bi bi-search"></i></button>
                               </div>
-                         </form>
+                         </div>
                          <ul class="navbar-nav">
                               <li class="nav-item">
                                    <a class="nav-link py-0" href='<?php echo "/$data[domain]/GioHang"; ?>'> <button class="btn btn-outline-success p-2 " type="button"><i class="bi bi-cart4"></i> Giỏ hàng</button></a>
@@ -88,9 +88,7 @@ function format_date($str)
                                    <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
                                         </li>";
                               }
-
                               ?>
-
                          </ul>
                     </div>
 
@@ -118,11 +116,16 @@ function format_date($str)
                     check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
           });
-
           function validate() {
                $("input[vali]").each(function() {
                     check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
+          }
+          function search(){
+               search_info=$("#search").val();
+               if(search_info!==""){
+                    window.location.href = '<?php echo "/$data[domain]/Search/"?>'+search_info;
+               }
           }
      </script>
 </body>
