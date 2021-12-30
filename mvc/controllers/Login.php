@@ -44,11 +44,11 @@ class Login extends Controller
         $this->data['title'] = "Đăng ký";
         $this->data['action'] = "SignUp";
         $this->data['dProvince'] = $this->dAddress->GetProvince();
-        $this->data['dDistrict'] = $this->dAddress->GetDistrict();
-        $this->data['dWard'] = $this->dAddress->GetWard();
+        // $this->data['dDistrict'] = $this->dAddress->GetDistrict();
+        // $this->data['dWard'] = $this->dAddress->GetWard();
         if (isset($_POST['sm'])) {
             $check = $this->validate($this->dCus, $_POST);
-            if ($check && $this->dCus->confirmPassword($_POST['password'], $_POST['confirmPassword'])) {
+            if ($check && $_POST['password']== $_POST['confirmPassword']) {
                 $address = $_POST['spe']  . ", " . $_POST['ward'] . ", " . $_POST['district'] . ", " .  $_POST['province'];
                 $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
                 $u = $this->dCus->Login($_POST['account'], $_POST['password']);

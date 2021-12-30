@@ -82,7 +82,7 @@ function listitem($controller, $itemname)
      <div id="footer" class="fixed-bottom">
           <h1> Footer</h1>
      </div>
-     <script src='<?php echo "$data[dir]" ?>public/App.js'></script>
+     <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
      <script>
           $(document).ready(function() {
                $("input[vali]").keyup(function() {

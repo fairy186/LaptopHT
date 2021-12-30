@@ -1,4 +1,4 @@
-<div class="container" style="max-width: 600px;">
+<div class="container mt-5" style="max-width: 600px;">
     <h1 style='color: blue;' align='center'>ĐĂNG KÝ</h1>
     <form action="" method="post" class="row">
         <div class="col-12 col-sm-6">
@@ -18,47 +18,33 @@
             <label mess="password"></label>
         </div>
         <div>
-            <input type="password" vali class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
+            <input type="password" class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
             <label mess="confirmPassword"></label>
         </div>
-        <div class="row">
-            <div class="col-3">
-                <select class="form-select" name="province" required>
+        <div class="row m-0 p-0">
+            <div class="col-6 mb-3">
+                <select id="province" class="form-select" name="province" required>
                     <option selected disabled value="">Tỉnh</option>
                     <?php
                     $dprovince = $data['dProvince'];
                     for ($i = 0; $i < count($dprovince); $i++) {
                         $pv = $dprovince[$i];
-                        echo "<option value='$pv[_name]'>$pv[_name]</option>";
+                        echo "<option value='$pv[id]'>$pv[_name]</option>";
                     }
                     ?>
                 </select>
             </div>
-            <div class="col-3">
-                <select class="form-select" name="district" required>
-                    <option selected disabled value="">Quận, Huyện, Thị xã, Thành phố</option>
-                    <?php
-                    $ddistrict = $data['dDistrict'];
-                    for ($i = 0; $i < count($ddistrict); $i++) {
-                        $dt = $ddistrict[$i];
-                        echo "<option value='$dt[_prefix] $dt[_name]'>$dt[_prefix] $dt[_name]</option>";
-                    }
-                    ?>
+            <div class="col-6 mb-3">
+                <select id="district" class="form-select" name="district" required>
+                    <option disabled selected> quận, huyện</option>
                 </select>
             </div>
-            <div class="col-3">
-                <select class="form-select" name="ward" required>
-                    <option selected disabled value="">Xã, Phường, Thị trấn</option>
-                    <?php
-                    $dward = $data['dWard'];
-                    for ($i = 0; $i < count($dward); $i++) {
-                        $w = $dward[$i];
-                        echo "<option value='$w[_prefix] $w[_name]'>$w[_prefix] $w[_name]</option>";
-                    }
-                    ?>
+            <div class="col-6 mb-3">
+                <select id="ward" class="form-select" name="ward" required>
+                    <option disabled selected> xã, phường</option>
                 </select>
             </div>
-            <div class="col-3">
+            <div class="col-6 mb-3">
                 <input type="text" vali class="form-control" name="spe" placeholder="Số nhà, đường" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>'>
             </div>
             <label mess="address"></label>
@@ -80,3 +66,38 @@
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        $("input[name='confirmPassword']").keyup(function() {
+            if ($(this).val() == $("input[name='password']").val()) {
+                $("label[mess='confirmPassword']").html("<i class='bi bi-check2-circle'></i>").css("color", "blue");
+                $("button[name='sm']").removeClass("disabled");
+            } else {
+                $("label[mess='confirmPassword']").html('Mật khẩu không khớp').css("color", "red");
+                $("button[name='sm']").addClass("disabled");
+            }
+        });
+        $("#province").change(function() {
+            var id = $(this).val();
+            $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
+                var d = JSON.parse(data);
+                var dt = $("#district");
+                dt.html("<option disabled selected> quận, huyện</option>");
+                d.forEach(element => {
+                    $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(dt);
+                });
+            });
+        });
+        $("#district").change(function() {
+            var id = $(this).val();
+            $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
+                var d = JSON.parse(data);
+                var w = $("#ward");
+                w.html("<option disabled selected> xã, phường</option>");
+                d.forEach(element => {
+                    $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(w);
+                });
+            });
+        });
+    });
+</script>

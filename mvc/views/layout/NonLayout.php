@@ -27,6 +27,17 @@
       <?php
       require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php";
       ?>
+      <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
+      <script>
+            $(document).ready(function() {
+                  $("input[vali]").keyup(function() {
+                        check(this, "<?php echo $data['domain'] ?>", "Customer");
+                  }).change(function() {
+                        check(this, "<?php echo $data['domain'] ?>", "Customer");
+                  });
+                  
+            });
+      </script>
 </body>
 
 </html>

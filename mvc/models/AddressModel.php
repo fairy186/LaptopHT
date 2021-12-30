@@ -13,20 +13,20 @@ class AddressModel extends DB
         return $kq;
     }
 
-    public function GetDistrict()
+    public function GetDistrict($id)
     {
-        $qr = "SELECT * FROM `district`";
+        $qr = "SELECT * FROM `district` WHERE `_province_id`='$id'";
         $sql = mysqli_query($this->con, $qr);
         $kq = array();
-        while ($row = mysqli_fetch_array($sql)) {
+        while ($row = mysqli_fetch_assoc($sql)) {
             $kq[] = $row;
         }
         return $kq;
     }
 
-    public function GetWard()
+    public function GetWard($id)
     {
-        $qr = "SELECT * FROM `ward`";
+        $qr = "SELECT * FROM `ward` WHERE `_district_id`='$id'";
         $sql = mysqli_query($this->con, $qr);
         $kq = array();
         while ($row = mysqli_fetch_array($sql)) {

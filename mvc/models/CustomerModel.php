@@ -90,13 +90,6 @@ class CustomerModel extends DB
      {
           return $this->Check($val, 8, 32, 112);
      }
-
-     public function confirmPassword($val1, $val2)
-     {
-          if ($val1 == $val2)
-               return 1;
-          return 0;
-     }
      public function Check_phone($val)
      {
           return $this->Check($val, 10, 10, 10);
