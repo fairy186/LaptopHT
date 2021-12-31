@@ -17,7 +17,7 @@
 
       echo "
 
-      <a href='/$data[domain]/Home/LaptopDetails/$id' style='text-decoration: none; color: black'>
+      <a href='/$data[domain]/LaptopDetails/$id' style='text-decoration: none; color: black'>
         <div class='col'>
             <div class='card mb-2 row'>
                 <div class='ml-3'>

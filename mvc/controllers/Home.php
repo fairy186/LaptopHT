@@ -2,7 +2,6 @@
 class Home extends Controller
 {
      protected $dLap;
-     protected $dComm;
      protected $data;
      function __construct()
      {

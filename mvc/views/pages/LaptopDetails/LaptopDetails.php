@@ -9,7 +9,6 @@ $other_Feature = json_decode($data['dLap']['Other_Feature'], 1);
 $screen = json_decode($data['dLap']['Screen'], 1);
 $price = num_to_price($data['dLap']['Price']);
 
-// print_r($data['dComm']);
 ?>
 <div class="container-fruit row">
     <div class="col-6">
@@ -37,6 +36,15 @@ $price = num_to_price($data['dLap']['Price']);
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+
+        <div class="row">
+            <div class="col ml-4">
+                <form action="" method="post">
+                    <button class="btn" type="submit" name="addcart" style="border-color: #00FF00; background-color: #F8F8F8;"><span style="color:#00FF00; font-size:20px;"><i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng</span></button>
+                    <button type="button" class="btn btn-danger"> <span style="color:#FFFFFF; font-size:20px;">Mua ngay</span></button>
+                </form>
+            </div>
         </div>
 
         <div>

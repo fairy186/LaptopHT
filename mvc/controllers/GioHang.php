@@ -2,10 +2,12 @@
 class GioHang extends Controller
 {
      protected $dCart;
+     protected $dLap;
      protected $data;
      function __construct()
      {
           $this->dCart = $this->model("CartModel");
+          $this->dLap = $this->model("LaptopModel");
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
           $this->data["dir"] = $this->fixDir("App.js");
@@ -16,7 +18,14 @@ class GioHang extends Controller
      {
           $this->data["page"] = "GioHang";
           $this->data['title'] = "Giỏ hàng";
-          $this->data['dCart'] = $this->dCart->Get();
+          if (isset($_SESSION['user']['id'])) {
+               $this->data['dCart'] = $this->dCart->GetCart();
+               if (isset($_POST['delete'])) {
+                    $this->dCart->Delete();
+                    $this->data['dCart'] = $this->dCart->GetCart();
+               }
+          } else
+               header("Location: /$this->domain/Login");
           $this->view("ClientLayout", $this->data);
      }
 }
