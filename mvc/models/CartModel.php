@@ -36,4 +36,6 @@ class CartModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
+
+     
 }

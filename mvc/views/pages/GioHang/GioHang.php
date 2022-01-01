@@ -34,7 +34,7 @@
     <center>
         <div class='row col-12 mb-2 mt-2'>
             <div class='col-1 mt-5'>
-                <input class='form-check-input' name='check[]' type='checkbox' value='abc' id='flexCheckDefault'>
+                <input class='form-check-input' name='check[]' type='checkbox' value='$id' id='flexCheckDefault'>
             </div>
             <div class='col-3'>
                 <img src='/$data[domain]/images/$id/$images[2]' style='max-height:90px;'>
@@ -44,7 +44,7 @@
                 <label>$price</label>
             </div>
             <div class='col-2 mt-5'>
-                <label>$quantity</label>
+                <input type='number' name='quantity[]' value='$quantity'>
             </div>
             <div class='col-2 mt-5'>
             </div>
@@ -59,7 +59,7 @@
     ?>
     <div class="mt-3">
         <center>
-            <button type='sm' name='payment' class='btn btn-warning'>Thanh toán</button>
+            <button type='sm' name='sm' class='btn btn-warning'>Thanh toán</button>
         </center>
     </div>
 </form>

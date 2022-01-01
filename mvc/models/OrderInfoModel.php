@@ -41,4 +41,11 @@ class OrderInfoModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
+
+     public function Add($id_cus, $s_o=1, $sum)
+     {
+          $qr = "INSERT INTO `order_info`(`ID_Cus`, `Status_Order`, `sum`) VALUES ('$id_cus','$s_o','$sum')";
+          $sql = mysqli_query($this->con, $qr);
+          return $sql;
+     }
 }

@@ -2,12 +2,12 @@
 class GioHang extends Controller
 {
      protected $dCart;
-     protected $dLap;
+     protected $dCus;
      protected $data;
      function __construct()
      {
           $this->dCart = $this->model("CartModel");
-          $this->dLap = $this->model("LaptopModel");
+          $this->dCus = $this->model("CustomerModel");
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
           $this->data["dir"] = $this->fixDir("App.js");
