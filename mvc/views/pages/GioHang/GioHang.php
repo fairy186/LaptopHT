@@ -59,7 +59,7 @@
     ?>
     <div class="mt-3">
         <center>
-            <button type='sm' name='sm' class='btn btn-warning'>Thanh toán</button>
+            <button type='submit' name='sm' class='btn btn-warning'>Thanh toán</button>
         </center>
     </div>
 </form>
