@@ -20,16 +20,27 @@ class ThanhToan extends Controller
         $this->data["page"] = "ThanhToan";
         $this->data['title'] = "Thanh toán";
         if (isset($_SESSION['user']['id'])) {
-            $price=[];
-            foreach ($_POST['check'] as $value){
-                $price[]=$this->dLap->GetByID($value)['Price'];
-            }
-            if (isset($_POST['payment'])) {
-                $s=0;
-                for ($i=0; $i < count($price); $i++) { 
-                    $this->dOrDe->Add();
+            if (isset($_POST['id_lap'])) {
+                $price = [];
+                $id_lap = $_POST['id_lap'];
+                $qtt = $_POST['quantity'];
+                foreach ($id_lap as $value) {
+                    $price[] = $this->dLap->GetByID($value)['Price'];
                 }
-                $this->dOrIn->Add($_SESSION['user']['id']);
+                $_SESSION['order'] = [$id_lap, $qtt, $price];
+            }
+            $s = 0;
+            for ($i = 0; $i < count($_SESSION['order'][0]); $i++) {
+                $s += $_SESSION['order'][1][$i] * $_SESSION['order'][2][$i];
+            }
+            $this->data['cost'] = $s;
+            if (isset($_POST['payment'])) {
+                $id_order = $this->dOrIn->autoID();
+                $this->dOrIn->Add($id_order, $_SESSION['user']['id'], 1, $s);
+                for ($i = 0; $i < count($_SESSION['order'][0]); $i++) {
+                    $this->dOrDe->Add($id_order, $_SESSION['order'][0][$i], $_SESSION['order'][1][$i], $_SESSION['order'][2][$i]);
+                }
+                unset($_SESSION['order']);
             }
         } else
             header("Location: /$this->domain/Login");

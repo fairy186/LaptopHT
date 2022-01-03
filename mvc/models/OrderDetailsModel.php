@@ -13,9 +13,9 @@ class OrderDetailsModel extends DB
           return $kq;
      }
 
-     public function Add($id_lap, $quantity, $price)
+     public function Add($id_order, $id_lap, $quantity, $price)
      {
-          $qr = "INSERT INTO `order_details`(`ID_Lap`, `Quantity`, `price`) VALUES ('$id_lap','$quantity','$price')";
+          $qr = "INSERT INTO `order_details`(`ID_Order`,`ID_Lap`, `Quantity`, `Price`) VALUES ('$id_order','$id_lap','$quantity','$price')";
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }

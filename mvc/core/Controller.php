@@ -40,14 +40,4 @@ class controller
           return $dir;
      }
 
-     public function num_to_str($num)
-     {
-          $str="";
-          while($num > 0){
-               $spe=$num%1000;
-               $str=$spe.$str;
-               $num=floor($num/1000);
-          }
-          return $str;
-     }
 }

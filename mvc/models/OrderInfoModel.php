@@ -42,10 +42,21 @@ class OrderInfoModel extends DB
           return $sql;
      }
 
-     public function Add($id_cus, $s_o=1, $sum)
+     public function Add($id_order, $id_cus, $s_o, $cost)
      {
-          $qr = "INSERT INTO `order_info`(`ID_Cus`, `Status_Order`, `sum`) VALUES ('$id_cus','$s_o','$sum')";
+          $qr = "INSERT INTO `order_info`(`ID_Order`,`ID_Cus`, `Status_Order`, `Cost`) VALUES ('$id_order','$id_cus','$s_o','$cost')";
           $sql = mysqli_query($this->con, $qr);
           return $sql;
+     }
+
+     public function autoID()
+     {
+          $qr = "SELECT * FROM `order_info` ORDER BY ID_Order DESC";
+          $sql = mysqli_query($this->con, $qr);
+          if (mysqli_num_rows($sql) < 1) 
+               return 1;
+          $id = mysqli_fetch_array($sql)['ID_Order'];
+          return $id + 1;
+              
      }
 }

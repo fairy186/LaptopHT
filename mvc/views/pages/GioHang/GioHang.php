@@ -34,7 +34,7 @@
     <center>
         <div class='row col-12 mb-2 mt-2'>
             <div class='col-1 mt-5'>
-                <input class='form-check-input' name='check[]' type='checkbox' value='$id' id='flexCheckDefault'>
+                <input class='form-check-input' name='id_lap[]' type='checkbox' value='$id' id='flexCheckDefault'>
             </div>
             <div class='col-3'>
                 <img src='/$data[domain]/images/$id/$images[2]' style='max-height:90px;'>
