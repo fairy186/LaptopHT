@@ -25,12 +25,6 @@ function listitem($controller, $itemname)
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <title><?php echo $data['title'] ?></title>
      <style>
-          #content,
-          #header,
-          #footer {
-               padding: 20px;
-          }
-
           .row {
                margin: 0;
                padding: 0;
@@ -47,56 +41,82 @@ function listitem($controller, $itemname)
                color: blueviolet;
                font-weight: bolder;
           }
-
-          #header,
-          #footer {
-               background-color: yellow;
-          }
      </style>
 </head>
 
-<body class="container-fruilt m-0 p-0" <?php if (@$data['action'] == "Edit" || isset($_POST['sm'])) echo "onload='validate()'" ?>>
-     <div id="header">
-          <h1>Header</h1>
+<body class="container-fruilt m-0 p-0" style="min-height: 100vh;" <?php if (@$data['action'] == "Edit" || isset($_POST['sm'])) echo "onload='validate()'" ?>>
+     <div id="header" class="bg-dark">
+          <nav class="navbar navbar-expand navbar-dark bg-dark container p-0">
+               <div class="container-fluid d-flex">
+                    <a class="navbar-brand text-danger fw-bold fst-italic border border-danger rounded px-2" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> Home</a>
+                    <div class="mb-0 mx-auto">
+                         <span class="text-warning fs-1 fw-bold"> ADMIN</span>
+                    </div>
+                    <ul class="navbar-nav">
+                         <?php if (isset($_SESSION['user'])) echo "<li class='nav-item dropdown border border-primary rounded px-2'>
+                                   <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                   <i class='bi bi-star'></i>  " . $_SESSION['user']['ten'] . "
+                                   </a>
+                                   <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
+                                        <li class='nav-item bg-dark'>
+                                             <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
+                                        </li>
+                                   </ul>
+                              </li>";
+                         else {
+                              echo "<li class='nav-item'>
+                                   <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
+                                        </li>";
+                         }
+                         ?>
+                    </ul>
+               </div>
+          </nav>
      </div>
-
-     <div class="d-flex flex-row " style="margin-bottom:95px; ">
+     <div id="content" class="d-flex flex-row">
           <p></p>
-          <div class="border m-0 p-0" style="min-width: 150px !important;">
+          <div class="border m-0 p-0" style="min-width: 150px !important; ">
                <ul class="nav flex-column d-block" style="font-weight:bold;">
+                    <?php listitem("Laptop", "Laptop") ?>
                     <?php listitem("LaptopType", "Loại laptop") ?>
                     <?php listitem("Manufacturer", "Hảng laptop") ?>
-                    <?php listitem("Laptop", "Laptop") ?>
                     <?php listitem("Customer", "Khách hàng") ?>
                     <?php listitem("Cart", "Giỏ hàng") ?>
                     <?php listitem("OrderInfo", "Đơn hàng") ?>
                     <?php listitem("Admin", "Quản trị") ?>
                </ul>
           </div>
-          <div id="content" class="flex-grow-1 border">
+          <div class="flex-grow-1 border p-1">
                <?php
                require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
                ?>
           </div>
      </div>
-     <div id="footer" class="fixed-bottom">
-          <h1> Footer</h1>
+     <div id="footer" class="bg-dark text-light fixed-bottom p-3">
+          <div class="container fst-italic" align="center">
+               <label> @Copyright: LaptopHT</label>
+          </div>
      </div>
      <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
      <script>
           $(document).ready(function() {
                $("input[vali]").keyup(function() {
-                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+                    check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                }).change(function() {
-                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+                    check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
           });
+
           function validate() {
                $("input[vali]").each(function() {
-                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
+                    check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
           }
      </script>
 </body>
 
 </html>
+<script>
+     let hContent = Math.round(window.innerHeight) - Math.round($("#header").height()) - Math.round($("#footer").height());
+     $("#content").css("min-height", hContent + "px");
+</script>

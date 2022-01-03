@@ -4,9 +4,8 @@ if (isset($data['tb'])) {
      echo $data['tb'];
 }
 ?>
-<h3><a href='<?php echo "/".$data['domain']."/".$data['controller']."/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
+<h3><a href='<?php echo "/" . $data['domain'] . "/" . $data['controller'] . "/Add" ?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
-$dadmin = $data['dAdmin'];
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary' >
 <tr align='center' style='font-size:20px'>
@@ -19,8 +18,8 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
      </tr>
      </thead>";
 
-for ($i = 0; $i < count($dadmin); $i++) {
-     $dad = $dadmin[$i];
+foreach ($data['dAdmin'] as $key => $value) {
+     $dad = $value;
      echo "<tr align='center'>
                <td>$dad[ID_Admin]</td>
                <td>$dad[First_Name]</td>
@@ -28,8 +27,8 @@ for ($i = 0; $i < count($dadmin); $i++) {
                <td>$dad[Account]</td>
                <td>$dad[Password]</td>
                <td>
-                    <a href='/$data[domain]/$data[controller]/Edit/$dad[ID_Admin]'><i class='bi bi-pencil-square' style='color:lime'></a>
-                    <a href='/$data[domain]/$data[controller]/Delete/$dad[ID_Admin]'><i class='bi bi-trash-fill' style='color:black'></a>               
+                    <a href='/$data[domain]/$data[controller]/Edit/$dad[ID_Admin]'><i class='bi-pencil-square' style='color:lime'></i></a>
+                    <a href='/$data[domain]/$data[controller]/Delete/$dad[ID_Admin]'><i class='bi bi-trash-fill' style='color:black'></i></a>               
                </td>
           </tr>";
 }

@@ -39,5 +39,4 @@ class controller
           }
           return $dir;
      }
-
 }
