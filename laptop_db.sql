@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 08:15 AM
+-- Generation Time: Jan 03, 2022 at 07:58 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -38,6 +38,13 @@ CREATE TABLE `admin` (
   `Account` varchar(32) NOT NULL,
   `Password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ID_Admin`, `First_Name`, `Last_Name`, `Account`, `Password`) VALUES
+(1, 'Ngô Xuân', 'Huy', 'admin', '$2y$10$flqeFAsVkJDY.ZSsK0XmNuR2lKMHgot3NrLBc5.Xje8ukpLuX3Axq	');
 
 -- --------------------------------------------------------
 
@@ -81,6 +88,14 @@ CREATE TABLE `customer` (
   `Account` varchar(32) NOT NULL,
   `Password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`ID_Cus`, `First_Name`, `Last_Name`, `Address`, `Phone`, `Email`, `Account`, `Password`) VALUES
+(9, 'Ngô', 'Xuân Huy', '0123456789, Xã An Phú Tây, Huyện Bình Chánh, Hồ Chí Minh', '0123456789', 'huy@gmail.com', 'nxhuy123', '$2y$10$Lni6BD3KJR0fM4CY11ljRODeKEdksAVt6Etj5eq7063KmAoP7nDy.'),
+(14, 'Ngô', 'Xuân', '12, Xã An Phú Tây, Huyện Bình Chánh, Hồ Chí Minh', '0123456789', 'huy@gmail.com', 'nxhuy1232', '$2y$10$kDKNPM8yVSzp7IlB/m.TbOgZwGzUggvZj9GyCm.frV07CRgTCTG7m');
 
 -- --------------------------------------------------------
 
@@ -859,7 +874,8 @@ CREATE TABLE `laptop` (
 --
 
 INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID_Manu`, `Images`, `CPU`, `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, `Connection`, `Other_Feature`, `Dimen_Wei`, `Material`, `Battery`, `OS`, `Release_Time`, `Add_Time`) VALUES
-('LT001', 'Laptop Acer Nitro 5 Gaming AN515 57 727J', 29000000, '3 năm', 'LT01', 'LM007', '[\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-1-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-2-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-3-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-4-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-5-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-6-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-7-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-8-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-9-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-10-600x600.jpg\"]', 'i7-11800H', 'NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\"8 GB\",\"typeRAM\":\"2 khe DDR4\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)  Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB)  Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Acer ComfyView,  LED Backlit,  Tu1ea5m nu1ec1n IPS\"}', '', '{\"port\":\"\",\"wireless\":\"\"}', '{\"webcam\":\"\",\"ledKB\":\"\",\"otherF\":\"\"}', '', '', '', '', 2021, '2021-12-24 12:46:21');
+('LT001', 'Laptop Acer Nitro 5 Gaming AN515 57 727J', 29900000, '3 năm', 'LT01', 'LM007', '[\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-1-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-2-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-3-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-4-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-5-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-6-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-7-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-8-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-9-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-10-600x600.jpg\"]', 'i7-11800H', 'NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\"8 GB\",\"typeRAM\":\"2 khe DDR4\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)  Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB)  Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Acer ComfyView,  LED Backlit,  Tấm nền IPS\"}', '', '{\"port\":\"\",\"wireless\":\"\"}', '{\"webcam\":\"\",\"ledKB\":\"\",\"otherF\":\"\"}', '', '', '', '', 2021, '2021-12-24 12:46:21'),
+('LT002', 'Laptop HP 15s fq2559TU', 17990000, '24 tháng', 'LT03', 'LM004', '[\"hp-15s-fq2559tu-i5-46m27pa-1-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-2-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-3-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-4-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-5-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-6-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-7-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-8-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-9-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-10-org.jpg\"]', 'I5-1135G7', 'Card tích hợp Intel Iris Xe', '{\"memRAM\":\"8 GB\",\"typeRAM\":\"2 khe DDR4\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"16 GB\"}', '512 GB SSD NVMe PCIe', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\"60 Hz\",\"techSC\":\"Wled-backlit,  Tấm nền IPS,  Chống chói Anti Glare\"}', 'Realtek High Definition Audio', '{\"port\":\" Jack tai nghe 3.5 mm,  HDMI,  2 x USB 3.1,  USB Type-C\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 802.11 a/b/g/n/ac\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\"không\",\"otherF\":\"\"}', 'Dài 358.5 mm - Rộng 242 mm - Dày 18 mm - Nặng 1.592 kg', 'Vỏ nhựa', ' 4-cell Li-ion, 57 Wh', 'Windows 10 Home SL', 2020, '2022-01-03 13:58:28');
 
 -- --------------------------------------------------------
 
@@ -914,7 +930,8 @@ INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
 CREATE TABLE `order_details` (
   `ID_Order` int(10) UNSIGNED NOT NULL,
   `ID_Lap` varchar(10) NOT NULL,
-  `Quantity` int(3) NOT NULL
+  `Quantity` int(3) UNSIGNED NOT NULL,
+  `Price` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -927,7 +944,8 @@ CREATE TABLE `order_info` (
   `ID_Order` int(10) UNSIGNED NOT NULL,
   `ID_Cus` int(10) UNSIGNED NOT NULL,
   `Time_Order` datetime NOT NULL DEFAULT current_timestamp(),
-  `Status_Order` int(1) NOT NULL
+  `Status_Order` int(1) NOT NULL,
+  `Cost` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -12362,7 +12380,8 @@ ALTER TABLE `comment`
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`ID_Cus`);
+  ADD PRIMARY KEY (`ID_Cus`),
+  ADD UNIQUE KEY `Account` (`Account`);
 
 --
 -- Indexes for table `discount`
@@ -12441,7 +12460,7 @@ ALTER TABLE `ward`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID_Admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -12453,7 +12472,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `discount`
@@ -12466,12 +12485,6 @@ ALTER TABLE `discount`
 --
 ALTER TABLE `district`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=710;
-
---
--- AUTO_INCREMENT for table `order_info`
---
-ALTER TABLE `order_info`
-  MODIFY `ID_Order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `province`
