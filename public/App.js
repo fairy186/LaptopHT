@@ -1,12 +1,12 @@
-function check(ele, domain, control) {
-     var inp = $(ele);
-     var val = $(ele).val();
-     var n = $(ele).attr("name");
+function check_Input(input, domain, md) {
+     var inp = $(input);
+     var val = $(input).val();
+     var n = $(input).attr("name");
      $.post(
-          "/" + domain + "/Ajax/Check/",
+          "/" + domain + "/Ajax/Check_Input/",
           {
                val: val,
-               md: control,
+               md: md,
                fn: n,
           },
           function (data) {

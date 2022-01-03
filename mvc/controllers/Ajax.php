@@ -6,7 +6,7 @@ class Ajax extends controller
      function __construct()
      {
      }
-     public function Check()
+     public function Check_Input()
      {
           $this->val = $_POST['val'];
           $this->md = $this->model($_POST['md'] . "Model");

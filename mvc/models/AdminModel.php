@@ -12,7 +12,18 @@ class AdminModel extends DB
         // $kq=json_encode($kq);
         return $kq;
     }
-
+    public function Login($account, $password)
+    {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $qr = "SELECT * FROM `admin` WHERE `Account`='$account'";
+        $sql = mysqli_query($this->con, $qr);
+        if (mysqli_num_rows($sql) > 0) {
+            $kq = mysqli_fetch_assoc($sql);;
+            if (password_verify($kq['Password'], $password));
+            return $kq;
+        }
+        return 0;
+    }
     public function GetByID($id)
     {
         $qr = "SELECT * FROM `admin` WHERE `ID_Admin` ='$id'";
