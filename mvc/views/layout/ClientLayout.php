@@ -96,7 +96,7 @@ function format_date($str)
           </nav>
      </div>
 
-     <div id="content" class="container">
+     <div id="content" class="container mb-5">
           <?php
           require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php"
           ?>
@@ -106,7 +106,7 @@ function format_date($str)
                <label> @Copyright: LaptopHT</label>
           </div>
      </div>
-     <script src='<?php echo "$data[dir]" ?>public/App.js'></script>
+     <script src='<?php echo "/$data[domain]/public/App.js"; ?>'></script>
      <script>
           $(document).ready(function() {
                $("input[vali]").keyup(function() {
