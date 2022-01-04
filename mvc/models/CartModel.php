@@ -30,6 +30,7 @@ class CartModel extends DB
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
+     
      public function Delete($id)
      {
           $qr = "DELETE FROM `cart` WHERE `ID_Lap` = '$id'";
