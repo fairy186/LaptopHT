@@ -5,27 +5,7 @@
 //      }
 //      echo "</table>";
 //
-function num_to_price($num)
-{
-     $str = "";
-     while ($num > 0) {
-          $spe = substr("$num", -3, 3);
-          $num = floor($num / 1000);
-          if ($num > 0) {
-               $str = '.' . $spe . $str;
-          } else
-               $str = $spe . $str;
-     }
-     return $str . 'đ';
-}
 
-function format_date($str)
-{
-     $arr = explode(" ", $str);
-     $date = $arr[0];
-     $arr2 = explode("-", $date);
-     return $arr[1] . " " . $arr2[2] . "-" . $arr2[1] . "-" . $arr2[0];
-}
 ?>
 
 
@@ -120,7 +100,7 @@ function format_date($str)
                     check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
                update_cart();
-               
+
           });
           function update_cart() {
                $.post('<?php echo "/$data[domain]/Ajax/GetNumPro" ?>', {},
