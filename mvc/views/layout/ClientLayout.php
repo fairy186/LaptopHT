@@ -98,7 +98,7 @@ function format_date($str)
 
      <div id="content" class="container">
           <?php
-          require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
+          require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php"
           ?>
      </div>
      <div id="footer" class="bg-dark text-light fixed-bottom p-3">

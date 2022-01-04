@@ -25,7 +25,7 @@
 
 <body>
       <?php
-      require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php";
+      require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php";
       ?>
       <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
       <script>

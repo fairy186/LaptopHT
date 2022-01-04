@@ -9,7 +9,6 @@ class Home extends Controller
           $this->dComm = $this->model("CommentModel");
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
-          $this->data["dir"] = $this->fixDir("App.js");
           $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
      }
      // action mặc định
