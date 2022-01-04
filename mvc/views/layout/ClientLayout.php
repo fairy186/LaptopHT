@@ -71,7 +71,7 @@ function format_date($str)
                          </div>
                          <ul class="navbar-nav">
                               <li class="nav-item">
-                                   <a class="nav-link py-0" href='<?php echo "/$data[domain]/GioHang"; ?>'>
+                                   <a class="nav-link py-0" href='<?php echo "/$data[domain]/Cart"; ?>'>
                                         <button class="btn btn-outline-success p-2 " type="button">
                                              <i class="bi bi-cart4"></i> Giỏ hàng( <span id="NumP" class="text-danger"></span> )
                                         </button>

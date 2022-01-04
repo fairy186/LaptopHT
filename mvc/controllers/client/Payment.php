@@ -1,5 +1,5 @@
 <?php
-class ThanhToan extends Controller
+class Payment extends Controller
 {
     protected $dLap;
     protected $dOrIn;
@@ -18,7 +18,7 @@ class ThanhToan extends Controller
     // action mặc định
     function DefaultAction()
     {
-        $this->data["page"] = "ThanhToan";
+        $this->data["page"] = "Payment";
         $this->data['title'] = "Thanh toán";
         $this->data['dLap'] = [];
         $this->data['dCart'] = $this->dCart->GetCart();
@@ -27,7 +27,6 @@ class ThanhToan extends Controller
                 $price = [];
                 $id_lap = $_POST['id_lap'];
                 $qtt = $_POST['quantity'];
-                
                 foreach ($id_lap as $value) {
                     $price[] = $this->dLap->GetByID($value)['Price'];
                 }

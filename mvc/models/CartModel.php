@@ -33,7 +33,7 @@ class CartModel extends DB
                return 0;
      }
 
-     public function Add($id_lap, $id_cus, $quantity=1)
+     public function Add($id_lap, $id_cus, $quantity)
      {
           $qr = "INSERT INTO `cart`(`ID_Lap`, `ID_Cus`, `Quantity`) VALUES ('$id_lap','$id_cus','$quantity')";
           $sql = mysqli_query($this->con, $qr);

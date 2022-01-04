@@ -21,7 +21,7 @@
         </div>
     </center>
 </div>
-<form action='/<?php echo $data['domain'] ?>/ThanhToan' method='post'>
+<form action='/<?php echo $data['domain'] ?>/Payment' method='post'>
     <?php
     foreach ($data['dCart'] as $key => $value) {
         $id = $value['ID_Lap'];

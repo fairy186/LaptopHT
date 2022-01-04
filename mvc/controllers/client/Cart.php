@@ -1,5 +1,5 @@
 <?php
-class GioHang extends Controller
+class Cart extends Controller
 {
      protected $dCart;
      protected $dCus;
@@ -15,7 +15,7 @@ class GioHang extends Controller
      // action mặc định
      function DefaultAction()
      {
-          $this->data["page"] = "GioHang";
+          $this->data["page"] = "Cart";
           $this->data['title'] = "Giỏ hàng";
           if (isset($_SESSION['user']['id'])) {
                $this->data['dCart'] = $this->dCart->GetCart();
