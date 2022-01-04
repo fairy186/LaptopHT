@@ -23,6 +23,15 @@ class CartModel extends DB
           }
           return $kq;
      }
+     public function GetNumPro($id)
+     {
+          $qr = "SELECT * FROM `cart` WHERE `ID_Cus` = '$id'";
+          $sql = mysqli_query($this->con, $qr);
+          if(mysqli_num_rows($sql)>0)
+               return mysqli_num_rows($sql);
+          else
+               return 0;
+     }
 
      public function Add($id_lap, $id_cus, $quantity=1)
      {

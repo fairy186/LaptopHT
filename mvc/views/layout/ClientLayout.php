@@ -31,6 +31,7 @@ function format_date($str)
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +71,11 @@ function format_date($str)
                          </div>
                          <ul class="navbar-nav">
                               <li class="nav-item">
-                                   <a class="nav-link py-0" href='<?php echo "/$data[domain]/GioHang"; ?>'> <button class="btn btn-outline-success p-2 " type="button"><i class="bi bi-cart4"></i> Giỏ hàng</button></a>
+                                   <a class="nav-link py-0" href='<?php echo "/$data[domain]/GioHang"; ?>'>
+                                        <button class="btn btn-outline-success p-2 " type="button">
+                                             <i class="bi bi-cart4"></i> Giỏ hàng( <span id="NumP" class="text-danger"></span> )
+                                        </button>
+                                   </a>
                               </li>
                               <?php if (isset($_SESSION['user'])) echo "<li class='nav-item dropdown border border-primary rounded '>
                                    <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -114,16 +119,19 @@ function format_date($str)
                }).change(function() {
                     check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
+               update_cart();
+               
           });
-          function validate() {
-               $("input[vali]").each(function() {
-                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
-               });
+          function update_cart() {
+               $.post('<?php echo "/$data[domain]/Ajax/GetNumPro" ?>', {},
+                    function(data) {
+                         $("#NumP").html(JSON.parse(data));
+                    })
           }
-          function search(){
-               search_info=$("#search").val();
-               if(search_info!==""){
-                    window.location.href = '<?php echo "/$data[domain]/Search/"?>'+search_info;
+          function search() {
+               search_info = $("#search").val();
+               if (search_info !== "") {
+                    window.location.href = '<?php echo "/$data[domain]/Search/" ?>' + search_info;
                }
           }
      </script>

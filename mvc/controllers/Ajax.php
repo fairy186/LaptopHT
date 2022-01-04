@@ -32,4 +32,11 @@ class Ajax extends controller
           $md = $this->model("AddressModel");
           echo json_encode($md->GetWard($id), JSON_UNESCAPED_UNICODE);
      }
+     public function GetNumPro(){
+          $md=$this->model("CartModel");
+          if(isset($_SESSION['user']['id']) || !isset($_SESSION['user']['ad']))
+               echo json_encode($md->GetNumPro($_SESSION['user']['id']), JSON_UNESCAPED_UNICODE);
+          else
+               echo json_encode(" ", JSON_UNESCAPED_UNICODE);
+     }
 }
