@@ -2,6 +2,7 @@
 class App
 {
      protected $domain;
+     protected $area;
      protected $controller = "Home";
      protected $action = "DefaultAction";
      protected $params = [];
@@ -11,35 +12,43 @@ class App
           $control = new Controller();
           $this->domain = $control->domain;
           // Xử lý Controllers
-          if (isset($arr[0]))
-               if (@file_exists("./mvc/controllers/$arr[0].php")) {
-                    $this->controller = $arr[0];
-               } else
-                    header("Location: /$this->domain");
-
-          require_once "./mvc/controllers/" . $this->controller . ".php";
-          if (isset($arr[1]))
-               if (method_exists($this->controller, $arr[1]) && !method_exists("Controller", $arr[1])) {
-                    $this->action = $arr[1];
-                    if (isset($arr[2]))
-                         $this->params = [$arr[2]];
-                    if (isset($arr[3]))
-                         header("Location: /$this->domain/$this->controller/$this->action/" . $this->params[0]);
-               } else {
-                    $this->params = [$arr[1]];
-                    if (isset($arr[2]))
-                         header("Location: /$this->domain/$this->controller/" . $this->params[0]);
+          $dir = "./mvc/controllers/client";
+          if (isset($arr[0])) {
+               if (strtolower(trim($arr[0])) == "admin") {
+                    $dir = "./mvc/controllers/admin";
+                    $this->area="Admin";
+                    array_splice($arr, 0, 1);
                }
-          // $this->params = $arr ? array_values($arr):[];
-          $url = @$_GET['url'];
-          if (!isset($_SESSION['url'])) {
-               $_SESSION['url'] = array();
-               $_SESSION['url'][] = $url;
-          } else
-               if ($url != $_SESSION['url'][count($_SESSION['url']) - 1])
-               $_SESSION['url'][] = $url;
-          if (count($_SESSION['url']) > 2)
-               $_SESSION['url'] = array_slice($_SESSION['url'], 1, count($_SESSION['url']));
+               if (@file_exists("$dir/$arr[0].php"))
+                    $this->controller = $arr[0];
+               else {
+                    $dir = "./mvc/controllers";
+                    if (@file_exists("$dir/$arr[0].php"))
+                         $this->controller = $arr[0];
+                    else
+                         if($this->area != "Admin")
+                              header("Location: /$this->domain");
+                         else
+                              header("Location: /$this->domain/Admin/Laptop");
+               }
+               array_splice($arr, 0, 1);     
+          }
+          require_once "$dir/$this->controller" . ".php";
+          // xử lý Action
+          if (isset($arr[0]))
+               if (method_exists($this->controller, $arr[0]) && !method_exists("Controller", $arr[0])) {
+                    $this->action = $arr[0];
+                    array_splice($arr, 0, 1);
+               }
+          // Xử lý params
+          if ($arr != [])
+               $this->params = $arr;
+          $this->HistoryPage(); // lưu lịch sử duyệt web 
+          // echo ($this->controller);
+          // echo ("</br>");
+          // echo ($this->action);
+          // echo ("</br>");
+          // print_r($this->params);
           // print_r($_SESSION);
           $this->BlockAccessAdmin();
           $this->controller = new $this->controller;
@@ -53,8 +62,20 @@ class App
      }
      function BlockAccessAdmin()
      {
-          if (strlen(strstr("$this->controller", "Admin")) && $this->controller != "AdminLogin")
-               if (isset($_SESSION['user']['ad']) && $_SESSION['user']['ad'] == 1)
-                    header("Location: /$this->domain/AdminLogin");
+          if ($this->area=="Admin" && $this->controller!="Login")
+               if (!isset($_SESSION['user']['ad']))
+                    header("Location: /$this->domain/Admin/Login");
+     }
+     function HistoryPage()
+     {
+          $url = @$_GET['url'];
+          if (!isset($_SESSION['url'])) {
+               $_SESSION['url'] = array();
+               $_SESSION['url'][] = $url;
+          } else
+               if ($url != $_SESSION['url'][count($_SESSION['url']) - 1])
+               $_SESSION['url'][] = $url;
+          if (count($_SESSION['url']) > 2)
+               $_SESSION['url'] = array_slice($_SESSION['url'], 1, count($_SESSION['url']));
      }
 }

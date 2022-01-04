@@ -1,14 +1,10 @@
 <?php
-if (isset($data['goDefault'], $data['url']))
-     header('location:' . $data['url']);
-function listitem($controller, $itemname)
+function listitem($currentCtrl,$controller, $itemname)
 {
-     $item = "<li class='nav-item border-bottom'>
-     <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
-     if (strlen(strstr($_GET['url'] . '/', $controller . '/')))
-          $item = "<li class='nav-item border border-dark bg-primary bg-opacity-10'>
-          <a class='nav-link' aria-current='page' href='/LaptopHT/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
-     echo $item;
+     $item = "<li class='nav-item border-bottom'>";
+     if ($currentCtrl==$controller)
+          $item = "<li class='nav-item border border-dark bg-primary bg-opacity-10'>";
+     echo $item . "<a class='nav-link' aria-current='page' href='/LaptopHT/Admin/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
 }
 ?>
 <!DOCTYPE html>
@@ -73,22 +69,22 @@ function listitem($controller, $itemname)
                </div>
           </nav>
      </div>
-     <div id="content" class="d-flex flex-row">
+     <div id="content" class="d-flex flex-row mb-5">
           <p></p>
           <div class="border m-0 p-0" style="min-width: 150px !important; ">
                <ul class="nav flex-column d-block" style="font-weight:bold;">
-                    <?php listitem("Laptop", "Laptop") ?>
-                    <?php listitem("LaptopType", "Loại laptop") ?>
-                    <?php listitem("Manufacturer", "Hảng laptop") ?>
-                    <?php listitem("Customer", "Khách hàng") ?>
-                    <?php listitem("Cart", "Giỏ hàng") ?>
-                    <?php listitem("OrderInfo", "Đơn hàng") ?>
-                    <?php listitem("Admin", "Quản trị") ?>
+                    <?php listitem($data['controller'],"Laptop", "Laptop") ?>
+                    <?php listitem($data['controller'],"LaptopType", "Loại laptop") ?>
+                    <?php listitem($data['controller'],"Manufacturer", "Hảng laptop") ?>
+                    <?php listitem($data['controller'],"Customer", "Khách hàng") ?>
+                    <?php listitem($data['controller'],"Cart", "Giỏ hàng") ?>
+                    <?php listitem($data['controller'],"OrderInfo", "Đơn hàng") ?>
+                    <?php listitem($data['controller'],"Admin", "Quản trị") ?>
                </ul>
           </div>
           <div class="flex-grow-1 border p-1">
                <?php
-               require_once "./mvc/views/pages/$data[controller]/" . $data['page'] . ".php"
+               require_once "./mvc/views/pages/Admin/$data[controller]/" . $data['page'] . ".php"
                ?>
           </div>
      </div>
