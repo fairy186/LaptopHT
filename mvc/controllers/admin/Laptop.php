@@ -18,7 +18,7 @@ class Laptop extends Controller
     {
         $this->data["page"] = "Laptop";
         $this->data['title'] = "Laptop";
-        $this->data['dLap'] = $this->dLap->Get();
+        $this->data['dLap'] = $this->dLap->GetFullInfo();
         $this->view("AdminLayout", $this->data);
     }
     function Add()
