@@ -37,18 +37,22 @@ $price = num_to_price($data['dLap']['Price']);
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
+        <div>
+            <h4 style="color: red;" align="right">Giá <?php echo $price ?></h4>
+        </div>
         <div class="row">
             <div class="col ml-4">
-                <form action="" method="post">
-                    <button class="btn" type="submit" name="addcart" style="border-color: #00FF00; background-color: #F8F8F8;"><span style="color:#00FF00; font-size:20px;"><i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng</span></button>
-                    <button type="button" class="btn btn-danger"> <span style="color:#FFFFFF; font-size:20px;">Mua ngay</span></button>
-                </form>
+                <button id="addCart" class="btn btn-success text-light" type="button"><span style="font-size:20px;"><i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng</span></button>
+                <button id="buyNow" type="button" class="btn btn-danger"> <span style="color:#FFFFFF; font-size:20px;">Mua ngay</span></button>
             </div>
         </div>
-
-        <div>
-            <h2>Đánh giá <?php echo $name ?></h2>
+        <div class="border p-2 m-2">
+            <h2>Bình luận</h2>
+            <div class="d-flex flex-row mb-3">
+               <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style="width:50px; height:50px;"/>
+                <textarea class="form-control flex-grow-1 mx-2 rounded-pill scroll" placeholder="bình luận" style="height:50px;"></textarea>
+                <button class="btn btn-outline-primary rounded-pill px-4"><i class="bi bi-send"></i></button>
+            </div>
             <div>
                 <?php
                 foreach ($data['dComm'] as $key => $value) {
@@ -86,14 +90,10 @@ $price = num_to_price($data['dLap']['Price']);
                 }
                 ?>
             </div>
-
         </div>
     </div>
     <div class="col-6">
         <h2><?php echo $name ?></h2>
-        <div>
-            <h5 style="color: red;">Giá <?php echo $price ?></h5>
-        </div>
         <div class="card border-light mb-3" style="max-width: 100rem;">
             <div class="col-12 ">
                 <h5 class="card-header" style="background-color: #C6DEF7;">Tổng quan</h5>
@@ -161,7 +161,6 @@ $price = num_to_price($data['dLap']['Price']);
                         </div>
                     </div>
                 </div>
-
                 <h5 class="card-header" style="background-color: #C6DEF7;">Kết nối & Tính năng</h5>
                 <div class="card-body">
                     <div class="row">
@@ -187,7 +186,6 @@ $price = num_to_price($data['dLap']['Price']);
                         </div>
                     </div>
                 </div>
-
                 <h5 class="card-header" style="background-color: #C6DEF7;">Thông tin khác</h5>
                 <div class="card-body">
                     <div class="row">
@@ -217,3 +215,23 @@ $price = num_to_price($data['dLap']['Price']);
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        var btnAddCart = document.getElementById('addCart')
+        var toastLive = document.getElementById('liveToast')
+        if (btnAddCart) {
+            btnAddCart.addEventListener('click', function() {
+                addCart();
+                update_cart();
+                var toast = new bootstrap.Toast(toastLive)
+                toast.show()
+            })
+        }
+    });
+
+    function addCart() {
+        $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id/" . $_SESSION['user']['id']; ?>', {}, function(data) {
+            $(".toast-body").html(JSON.parse(data));
+        })
+    };
+</script>

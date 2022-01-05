@@ -31,6 +31,10 @@
                color: blueviolet;
                font-weight: bolder;
           }
+
+          .scroll::-webkit-scrollbar {
+               display: none;
+          }
      </style>
 </head>
 
@@ -82,6 +86,18 @@
      </div>
 
      <div id="content" class="container mb-5">
+          <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+               <div id="liveToast" class="toast mb-5" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                         <strong class="me-auto">LaptopHT</strong>
+                         <small>Just now</small>
+                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                         Hello, world! This is a toast message.
+                    </div>
+               </div>
+          </div>
           <?php
           require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php"
           ?>
@@ -102,12 +118,14 @@
                update_cart();
 
           });
+
           function update_cart() {
                $.post('<?php echo "/$data[domain]/Ajax/GetNumPro" ?>', {},
                     function(data) {
                          $("#NumP").html(JSON.parse(data));
                     })
           }
+
           function search() {
                search_info = $("#search").val();
                if (search_info !== "") {

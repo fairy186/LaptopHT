@@ -1,8 +1,8 @@
 <?php
-function listitem($currentCtrl,$controller, $itemname)
+function listitem($currentCtrl, $controller, $itemname)
 {
      $item = "<li class='nav-item border-bottom'>";
-     if ($currentCtrl==$controller)
+     if ($currentCtrl == $controller)
           $item = "<li class='nav-item border border-dark bg-primary bg-opacity-10'>";
      echo $item . "<a class='nav-link' aria-current='page' href='/LaptopHT/Admin/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
 }
@@ -73,16 +73,28 @@ function listitem($currentCtrl,$controller, $itemname)
           <p></p>
           <div class="border m-0 p-0" style="min-width: 150px !important; ">
                <ul class="nav flex-column d-block" style="font-weight:bold;">
-                    <?php listitem($data['controller'],"Laptop", "Laptop") ?>
-                    <?php listitem($data['controller'],"LaptopType", "Loại laptop") ?>
-                    <?php listitem($data['controller'],"Manufacturer", "Hảng laptop") ?>
-                    <?php listitem($data['controller'],"Customer", "Khách hàng") ?>
-                    <?php listitem($data['controller'],"Cart", "Giỏ hàng") ?>
-                    <?php listitem($data['controller'],"OrderInfo", "Đơn hàng") ?>
-                    <?php listitem($data['controller'],"Admin", "Quản trị") ?>
+                    <?php listitem($data['controller'], "Laptop", "Laptop") ?>
+                    <?php listitem($data['controller'], "LaptopType", "Loại laptop") ?>
+                    <?php listitem($data['controller'], "Manufacturer", "Hảng laptop") ?>
+                    <?php listitem($data['controller'], "Customer", "Khách hàng") ?>
+                    <?php listitem($data['controller'], "Cart", "Giỏ hàng") ?>
+                    <?php listitem($data['controller'], "OrderInfo", "Đơn hàng") ?>
+                    <?php listitem($data['controller'], "Admin", "Quản trị") ?>
                </ul>
           </div>
           <div class="flex-grow-1 border p-1">
+               <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                    <div id="liveToast" class="toast mb-5" role="alert" aria-live="assertive" aria-atomic="true">
+                         <div class="toast-header">
+                              <strong class="me-auto">LaptopHT</strong>
+                              <small>Just now</small>
+                              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                         </div>
+                         <div class="toast-body">
+                              Hello, world! This is a toast message.
+                         </div>
+                    </div>
+               </div>
                <?php
                require_once "./mvc/views/pages/Admin/$data[controller]/" . $data['page'] . ".php"
                ?>

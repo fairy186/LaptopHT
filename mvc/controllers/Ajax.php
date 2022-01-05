@@ -39,4 +39,8 @@ class Ajax extends controller
           else
                echo json_encode(" ", JSON_UNESCAPED_UNICODE);
      }
+     public function AddCart($id_lap, $id_cus){
+          $md = $this->model("CartModel");
+          echo json_encode($md->AddCart($id_lap, $id_cus),JSON_UNESCAPED_UNICODE);
+     }
 }
