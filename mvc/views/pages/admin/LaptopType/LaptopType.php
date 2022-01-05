@@ -8,7 +8,7 @@ if (!empty($_SESSION['Notification'])) {
 <h3><a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 $dtype = $data['dType'];
-echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
+echo "<table align='center' class='table table-bordered table-striped' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
      <th width='150px'>STT</th>
@@ -27,7 +27,7 @@ for ($i = 0; $i < count($dtype); $i++) {
                <td>$dty[Name_Type]</td>
                <td>
                     <a href='/$data[domain]/Admin/$data[controller]/Edit/$dty[ID_Type]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
-                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$dty[ID_Type]'><i class='bi bi-trash-fill' style='color:black'></i></a>               
+                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$dty[ID_Type]'><i class='bi bi-trash-fill' style='color:red''></i></a>               
                </td>
           </tr>";
 }

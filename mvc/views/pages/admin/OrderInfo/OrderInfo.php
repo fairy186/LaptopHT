@@ -11,7 +11,6 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
 <tr align='center' style='font-size:20px'>
      <th width='150px'>STT</th>
      <th>Mã đơn hàng</th>
-     <th>Mã khách hàng</th>
      <th>Tên khách hàng</th>
      <th>Thời gian đặt hàng</th>
      <th>Trạng thái</th>
@@ -21,17 +20,17 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
 
 for ($i = 0; $i < count($dorcus); $i++) {
      $dfull = $dorcus[$i];
+     $time_order = format_date($dfull['Time_Order']);
      $stt = $i + 1;
      echo "<tr align='center'>
                <td>$stt</td>
                <td>$dfull[ID_Order]</td>
-               <td>$dfull[ID_Cus]</td>
                <td>$dfull[First_Name] $dfull[Last_Name]</td>
-               <td>$dfull[Time_Order]</td>
+               <td>$time_order </td>
                <td>$dfull[Status_Order]</td>
                <td>
-                    <a href='//$data[domain]/Admin/$data[controller]/Edit/$dfull[ID_Order]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
-                    <a href='//$data[domain]/Admin/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
+                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$dfull[ID_Order]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
+                    <a href='/$data[domain]/Admin/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
                </td>
           </tr>";
 }

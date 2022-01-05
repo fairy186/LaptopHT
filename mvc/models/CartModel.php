@@ -13,6 +13,18 @@ class CartModel extends DB
           return $kq;
      }
 
+     public function GetFullInfo()
+     {
+          $qr = "SELECT * FROM `cart` JOIN `laptop` ON cart.ID_Lap = laptop.ID_lap
+                                        JOIN `customer` ON cart.ID_Cus = customer.ID_Cus";
+          $sql = mysqli_query($this->con, $qr);
+          $kq = array();
+          while ($row = mysqli_fetch_array($sql)) {
+               $kq[] = $row;
+          }
+          return $kq;
+     }
+
      public function GetCart()
      {
           $qr = "SELECT * FROM `cart`,`laptop` WHERE cart.ID_Lap = laptop.ID_Lap";
@@ -23,6 +35,8 @@ class CartModel extends DB
           }
           return $kq;
      }
+
+
      public function GetNumPro($id)
      {
           $qr = "SELECT * FROM `cart` WHERE `ID_Cus` = '$id'";

@@ -9,7 +9,6 @@ class OrderInfoModel extends DB
           while ($row = mysqli_fetch_array($sql)) {
                $kq[] = $row;
           }
-          // $kq=json_encode($kq);
           return $kq;
      }
 
@@ -21,7 +20,6 @@ class OrderInfoModel extends DB
           while ($row = mysqli_fetch_array($sql)) {
                $kq[] = $row;
           }
-          // $kq=json_encode($kq);
           return $kq;
      }
 
