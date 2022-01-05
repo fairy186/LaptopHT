@@ -29,8 +29,7 @@ for ($i = 0; $i < count($dorcus); $i++) {
                <td>$time_order </td>
                <td>$dfull[Status_Order]</td>
                <td>
-                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$dfull[ID_Order]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
-                    <a href='/$data[domain]/Admin/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
+                    <a href='/$data[domain]/Admin/$data[controller]/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
                </td>
           </tr>";
 }

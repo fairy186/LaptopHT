@@ -6,10 +6,21 @@ class OrderDetailsModel extends DB
           $qr = "SELECT * FROM `order_details`";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
-          while ($row = mysqli_fetch_array($sql)) {
+          while ($row = mysqli_fetch_assoc($sql)) {
                $kq[] = $row;
           }
           // $kq=json_encode($kq);
+          return $kq;
+     }
+
+     public function GetByID($id)
+     {
+          $qr = "SELECT * FROM `order_details` WHERE `ID_Order` ='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          $kq = array();
+          while ($row = mysqli_fetch_assoc($sql)) {
+               $kq[] = $row;
+          }
           return $kq;
      }
 
