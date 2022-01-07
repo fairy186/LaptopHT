@@ -7,8 +7,8 @@ $ram = json_decode($data['dLap']['RAM'], 1);
 $connection = json_decode($data['dLap']['Connection'], 1);
 $other_Feature = json_decode($data['dLap']['Other_Feature'], 1);
 $screen = json_decode($data['dLap']['Screen'], 1);
-$price = num_to_price($data['dLap']['Price']);
-
+$price = $this->num_to_price($data['dLap']['Price']);
+$id_user = $_SESSION['user']['id'];
 ?>
 <div class="container-fruit row">
     <div class="col-6">
@@ -48,43 +48,25 @@ $price = num_to_price($data['dLap']['Price']);
         </div>
         <div class="border p-2 m-2">
             <h2>Bình luận</h2>
-            <div class="d-flex flex-row mb-3">
-               <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style="width:50px; height:50px;"/>
-                <textarea class="form-control flex-grow-1 mx-2 rounded-pill scroll" placeholder="bình luận" style="height:50px;"></textarea>
-                <button class="btn btn-outline-primary rounded-pill px-4"><i class="bi bi-send"></i></button>
+            <div class="d-flex flex-row mb-3 border rounded-pill p-2 m-2">
+                <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style="width:50px; height:50px;" />
+                <textarea id="inp_comment" class="form-control flex-grow-1 mx-2 rounded-pill scroll" placeholder="bình luận" style="height:50px;"></textarea>
+                <button id="btn_comment" class="btn btn-outline-primary rounded-pill m-0" tybe="button"><i class="bi bi-send fs-4"></i></button>
             </div>
-            <div>
+            <div id="body_comment">
                 <?php
                 foreach ($data['dComm'] as $key => $value) {
-                    $time_comm = format_date($value['Time_Comm']);
+                    $time_comm = $this->convert_time($value['Time_Comm']);
                     echo "
-                    <div class='border container'>
-                        <div class='row col-10 mt-3'>
-                            <div class='col-4'>
-                                <h6>$value[First_Name] $value[Last_Name]</h6>
-                            </div>
-                            <div class='col-6'>
-                                <p>$time_comm</p>
-                            </div>                  
+                    <div class='border rounded p-2 m-2 comment' >
+                        <div>
+                        <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style='width:50px; height:50px;' />
+                        <span class='fw-bold name_cm'>$value[First_Name] $value[Last_Name]</span>        
                         </div>
                         <div>
-                            <p style='margin-left: 20px;'>$value[Content]</p>
+                            <p class='ct_cm' style='margin-left:50px;'>$value[Content]</p>
+                            <p align = 'right'> <small class='small text-muted'>$time_comm</small></p>
                         </div>
-
-                        <div class='row col-8 mb-3'>
-                            <div class='col-3'>
-                                <a href='' style='text-decoration: none;'>
-                                    <i class='bi bi-hand-thumbs-up'></i>
-                                    <span>Thích</span>
-                                </a>
-                            </div>
-                            <div class='col-5'>
-                                <a href='' style='text-decoration: none;'>
-                                    <i class='bi bi-pen'></i>
-                                    <span>Bình luận</span>
-                                </a>
-                            </div>
-                        </div>  
                     </div>
                     ";
                 }
@@ -227,7 +209,25 @@ $price = num_to_price($data['dLap']['Price']);
                 toast.show()
             })
         }
+        $("#btn_comment").click(function() {
+            comment();
+        });
     });
+
+    function comment() {
+        var content = $("#inp_comment").val();
+        $("#inp_comment").val('');
+        console.log(content);
+        $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>' + content, {}, function(data) {
+            console.log(data);
+            var d=JSON.parse(data);
+            var newComment = $("#fram_comment").clone().val("id","").css("display","block");
+            newComment.find(".name_cm").html('<?php echo $_SESSION['user']['ho']." ".$_SESSION['user']['ten'];?>');
+            newComment.find(".ct_cm").html(content);
+            newComment.find(".small").html(d);
+            $("#body_comment").prepend(newComment);
+        })
+    }
 
     function addCart() {
         $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id/" . $_SESSION['user']['id']; ?>', {}, function(data) {
@@ -235,3 +235,13 @@ $price = num_to_price($data['dLap']['Price']);
         })
     };
 </script>
+<div id="fram_comment" class='border rounded p-2 m-2 comment' style=" display: none;">
+    <div>
+        <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style='width:50px; height:50px;' />
+        <span class='fw-bold name_cm'></span>
+    </div>
+    <div>
+        <p class='ct_cm' style='margin-left:50px;'></p>
+        <p align='right'> <small class='small text-muted'></small></p>
+    </div>
+</div>

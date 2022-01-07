@@ -5,8 +5,8 @@ class CartModel extends DB
      {
           $qr = "SELECT * FROM `cart`";
           $sql = mysqli_query($this->con, $qr);
-          $kq = array();
-          while ($row = mysqli_fetch_array($sql)) {
+          $kq = [];
+          while ($row = mysqli_fetch_assoc($sql)) {
                $kq[] = $row;
           }
           // $kq=json_encode($kq);
@@ -18,26 +18,31 @@ class CartModel extends DB
           $qr = "SELECT * FROM `cart` JOIN `laptop` ON cart.ID_Lap = laptop.ID_lap
                                         JOIN `customer` ON cart.ID_Cus = customer.ID_Cus";
           $sql = mysqli_query($this->con, $qr);
-          $kq = array();
-          while ($row = mysqli_fetch_array($sql)) {
+          $kq = [];
+          while ($row = mysqli_fetch_assoc($sql)) {
                $kq[] = $row;
           }
           return $kq;
      }
-
-     public function GetCart()
+     public function GetByID_Cus($id_Cus)
      {
-          $qr = "SELECT * FROM `cart`,`laptop` WHERE cart.ID_Lap = laptop.ID_Lap";
+          $qr = "SELECT * FROM `cart`,`laptop` WHERE cart.ID_Lap = laptop.ID_Lap and `ID_Cus`='$id_Cus'";
           $sql = mysqli_query($this->con, $qr);
-          $kq = array();
+          $kq = [];
           while ($row = mysqli_fetch_assoc($sql)) {
                $kq[] = $row;
           }
           return $kq;
      }
 
+     public function GetByOrder($id_Cus,$id_Lap)
+     {
+          $qr = "SELECT * FROM `cart`,`laptop` WHERE cart.ID_Lap = laptop.ID_Lap and cart.ID_Lap='$id_Lap' and cart.ID_Cus='$id_Cus'";
+          $sql = mysqli_query($this->con, $qr);
+          return mysqli_fetch_assoc($sql);
+     }
 
-     public function GetNumPro($id)
+     public function GetNumPro($id) // Số lượng sản phẩm trong giỏ hàng
      {
           $qr = "SELECT * FROM `cart` WHERE `ID_Cus` = '$id'";
           $sql = mysqli_query($this->con, $qr);
@@ -70,15 +75,17 @@ class CartModel extends DB
      }
      public function Edit($id_lap, $id_cus, $quantity)
      {
+          if($quantity<=0 || $quantity>99)
+               return 0;
           $qr = "UPDATE `cart` SET `Quantity`='$quantity'
                               WHERE `ID_Lap`='$id_lap' and `ID_Cus`='$id_cus'";
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }
 
-     public function Delete($id)
+     public function Delete($id_lap, $id_cus)
      {
-          $qr = "DELETE FROM `cart` WHERE `ID_Lap` = '$id'";
+          $qr = "DELETE FROM `cart` WHERE `ID_Lap`='$id_lap' and `ID_Cus`='$id_cus'";
           $sql = mysqli_query($this->con, $qr);
           return $sql;
      }

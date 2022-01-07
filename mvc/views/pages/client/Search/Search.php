@@ -7,7 +7,7 @@
             $id = $value['ID_Lap'];
             $images = json_decode($value['Images']);
             $name = $value['Name_Lap'];
-            $price = num_to_price($value['Price']);
+            $price = $this->num_to_price($value['Price']);
             $screen = json_decode($value['Screen'], 1);
             $cpu = $value['CPU'];
             $gpu = $value['GPU'];
@@ -15,7 +15,7 @@
             $ram = json_decode($value['RAM'], 1);
             
             echo "
-       <a href='/$data[domain]/Home/LaptopDetails/$id' style='text-decoration: none; color: black'>
+       <a href='/$data[domain]/LaptopDetails/$id' style='text-decoration: none; color: black'>
          <div class='col'>
              <div class='card mb-2 row'>
                  <div class='ml-3'>

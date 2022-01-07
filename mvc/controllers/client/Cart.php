@@ -18,7 +18,7 @@ class Cart extends Controller
           $this->data["page"] = "Cart";
           $this->data['title'] = "Giỏ hàng";
           if (isset($_SESSION['user']['id'])) {
-               $this->data['dCart'] = $this->dCart->GetCart();
+               $this->data['dCart'] = $this->dCart->GetByID_Cus($_SESSION['user']['id']);
                if (isset($_POST['delete'])) {
                     $this->dCart->Delete();
                     $this->data['dCart'] = $this->dCart->GetCart();

@@ -26,7 +26,7 @@ for ($i = 0; $i < count($dlaptop); $i++) {
      $dlap = $dlaptop[$i];
      $images = json_decode($dlap['Images']);
      $stt = $i + 1;
-     $price = num_to_price($dlap['Price']);
+     $price = $this->num_to_price($dlap['Price']);
      echo "<tr align='center'>
                <td>$stt</td>
                <td>$dlap[ID_Lap]</td>
