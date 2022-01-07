@@ -23,19 +23,20 @@ class OrderInfo extends Controller
         $this->view("AdminLayout", $this->data);
 
     }
-    function Edit($id)
+    function OrderDetails($id)
     {
-        $this->data["page"] = "EditOrderInfo";
-        $this->data['title'] = "Sửa đơn hàng";
-        $this->data['action'] = "Edit";
+        $this->data["page"] = "OrderDetails";
+        $this->data['title'] = "Chi tiết đơn hàng";
+        $this->data['action'] = "Details";
         $this->data["id"] = $id;
-        $this->data["status"] = $this->dOrIn->GetByID($id);
+        $this->data["dOrIn"] = $this->dOrIn->GetByID($id);
+        $this->data["dOrDe"] = $this->dOrDe->GetByID($id);
         if (isset($_POST['sm'])) {
-            $check = $this->dOrIn->CheckName($_POST['ten'])[0];
-            if ($check)
-                $this->data["goDefault"] = $this->dOrIn->Edit($id, $_POST['']);
+            if ($_POST['status'] >= 0 && $_POST['status'] <= 5)
+                if ($this->dOrIn->Edit($id, $_POST['status'])) 
+                    $_SESSION['Notification'] = "Cập nhật thành công!";
             else
-                $this->data["tb"] = "Lỗi";
+                $_SESSION['Notification'] = "Vui lòng kiểm tra lại dữ liệu nhập!";
         }
         $this->view("AdminLayout", $this->data);
     }

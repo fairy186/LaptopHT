@@ -38,8 +38,8 @@ for ($i = 0; $i < count($dlaptop); $i++) {
                <td><img class='col' src='/$data[domain]/images/$dlap[ID_Lap]/$images[0]' style='max-height:80px;'/></td>
                <td>$dlap[Release_Time]</td>
                <td>
-                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$dlap[ID_Lap]'><i class='bi bi-pencil-square btn btn-secondary' style='color:lime'></i></a>
-                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$dlap[ID_Lap]'><i class='bi bi-trash-fill' style='color:red'></i></a>  
+                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$dlap[ID_Lap]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$dlap[ID_Lap]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>  
                </td>
           </tr>";
 }
