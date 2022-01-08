@@ -1,14 +1,12 @@
 <?php
 class Order extends Controller
 {
-    protected $dLap;
     protected $dOrIn;
     protected $dOrDe;
     protected $dCart;
     protected $data;
     function __construct()
     {
-        $this->dLap = $this->model("LaptopModel");
         $this->dOrIn = $this->model("OrderInfoModel");
         $this->dOrDe = $this->model("OrderDetailsModel");
         $this->dCart = $this->model("CartModel");
@@ -33,7 +31,7 @@ class Order extends Controller
                     }
             }
             if (isset($_POST['confirm'])) {
-                if (isset($_SESSION['cost'])) {
+                if (isset($_SESSION['order']) && $_SESSION['order']!=[] ) {
                     $id_order = $this->dOrIn->autoID();
                     $this->dOrIn->Add($id_order, $_SESSION['user']['id'], 1, $_SESSION['cost']);
                     foreach ($_SESSION['order'] as $key => $value) {

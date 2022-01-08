@@ -31,6 +31,18 @@ class OrderInfoModel extends DB
                return mysqli_fetch_assoc($sql);
           return 0;
      }
+     public function GetMyOrder($id)
+     {
+          $qr = "SELECT * FROM `order_info` WHERE `ID_Cus` ='$id' ORDER BY `Time_Order` DESC";
+          $sql = mysqli_query($this->con, $qr);
+          $kq=[];
+          if($sql != false){
+               while ($row=mysqli_fetch_assoc($sql)) {
+                    $kq[]= $row;
+               }
+          }
+          return $kq;
+     }
 
      public function Edit($id, $status_order)
      {

@@ -73,7 +73,7 @@ class App
                $_SESSION['url'] = array();
                $_SESSION['url'][] = $url;
           } else
-               if ($url != $_SESSION['url'][count($_SESSION['url']) - 1]&& strlen(strstr($url,"Ajax")))
+               if ($url != $_SESSION['url'][count($_SESSION['url']) - 1] && strlen(strstr($url,"Ajax"))<=0)
                $_SESSION['url'][] = $url;
           if (count($_SESSION['url']) > 2)
                $_SESSION['url'] = array_slice($_SESSION['url'], 1, count($_SESSION['url']));

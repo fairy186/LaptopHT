@@ -68,6 +68,10 @@
 </form>
 <script>
     $(document).ready(function() {
+        $("form").keypress(function(event) {
+            if(event.which == 13)
+                return false;
+        });
         $("#check_all").change(function() {
             if (this.checked) {
                 $("input[name='id_lap[]'").each(function() {
@@ -94,7 +98,7 @@
         });
         $(".Q_incre").click(function() {
             var id_lap = $(this).attr("id_lap");
-            var val = parseInt($(".quantity[id_lap="+id_lap+"]").val()) + 1;
+            var val = parseInt($(".quantity[id_lap=" + id_lap + "]").val()) + 1;
             console.log(id_lap, val);
             $.post('<?php echo "/$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {
                 if (JSON.parse(data))
@@ -104,7 +108,7 @@
         })
         $(".Q_reduc").click(function() {
             var id_lap = $(this).attr("id_lap");
-            var val = parseInt($(".quantity[id_lap="+id_lap+"]")) - 1;
+            var val = parseInt($(".quantity[id_lap=" + id_lap + "]").val()) - 1;
             console.log(id_lap, val);
             $.post('<?php echo "/$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {
                 if (JSON.parse(data))

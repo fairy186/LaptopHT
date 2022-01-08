@@ -8,7 +8,7 @@ $connection = json_decode($data['dLap']['Connection'], 1);
 $other_Feature = json_decode($data['dLap']['Other_Feature'], 1);
 $screen = json_decode($data['dLap']['Screen'], 1);
 $price = $this->num_to_price($data['dLap']['Price']);
-$id_user = $_SESSION['user']['id'];
+$id_user = @$_SESSION['user']['id'];
 ?>
 <div class="container-fruit row">
     <div class="col-6">
@@ -48,10 +48,20 @@ $id_user = $_SESSION['user']['id'];
         </div>
         <div class="border p-2 m-2">
             <h2>Bình luận</h2>
-            <div class="d-flex flex-row mb-3 border rounded-pill p-2 m-2">
-                <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style="width:50px; height:50px;" />
-                <textarea id="inp_comment" class="form-control flex-grow-1 mx-2 rounded-pill scroll" placeholder="bình luận" style="height:50px;"></textarea>
-                <button id="btn_comment" class="btn btn-outline-primary rounded-pill m-0" tybe="button"><i class="bi bi-send fs-4"></i></button>
+            <div class="d-flex flex-row mb-3 border rounded-pill p-2 m-2 justify-content-center">
+                <?php
+                    if(isset($_SESSION['user']))
+                        echo "
+                            <img src='/$data[domain]/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
+                            <textarea id='inp_comment' class='form-control flex-grow-1 mx-2 rounded-pill scroll' placeholder='bình luận' style='height:50px;'></textarea>
+                            <button id='btn_comment' class='btn btn-outline-primary rounded-pill m-0' tybe='button'><i class='bi bi-send fs-4'></i></button>
+                        
+                            ";
+                    else
+                        echo "
+                            <div> Vui lòng đăng nhập để bình luận</div>
+                            "
+                ?>
             </div>
             <div id="body_comment">
                 <?php
@@ -60,7 +70,7 @@ $id_user = $_SESSION['user']['id'];
                     echo "
                     <div class='border rounded p-2 m-2 comment' >
                         <div>
-                        <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style='width:50px; height:50px;' />
+                        <img src='/$data[domain]/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                         <span class='fw-bold name_cm'>$value[First_Name] $value[Last_Name]</span>        
                         </div>
                         <div>
@@ -220,9 +230,9 @@ $id_user = $_SESSION['user']['id'];
         console.log(content);
         $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>' + content, {}, function(data) {
             console.log(data);
-            var d=JSON.parse(data);
-            var newComment = $("#fram_comment").clone().val("id","").css("display","block");
-            newComment.find(".name_cm").html('<?php echo $_SESSION['user']['ho']." ".$_SESSION['user']['ten'];?>');
+            var d = JSON.parse(data);
+            var newComment = $("#fram_comment").clone().val("id", "").css("display", "block");
+            newComment.find(".name_cm").html('<?php echo $_SESSION['user']['ho'] . " " . $_SESSION['user']['ten']; ?>');
             newComment.find(".ct_cm").html(content);
             newComment.find(".small").html(d);
             $("#body_comment").prepend(newComment);
@@ -237,7 +247,7 @@ $id_user = $_SESSION['user']['id'];
 </script>
 <div id="fram_comment" class='border rounded p-2 m-2 comment' style=" display: none;">
     <div>
-        <img src='https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-1/c549.60.714.715a/s240x240/259366947_1606516443012722_4802412669079552611_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=7206a8&_nc_ohc=nkNANSnkU-EAX8d7S7n&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-rmilFRplYiVQThMhrqytX67-nhK9oDgDYK6CcCzP4Bw&oe=61D90829' class='rounded-circle' style='width:50px; height:50px;' />
+        <img src='<?php echo "/$data[domain]/images/bg/avatardefault.png"?>' class='rounded-circle' style='width:50px; height:50px;' />
         <span class='fw-bold name_cm'></span>
     </div>
     <div>

@@ -66,6 +66,9 @@
                                    </a>
                                    <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
                                         <li class='nav-item bg-dark'>
+                                             <a class='nav-link' href='/$data[domain]/MyOrder'>Đơn hàng của tôi</a>
+                                        </li>
+                                        <li class='nav-item bg-dark'>
                                              <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
                                         </li>
                                    </ul>
@@ -78,8 +81,6 @@
                               ?>
                          </ul>
                     </div>
-
-
                </div>
           </nav>
      </div>
