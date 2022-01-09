@@ -1,19 +1,19 @@
 <div class="row row-cols-1 row-cols-lg-4 g-4">
-  <?php
-  $dLap = $data['dLap'];
-  // print_r($dLap);
-  if ($dLap != 0)
-    foreach ($dLap as $key => $value) {
-      $id = $value['ID_Lap'];
-      $images = json_decode($value['Images']);
-      $name = $value['Name_Lap'];
-      $price = num_to_price($value['Price']);
-      $screen = json_decode($value['Screen'], 1);
-      $cpu = $value['CPU'];
-      $gpu = $value['GPU'];
-      $pin = $value['Battery'];
-      $ram = json_decode($value['RAM'], 1);
-      echo "
+    <?php
+    $dLap = $data['dLap'];
+    // print_r($dLap);
+    if ($dLap != 0)
+        foreach ($dLap as $key => $value) {
+            $id = $value['ID_Lap'];
+            $images = json_decode($value['Images']);
+            $name = $value['Name_Lap'];
+            $price = $this->num_to_price($value['Price']);
+            $screen = json_decode($value['Screen'], 1);
+            $cpu = $value['CPU'];
+            $gpu = $value['GPU'];
+            $pin = $value['Battery'];
+            $ram = json_decode($value['RAM'], 1);
+            echo "
 
       <a href='/$data[domain]/LaptopDetails/$id' style='text-decoration: none; color: black'>
         <div class='col'>
@@ -50,5 +50,6 @@
     </a>
       
    ";
-    }
-  ?>
+        }
+    ?>
+</div>

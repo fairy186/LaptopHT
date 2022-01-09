@@ -24,5 +24,22 @@ class CommentModel extends DB
           }
           return $kq;
      }
+     public function AddComment($id_Lap, $id_Cus, $content)
+     {
+          if($content=="")
+               return 0;
+          $qr = "INSERT INTO `comment`(`ID_Lap`, `ID_Cus`, `Content`) VALUES ('$id_Lap','$id_Cus','$content')";
+          $sql = mysqli_query($this->con, $qr);
+          if($sql)
+               {
+                    $qr="SELECT `Time_Comm` FROM `comment` WHERE `id_Comm`= LAST_INSERT_ID()";
+                    $sql = mysqli_query($this->con, $qr);
+                    if($sql)
+                         return mysqli_fetch_assoc($sql)['Time_Comm'];
+                    return 0;
+               }
+               
+          return 0;
+     }
 
 }

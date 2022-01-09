@@ -2,36 +2,19 @@
 class controller
 {
      public $domain = "LaptopHT";
-     public function model($model)
+     function model($model)
      {
           require_once "./mvc/models/" . $model . ".php";
           return new $model;
      }
-     public function view($layout, $data = [])
-     {
-          function num_to_price($num)
-          {
-               $str = "";
-               while ($num > 0) {
-                    $spe = substr("$num", -3, 3);
-                    $num = floor($num / 1000);
-                    if ($num > 0) {
-                         $str = '.' . $spe . $str;
-                    } else
-                         $str = $spe . $str;
-               }
-               return $str . 'đ';
-          }
 
-          function format_date($str)
-          {
-               $arr = explode(" ", $str);
-               $date = $arr[0];
-               $arr2 = explode("-", $date);
-               return $arr[1] . " " . $arr2[2] . "-" . $arr2[1] . "-" . $arr2[0];
-          }
+     function view($layout, $data = [])
+     {
+
           if (@file_exists("./mvc/views/layout/" . $layout . ".php"))
                require_once "./mvc/views/layout/" . $layout . ".php";
+          else
+          require_once "./mvc/views/layout/NoLayout.php";
      }
      function validate($model, $data)
      {
@@ -110,5 +93,43 @@ class controller
                }
                rmdir($folder);
           }
+     }
+     function num_to_price($num)
+     {
+          $str = "";
+          while ($num > 0) {
+               $spe = substr("$num", -3, 3);
+               $num = floor($num / 1000);
+               if ($num > 0) {
+                    $str = '.' . $spe . $str;
+               } else
+                    $str = $spe . $str;
+          }
+          return $str . 'đ';
+     }
+     function format_date($str)
+     {
+          $arr = explode(" ", $str);
+          $date = $arr[0];
+          $arr2 = explode("-", $date);
+          return $arr[1] . " " . $arr2[2] . "-" . $arr2[1] . "-" . $arr2[0];
+     }
+     function convert_time($strdate)
+     {
+          date_default_timezone_set("Asia/Ho_Chi_Minh");
+          $now = strtotime(date('Y-m-d H:i:s'));
+          $dt = strtotime($strdate);
+          $t = round(($now - $dt) / 60);
+          if ($t < 60)
+               return $t . " phút trước";
+          $t = round($t / 60);
+          if ($t < 24)
+               return $t . " giờ trước ";
+          $t = round($t / 24);
+          if ($t == 1)
+               return "Hôm qua";
+          if ($t < 7)
+               return $t . " ngày trước ";
+          return $this->format_date($strdate);
      }
 }

@@ -25,7 +25,7 @@ class Login extends Controller
         if (isset($_POST['sm'])) {
             $u = $this->dCus->Login($_POST['account'], $_POST['password']);
             if ($u != 0) {
-                $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]"];
+                $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'sdt' => "$u[Phone]"];
                 header("Location: /$this->domain/" . @$_SESSION['url'][0]);
             }
             else

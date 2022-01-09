@@ -23,6 +23,18 @@ class OrderDetailsModel extends DB
           }
           return $kq;
      }
+     public function GetMyOrderDetails($id)
+     {
+          $qr = "SELECT * FROM `order_details` JOIN `LapTop` ON order_details.ID_Lap=laptop.ID_Lap WHERE `ID_Order` ='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          $kq=[];
+          if($sql != false){
+               while ($row=mysqli_fetch_assoc($sql)) {
+                    $kq[]= $row;
+               }
+          }
+          return $kq;
+     }
 
      public function Add($id_order, $id_lap, $quantity, $price)
      {
