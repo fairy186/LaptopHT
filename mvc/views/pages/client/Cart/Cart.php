@@ -45,7 +45,7 @@
             <div class='col-2 mt-5'>
                 <label>$price</label>
             </div>
-            <div class='col-2 mt-5 d-flex align-items-start' >
+            <div class='col-2 mt-5 d-flex align-items-start justify-content-center' >
                 <button id_lap='$id' type='button' class='btn-outline-dark border p-1 fw-bold Q_reduc' style='width: 30px;'>-</button><input class='quantity p-1 border' type='number' min='1' max='99' id_lap='$id' value='$quantity' style='text-align:center;width:50px;'><button id_lap='$id'  type='button' class='btn-outline-dark border p-1 fw-bold Q_incre' style='width: 30px;'>+</button>
             </div>
             <div class='col-2 mt-5'>
