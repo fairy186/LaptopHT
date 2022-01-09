@@ -11,7 +11,7 @@ $price = $this->num_to_price($data['dLap']['Price']);
 $id_user = @$_SESSION['user']['id'];
 ?>
 <div class="container-fruit row">
-    <div class="col-6">
+    <div class="col-6 ">
         <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php
@@ -50,37 +50,23 @@ $id_user = @$_SESSION['user']['id'];
             <h2>Bình luận</h2>
             <div class="d-flex flex-row mb-3 border rounded-pill p-2 m-2 justify-content-center">
                 <?php
-                    if(isset($_SESSION['user']))
-                        echo "
+                if (isset($_SESSION['user']))
+                    echo "
                             <img src='/$data[domain]/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                             <textarea id='inp_comment' class='form-control flex-grow-1 mx-2 rounded-pill scroll' placeholder='bình luận' style='height:50px;'></textarea>
                             <button id='btn_comment' class='btn btn-outline-primary rounded-pill m-0' tybe='button'><i class='bi bi-send fs-4'></i></button>
                         
                             ";
-                    else
-                        echo "
+                else
+                    echo "
                             <div> Vui lòng đăng nhập để bình luận</div>
-                            "
+                        "
                 ?>
             </div>
-            <div id="body_comment">
-                <?php
-                foreach ($data['dComm'] as $key => $value) {
-                    $time_comm = $this->convert_time($value['Time_Comm']);
-                    echo "
-                    <div class='border rounded p-2 m-2 comment' >
-                        <div>
-                        <img src='/$data[domain]/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
-                        <span class='fw-bold name_cm'>$value[First_Name] $value[Last_Name]</span>        
-                        </div>
-                        <div>
-                            <p class='ct_cm' style='margin-left:50px;'>$value[Content]</p>
-                            <p align = 'right'> <small class='small text-muted'>$time_comm</small></p>
-                        </div>
-                    </div>
-                    ";
-                }
-                ?>
+            <div id="ListComment">
+            </div>
+            <div class="text-center">
+                <button id="XemThem" class="btn btn-secondary mt-3" style="padding: 5px 125px;">Xem thêm</button>
             </div>
         </div>
     </div>
@@ -208,9 +194,47 @@ $id_user = @$_SESSION['user']['id'];
     </div>
 </div>
 <script>
+    var vt = 0;
+    var btnAddCart = document.getElementById('addCart')
+    var toastLive = document.getElementById('liveToast')
     $(document).ready(function() {
-        var btnAddCart = document.getElementById('addCart')
-        var toastLive = document.getElementById('liveToast')
+        message();
+        load_Comments(vt);
+        $("#btn_comment").click(function() {
+            comment();
+        });
+        $("#XemThem").click(function() {
+            vt = vt + 1;
+            load_Comments(vt);
+        })
+    });
+
+    function load_Comments(v) {
+        $.post('<?php echo "/$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
+            $("#ListComment").append(data);
+            v = v + 1;
+            $.post('<?php echo "/$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
+                console.log(data);
+                if (data == "")
+                    $("#XemThem").remove();
+            })
+        });
+
+    }
+
+    function comment() {
+        var content = $("#inp_comment").val();
+        $("#inp_comment").val('');
+        console.log(content);
+        $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>' + content, {}, function(data) {
+            $("#ListComment").html('');
+            for (var i = 0; i <= vt; i++) {
+                load_Comments(i);
+            }
+        });
+    }
+
+    function message() {
         if (btnAddCart) {
             btnAddCart.addEventListener('click', function() {
                 addCart();
@@ -219,39 +243,11 @@ $id_user = @$_SESSION['user']['id'];
                 toast.show()
             })
         }
-        $("#btn_comment").click(function() {
-            comment();
-        });
-    });
-
-    function comment() {
-        var content = $("#inp_comment").val();
-        $("#inp_comment").val('');
-        console.log(content);
-        $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>' + content, {}, function(data) {
-            console.log(data);
-            var d = JSON.parse(data);
-            var newComment = $("#fram_comment").clone().val("id", "").css("display", "block");
-            newComment.find(".name_cm").html('<?php echo $_SESSION['user']['ho'] . " " . $_SESSION['user']['ten']; ?>');
-            newComment.find(".ct_cm").html(content);
-            newComment.find(".small").html(d);
-            $("#body_comment").prepend(newComment);
-        })
     }
 
     function addCart() {
-        $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id/" . $_SESSION['user']['id']; ?>', {}, function(data) {
+        $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id/" . @$_SESSION['user']['id']; ?>', {}, function(data) {
             $(".toast-body").html(JSON.parse(data));
         })
     };
 </script>
-<div id="fram_comment" class='border rounded p-2 m-2 comment' style=" display: none;">
-    <div>
-        <img src='<?php echo "/$data[domain]/images/bg/avatardefault.png"?>' class='rounded-circle' style='width:50px; height:50px;' />
-        <span class='fw-bold name_cm'></span>
-    </div>
-    <div>
-        <p class='ct_cm' style='margin-left:50px;'></p>
-        <p align='right'> <small class='small text-muted'></small></p>
-    </div>
-</div>

@@ -124,11 +124,12 @@
      <script src='<?php echo "/$data[domain]/public/App.js"; ?>'></script>
      <script>
           $(document).ready(function() {
+               update_cart();
+               $("#notify_body").html("<?php echo @$_SESSION['notify']; unset($_SESSION['notify']); ?>");
                var notify = new bootstrap.Modal(document.getElementById('Model_Notify'), {
                     keyboard: false
                });
-               if (<?php if (isset($_SESSION['notify'])) echo 1;else echo 0; ?>) {
-                    $("#notify_body").html("<?php echo @$_SESSION['notify']; unset($_SESSION['notify']); ?>");
+               if (<?php if (isset($_SESSION['notify'])) echo 1; else echo 0; ?>) {
                     notify.show();
                }
                $("input[vali]").keyup(function() {
@@ -136,17 +137,14 @@
                }).change(function() {
                     check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                });
-               update_cart();
-
           });
 
           function update_cart() {
                $.post('<?php echo "/$data[domain]/Ajax/GetNumPro" ?>', {},
                     function(data) {
-                         $("#NumP").html(JSON.parse(data));
+                         $("#NumP").html(data);
                     })
           }
-
           function search() {
                search_info = $("#search").val();
                if (search_info !== "") {

@@ -19,7 +19,7 @@ class LaptopDetails extends Controller
     {
         $this->data["page"] = "LaptopDetails";
         $this->data["title"] = "Chi tiết sản phẩm";
-        $this->data['dComm'] = $this->dComm->GetCommByID_Lap($id);
+        // $this->data['dComm'] = $this->dComm->GetCommByID_Lap($id);
         $this->data['dLap'] = $this->dLap->GetFullInfoByID($id);
         $this->view("ClientLayout", $this->data);
     }

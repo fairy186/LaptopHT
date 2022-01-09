@@ -33,10 +33,10 @@ class Ajax extends controller
      public function GetNumPro()
      {
           $md = $this->model("CartModel");
-          if (isset($_SESSION['user']['id']) || !isset($_SESSION['user']['ad']))
-               echo json_encode($md->GetNumPro($_SESSION['user']['id']), JSON_UNESCAPED_UNICODE);
+          if (isset($_SESSION['user']['id']) && !isset($_SESSION['user']['ad']))
+               echo $md->GetNumPro($_SESSION['user']['id']);
           else
-               echo json_encode(" ", JSON_UNESCAPED_UNICODE);
+               echo 0;
      }
      public function AddCart($id_lap, $id_cus)
      {
@@ -46,8 +46,27 @@ class Ajax extends controller
      public function Comment($id_Lap, $id_Cus, $content)
      {
           $md = $this->model("CommentModel");
-          $data = $this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
-          echo json_encode($data, JSON_UNESCAPED_UNICODE);
+          $this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
+     }
+     public function Load_Comments($id_lap,$vt)
+     {
+          $md = $this->model("CommentModel");
+          $dCom = $md->GetCommByID_Lap($id_lap,$vt);
+          foreach ($dCom as $key => $value) {
+               $time_comm = $this->convert_time($value['Time_Comm']);
+               echo "
+                    <div class='border rounded p-2 m-2 comment'>
+                         <div>
+                              <img src='/$this->domain/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
+                              <span class='fw-bold name_cm'>$value[First_Name] $value[Last_Name]</span>        
+                         </div>
+                         <div>
+                              <p class='ct_cm' style='margin-left:50px;'>$value[Content]</p>
+                              <p align = 'right'> <small class='small text-muted'>$time_comm</small></p>
+                         </div>
+                    </div>
+               ";
+          }
      }
      public function Update_Cart($id_lap, $quantity)
      {
