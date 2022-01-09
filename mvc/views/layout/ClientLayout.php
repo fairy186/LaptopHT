@@ -85,7 +85,7 @@
           </nav>
      </div>
 
-     <div id="content" class="container mb-5">
+     <div id="content" class="container" style="margin-bottom: 60px;">
           <div class="modal fade" id="Model_Notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

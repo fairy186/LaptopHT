@@ -6,8 +6,8 @@
           echo "
                <div class='p-3'>
                     <div class='border p-2 fw-bold bg-primary bg-opacity-25 d-flex justify-content-between'>
-                         <span class='fs-5'>$value[Status_Order]</span>
                          <span>Mã Đơn: $value[ID_Order]</span>
+                         <span class='fs-5'>$value[Status_Order]</span>
                          <span class='fs-5 text-danger'>$totalCost</span>
                     </div>
                     <div class='bg-primary bg-opacity-10'>";

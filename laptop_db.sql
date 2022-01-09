@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `laptop_db`
 --
+DROP DATABASE IF EXISTS `laptop_db`;
+CREATE DATABASE `laptop_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `laptop_db`;
 
 -- --------------------------------------------------------
 

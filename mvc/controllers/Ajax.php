@@ -30,29 +30,136 @@ class Ajax extends controller
           $md = $this->model("AddressModel");
           echo json_encode($md->GetWard($id), JSON_UNESCAPED_UNICODE);
      }
-     public function GetNumPro(){
-          $md=$this->model("CartModel");
-          if(isset($_SESSION['user']['id']) || !isset($_SESSION['user']['ad']))
+     public function GetNumPro()
+     {
+          $md = $this->model("CartModel");
+          if (isset($_SESSION['user']['id']) || !isset($_SESSION['user']['ad']))
                echo json_encode($md->GetNumPro($_SESSION['user']['id']), JSON_UNESCAPED_UNICODE);
           else
                echo json_encode(" ", JSON_UNESCAPED_UNICODE);
      }
-     public function AddCart($id_lap, $id_cus){
+     public function AddCart($id_lap, $id_cus)
+     {
           $md = $this->model("CartModel");
-          echo json_encode($md->AddCart($id_lap, $id_cus),JSON_UNESCAPED_UNICODE);
+          echo json_encode($md->AddCart($id_lap, $id_cus), JSON_UNESCAPED_UNICODE);
      }
-     public function Comment($id_Lap, $id_Cus, $content){
+     public function Comment($id_Lap, $id_Cus, $content)
+     {
           $md = $this->model("CommentModel");
-          $data=$this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
+          $data = $this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
           echo json_encode($data, JSON_UNESCAPED_UNICODE);
      }
-     public function Update_Cart($id_lap, $quantity){
+     public function Update_Cart($id_lap, $quantity)
+     {
           $md = $this->model("CartModel");
           echo json_encode($md->Edit($id_lap, $_SESSION['user']['id'], $quantity), JSON_UNESCAPED_UNICODE);
      }
-     public function Remove_Form_Cart($id_lap){
+     public function Remove_Form_Cart($id_lap)
+     {
           $md = $this->model("CartModel");
-          if($md->Delete($id_lap, $_SESSION['user']['id']))
+          if ($md->Delete($id_lap, $_SESSION['user']['id']))
                echo "Deleted";
+     }
+     public function Get_Laptop($vt)
+     {
+          $md = $this->model("LaptopModel");
+          $dLap = $md->GetForHome($vt);
+          foreach ($dLap as $key => $value) {
+               $id = $value['ID_Lap'];
+               $images = json_decode($value['Images']);
+               $name = $value['Name_Lap'];
+               $price = $this->num_to_price($value['Price']);
+               $screen = json_decode($value['Screen'], 1);
+               $cpu = $value['CPU'];
+               $gpu = $value['GPU'];
+               $pin = $value['Battery'];
+               $ram = json_decode($value['RAM'], 1);
+               echo "
+               <a href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
+                    <div class='col border h-100 p-1 rounded'>
+                    <div class='card mb-2 row m-0 border-0'>
+                         <div class='ml-3'>
+                              <img src='/$this->domain/images/$id/$images[0]' class='card-img-top' style='max-height:200px;'>
+                              <h5 class='card-title'>$name</h5>
+                         </div>
+                         <div>
+                              <div class='card-body '>
+                                   <h5 class='card-title text-danger text-end '>$price</h5>
+                                   <div class='row'>
+                                        <label class='card-title col-md-4 col-label'>Màn hình</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$screen[sizeSC], $screen[resoSC], $screen[freSC]</p>
+                                        </div>
+                                        <label class='card-title col-md-4 col-label'>CPU</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$cpu</p>
+                                        </div>
+                                        <label class='card-title col-md-4 col-label'>GPU</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$gpu</p>
+                                        </div>
+                                        <label class='card-title col-md-4 col-label'>RAM</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$ram[memRAM]</p>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    </div>
+               </a>
+               ";
+          }
+     }
+     public function Get_Search_Laptop($info, $vt)
+     {
+          $md = $this->model("LaptopModel");
+          $dLap = $md->Search($info, $vt);
+          foreach ($dLap as $key => $value) {
+               $id = $value['ID_Lap'];
+               $images = json_decode($value['Images']);
+               $name = $value['Name_Lap'];
+               $price = $this->num_to_price($value['Price']);
+               $screen = json_decode($value['Screen'], 1);
+               $cpu = $value['CPU'];
+               $gpu = $value['GPU'];
+               $pin = $value['Battery'];
+               $ram = json_decode($value['RAM'], 1);
+               echo "
+               <a href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
+                    <div class='col border h-100 p-1 rounded'>
+                    <div class='card mb-2 row m-0 border-0'>
+                         <div class='ml-3'>
+                              <img src='/$this->domain/images/$id/$images[0]' class='card-img-top' style='max-height:200px;'>
+                              <h5 class='card-title'>$name</h5>
+                         </div>
+                         <div>
+                              <div class='card-body '>
+                                   <h5 class='card-title text-danger text-end '>$price</h5>
+                                   <div class='row'>
+                                        <label class='card-title col-md-4 col-label'>Màn hình</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$screen[sizeSC], $screen[resoSC], $screen[freSC]</p>
+                                        </div>
+                                        <label class='card-title col-md-4 col-label'>CPU</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$cpu</p>
+                                        </div>
+                                        <label class='card-title col-md-4 col-label'>GPU</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$gpu</p>
+                                        </div>
+                                        <label class='card-title col-md-4 col-label'>RAM</label>
+                                        <div class='col-md-8'>
+                                        <p class='card-text'>$ram[memRAM]</p>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    </div>
+               </a>
+               ";
+          }
      }
 }

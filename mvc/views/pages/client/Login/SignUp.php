@@ -1,7 +1,7 @@
 <?php
 if (!empty($_SESSION['Notification'])) {
-     echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-     unset($_SESSION['Notification']);
+    echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
+    unset($_SESSION['Notification']);
 }
 ?>
 <div class="container mt-5" style="max-width: 600px;">
@@ -72,8 +72,19 @@ if (!empty($_SESSION['Notification'])) {
         </div>
     </form>
 </div>
+<script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
 <script>
+    function validate() {
+        $("input[vali]").each(function() {
+            check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+        });
+    }
     $(document).ready(function() {
+        $("input[vali]").keyup(function() {
+            check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+        }).change(function() {
+            check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+        });
         $("input[name='confirmPassword']").keyup(function() {
             if ($(this).val() == $("input[name='password']").val()) {
                 $("label[mess='confirmPassword']").html("<i class='bi bi-check2-circle'></i>").css("color", "blue");

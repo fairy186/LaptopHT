@@ -108,6 +108,7 @@ function listitem($currentCtrl, $controller, $itemname)
      <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
      <script>
           $(document).ready(function() {
+               
                $("input[vali]").keyup(function() {
                     check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                }).change(function() {

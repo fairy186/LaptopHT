@@ -32,8 +32,21 @@ class LaptopModel extends DB
           }
           return $kq;
      }
-     public function Search($info)
+     public function GetForHome($vt=0)
      {
+          $vt=$vt*12;
+          $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
+                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type LIMIT $vt,12";
+          $sql = mysqli_query($this->con, $qr);
+          $kq = array();
+          while ($row = mysqli_fetch_array($sql)) {
+               $kq[] = $row;
+          }
+          return $kq;
+     }
+     public function Search($info,$vt=0)
+     {
+          $vt=$vt*12;
           $data = $this->GetFullInfo();
           $kq = [];
           foreach ($data as $key => $value) {
@@ -45,9 +58,9 @@ class LaptopModel extends DB
                     }
                }
           }
-          return $kq;
+          $d = array_splice($kq, $vt, 12);
+          return $d;
      }
-
      public function GetFullInfoByID($id)
      {
           $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
