@@ -23,7 +23,7 @@
       </style>
 </head>
 
-<body>
+<body style="background: url(<?php echo "/$data[domain]/images/shared/bg-login.jpg" ?>) top center">
       <?php
       require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php";
       ?>

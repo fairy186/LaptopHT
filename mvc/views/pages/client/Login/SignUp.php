@@ -4,8 +4,8 @@ if (!empty($_SESSION['Notification'])) {
     unset($_SESSION['Notification']);
 }
 ?>
-<div class="container mt-5" style="max-width: 600px;">
-    <h1 style='color: blue;' align='center'>ĐĂNG KÝ</h1>
+<h2 class="my-5 text-primary fs-1 fw-bold" align='center'>ĐĂNG KÝ</h2>
+<div class="container my-5 bg-dark bg-opacity-50 py-5 rounded" style="max-width: 600px;">
     <form action="" method="post" class="row">
         <div class="col-12 col-sm-6">
             <input type="text" vali class="form-control" name="firstname" placeholder="Họ và tên đệm" value='<?php if (isset($_POST["firstname"])) echo $_POST["firstname"] ?>' required>
@@ -65,7 +65,7 @@ if (!empty($_SESSION['Notification'])) {
         </div>
         <div>
             <center>
-                <button class="btn btn-outline-dark mt-3" name="sm" type="submit">
+                <button class="btn btn-outline-primary mt-3" name="sm" type="submit">
                     <h4 class="mx-3 my-1">Đăng ký</h4>
                 </button>
             </center>

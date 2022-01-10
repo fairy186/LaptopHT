@@ -16,17 +16,19 @@ class Login extends Controller
 
     function DefaultAction()
     {
+        if (isset($_SESSION['user'])) {
+            header("Location: /$this->domain/" . @$_SESSION['url'][0]);
+            return;
+        }
         $this->data["page"] = "Login";
         $this->data['title'] = "Đăng nhập";
         $this->data['action'] = "";
-        if (isset($_SESSION['user'])) {
-            header("Location: /$this->domain/" . @$_SESSION['url'][0]);
-        }
         if (isset($_POST['sm'])) {
             $u = $this->dCus->Login($_POST['account'], $_POST['password']);
             if ($u != 0) {
                 $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'sdt' => "$u[Phone]"];
                 header("Location: /$this->domain/" . @$_SESSION['url'][0]);
+                return;
             }
             else
                 $_SESSION['Notification'] = "Tài khoản hoặc mật sai!";
@@ -41,12 +43,14 @@ class Login extends Controller
     }
     function SignUp()
     {
+        if (isset($_SESSION['user'])) {
+            header("Location: /$this->domain/" . @$_SESSION['url'][0]);
+            return;
+        }
         $this->data["page"] = "SignUp";
         $this->data['title'] = "Đăng ký";
         $this->data['action'] = "SignUp";
         $this->data['dProvince'] = $this->dAddress->GetProvince();
-        // $this->data['dDistrict'] = $this->dAddress->GetDistrict();
-        // $this->data['dWard'] = $this->dAddress->GetWard();
         if (isset($_POST['sm'])) {
             $check = $this->validate($this->dCus, $_POST);
             $address=$this->dAddress->GetAddress($_POST['province'],$_POST['district'],$_POST['ward']);

@@ -22,7 +22,7 @@ if (!empty($_SESSION['Notification'])) {
         padding: 60px 60px;
         background: url(<?php echo "/$data[domain]/images/shared/Sign_in.png"?>) no-repeat center center #505050;
         background-size: cover;
-        box-shadow: 0px 30px 60px -5px #000;
+        box-shadow: 0px 30px 60px -5px #FFF;
     }
 
     form {
@@ -182,13 +182,20 @@ if (!empty($_SESSION['Notification'])) {
         <input type="password" name ="password" class="text" name="password">
         <span>password</span>
         <br>
-        <input type="checkbox" id="checkbox-1-1" class="custom-checkbox" />
-        <label for="checkbox-1-1">Keep me Signed in</label>
         <button class="signin" type="submit" name="sm">
             Đăng nhập
         </button>
         <a href='<?php echo "/$data[domain]/Login/SignUp";?>'>Chưa có tài khoản?</a>
         <hr>
     </form>
-
+<script>
+    $("form").submit(function () {
+        if($("input[name='account']").val() =="" || $("input[name='password']").val() =="")
+            {
+                alert("Vui lòng nhập tài khoản & mật khẩu!")
+                return false;
+            }
+        
+    })
+</script>
 </div>
