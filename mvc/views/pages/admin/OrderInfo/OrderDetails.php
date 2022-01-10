@@ -4,6 +4,12 @@ if (!empty($_SESSION['Notification'])) {
      unset($_SESSION['Notification']);
 }
 ?>
+<style>
+     td{
+          font-weight: bold;
+          padding:2px 10px;
+     }
+</style>
 <h2 style='color: blue;' align='center'>CHI TIẾT ĐƠN HÀNG</h2>
 <form action="" method="post" class="col-12 col-xl-6 container">
      <div>
@@ -19,7 +25,7 @@ if (!empty($_SESSION['Notification'])) {
      </thead>";
 
           foreach ($data['dOrDe'] as $key => $value) {
-               $price = num_to_price($value['Price']);
+               $price = $this->num_to_price($value['Price']);
                echo "<tr align='center'>
                <td>$value[ID_Order]</td>
                <td>$value[ID_Lap]</td>
@@ -33,10 +39,10 @@ if (!empty($_SESSION['Notification'])) {
           ?>
      </div>
      <div>
-          <table>
+          <table class="fs-5">
                <tr>
                     <td>
-                         Mã đơn hàng
+                         Mã đơn hàng:
                     </td>
                     <td>
                          <?php echo @$data['dOrIn']['ID_Order'] ?>
@@ -44,7 +50,7 @@ if (!empty($_SESSION['Notification'])) {
                </tr>
                <tr>
                     <td>
-                         Tên khách hàng
+                         Tên khách hàng:
                     </td>
                     <td>
                          <?php echo @$data['dOrIn']['First_Name'] . " " . @$data['dOrIn']['Last_Name'] ?>
@@ -52,31 +58,30 @@ if (!empty($_SESSION['Notification'])) {
                </tr>
                <tr>
                     <td>
-                         Thời gian đặt hàng
+                         Thời gian đặt hàng:
                     </td>
                     <td>
-                         <?php echo format_date(@$data['dOrIn']['Time_Order']) ?>
+                         <?php echo $this->format_date(@$data['dOrIn']['Time_Order']) ?>
                     </td>
                </tr>
                <tr>
                     <td>
-                         Tổng tiền
+                         Tổng tiền:
                     </td>
-                    <td>
-                         <?php echo num_to_price(@$data['dOrIn']['Cost']) ?>
+                    <td class="text-danger fw-bold">
+                         <?php echo $this->num_to_price(@$data['dOrIn']['Cost']) ?>
                     </td>
                </tr>
           </table>
      </div>
-     <div>
-          <select class="form-select form-select-sm" name="status">
+     <div >
+          <select class="form-select form-select-md mt-2 fst-italic text-center" name="status">
                <option <?php if ($data['dOrIn']['Status_Order'] == 1) echo "selected"?> value="1">Chờ xác nhận (1)</option>
                <option <?php if ($data['dOrIn']['Status_Order'] == 2) echo "selected"?> value="2">Xác nhận, đóng gói (2)</option>
                <option <?php if ($data['dOrIn']['Status_Order'] == 3) echo "selected"?> value="3">Đang vận chuyển (3)</option>
                <option <?php if ($data['dOrIn']['Status_Order'] == 4) echo "selected"?> value="4">Đang giao hàng (4)</option>
                <option <?php if ($data['dOrIn']['Status_Order'] == 5) echo "selected"?> value="5">Đã giao hàng (5)</option>
                <option <?php if ($data['dOrIn']['Status_Order'] == 0) echo "selected"?> value="0">Đã bị hủy (0)</option>
-
           </select>
      </div>
 

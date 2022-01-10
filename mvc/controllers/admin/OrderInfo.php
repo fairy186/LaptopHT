@@ -12,7 +12,6 @@ class OrderInfo extends Controller
         $this->dOrDe = $this->model("OrderDetailsModel");
         $this->data["domain"] = $this->domain;
         $this->data["controller"] = get_class($this);
-        $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
     }
     // action mặc định
     function DefaultAction()

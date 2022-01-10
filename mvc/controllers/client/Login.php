@@ -54,7 +54,7 @@ class Login extends Controller
                 $address = $_POST['spe']  .", ".$address;
                 $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
                 $u = $this->dCus->Login($_POST['account'], $_POST['password']);
-                $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]"];
+                $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]", 'sdt' => "$u[Phone]"];
                 header("Location: /$this->domain");
             } else
                 $this->data["tb"] = "Lỗi";

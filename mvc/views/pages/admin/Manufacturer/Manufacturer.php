@@ -32,8 +32,8 @@ for ($i = 0; $i < count($dmanu); $i++) {
           <td>$dman[ID_Manu]</td>
           <td>$dman[Name_Manu]</td>
           <td>
-               <a href='/$data[domain]/Admin/$data[controller]/Edit/$dman[ID_Manu]'><i class='bi bi-pencil-square' style='color:lime'></i></a> 
-               <a href='/$data[domain]/Admin/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill' style='color:red'></i></a>               
+               <a href='/$data[domain]/Admin/$data[controller]/Edit/$dman[ID_Manu]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a> 
+               <a href='/$data[domain]/Admin/$data[controller]/Delete/$dman[ID_Manu]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
           </td>
      </tr>";
 }

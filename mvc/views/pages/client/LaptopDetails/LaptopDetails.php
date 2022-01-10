@@ -10,6 +10,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
 $price = $this->num_to_price($data['dLap']['Price']);
 $id_user = @$_SESSION['user']['id'];
 ?>
+
 <div class="container-fruit row">
     <div class="col-6 ">
         <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -41,9 +42,13 @@ $id_user = @$_SESSION['user']['id'];
             <h4 style="color: red;" align="right">Giá <?php echo $price ?></h4>
         </div>
         <div class="row">
-            <div class="col ml-4">
+            <div class="col ml-4 d-flex">
                 <button id="addCart" class="btn btn-success text-light" type="button"><span style="font-size:20px;"><i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng</span></button>
-                <button id="buyNow" type="button" class="btn btn-danger"> <span style="color:#FFFFFF; font-size:20px;">Mua ngay</span></button>
+                <div class="mx-auto"></div>
+                <form action="<?php echo "/$data[domain]/Order" ?>" method="post" class="m-o p-o">
+                    <input type="text" name="id_lap" value="<?php echo $id; ?>" style="display:none;" />
+                    <button name="sm_BuyNow" type="submit" class="btn btn-danger"> <span style="color:#FFFFFF; font-size:20px;">Mua ngay</span></button>
+                </form>
             </div>
         </div>
         <div class="border p-2 m-2">
@@ -52,7 +57,7 @@ $id_user = @$_SESSION['user']['id'];
                 <?php
                 if (isset($_SESSION['user']))
                     echo "
-                            <img src='/$data[domain]/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
+                            <img src='/$data[domain]/images/shared/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                             <textarea id='inp_comment' class='form-control flex-grow-1 mx-2 rounded-pill scroll' placeholder='bình luận' style='height:50px;'></textarea>
                             <button id='btn_comment' class='btn btn-outline-primary rounded-pill m-0' tybe='button'><i class='bi bi-send fs-4'></i></button>
                         
@@ -196,17 +201,23 @@ $id_user = @$_SESSION['user']['id'];
 <script>
     var vt = 0;
     var btnAddCart = document.getElementById('addCart')
+    var btnBuyNow = document.getElementById('sm_BuyNow')
     var toastLive = document.getElementById('liveToast')
     $(document).ready(function() {
         message();
         load_Comments(vt);
+        $("button[name='sm_BuyNow']").click(function() {
+            addCart();
+            update_cart();
+        })
         $("#btn_comment").click(function() {
             comment();
         });
         $("#XemThem").click(function() {
             vt = vt + 1;
             load_Comments(vt);
-        })
+        });
+
     });
 
     function load_Comments(v) {
@@ -214,7 +225,6 @@ $id_user = @$_SESSION['user']['id'];
             $("#ListComment").append(data);
             v = v + 1;
             $.post('<?php echo "/$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
-                console.log(data);
                 if (data == "")
                     $("#XemThem").remove();
             })

@@ -1,9 +1,4 @@
-<?php
-if (!empty($_SESSION['Notification'])) {
-     echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-     unset($_SESSION['Notification']);
-}
-?>
+
 <h1 align="center">Danh Sách</h1>
 <h3><a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
@@ -26,8 +21,8 @@ for ($i = 0; $i < count($dtype); $i++) {
                <td>$dty[ID_Type]</td>
                <td>$dty[Name_Type]</td>
                <td>
-                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$dty[ID_Type]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
-                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$dty[ID_Type]'><i class='bi bi-trash-fill' style='color:red''></i></a>               
+                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$dty[ID_Type]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$dty[ID_Type]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
                </td>
           </tr>";
 }

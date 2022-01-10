@@ -48,16 +48,16 @@ class Ajax extends controller
           $md = $this->model("CommentModel");
           $this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
      }
-     public function Load_Comments($id_lap,$vt)
+     public function Load_Comments($id_lap, $vt)
      {
           $md = $this->model("CommentModel");
-          $dCom = $md->GetCommByID_Lap($id_lap,$vt);
+          $dCom = $md->GetCommByID_Lap($id_lap, $vt);
           foreach ($dCom as $key => $value) {
                $time_comm = $this->convert_time($value['Time_Comm']);
                echo "
                     <div class='border rounded p-2 m-2 comment'>
                          <div>
-                              <img src='/$this->domain/images/bg/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
+                              <img src='/$this->domain/images/shared/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                               <span class='fw-bold name_cm'>$value[First_Name] $value[Last_Name]</span>        
                          </div>
                          <div>
@@ -94,8 +94,8 @@ class Ajax extends controller
                $pin = $value['Battery'];
                $ram = json_decode($value['RAM'], 1);
                echo "
-               <a href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
-                    <div class='col border h-100 p-1 rounded'>
+               <a class='laptop' href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
+                    <div class=' col border h-100 p-1 rounded'>
                     <div class='card mb-2 row m-0 border-0'>
                          <div class='ml-3'>
                               <img src='/$this->domain/images/$id/$images[0]' class='card-img-top' style='max-height:200px;'>

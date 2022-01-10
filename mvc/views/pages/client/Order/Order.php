@@ -8,21 +8,21 @@
                 $price = $this->num_to_price($value['Price']);
                 $c = $this->num_to_price($value['Price'] * $value['Quantity']);
                 echo "
-                            <div class='d-flex rounded border p-3 my-2'>
-                                <img class='me-3' src='/$data[domain]/images/$value[ID_Lap]/$img' style='height:100px'/>
-                                <div>
-                                    <div><span class='fw-bold'>$value[Name_Lap]</span></div>
-                                    <div><span class='fw-bold'>Số lượng:</span> $value[Quantity]</div>
-                                    <div><span class='fw-bold'>Đơn giá:</span> $price</div>
-                                </div>
-                                <div class='mx-auto'></div>
-                                <div class='d-flex align-items-center fw-bold'>
-                                    <div> $c</div>
-                                </div>
-                            </div>
+                    <div class='d-flex rounded border p-3 my-2'>
+                        <img class='me-3' src='/$data[domain]/images/$value[ID_Lap]/$img' style='height:100px'/>
+                        <div>
+                            <div><span class='fw-bold'>$value[Name_Lap]</span></div>
+                            <div><span class='fw-bold'>Số lượng:</span> $value[Quantity]</div>
+                            <div><span class='fw-bold'>Đơn giá:</span> $price</div>
+                        </div>
+                        <div class='mx-auto'></div>
+                        <div class='d-flex align-items-center fw-bold'>
+                            <div> $c</div>
+                        </div>
+                    </div>
                         ";
             }
-        else{
+        else {
             echo "
                 <center>
                 <h5 class='fst-italic'>
@@ -38,12 +38,7 @@
         <div><span class="fw-bold">Giao tới:</span> <?php echo @$_SESSION['user']['ho'] . " " . @$_SESSION['user']['ten'] ?></div>
         <div><span class="fw-bold">SDT:</span> <?php echo @$_SESSION['user']['sdt'] ?></div>
         <div><span class="fw-bold">Địa chỉ:</span> <?php echo @$_SESSION['user']['dc'] ?></div>
-        <div><span class="fw-bold">Tổng:</span> <?php echo @$totalCost ?></div>
-        <p align="center" class="m-0 mt-5"><button type="submit" name ="confirm" class="btn btn-primary"> Đặt hàng</button></p>
+        <div class='fs-5 text-danger my-5'><span class="fw-bold ">Tổng:</span> <?php echo @$totalCost ?></div>
+        <p align="center" class="m-0"><button type="submit" name="confirm" class="btn btn-primary"> Đặt hàng</button></p>
     </form>
 </div>
-<script>
-    if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-    }
-</script>

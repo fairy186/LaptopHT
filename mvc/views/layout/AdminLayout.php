@@ -80,6 +80,7 @@ function listitem($currentCtrl, $controller, $itemname)
                     <?php listitem($data['controller'], "Cart", "Giỏ hàng") ?>
                     <?php listitem($data['controller'], "OrderInfo", "Đơn hàng") ?>
                     <?php listitem($data['controller'], "Admin", "Quản trị") ?>
+                    <?php listitem($data['controller'], "Slider", "Slide") ?>
                </ul>
           </div>
           <div class="flex-grow-1 border p-1">
@@ -108,7 +109,7 @@ function listitem($currentCtrl, $controller, $itemname)
      <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
      <script>
           $(document).ready(function() {
-               
+
                $("input[vali]").keyup(function() {
                     check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                }).change(function() {
@@ -122,10 +123,16 @@ function listitem($currentCtrl, $controller, $itemname)
                });
           }
      </script>
+     <script>
+          let hContent = Math.round(window.innerHeight) - Math.round($("#header").height()) - Math.round($("#footer").height());
+          $("#content").css("min-height", hContent + "px");
+     </script>
+     <?php
+     if (!empty($_SESSION['Notification'])) {
+          echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
+          unset($_SESSION['Notification']);
+     }
+     ?>
 </body>
 
 </html>
-<script>
-     let hContent = Math.round(window.innerHeight) - Math.round($("#header").height()) - Math.round($("#footer").height());
-     $("#content").css("min-height", hContent + "px");
-</script>

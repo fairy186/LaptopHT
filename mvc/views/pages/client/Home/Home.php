@@ -1,3 +1,10 @@
+<style>
+    .laptop:hover{
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding:0;
+        z-index: 100 ;
+    }
+</style>
 <div id="Listlaptop" class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-2 mt-2">
 </div>
 <div class="text-center">

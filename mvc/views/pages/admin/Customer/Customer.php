@@ -30,8 +30,8 @@ foreach ($dcus as $key => $value){
                <td>$value[Email]</td>
                <td>$value[Account]</td>
                <td>
-                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$value[ID_Cus]'><i class='bi bi-pencil-square' style='color:lime'></i></a>
-                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$value[ID_Cus]'><i class='bi bi-trash-fill' style='color:red'></i></a>               
+                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$value[ID_Cus]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$value[ID_Cus]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
                </td>
           </tr>";
 }

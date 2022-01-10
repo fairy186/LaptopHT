@@ -20,7 +20,7 @@ if (!empty($_SESSION['Notification'])) {
         width: 405px;
         margin: auto;
         padding: 60px 60px;
-        background: url(<?php echo "/$data[domain]/images/bg/Sign_in.png"?>) no-repeat center center #505050;
+        background: url(<?php echo "/$data[domain]/images/shared/Sign_in.png"?>) no-repeat center center #505050;
         background-size: cover;
         box-shadow: 0px 30px 60px -5px #000;
     }

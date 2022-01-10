@@ -1,5 +1,12 @@
+<?php
+if (isset($_SESSION['notify'])) {
+     $ct_notify = $_SESSION['notify'];
+     unset($_SESSION['notify']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +49,7 @@
           <nav class="navbar navbar-expand navbar-dark bg-dark container">
                <div class="container-fluid d-flex">
                     <a class="navbar-brand text-danger fw-bold fst-italic" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> LaptopHT</a>
-                    <div class="collapse navbar-collapse" >
+                    <div class="collapse navbar-collapse">
                          <div class="mb-0 mx-auto">
                               <div class="input-group">
                                    <input id="search" class="form-control border-2 border-primary" name="info" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
@@ -57,8 +64,8 @@
                                         </button>
                                    </a>
                               </li>
-                              <?php 
-                                   if (isset($_SESSION['user'])) 
+                              <?php
+                              if (isset($_SESSION['user']))
                                    echo "<li class='nav-item dropdown border border-primary rounded '>
                                              <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                                   <i class='bi bi-person-circle'></i>  " . $_SESSION['user']['ten'] . "
@@ -79,7 +86,7 @@
                               }
                               ?>
                          </ul>
-                         
+
                     </div>
                </div>
           </nav>
@@ -125,11 +132,11 @@
      <script>
           $(document).ready(function() {
                update_cart();
-               $("#notify_body").html("<?php echo @$_SESSION['notify']; unset($_SESSION['notify']); ?>");
+               $("#notify_body").html("<?php echo @$ct_notify ?>");
                var notify = new bootstrap.Modal(document.getElementById('Model_Notify'), {
                     keyboard: false
                });
-               if (<?php if (isset($_SESSION['notify'])) echo 1; else echo 0; ?>) {
+               if ($("#notify_body").html() != '') {
                     notify.show();
                }
                $("input[vali]").keyup(function() {
@@ -145,11 +152,17 @@
                          $("#NumP").html(data);
                     })
           }
+
           function search() {
                search_info = $("#search").val();
                if (search_info !== "") {
                     window.location.href = '<?php echo "/$data[domain]/Search/" ?>' + search_info;
                }
+          }
+     </script>
+     <script>
+          if (window.history.replaceState) {
+               window.history.replaceState(null, null, window.location.href);
           }
      </script>
 </body>

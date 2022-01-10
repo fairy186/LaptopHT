@@ -27,6 +27,11 @@
       <?php
       require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php";
       ?>
+      <script>
+          if (window.history.replaceState) {
+               window.history.replaceState(null, null, window.location.href);
+          }
+     </script>
 </body>
 
 </html>

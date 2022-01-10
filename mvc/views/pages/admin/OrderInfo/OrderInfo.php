@@ -20,7 +20,7 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
 
 for ($i = 0; $i < count($dorcus); $i++) {
      $dfull = $dorcus[$i];
-     $time_order = format_date($dfull['Time_Order']);
+     $time_order = $this->format_date($dfull['Time_Order']);
      $stt = $i + 1;
      echo "<tr align='center'>
                <td>$stt</td>
@@ -29,7 +29,7 @@ for ($i = 0; $i < count($dorcus); $i++) {
                <td>$time_order </td>
                <td>$dfull[Status_Order]</td>
                <td>
-                    <a href='/$data[domain]/Admin/$data[controller]/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
+                    <a class='fs-5 btn btn-outline-dark py-0' href='/$data[domain]/Admin/$data[controller]/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
                </td>
           </tr>";
 }

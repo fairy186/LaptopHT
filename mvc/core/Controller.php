@@ -14,7 +14,7 @@ class controller
           if (@file_exists("./mvc/views/layout/" . $layout . ".php"))
                require_once "./mvc/views/layout/" . $layout . ".php";
           else
-          require_once "./mvc/views/layout/NoLayout.php";
+               require_once "./mvc/views/layout/NoLayout.php";
      }
      function validate($model, $data)
      {
@@ -28,6 +28,43 @@ class controller
                }
           }
           return 1;
+     }
+     function upSlide()
+     {
+          $target_dir = "images/slider/";
+          $target_file = $target_dir . basename($_FILES["img_slider"]["name"]);
+          $uploadOk = 1;
+          $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+          $check = getimagesize($_FILES["img_slider"]["tmp_name"]);
+          if ($check !== false) {
+               $uploadOk = 1;
+          } else {
+               $uploadOk = 0;
+          }
+          if ($_FILES["img_slider"]["size"] > 40 * 1024 * 1024) {
+               $uploadOk = 0;
+          }
+          if (
+               $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+               && $imageFileType != "gif"
+          ) {
+               $uploadOk = 0;
+          }
+          if ($uploadOk == 0) {
+          } else {
+               if (move_uploaded_file($_FILES["img_slider"]["tmp_name"], $target_file)) {
+                    return htmlspecialchars(basename($_FILES["img_slider"]["name"]));
+               } else {
+                    return 0;
+               }
+          }
+     }
+     function delSlider($file)
+     {
+          $file="images/slider/$file";
+          if (is_file($file)) {
+               unlink($file); // delete file
+          }
      }
      function upFile($folderName)
      {

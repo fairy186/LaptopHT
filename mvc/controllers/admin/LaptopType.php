@@ -8,7 +8,6 @@ class LaptopType extends Controller
           $this->dType = $this->model("LaptopTypeModel");
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
-          $this->data["url"] = "/" . $this->data['domain'] . "/" . $this->data['controller'];
      }
      function DefaultAction()
      {
