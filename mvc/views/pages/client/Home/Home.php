@@ -1,11 +1,5 @@
-<style>
-    .laptop:hover {
-        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        padding: 0;
-        z-index: 100;
-    }
-</style>
-<div class="bg-primary bg-opacity-10">
+
+<div >
 <div class="row mt-2 p-0">
     <div id="carouselExampleCaptions" class="carousel slide col-12 col-md-8" data-bs-ride="carousel">
         <div class="carousel-indicators">
