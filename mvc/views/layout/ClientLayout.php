@@ -37,15 +37,12 @@
      </style>
 </head>
 
-<body class="container-fruilt">
+<body class="container-fruilt" style=" min-width:640px;">
      <div id="header" class="bg-dark">
-          <nav class="navbar navbar-expand-sm navbar-dark bg-dark container">
+          <nav class="navbar navbar-expand navbar-dark bg-dark container">
                <div class="container-fluid d-flex">
                     <a class="navbar-brand text-danger fw-bold fst-italic" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> LaptopHT</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" >
                          <div class="mb-0 mx-auto">
                               <div class="input-group">
                                    <input id="search" class="form-control border-2 border-primary" name="info" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
@@ -54,25 +51,27 @@
                          </div>
                          <ul class="navbar-nav">
                               <li class="nav-item">
-                                   <a class="nav-link py-0" href='<?php echo "/$data[domain]/Cart"; ?>'>
-                                        <button class="btn btn-outline-success p-2 " type="button">
+                                   <a class="nav-link py-0 " href='<?php echo "/$data[domain]/Cart"; ?>'>
+                                        <button class="btn btn-outline-success p-2" style="width: 130px; color: rgb(120, 240, 0);" type="button">
                                              <i class="bi bi-cart4"></i> Giỏ hàng( <span id="NumP" class="text-danger"></span> )
                                         </button>
                                    </a>
                               </li>
-                              <?php if (isset($_SESSION['user'])) echo "<li class='nav-item dropdown border border-primary rounded '>
-                                   <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                        <i class='bi bi-person-circle'></i>  " . $_SESSION['user']['ten'] . "
-                                   </a>
-                                   <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
-                                        <li class='nav-item bg-dark'>
-                                             <a class='nav-link' href='/$data[domain]/MyOrder'>Đơn hàng của tôi</a>
-                                        </li>
-                                        <li class='nav-item bg-dark'>
-                                             <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
-                                        </li>
-                                   </ul>
-                              </li>";
+                              <?php 
+                                   if (isset($_SESSION['user'])) 
+                                   echo "<li class='nav-item dropdown border border-primary rounded '>
+                                             <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                                  <i class='bi bi-person-circle'></i>  " . $_SESSION['user']['ten'] . "
+                                             </a>
+                                             <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
+                                                  <li class='nav-item bg-dark'>
+                                                       <a class='nav-link' href='/$data[domain]/MyOrder'>Đơn hàng của tôi</a>
+                                                  </li>
+                                                  <li class='nav-item bg-dark'>
+                                                       <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
+                                                  </li>
+                                             </ul>
+                                        </li>";
                               else {
                                    echo "<li class='nav-item'>
                                    <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
@@ -80,12 +79,13 @@
                               }
                               ?>
                          </ul>
+                         
                     </div>
                </div>
           </nav>
      </div>
 
-     <div id="content" class="container" style="margin-bottom: 60px;">
+     <div id="content" class="container-xl" style="margin-bottom: 60px;">
           <div class="modal fade" id="Model_Notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
