@@ -6,7 +6,7 @@
     }
 </style>
 <div class="bg-primary bg-opacity-10">
-<div class="row mt-2">
+<div class="row mt-2 p-0">
     <div id="carouselExampleCaptions" class="carousel slide col-12 col-md-8" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -40,9 +40,9 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="col-4 d-none d-md-inline-block">
-        <a  href="#"><img class="w-100" src="//cdn.tgdd.vn/2021/07/banner/Evogen11-390x97-1.png" alt="Sticky Evo Gen11"></a>
-        <a  href="#"><img class="w-100" src="//cdn.tgdd.vn/2022/01/banner/sticky-win-390x97.png" alt="1 Đổi 1 Trong 1 Tháng"></a>
+    <div class="col-4 d-none d-md-block">
+        <a href="#"><img class="w-100 mb-2" src="//cdn.tgdd.vn/2021/07/banner/Evogen11-390x97-1.png" alt="Sticky Evo Gen11"></a>
+        <a href="#"><img class="w-100" src="//cdn.tgdd.vn/2022/01/banner/sticky-win-390x97.png" alt="1 Đổi 1 Trong 1 Tháng"></a>
     </div>
 </div>
 <div id="Listlaptop" class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-2 mt-2">

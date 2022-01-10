@@ -44,6 +44,7 @@ class Login extends Controller
     function SignUp()
     {
         if (isset($_SESSION['user'])) {
+            
             header("Location: /$this->domain/" . @$_SESSION['url'][0]);
             return;
         }

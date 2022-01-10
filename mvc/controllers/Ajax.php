@@ -145,8 +145,8 @@ class Ajax extends controller
                $pin = $value['Battery'];
                $ram = json_decode($value['RAM'], 1);
                echo "
-               <a href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
-                    <div class='col border h-100 p-1 rounded'>
+               <a class='laptop' href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
+                    <div class='col border h-100 p-1 rounded' style='background-color: white'>
                     <div class='card mb-2 row m-0 border-0'>
                          <div class='ml-3'>
                               <img src='/$this->domain/images/$id/$images[0]' class='card-img-top' style='max-height:200px;'>

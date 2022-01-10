@@ -33,6 +33,12 @@ if (isset($_SESSION['notify'])) {
                margin: 5px;
           }
 
+          .laptop:hover {
+               box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+               padding: 0;
+               z-index: 100;
+          }
+
           .form-label {
                color: blueviolet;
                font-weight: bolder;
@@ -92,7 +98,7 @@ if (isset($_SESSION['notify'])) {
           </nav>
      </div>
 
-     <div id="content" class="container-xl" style="margin-bottom: 60px;">
+     <div id="content" class="container-xl bg-primary bg-opacity-10" style="margin-bottom: 60px;">
           <div class="modal fade" id="Model_Notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -115,7 +121,6 @@ if (isset($_SESSION['notify'])) {
                          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-
                     </div>
                </div>
           </div>
