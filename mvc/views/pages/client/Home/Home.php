@@ -38,19 +38,15 @@
             <a href="#"><img class="w-100" src="//cdn.tgdd.vn/2022/01/banner/sticky-win-390x97.png" alt="1 Đổi 1 Trong 1 Tháng"></a>
         </div>
     </div>
-    <div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Sắp xếp
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><span class="dropdown-item">Action</span></li>
-                <li><span class="dropdown-item">Another action</span></li>
-                <li><span class="dropdown-item">Something else here</span></li>
-            </ul>
-        </div>
+    <div class="d-flex justify-content-end my-2">
+        <select class="form-select " aria-label="Default select example" style="width: 200px;">
+            <option selected>Sắp xếp</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
     </div>
-    <div id="Listlaptop" class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-2 mt-2">
+    <div id="Listlaptop" class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-2">
     </div>
     <div class="text-center">
         <button id="XemThem" class="btn btn-secondary mt-3" style="padding: 5px 125px;">Xem thêm</button>
