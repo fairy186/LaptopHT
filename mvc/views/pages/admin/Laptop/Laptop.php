@@ -1,9 +1,4 @@
-<?php
-if (!empty($_SESSION['Notification'])) {
-     echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-     unset($_SESSION['Notification']);
-}
-?>
+
 <h1 align="center">Danh Sách Laptop</h1>
 <h3><a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add" ?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
