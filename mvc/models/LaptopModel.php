@@ -21,10 +21,10 @@ class LaptopModel extends DB
           return 0;
      }
 
-     public function GetFullInfo($sx="Add_Time")
+     public function GetFullInfo($a="Add_Time", $o="DESC")
      {
           $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
-                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `$sx` DESC";
+                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `$a` $o";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
           while ($row = mysqli_fetch_array($sql)) {
@@ -44,10 +44,10 @@ class LaptopModel extends DB
           }
           return $kq;
      }
-     public function Search($info,$vt=0)
+     public function Search($info,$vt=0, $a="Add_Time",$o="DESC")
      {
           $vt=$vt*12;
-          $data = $this->GetFullInfo();
+          $data = $this->GetFullInfo($a,$o);
           $kq = [];
           foreach ($data as $key => $value) {
                foreach ($value as $key => $val){

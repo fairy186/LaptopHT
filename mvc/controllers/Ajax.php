@@ -130,10 +130,10 @@ class Ajax extends controller
                ";
           }
      }
-     public function Get_Search_Laptop($info, $vt)
+     public function Get_Search_Laptop($info, $vt, $a, $o)
      {
           $md = $this->model("LaptopModel");
-          $dLap = $md->Search($info, $vt);
+          $dLap = $md->Search($info, $vt, $a, $o);
           foreach ($dLap as $key => $value) {
                $id = $value['ID_Lap'];
                $images = json_decode($value['Images']);

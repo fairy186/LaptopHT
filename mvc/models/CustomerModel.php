@@ -51,7 +51,7 @@ class CustomerModel extends DB
           $sql = mysqli_query($this->con, $qr);
           if (mysqli_num_rows($sql) > 0) {
                $kq = mysqli_fetch_assoc($sql);
-               if (password_verify($password,$kq['Password']));
+               if (password_verify($password,$kq['Password']))
                     return $kq;
           }
           return 0;

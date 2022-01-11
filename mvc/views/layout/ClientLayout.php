@@ -18,7 +18,7 @@ if (isset($_SESSION['notify'])) {
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
      <style>
-          p {
+          p,.row {
                margin: 0px;
                padding: 0px;
           }
@@ -50,7 +50,7 @@ if (isset($_SESSION['notify'])) {
      </style>
 </head>
 
-<body class="container-fruilt" style=' min-width:640px;'>
+<body class="container-fruilt" style='min-width:640px; '>
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand navbar-dark bg-dark container-md">
                <div class="container-fluid d-flex">
@@ -58,7 +58,7 @@ if (isset($_SESSION['notify'])) {
                     <div class="collapse navbar-collapse">
                          <div class="mb-0 mx-auto">
                               <div class="input-group">
-                                   <input id="search" class="form-control border-2 border-primary" name="info" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
+                                   <input id="search" class="form-control border-2 border-primary" name="info" value="<?php echo @$data['info']?>" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
                                    <button class="btn btn-outline-light border-2 border-primary" type="button" onclick="search()"><i class="bi bi-search"></i></button>
                               </div>
                          </div>
@@ -71,21 +71,30 @@ if (isset($_SESSION['notify'])) {
                                    </a>
                               </li>
                               <?php
-                              if (isset($_SESSION['user']))
-                                   echo "<li class='nav-item dropdown border border-primary rounded '>
-                                             <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                                  <i class='bi bi-person-circle'></i>  " . $_SESSION['user']['ten'] . "
-                                             </a>
-                                             <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
-                                                  <li class='nav-item bg-dark'>
-                                                       <a class='nav-link' href='/$data[domain]/MyOrder'>Đơn hàng của tôi</a>
-                                                  </li>
-                                                  <li class='nav-item bg-dark'>
-                                                       <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
-                                                  </li>
-                                             </ul>
-                                        </li>";
-                              else {
+                              if (isset($_SESSION['user'])) {
+                                   echo "
+                                   <li class='nav-item dropdown border border-primary rounded '>
+                                        <a class='nav-link dropdown-toggle text-primary' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                             <i class='bi bi-person-circle'></i>  " . $_SESSION['user']['ten'] . "
+                                        </a>
+                                        <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
+                                        ";
+                                   if (!isset($_SESSION['user']['ad']))
+                                        echo " 
+                                             <li class='nav-item bg-dark'>
+                                                  <a class='nav-link' href='/$data[domain]/MyOrder'>Đơn hàng của tôi</a>
+                                             </li>
+                                             <li class='nav-item bg-dark'>
+                                                  <a class='nav-link' href='/$data[domain]/Info'>Thông tin cá nhân</a>
+                                             </li>
+                                   ";
+                                   echo "
+                                        <li class='nav-item bg-dark'>
+                                             <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
+                                        </li>
+                                   </ul>
+                                   </li>";
+                              } else {
                                    echo "<li class='nav-item'>
                                    <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
                                         </li>";

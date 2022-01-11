@@ -118,7 +118,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
                <form action="" method="post" class="">
                     <div class="modal-body row m-0 p-3">
                          <div>
-                              <input type="password" vali class="form-control" name="oldPassword" placeholder="mật khẩu cũ" value='<?php if (isset($_POST["account"])) echo $_POST["account"] ?>' required>
+                              <input type="password" vali class="form-control" name="oldPassword" placeholder="mật khẩu cũ" required>
                               <label mess=""></label>
                          </div>
                          <div>
