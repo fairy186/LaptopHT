@@ -50,9 +50,9 @@ if (isset($_SESSION['notify'])) {
      </style>
 </head>
 
-<body class="container-fruilt" style=" min-width:640px;">
+<body class="container-fruilt" style=' min-width:640px;'>
      <div id="header" class="bg-dark">
-          <nav class="navbar navbar-expand navbar-dark bg-dark container">
+          <nav class="navbar navbar-expand navbar-dark bg-dark container-md">
                <div class="container-fluid d-flex">
                     <a class="navbar-brand text-danger fw-bold fst-italic" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> LaptopHT</a>
                     <div class="collapse navbar-collapse">

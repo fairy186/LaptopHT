@@ -39,6 +39,7 @@ class Laptop extends Controller
                 if ($this->dLap->Add($_POST['id'], $_POST['name'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release'])) {
                     $_SESSION['Notification'] = "Thêm thành công!";
                     header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    return;
                 } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
             else
@@ -56,6 +57,7 @@ class Laptop extends Controller
         $this->data["dLap"] = $this->dLap->GetByID($id);
         if ($this->data["dLap"] == 0) {
             header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            return;
         }
         if (isset($_POST['sm'])) {
             $check = $this->validate($this->dLap, $_POST);
@@ -70,6 +72,7 @@ class Laptop extends Controller
                 if ($this->dLap->Edit($id, $_POST['name'], $_POST['price'], $_POST['insu'], $_POST['type'], $_POST['manu'], $img, $_POST['cpu'], $_POST['gpu'], $ram, $_POST['disk'], $screen, $_POST['audio'], $connection, $other_feature, $_POST['d_w'], $_POST['material'], $_POST['pin'], $_POST['os'], $_POST['release'])) {
                     $_SESSION['Notification'] = "Cập nhật thành công!";
                     header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    return;
                 } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
             else
@@ -85,12 +88,14 @@ class Laptop extends Controller
         $this->data["dLap"] = $this->dLap->GetByID($id);
         if ($this->data["dLap"] == 0) {
             header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            return;
         }
         if (isset($_POST['sm'])) {
             if ($this->dLap->Delete($id)) {
                 $_SESSION['Notification'] = "Xóa thành công!";
                 $this->delFile($id);
                 header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                return;
             } else
                 $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
         }

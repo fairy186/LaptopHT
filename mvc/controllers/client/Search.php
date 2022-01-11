@@ -11,9 +11,10 @@ class Search extends Controller
           $this->data["page"] = "Search";
           $this->data['title'] = "Tìm kiếm";
           $this->data['info'] = $info;
-          if (empty($info))
+          if (empty($info)) {
                header("Location: /$this->domain");
-          else
+               return;
+          } else
                $this->view("ClientLayout", $this->data);
      }
 }

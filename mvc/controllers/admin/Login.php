@@ -16,14 +16,16 @@ class Login extends Controller
           $this->data['dAdmin'] = $this->dAdmin->Get();
           if (isset($_SESSION['user']['ad'])) {
                header("Location: /$this->domain/Admin/Laptop");
-           }
-           if (isset($_POST['sm'])) {
+               return;
+          }
+          if (isset($_POST['sm'])) {
                $u = $this->dAdmin->Login($_POST['account'], $_POST['password']);
                if ($u != 0) {
-                   $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]",'ad'=>1];
-                   header("Location: /$this->domain/Admin/Laptop");
+                    $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'ad' => 1];
+                    header("Location: /$this->domain/Admin/Laptop");
+                    return;
                }
-           }
+          }
           $this->view("AdminLogin", $this->data);
      }
 }

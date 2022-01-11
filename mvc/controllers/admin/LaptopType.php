@@ -27,6 +27,7 @@ class LaptopType extends Controller
                     if ($this->dType->Add($_POST['id'], $_POST['name'])) {
                          $_SESSION['Notification'] = "Thêm thành công!";
                          header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
                else
@@ -42,12 +43,14 @@ class LaptopType extends Controller
           $this->data['dType'] = $this->dType->GetByID($id);
           if ($this->data['dType'] == 0)
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               return;
           if (isset($_POST['sm'])) {
                $check = $this->validate($this->dType, $_POST);
                if ($check) {
                     if ($this->dType->Edit($id, $_POST['name'])) {
                          $_SESSION['Notification'] = "Cập nhật thành công!";
                          header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
                } else
@@ -63,11 +66,13 @@ class LaptopType extends Controller
           $this->data['dType'] = $this->dType->GetByID($id);
           if ($this->data['dType'] == 0)
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
+          return;
           if (isset($_POST['sm'])) {
                if ($this->dType->Delete($id)) {
                     $_SESSION['Notification'] = "Xóa thành công!";
                     $this->delFile($id);
                     header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    return;
                } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
           }

@@ -28,6 +28,7 @@ class Manufacturer extends Controller
                     if ($this->dManu->Add($_POST['id'], $_POST['name'])) {
                          $_SESSION['Notification'] = "Thêm thành công!";
                          header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
                else
@@ -43,12 +44,14 @@ class Manufacturer extends Controller
           $this->data["dManu"] = $this->dManu->GetByID($id);;
           if ($this->data["dManu"] == 0)
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               return;
           if (isset($_POST['sm'])) {
                $check = $this->validate($this->dManu, $_POST);
                if ($check)
                     if ($this->dManu->Edit($id, $_POST['name'])) {
                          $_SESSION['Notification'] = "Cập nhật thành công!";
                          header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
                else
@@ -64,11 +67,13 @@ class Manufacturer extends Controller
           $this->data["dManu"] = $this->dManu->GetByID($id);
           if ($this->data["dManu"] == "")
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               return;
           if (isset($_POST['sm'])) {
                if ($this->dManu->Delete($id)) {
                     $_SESSION['Notification'] = "Xóa thành công!";
                     $this->delFile($id);
                     header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    return;
                } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
           }

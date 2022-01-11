@@ -6,8 +6,14 @@ class MyOrder extends Controller
      protected $data;
      function __construct()
      {
-          if (!isset($_SESSION['user']))
+          if (!isset($_SESSION['user'])) {
                header("Location: /$this->domain/Login");
+               return;
+          }
+          if (isset($_SESSION['user']['ad'])) {
+               header("Location: /$this->domain");
+               return;
+          }
           $this->dOrIn = $this->model("OrderInfoModel");
           $this->dOrDe = $this->model("OrderDetailsModel");
           $this->data["domain"] = $this->domain;

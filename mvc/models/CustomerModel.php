@@ -23,19 +23,39 @@ class CustomerModel extends DB
                $row = mysqli_fetch_array($sql);
           return $row;
      }
-     public function Login($account, $password)
+     function updateBaseInfo($id, $first_name, $last_name, $phone, $email)
+     {
+          $qr = "UPDATE `customer` SET `First_Name`='$first_name',`Last_Name`='$last_name',`Phone`='$phone',`Email`='$email'
+                              WHERE `ID_Cus`='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          return $sql;
+     }
+     function updateAddress($id, $address)
+     {
+          $qr = "UPDATE `customer` SET `Address`='$address'
+                              WHERE `ID_Cus`='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          return $sql;
+     }
+     function updatePassword($id, $password)
      {
           $password = password_hash($password, PASSWORD_DEFAULT);
+          $qr = "UPDATE `customer` SET `Password`='$password'
+                              WHERE `ID_Cus`='$id'";
+          $sql = mysqli_query($this->con, $qr);
+          return $sql;
+     }
+     public function Login($account, $password)
+     {
           $qr = "SELECT * FROM `customer` WHERE `Account`='$account'";
           $sql = mysqli_query($this->con, $qr);
-          if (mysqli_num_rows($sql) > 0){
-               $kq= mysqli_fetch_assoc($sql);;
-               if(password_verify($kq['Password'],$password));
+          if (mysqli_num_rows($sql) > 0) {
+               $kq = mysqli_fetch_assoc($sql);
+               if (password_verify($password,$kq['Password']));
                     return $kq;
           }
           return 0;
      }
-
 
      public function Add($first_name, $last_name, $address, $phone, $email, $account, $password)
      {

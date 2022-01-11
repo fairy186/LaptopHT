@@ -16,7 +16,7 @@ class App
           if (isset($arr[0])) {
                if (strtolower(trim($arr[0])) == "admin") {
                     $dir = "./mvc/controllers/admin";
-                    $this->area="Admin";
+                    $this->area = "Admin";
                     array_splice($arr, 0, 1);
                }
                if (@file_exists("$dir/$arr[0].php"))
@@ -26,12 +26,15 @@ class App
                     if (@file_exists("$dir/$arr[0].php"))
                          $this->controller = $arr[0];
                     else
-                         if($this->area != "Admin")
-                              header("Location: /$this->domain");
-                         else
-                              header("Location: /$this->domain/Admin/Laptop");
+                         if ($this->area != "Admin") {
+                         header("Location: /$this->domain");
+                         return;
+                    } else {
+                         header("Location: /$this->domain/Admin/Laptop");
+                         return;
+                    }
                }
-               array_splice($arr, 0, 1);     
+               array_splice($arr, 0, 1);
           }
           require_once "$dir/$this->controller" . ".php";
           // xử lý Action
@@ -43,7 +46,7 @@ class App
           // Xử lý params
           if ($arr != [])
                $this->params = $arr;
-          $this->HistoryPage(); // lưu lịch sử duyệt web 
+          $this->PreviousPage(); // lưu lịch sử duyệt web 
           // echo ($this->controller);
           // echo ("</br>");
           // echo ($this->action);
@@ -62,20 +65,21 @@ class App
      }
      function BlockAccessAdmin()
      {
-          if ($this->area=="Admin" && $this->controller!="Login")
-               if (!isset($_SESSION['user']['ad']))
+          if ($this->area == "Admin" && $this->controller != "Login") {
+               if (!isset($_SESSION['user']['ad']) && !isset($_SESSION['user'])) {
                     header("Location: /$this->domain/Admin/Login");
+                    return;
+               }
+               if (!isset($_SESSION['user']['ad']) && isset($_SESSION['user'])) {
+                    header("Location: /$this->domain");
+                    return;
+               }
+          }
      }
-     function HistoryPage()
+     function PreviousPage()
      {
           $url = @$_GET['url'];
-          if (!isset($_SESSION['url'])) {
-               $_SESSION['url'] = array();
-               $_SESSION['url'][] = $url;
-          } else
-               if ($url != $_SESSION['url'][count($_SESSION['url']) - 1] && strlen(strstr($url,"Ajax"))<=0  && strlen(strstr($url,"Login"))<=0 )
-               $_SESSION['url'][] = $url;
-          if (count($_SESSION['url']) > 1)
-               $_SESSION['url'] = array_slice($_SESSION['url'], 1, count($_SESSION['url']));
+          if (strlen(strstr($url, "Ajax")) <= 0  && strlen(strstr($url, "Login")) <= 0)
+               $_SESSION['url'] = $url;
      }
 }

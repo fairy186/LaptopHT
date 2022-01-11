@@ -79,7 +79,7 @@ class Slider extends Controller
                 $_SESSION['Notification'] = "Xóa thành công!";
                 $this->delFile($id);
                 header("Location: /$this->domain/Admin/" . $this->data['controller']);
-                return 0;
+                return ;
             } else
                 $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
         }

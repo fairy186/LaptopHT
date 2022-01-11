@@ -1,5 +1,6 @@
 function check_Input(input, domain, md) {
      var inp = $(input);
+     var form = $(input).parents('form');
      var val = $(input).val();
      var n = $(input).attr("name");
      $.post(
@@ -19,13 +20,13 @@ function check_Input(input, domain, md) {
                     inp.addClass("border-danger").removeClass("border-primary").addClass("inp0").removeClass("inp1");
                     $("label[mess=" + n + "]").css("color", "red");
                }
-               var vali = $("input[vali]:not([no-re])");
-               var inp0 = $(".inp0");
-               var vali1 = $("input.inp1[vali]:not([no-re])");
+               var vali = form.find("input[vali]:not([no-re])");
+               var inp0 = form.find(".inp0");
+               var vali1 = form.find("input.inp1[vali]:not([no-re])");
                console.log(vali.length+"---"+vali1.length);
                if (inp0.length == 0 && vali1.length == vali.length)
-                    $("button[name='sm']").removeClass("disabled");
-               else $("button[name='sm']").addClass("disabled");
+                    form.find("button[type='submit']").removeClass("disabled");
+               else form.find("button[type='submit']").addClass("disabled");
           }
      );
 }

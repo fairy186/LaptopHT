@@ -10,7 +10,7 @@ class controller
 
      function view($layout, $data = [])
      {
-
+          // print_r($_SESSION);
           if (@file_exists("./mvc/views/layout/" . $layout . ".php"))
                require_once "./mvc/views/layout/" . $layout . ".php";
           else
@@ -23,8 +23,9 @@ class controller
           foreach ($all_check as $key => $value) {
                if (preg_match($pattern, $value)) {
                     $param = explode("_", $value, 2);
-                    if (call_user_func([$model, $value], $data[$param[1]]) == 0)
-                         return 0;
+                    if (!empty($data[$param[1]]))
+                         if (call_user_func([$model, $value], $data[$param[1]]) == 0)
+                              return 0;
                }
           }
           return 1;
@@ -61,7 +62,7 @@ class controller
      }
      function delSlider($file)
      {
-          $file="images/slider/$file";
+          $file = "images/slider/$file";
           if (is_file($file)) {
                unlink($file); // delete file
           }
