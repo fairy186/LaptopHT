@@ -25,6 +25,7 @@ class Login extends Controller
                     header("Location: /$this->domain/Admin/Laptop");
                     return;
                }
+               $_SESSION['Notification']="Sai tài khoản hoặc mật khẩu";
           }
           $this->view("AdminLogin", $this->data);
      }

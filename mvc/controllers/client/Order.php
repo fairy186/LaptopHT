@@ -13,7 +13,7 @@ class Order extends Controller
             return;
         }
         if (isset($_SESSION['user']['ad'])) {
-            header("Location: /$this->domain");
+            header("Location: /$this->domain/");
             return;
         }
         $this->dOrIn = $this->model("OrderInfoModel");

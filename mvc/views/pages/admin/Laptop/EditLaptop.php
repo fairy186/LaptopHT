@@ -80,7 +80,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                         $dtype = $data['dType'];
                         for ($i = 0; $i < count($dtype); $i++) {
                             $dty = $dtype[$i];
-                            if ($dty['ID_Type'] != $data['ID_Type'])
+                            if ($dty['ID_Type'] != $data['dLap']['ID_Type'])
                                 echo "<option value='$dty[ID_Type]'>$dty[Name_Type]</option>";
                             else
                                 echo "<option selected value='$dty[ID_Type]'>$dty[Name_Type]</option>";
@@ -95,7 +95,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                         $dmanu = $data['dManu'];
                         for ($i = 0; $i < count($dmanu); $i++) {
                             $dman = $dmanu[$i];
-                            if ($dty['ID_Manu'] != $data['ID_Manu'])
+                            if ($dty['ID_Manu'] != $data['dLap']['ID_Manu'])
                                 echo "<option value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
                             else
                                 echo "<option selected value='$dman[ID_Manu]'>$dman[Name_Manu]</option>";
