@@ -79,10 +79,10 @@ class Ajax extends controller
           if ($md->Delete($id_lap, $_SESSION['user']['id']))
                echo "Deleted";
      }
-     public function Get_Laptop($vt)
+     public function Get_Laptop($vt,$a="Add_Time", $o="DESC")
      {
           $md = $this->model("LaptopModel");
-          $dLap = $md->GetForHome($vt);
+          $dLap = $md->GetForHome($vt,$a,$o);
           foreach ($dLap as $key => $value) {
                $id = $value['ID_Lap'];
                $images = json_decode($value['Images']);

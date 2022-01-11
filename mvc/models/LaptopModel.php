@@ -32,11 +32,11 @@ class LaptopModel extends DB
           }
           return $kq;
      }
-     public function GetForHome($vt=0)
+     public function GetForHome($vt=0,$a="Add_Time",$o="DESC")
      {
           $vt=$vt*12;
           $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
-                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type LIMIT $vt,12";
+                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `$a` $o LIMIT $vt,12 ";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
           while ($row = mysqli_fetch_array($sql)) {

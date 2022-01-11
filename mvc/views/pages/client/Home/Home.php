@@ -39,11 +39,12 @@
         </div>
     </div>
     <div class="d-flex justify-content-end my-2">
-        <select class="form-select " aria-label="Default select example" style="width: 200px;">
-            <option selected>Sắp xếp</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select id="sapxep" class="form-select " aria-label="Default select example" style="width: 200px;">
+            <option value="Add_Time/DESC" selected >Mới nhất</option>
+            <option value="Add_Time/ASC" selected >Cũ nhất</option>
+            <option value="Price/ASC">Giá tăng dần</option>
+            <option value="Price/DESC">Giá giảm dần</option>
+
         </select>
     </div>
     <div id="Listlaptop" class="row row-cols-2 row-cols-lg-3 row-cols-xl-4 g-2">
@@ -55,23 +56,25 @@
 <script>
     var vt = 0;
     $(document).ready(function() {
-        $.post('<?php echo "/$data[domain]/Ajax/Get_Laptop/" ?>' + vt, {}, function(data) {
-            $("#Listlaptop").append(data);
-            vt = vt + 1;
-            $.post('<?php echo "/$data[domain]/Ajax/Get_Laptop/" ?>' + vt, {}, function(data) {
-                if (data == "")
-                    $("#XemThem").remove();
-            })
-        })
+        load_Laptop();
+    })
+    $("#sapxep").change(function() {
+        vt=0;
+        $("#Listlaptop").html('');
+        console.log($(this).val());
+        load_Laptop($(this).val());
     })
     $("#XemThem").click(function() {
-        $.post('<?php echo "/$data[domain]/Ajax/Get_Laptop/" ?>' + vt, {}, function(data) {
+        load_Laptop($("#sapxep").val());
+    })
+    function load_Laptop(sx="Add_Time/DESC") {
+        $.post('<?php echo "/$data[domain]/Ajax/Get_Laptop/" ?>' + vt + "/" + sx, {}, function(data) {
             $("#Listlaptop").append(data);
             vt = vt + 1;
-            $.post('<?php echo "/$data[domain]/Ajax/Get_Laptop/" ?>' + vt, {}, function(data) {
+            $.post('<?php echo "/$data[domain]/Ajax/Get_Laptop/" ?>' + vt + "/" + sx, {}, function(data) {
                 if (data == "")
                     $("#XemThem").remove();
             })
         })
-    })
+    }
 </script>
