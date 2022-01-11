@@ -1,9 +1,3 @@
-<?php
-if (!empty($_SESSION['Notification'])) {
-     echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-     unset($_SESSION['Notification']);
-}
-?>
 <h1 align="center">Danh Sách Hảng Laptop</h1>
 <?php
 if (isset($data['tb'])) {
