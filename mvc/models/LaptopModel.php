@@ -21,10 +21,10 @@ class LaptopModel extends DB
           return 0;
      }
 
-     public function GetFullInfo()
+     public function GetFullInfo($sx="Add_Time")
      {
           $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
-                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `Add_Time` DESC";
+                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `$sx` DESC";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
           while ($row = mysqli_fetch_array($sql)) {
