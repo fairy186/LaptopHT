@@ -38,6 +38,9 @@ if (isset($_SESSION['notify'])) {
                padding: 0;
                z-index: 100;
           }
+          .btn:hover{
+               filter: drop-shadow(0 0 5px blue)
+          }
 
           .form-label {
                color: blueviolet;
@@ -107,7 +110,7 @@ if (isset($_SESSION['notify'])) {
           </nav>
      </div>
 
-     <div id="content" class="container-xl bg-primary bg-opacity-10" style="margin-bottom: 60px;">
+     <div id="content" class="container-xl bg-primary bg-opacity-10 p-0" style="margin-bottom: 60px;">
           <div class="modal fade" id="Model_Notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

@@ -36,7 +36,7 @@
                     <center>
                         <div  class='row col-12 mb-2 mt-2'>
                             <div class='col-1 mt-5'>
-                                <input class='form-check-input p-2' checked name='id_lap[]' type='checkbox' value='$id'>
+                                <input checked class='form-check-input p-2' name='id_lap[]' type='checkbox' value='$id'>
                             </div>
                             <div class='col-3'>
                                 <img src='/$data[domain]/images/$id/$images[2]' style='max-height:90px;'>
@@ -102,10 +102,11 @@
                     this.checked = false;
                 })
             }
+            updateCost();
         });
-        $("input[name='id_lap[]'").change(function() {
+        $("input[name='id_lap[]']").change(function() {
             var i = 1;
-            $("input[name='id_lap[]'").each(function() {
+            $("input[name='id_lap[]']").each(function() {
                 if (this.checked == false)
                     i = 0;
             });
@@ -115,6 +116,7 @@
             } else {
                 $("#check_all").removeAttr("checked");
             }
+            updateCost();
         });
         $(".Q_incre").click(function() {
             var id_lap = $(this).attr("id_lap");
@@ -145,6 +147,7 @@
             var id_lap = $(this).attr("id_lap");
             $.post('<?php echo "/$data[domain]/Ajax/Remove_Form_Cart/" ?>' + id_lap, {}, function(data) {
                 $("div[id_lap=" + id_lap + "]").remove();
+                updateCost();
             })
         })
     })
@@ -154,7 +157,9 @@
         $(".product").each(function() {
             dg = $(this).find("label[gia]").attr('gia')
             sl = $(this).find(".quantity").val()
-            s = s + dg * sl;
+            console.log($(this).find("input[name='id_lap[]']").val());
+            if ($(this).find("input[name='id_lap[]']").is(":checked"))
+                s = s + dg * sl;
             a = numberWithCommas(dg * sl)
             $(this).find("div[sotien]").html(a)
             console.log(a)

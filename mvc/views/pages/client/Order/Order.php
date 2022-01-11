@@ -1,5 +1,5 @@
-<div class="row mt-4">
-    <div class="col-8 border p-3">
+<div class="row pt-4">
+    <div class="col-8 p-3">
         <?php
         $totalCost = $this->num_to_price(@$_SESSION['cost']);
         if (isset($_SESSION['order']) && $_SESSION['order'] != [])
