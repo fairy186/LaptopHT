@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 09, 2022 lúc 06:08 AM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 12, 2022 at 06:13 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,16 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `laptop_db`
+-- Database: `laptop_db`
 --
 DROP DATABASE IF EXISTS `laptop_db`;
 CREATE DATABASE `laptop_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `laptop_db`;
-
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -39,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`ID_Admin`, `First_Name`, `Last_Name`, `Account`, `Password`) VALUES
@@ -48,7 +47,7 @@ INSERT INTO `admin` (`ID_Admin`, `First_Name`, `Last_Name`, `Account`, `Password
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
@@ -58,17 +57,17 @@ CREATE TABLE `cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `cart`
+-- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`ID_Lap`, `ID_Cus`, `Quantity`) VALUES
-('LT001', 15, 1),
-('LT002', 15, 1);
+('LT001', 15, 5),
+('LT002', 15, 4);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -79,10 +78,32 @@ CREATE TABLE `comment` (
   `Content` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`ID_Comm`, `ID_Lap`, `ID_Cus`, `Time_Comm`, `Content`) VALUES
+(1, 'LT001', 15, '2022-01-09 14:46:55', 'chủ nhật 9'),
+(2, 'LT001', 15, '2022-01-09 16:51:00', '16h50 9'),
+(3, 'LT001', 16, '2022-01-09 17:20:03', '@@'),
+(4, 'LT001', 16, '2022-01-09 17:21:27', '5h21 9'),
+(5, 'LT001', 16, '2022-01-09 17:22:35', '123'),
+(6, 'LT001', 16, '2022-01-09 17:25:50', '312'),
+(7, 'LT001', 16, '2022-01-09 17:28:16', '222'),
+(8, 'LT001', 16, '2022-01-09 17:29:05', '234'),
+(9, 'LT001', 16, '2022-01-09 17:29:21', '123'),
+(10, 'LT001', 16, '2022-01-09 17:30:08', '222'),
+(11, 'LT001', 16, '2022-01-09 17:32:28', '123'),
+(12, 'LT001', 16, '2022-01-09 17:32:36', '231'),
+(13, 'LT001', 16, '2022-01-09 17:32:57', '@@'),
+(14, 'LT001', 16, '2022-01-09 17:34:55', '123'),
+(15, 'LT030', 16, '2022-01-12 09:46:12', '12'),
+(16, 'LT030', 16, '2022-01-12 09:48:50', '12/01');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -97,30 +118,19 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`ID_Cus`, `First_Name`, `Last_Name`, `Address`, `Phone`, `Email`, `Account`, `Password`) VALUES
-(15, 'Nguyễn Thị ', 'Dũng', 'ola ola, Xã Ba Trại, Huyện Ba Vì, Hà Nội', '0785423698', 'hsajhsajshaj@gmail.com', 'tranvanlong', '$2y$10$s2Tdm3FxE1JHCDMeIwJW.Ojo0payS7cf/4HKScMlYb0ZhRYhTBaHS');
+(15, 'Nguyễn Thị ', 'Dũng', 'ola ola, Xã Ba Trại, Huyện Ba Vì, Hà Nội', '0785423698', 'hsajhsajshaj@gmail.com', 'tranvanlong', '$2y$10$s2Tdm3FxE1JHCDMeIwJW.Ojo0payS7cf/4HKScMlYb0ZhRYhTBaHS'),
+(16, 'Ngô Xuân', 'Huy', 'Xã Ninh Thượng, Thị xã Ninh Hòa, Khánh Hòa', '0362495771', 'ngoxuanhuy186@gmail.com', 'fairy186', '$2y$10$uZfCsWEREFX9IHlHvUs.SOkY8/AWjAYNX3cDJ.DbC7aqdPrtO/K9q'),
+(17, 'Ngo', 'Huy', '12, Phường Cống Vị, Quận Ba Đình, Hà Nội', '0123456789', 'huy@gmail.com', 'nxhuy123', '$2y$10$8AMlwi.J0r7mVuoHoVmiSO0TcnNiXN6jKrz/eanMJt8nsiV8sh5ZO'),
+(18, 'Võ Bá ', 'Toàn', '12, Xã An Phú Tây, Huyện Bình Chánh, Hồ Chí Minh', '0123456789', 'toan@gmail.com', 'toan1234', '$2y$10$7Jmhd1ascia9NfZE96YPie0I0moqm7ea0a9JL4fybS4BZMmeYHs9i');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `discount`
---
-
-CREATE TABLE `discount` (
-  `ID_Dis` int(10) UNSIGNED NOT NULL,
-  `ID_Lap` varchar(10) NOT NULL,
-  `Reduce` int(10) UNSIGNED NOT NULL,
-  `Start_Date` date NOT NULL,
-  `End_Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `district`
+-- Table structure for table `district`
 --
 
 CREATE TABLE `district` (
@@ -131,7 +141,7 @@ CREATE TABLE `district` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `district`
+-- Dumping data for table `district`
 --
 
 INSERT INTO `district` (`id`, `_name`, `_prefix`, `_province_id`) VALUES
@@ -848,7 +858,7 @@ INSERT INTO `district` (`id`, `_name`, `_prefix`, `_province_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `laptop`
+-- Table structure for table `laptop`
 --
 
 CREATE TABLE `laptop` (
@@ -876,7 +886,7 @@ CREATE TABLE `laptop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `laptop`
+-- Dumping data for table `laptop`
 --
 
 INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID_Manu`, `Images`, `CPU`, `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, `Connection`, `Other_Feature`, `Dimen_Wei`, `Material`, `Battery`, `OS`, `Release_Time`, `Add_Time`) VALUES
@@ -893,7 +903,7 @@ INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID
 ('LT011', 'Laptop Asus ZenBook Duo UX482EA', 37690000, '2 năm', 'LT01', 'LM002', '[\"asus-zenbook-duo-ux482ea-i7-ka268t-1.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-2.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-3.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-4.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-5.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-6.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-10.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-11.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-15.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-16.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', ' Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"LPDDR4X\",\"busRAM\":\" 4267 MHz\",\"maxRAM\":\"Null\"}', '1 TB SSD M.2 PCIe', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"100% sRGB, 400 nits, Chống chói Anti Glare, LED Backlit, Tấm nền IPS\"}', ' Audio by Harman/Kardon', '{\"port\":\"1 x USB 3.2, 2 x Thunderbolt 4 USB-C, HDMI, Jack tai nghe 3.5 mm\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" Camera IR, HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Mở khóa khuôn mặt, ScreenPad Plus 12.65 inch (1920 x 515 IPS Panel), Độ bền chuẩn quân đội MIL STD 810H\"}', 'Dài 324 mm - Rộng 222 mm - Dày 17.3 mm - Nặng 1.62 kg', 'Vỏ kim loại', ' 4-cell Li-ion, 70 Wh', ' Windows 10 Home SL', 2021, '2022-01-08 15:05:41'),
 ('LT012', 'Laptop Asus VivoBook A515EA OLED', 19190000, '2 năm', 'LT03', 'LM002', '[\"asus-vivobook-a515ea-oled-i5-l12032w-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-2-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-3.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-4-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-5-1.jpg\"]', 'Intel Core i5 Tiger Lake - 1135G7', 'Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 24 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080) OLED\",\"freSC\":\" 60 Hz\",\"techSC\":\"0.2ms response time, 100% DCI-P3, OLED, SGS Eye Care Display\"}', ' Micro SD', '{\"port\":\"1 x USB 3.2, 2 x USB 2.0, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Không có đèn\",\"otherF\":\" Bảo mật vân tay\"}', ' Dài 359 mm - Rộng 235 mm - Dày 17.9 mm - Nặng 1.8 kg', ' Vỏ nhựa - nắp lưng bằng kim loại', ' 3-cell Li-ion, 42 Wh', ' Windows 11 Home SL', 2021, '2022-01-08 15:21:38'),
 ('LT013', 'Laptop HP Omen 15 ek0078TX', 56990000, '1 năm', 'LT01', 'LM004', '[\"hp-omen-15-ek0078tx-i7-26y68pa-1-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-2-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-3-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-4-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-5-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-6-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-7-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-12-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-13-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-14-org.jpg\"]', ' Intel Core i7 Comet Lake - 10750H', ' Card rời - NVIDIA GeForce RTX2070 With Max-Q Design, 8 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"DDR4 2 khe\",\"busRAM\":\" 2933 MHz\",\"maxRAM\":\" 32 GB\"}', ' 1 TB SSD M.2 PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 300 Hz\",\"techSC\":\"Tấm nền IPS, Chống chói Anti Glare, LED Backlit, 100% sRGB\"}', 'HP Audio Boost, Bang & Olufsen audio, DTS X:Ultra Audio', '{\"port\":\"Jack tai nghe 3.5 mm, HDMI, LAN (RJ45), Thunderbolt 3, Mini DisplayPort, 3x SuperSpeed USB A\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', 'Dài 357.9 mm - Rộng 239.7 mm - Dày 22.5 mm - Nặng 2.36 kg', 'Kim loại và polycarbonate', ' 6-cell Li-ion, 70.9 Wh', ' Windows 10 Home SL + Office Home & Student 2019 vĩnh viễn', 2020, '2022-01-09 09:29:25'),
-('LT014', 'Laptop HP Gaming VICTUS 16 e0170AX', 2990000, '1 năm', 'LT01', 'LM004', '[\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-1.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-2.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-3.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-4.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-5.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-6.jpg\"]', ' AMD Ryzen 7 - 5800H', ' Card rời - NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\"DDR4 2 khe\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 16.1 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', 'Bang & Olufsen audio', '{\"port\":\"1x USB 3.1 Gen 1 Type-A ( HP Sleep and Charge), 1x USB 3.1 Gen 1 Type-C (support Power Delivery, DisplayPort, HP Sleep and Charge), 2 x USB 3.1, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45)\",\"wireless\":\"Bluetooth 5.2, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', ' Dài 370 mm - Rộng 260 mm - Dày 23.5 mm - Nặng 2.41 kg', ' Vỏ nhựa', ' 4-cell Li-ion, 70 Wh', ' Windows 11 Home SL', 2021, '2022-01-09 09:36:03'),
+('LT014', 'Laptop HP Gaming VICTUS 16 e0170AX', 24990000, '1 năm', 'LT01', 'LM004', '[\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-1.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-2.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-3.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-4.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-5.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-6.jpg\"]', ' AMD Ryzen 7 - 5800H', ' Card rời - NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\"DDR4 2 khe\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 16.1 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', 'Bang & Olufsen audio', '{\"port\":\"1x USB 3.1 Gen 1 Type-A ( HP Sleep and Charge), 1x USB 3.1 Gen 1 Type-C (support Power Delivery, DisplayPort, HP Sleep and Charge), 2 x USB 3.1, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45)\",\"wireless\":\"Bluetooth 5.2, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', ' Dài 370 mm - Rộng 260 mm - Dày 23.5 mm - Nặng 2.41 kg', ' Vỏ nhựa', ' 4-cell Li-ion, 70 Wh', ' Windows 11 Home SL', 2021, '2022-01-09 09:36:03'),
 ('LT015', 'Laptop HP ZBook Firefly 14 G8', 41590000, '1 năm', 'LT03', 'LM004', '[\"hp-zbook-firefly-14-g8-i7-275w0av-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-1-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-2-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-3.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-4-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-5-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-6-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-7-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-8-1.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', ' Card rời - NVIDIA QuadroT500, 4GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 1 TB SSD M.2 PCIe', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', ' Bang & Olufsen audio', '{\"port\":\"2 x Thunderbolt 4 USB-C, 2x SuperSpeed USB A, HDMI, Jack tai nghe 3.5 mm\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 323 mm - Rộng 214.6 mm - Dày 17.9 mm - Nặng 1.35 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 53 Wh', ' Windows 10 Pro', 2021, '2022-01-09 09:41:35'),
 ('LT016', 'Laptop Lenovo IdeaPad Gaming 3 15IMH05', 22990000, '2 năm', 'LT01', 'LM003', '[\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-1-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-2-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-3-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-4-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-5-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-6-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-7-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-13-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-14-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-15-org.jpg\"]', ' Intel Core i5 Comet Lake - 10300H', ' Card rời - NVIDIA GeForce GTX 1650Ti 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\"DDR4\",\"busRAM\":\"2933 MHz\",\"maxRAM\":\" 16 GB\"}', '512 GB SSD NVMe PCIe, Hỗ trợ khe cắm HDD SATA', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\"120 Hz\",\"techSC\":\"Tấm nền IPS, Chống chói Anti-Glare, 250 nits\"}', ' Dolby AudioPremium', '{\"port\":\"Jack tai nghe 3.5 mm, HDMI, LAN (RJ45), 2 x USB 3.1, USB Type-C\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Công tắc khóa camera\"}', 'Dài 351 mm - Rộng 240 mm - Dày 24.9 mm - Nặng 2.2 kg', ' Vỏ nhựa', ' 3-cell Polymer, 45 Wh', ' Windows 10 Home SL', 2020, '2022-01-09 09:49:27'),
 ('LT017', 'Laptop Lenovo ThinkBook 15 G2 ITL', 21390000, '2 năm', 'LT03', 'LM003', '[\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-1.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-2.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-3.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-4.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-5.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-6.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-7.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-8.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-9.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-10.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-11.jpg\",\"lenovo-thinkbook-15-g2-itl-i5-20ve00unvn-12.jpg\"]', ' Intel Core i5 Tiger Lake - 1135G7', 'Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\"8 GB\",\"typeRAM\":\"DDR4 2 khe\",\"busRAM\":\"3200 MHz\",\"maxRAM\":\" 40 GB\"}', ' 512 GB SSD NVMe PCIe, Hỗ trợ khe cắm HDD SATA', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"250 nits, 60Hz, Chống chói Anti Glare, Tấm nền IPS\"}', 'Dolby AudioPremium', '{\"port\":\"2 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Thunderbolt 4 USB-C, USB Type-C (support data transfer, Power Delivery 3.0 and DisplayPort 1.4)\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 802.11 a/b/g/n/ac\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"Không có đèn\",\"otherF\":\"Bản lề mở 180 độ, Bảo mật vân tay, Công tắc khóa camera, Độ bền chuẩn quân đội MIL STD 810H\"}', ' Dài 357 mm - Rộng 235 mm - Dày 18.9 mm - Nặng 1.7 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 45 Wh', ' Windows 11 Home SL', 2021, '2022-01-09 10:01:33'),
@@ -914,7 +924,7 @@ INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `laptop_type`
+-- Table structure for table `laptop_type`
 --
 
 CREATE TABLE `laptop_type` (
@@ -923,18 +933,19 @@ CREATE TABLE `laptop_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `laptop_type`
+-- Dumping data for table `laptop_type`
 --
 
 INSERT INTO `laptop_type` (`ID_Type`, `Name_Type`) VALUES
 ('LT01', 'Gaming'),
 ('LT02', 'Macbook'),
-('LT03', 'Văn phòng');
+('LT03', 'Văn phòng'),
+('LT04', 'Mỏng nhẹ');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `manufacturer`
+-- Table structure for table `manufacturer`
 --
 
 CREATE TABLE `manufacturer` (
@@ -943,7 +954,7 @@ CREATE TABLE `manufacturer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `manufacturer`
+-- Dumping data for table `manufacturer`
 --
 
 INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
@@ -958,7 +969,7 @@ INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_details`
+-- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -969,7 +980,7 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `order_details`
+-- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`ID_Order`, `ID_Lap`, `Quantity`, `Price`) VALUES
@@ -978,16 +989,42 @@ INSERT INTO `order_details` (`ID_Order`, `ID_Lap`, `Quantity`, `Price`) VALUES
 (3, 'LT001', 1, 29900000),
 (6, 'LT001', 2, 29900000),
 (7, 'LT001', 2, 29900000),
+(8, 'LT001', 2, 29900000),
+(10, 'LT001', 1, 29900000),
+(11, 'LT001', 1, 29900000),
+(12, 'LT001', 1, 29900000),
+(13, 'LT001', 4, 29900000),
+(14, 'LT001', 1, 29900000),
+(15, 'LT001', 1, 29900000),
+(16, 'LT001', 8, 29900000),
+(17, 'LT001', 1, 29900000),
+(18, 'LT001', 1, 29900000),
+(19, 'LT001', 1, 29900000),
+(20, 'LT001', 1, 29900000),
+(21, 'LT001', 1, 29900000),
+(22, 'LT001', 1, 29900000),
+(23, 'LT001', 1, 29900000),
+(24, 'LT001', 1, 29900000),
+(25, 'LT001', 1, 29900000),
+(27, 'LT001', 1, 29900000),
 (1, 'LT002', 1, 17990000),
 (2, 'LT002', 1, 17990000),
 (3, 'LT002', 1, 17990000),
 (4, 'LT002', 1, 17990000),
-(5, 'LT002', 1, 17990000);
+(5, 'LT002', 1, 17990000),
+(26, 'LT004', 1, 45990000),
+(9, 'LT005', 1, 38790000),
+(28, 'LT027', 1, 61490000),
+(30, 'LT028', 1, 25790000),
+(31, 'LT028', 1, 25790000),
+(29, 'LT029', 1, 28990000),
+(31, 'LT029', 1, 28990000),
+(31, 'LT030', 1, 25790000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_info`
+-- Table structure for table `order_info`
 --
 
 CREATE TABLE `order_info` (
@@ -999,7 +1036,7 @@ CREATE TABLE `order_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `order_info`
+-- Dumping data for table `order_info`
 --
 
 INSERT INTO `order_info` (`ID_Order`, `ID_Cus`, `Time_Order`, `Status_Order`, `Cost`) VALUES
@@ -1009,12 +1046,36 @@ INSERT INTO `order_info` (`ID_Order`, `ID_Cus`, `Time_Order`, `Status_Order`, `C
 (4, 15, '2022-01-04 16:04:29', 2, 17990000),
 (5, 15, '2022-01-04 16:05:34', 4, 17990000),
 (6, 15, '2022-01-04 16:08:51', 0, 59800000),
-(7, 15, '2022-01-04 16:10:10', 1, 59800000);
+(7, 15, '2022-01-04 16:10:10', 1, 59800000),
+(8, 16, '2022-01-09 17:40:03', 1, 59800000),
+(9, 16, '2022-01-10 10:34:07', 1, 38790000),
+(10, 16, '2022-01-10 10:38:20', 1, 29900000),
+(11, 16, '2022-01-10 10:38:38', 1, 29900000),
+(12, 16, '2022-01-10 10:44:18', 1, 29900000),
+(13, 16, '2022-01-10 11:00:23', 1, 119600000),
+(14, 16, '2022-01-10 11:03:09', 1, 29900000),
+(15, 16, '2022-01-10 11:05:28', 1, 29900000),
+(16, 16, '2022-01-10 11:12:48', 1, 239200000),
+(17, 16, '2022-01-10 11:14:41', 1, 29900000),
+(18, 16, '2022-01-10 11:16:44', 1, 29900000),
+(19, 16, '2022-01-10 11:17:51', 1, 29900000),
+(20, 16, '2022-01-10 11:18:22', 1, 29900000),
+(21, 16, '2022-01-10 11:27:28', 1, 29900000),
+(22, 16, '2022-01-10 11:28:17', 1, 29900000),
+(23, 16, '2022-01-10 11:30:56', 1, 29900000),
+(24, 16, '2022-01-10 11:34:02', 1, 29900000),
+(25, 16, '2022-01-10 11:44:55', 1, 29900000),
+(26, 16, '2022-01-10 11:47:53', 1, 45990000),
+(27, 16, '2022-01-12 11:37:22', 1, 81480000),
+(28, 16, '2022-01-12 11:38:07', 1, 113070000),
+(29, 16, '2022-01-12 11:39:16', 1, 28990000),
+(30, 16, '2022-01-12 11:39:30', 1, 77370000),
+(31, 16, '2022-01-12 11:41:53', 1, 80570000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `province`
+-- Table structure for table `province`
 --
 
 CREATE TABLE `province` (
@@ -1024,7 +1085,7 @@ CREATE TABLE `province` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `province`
+-- Dumping data for table `province`
 --
 
 INSERT INTO `province` (`id`, `_name`, `_code`) VALUES
@@ -1095,20 +1156,29 @@ INSERT INTO `province` (`id`, `_name`, `_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `slider`
+-- Table structure for table `slider`
 --
 
 CREATE TABLE `slider` (
   `ID_Slider` int(10) UNSIGNED NOT NULL,
   `Title` varchar(255) NOT NULL,
-  `Image` varchar(255) NOT NULL,
+  `Image` text NOT NULL,
   `Status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`ID_Slider`, `Title`, `Image`, `Status`) VALUES
+(7, 'Gaming', 'Slider1.png', 1),
+(8, 'Quà', 'Slider2.png', 2),
+(9, 'Khuyến mãi', 'Slider3.png', 3);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ward`
+-- Table structure for table `ward`
 --
 
 CREATE TABLE `ward` (
@@ -1119,7 +1189,7 @@ CREATE TABLE `ward` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `ward`
+-- Dumping data for table `ward`
 --
 
 INSERT INTO `ward` (`id`, `_name`, `_prefix`, `_district_id`) VALUES
@@ -12414,17 +12484,17 @@ INSERT INTO `ward` (`id`, `_name`, `_prefix`, `_district_id`) VALUES
 (11283, 'Trung Phúc', 'Xã', 709);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID_Admin`);
 
 --
--- Chỉ mục cho bảng `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`ID_Lap`,`ID_Cus`),
@@ -12432,7 +12502,7 @@ ALTER TABLE `cart`
   ADD KEY `ID_Lap` (`ID_Lap`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`ID_Comm`),
@@ -12440,28 +12510,21 @@ ALTER TABLE `comment`
   ADD KEY `ID_Cus` (`ID_Cus`);
 
 --
--- Chỉ mục cho bảng `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`ID_Cus`),
   ADD UNIQUE KEY `Account` (`Account`);
 
 --
--- Chỉ mục cho bảng `discount`
---
-ALTER TABLE `discount`
-  ADD PRIMARY KEY (`ID_Dis`),
-  ADD KEY `ID_Lap` (`ID_Lap`);
-
---
--- Chỉ mục cho bảng `district`
+-- Indexes for table `district`
 --
 ALTER TABLE `district`
   ADD PRIMARY KEY (`id`),
   ADD KEY `_province_id` (`_province_id`);
 
 --
--- Chỉ mục cho bảng `laptop`
+-- Indexes for table `laptop`
 --
 ALTER TABLE `laptop`
   ADD PRIMARY KEY (`ID_Lap`),
@@ -12469,19 +12532,19 @@ ALTER TABLE `laptop`
   ADD KEY `ID_Manu` (`ID_Manu`);
 
 --
--- Chỉ mục cho bảng `laptop_type`
+-- Indexes for table `laptop_type`
 --
 ALTER TABLE `laptop_type`
   ADD PRIMARY KEY (`ID_Type`);
 
 --
--- Chỉ mục cho bảng `manufacturer`
+-- Indexes for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`ID_Manu`);
 
 --
--- Chỉ mục cho bảng `order_details`
+-- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`ID_Lap`,`ID_Order`),
@@ -12489,7 +12552,7 @@ ALTER TABLE `order_details`
   ADD KEY `ID_Order` (`ID_Order`);
 
 --
--- Chỉ mục cho bảng `order_info`
+-- Indexes for table `order_info`
 --
 ALTER TABLE `order_info`
   ADD PRIMARY KEY (`ID_Order`),
@@ -12497,128 +12560,116 @@ ALTER TABLE `order_info`
   ADD KEY `ID_Cus` (`ID_Cus`);
 
 --
--- Chỉ mục cho bảng `province`
+-- Indexes for table `province`
 --
 ALTER TABLE `province`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `slider`
+-- Indexes for table `slider`
 --
 ALTER TABLE `slider`
   ADD PRIMARY KEY (`ID_Slider`);
 
 --
--- Chỉ mục cho bảng `ward`
+-- Indexes for table `ward`
 --
 ALTER TABLE `ward`
   ADD PRIMARY KEY (`id`),
   ADD KEY `_province_id` (`_district_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `ID_Admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `ID_Comm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Comm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT cho bảng `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT cho bảng `discount`
---
-ALTER TABLE `discount`
-  MODIFY `ID_Dis` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `district`
+-- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=710;
 
 --
--- AUTO_INCREMENT cho bảng `province`
+-- AUTO_INCREMENT for table `province`
 --
 ALTER TABLE `province`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT cho bảng `slider`
+-- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `ID_Slider` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Slider` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT cho bảng `ward`
+-- AUTO_INCREMENT for table `ward`
 --
 ALTER TABLE `ward`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11284;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `cart`
+-- Constraints for table `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`);
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`),
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
 
 --
--- Các ràng buộc cho bảng `discount`
---
-ALTER TABLE `discount`
-  ADD CONSTRAINT `discount_ibfk_1` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`);
-
---
--- Các ràng buộc cho bảng `district`
+-- Constraints for table `district`
 --
 ALTER TABLE `district`
   ADD CONSTRAINT `district_ibfk_1` FOREIGN KEY (`_province_id`) REFERENCES `province` (`id`);
 
 --
--- Các ràng buộc cho bảng `laptop`
+-- Constraints for table `laptop`
 --
 ALTER TABLE `laptop`
   ADD CONSTRAINT `laptop_ibfk_1` FOREIGN KEY (`ID_Type`) REFERENCES `laptop_type` (`ID_Type`),
   ADD CONSTRAINT `laptop_ibfk_2` FOREIGN KEY (`ID_Manu`) REFERENCES `manufacturer` (`ID_Manu`);
 
 --
--- Các ràng buộc cho bảng `order_details`
+-- Constraints for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`ID_Order`) REFERENCES `order_info` (`ID_Order`),
   ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`);
 
 --
--- Các ràng buộc cho bảng `order_info`
+-- Constraints for table `order_info`
 --
 ALTER TABLE `order_info`
   ADD CONSTRAINT `order_info_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
 
 --
--- Các ràng buộc cho bảng `ward`
+-- Constraints for table `ward`
 --
 ALTER TABLE `ward`
   ADD CONSTRAINT `ward_ibfk_1` FOREIGN KEY (`_district_id`) REFERENCES `district` (`id`);
