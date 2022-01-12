@@ -4,7 +4,7 @@ $valuepe = $data['dSlider'];
 echo "<table align='center' class='table table-bordered table-striped' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
-     <th>Mã</th>
+     <th>STT</th>
      <th>Title</th></th>
      <th>Ảnh</th>
      <th>Trạng thái</th>
@@ -12,8 +12,9 @@ echo "<table align='center' class='table table-bordered table-striped' cellpaddi
      </tr>
      </thead>";
 foreach ($data['dSlider'] as $key => $value) {
+     $stt=$key+1;
      echo "<tr align='center'>
-               <td>$value[ID_Slider]</td>
+               <td>$stt</td>
                <td>$value[Title]</td>
                <td><img src='/$data[domain]/images/slider/$value[Image]' style='height: 75px;'  /></td>
                <td>$value[Status]</td>

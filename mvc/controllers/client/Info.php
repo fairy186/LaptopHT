@@ -40,6 +40,7 @@ class Info extends Controller
           }
           if (isset($_POST['sm_changeAddress'])) {
                $address = $this->dAddress->GetAddress($_POST['province'], $_POST['district'], $_POST['ward']);
+               $address = $_POST['spe'] . ", ". $address;
                if ($this->dCus->updateAddress($_SESSION['user']['id'], $address)) {
                     $_SESSION['user']['dc'] = $address;
                     $_SESSION['notify'] = "Cập nhật thành công";
