@@ -96,10 +96,10 @@ class Ajax extends controller
                echo "
                <a class='laptop' href='/$this->domain/LaptopDetails/$id' style='text-decoration: none; color: black'>
                     <div class='col border h-100 p-1 rounded' style='background-color: white'>
-                    <div class='card mb-2 row m-0 border-0'>
-                         <div class='ml-3'>
+                    <div class='card mb-1 m-0 p-0 border-0'>
+                         <div>
                               <img src='/$this->domain/images/$id/$images[0]' class='card-img-top' style='max-height:200px;'>
-                              <h5 class='card-title'>$name</h5>
+                              <h5 class='card-title overflow-hidden m-0 p-0' style='white-space: nowrap;'>$name </h5>
                          </div>
                          <div>
                               <div class='card-body '>
@@ -150,7 +150,7 @@ class Ajax extends controller
                     <div class='card mb-2 row m-0 border-0'>
                          <div class='ml-3'>
                               <img src='/$this->domain/images/$id/$images[0]' class='card-img-top' style='max-height:200px;'>
-                              <h5 class='card-title'>$name</h5>
+                              <h5 class='card-title overflow-hidden m-0 p-0' style='white-space: nowrap;'>$name </h5>
                          </div>
                          <div>
                               <div class='card-body '>
