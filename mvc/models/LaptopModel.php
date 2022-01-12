@@ -203,18 +203,18 @@ class LaptopModel extends DB
      }
      function Check_memRAM($val)
      {
-          return $this->check($val, 1, 100, 111);
+          return $this->check($val, 1, 100);
      }
      function Check_typeRAM($val)
      {
-          return $this->check($val, 1, 100, 111);
+          return $this->check($val, 1, 100);
      }
      function Check_busRAM($val)
      {
-          return $this->check($val, 1, 100, 111);
+          return $this->check($val, 1, 100);
      }
      function Check_maxRAM($val)
      {
-          return $this->check($val, 1, 100, 111);
+          return $this->check($val, 1, 100);
      }
 }
