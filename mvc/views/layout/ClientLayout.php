@@ -39,7 +39,7 @@ if (isset($_SESSION['notify'])) {
                z-index: 100;
           }
           .btn:hover{
-               filter: drop-shadow(0 0 5px blue)
+               filter: drop-shadow(0 0 10px #fff);
           }
 
           .form-label {
@@ -53,7 +53,7 @@ if (isset($_SESSION['notify'])) {
      </style>
 </head>
 
-<body class="container-fruilt" style='min-width:640px; '>
+<body class="container-fruilt" style='min-width:640px; background: url(<?php echo "/$data[domain]/images/shared/bg.jpg" ?>) top center no-repeat black'>
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand navbar-dark bg-dark container-md">
                <div class="container-fluid d-flex">
@@ -110,7 +110,7 @@ if (isset($_SESSION['notify'])) {
           </nav>
      </div>
 
-     <div id="content" class="container-xl bg-primary bg-opacity-10 p-0" style="margin-bottom: 60px;">
+     <div id="content" class="container-xl p-0" style="margin-bottom: 60px;">
           <div class="modal fade" id="Model_Notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

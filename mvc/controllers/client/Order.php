@@ -56,12 +56,12 @@ class Order extends Controller
                     foreach ($_SESSION['order'] as $key => $value) {
                         $this->dOrDe->Add($id_order, $value['ID_Lap'], $value['Quantity'], $value['Price']);
                         $this->dCart->Delete($value['ID_Lap'], $_SESSION['user']['id']);
-                        $_SESSION['notify'] = "Đặt hàng thành công!";
-                        unset($_SESSION['order']);
-                        unset($_SESSION['cost']);
-                        header("Location: /$this->domain/MyOrder");
-                        return;
                     }
+                    $_SESSION['notify'] = "Đặt hàng thành công!";
+                    unset($_SESSION['order']);
+                    unset($_SESSION['cost']);
+                    header("Location: /$this->domain/MyOrder");
+                    return;
                 } else {
                     unset($_SESSION['order']);
                     unset($_SESSION['cost']);

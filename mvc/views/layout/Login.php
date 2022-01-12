@@ -1,3 +1,9 @@
+<?php
+if (isset($_SESSION['notify'])) {
+      $ct_notify = $_SESSION['notify'];
+      unset($_SESSION['notify']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,11 +33,34 @@
       <?php
       require_once "./mvc/views/pages/client/$data[controller]/" . $data['page'] . ".php";
       ?>
+      <div class="modal fade" id="Model_Notify" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                        <div class="modal-header">
+                              <h5 class="modal-title fw-bold" id="exampleModalLabel">Thông báo</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center text-primary fs-5" id="notify_body">
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                  </div>
+            </div>
+      </div>
       <script>
-          if (window.history.replaceState) {
-               window.history.replaceState(null, null, window.location.href);
-          }
-     </script>
+            $(document).ready(function() {
+                  $("#notify_body").html("<?php echo @$ct_notify ?>");
+                  var notify = new bootstrap.Modal(document.getElementById('Model_Notify'), {
+                        keyboard: false
+                  });
+                  if ($("#notify_body").html() != '') {
+                        notify.show();
+                  }
+            })
+            if (window.history.replaceState) {
+                  window.history.replaceState(null, null, window.location.href);
+            }
+      </script>
 </body>
 
 </html>

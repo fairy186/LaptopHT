@@ -29,7 +29,7 @@ class Login extends Controller
                 header("Location: /$this->domain/" . @$_SESSION['url']);
                 return;
             } else
-                $_SESSION['Notification'] = "Tài khoản hoặc mật sai!";
+                $_SESSION['notify'] = "Tài khoản hoặc mật sai!";
         }
 
         $this->view("Login", $this->data);
@@ -59,6 +59,7 @@ class Login extends Controller
                 $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
                 $u = $this->dCus->Login($_POST['account'], $_POST['password']);
                 $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]", 'sdt' => "$u[Phone]"];
+                $_SESSION['notify'] = "<p>Chào $u[Last_Name]!</p><p>Chúc mưng bạn vừa tạo tài khoản</p>";
                 header("Location: /$this->domain");
                 return;
             } else

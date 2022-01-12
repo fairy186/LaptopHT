@@ -10,10 +10,9 @@ $screen = json_decode($data['dLap']['Screen'], 1);
 $price = $this->num_to_price($data['dLap']['Price']);
 $id_user = @$_SESSION['user']['id'];
 ?>
-
-<div class="container-fruit row">
+<div class="container-fruit row bg-light bg-gradient g-0" >
     <div class="col-6 ">
-        <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div id="carouselExampleInterval" class="carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php
                 foreach ($images as $key => $value) {
@@ -39,7 +38,7 @@ $id_user = @$_SESSION['user']['id'];
             </button>
         </div>
         <div>
-            <h4 style="color: red;" align="right">Giá <?php echo $price ?></h4>
+            <h4 style="color: red;" class="m-3 p-0 fw-bold text-end">Giá <?php echo $price ?></h4>
         </div>
         <div class="row">
             <div class="col ml-4 d-flex">
@@ -51,15 +50,15 @@ $id_user = @$_SESSION['user']['id'];
                 </form>
             </div>
         </div>
-        <div class="border p-2 m-2">
-            <h2>Bình luận</h2>
-            <div class="d-flex flex-row mb-3 border rounded-pill p-2 m-2 justify-content-center">
+        <div class="border border-primary rounded p-2 mt-5 mx-2" >
+            <h2 class="fs-3 text-center text-primary">Bình luận</h2>
+            <div class="d-flex flex-row mb-3 rounded-pill bg-primary bg-gradient bg-opacity-25 badge p-2 m-2 justify-content-center">
                 <?php
                 if (isset($_SESSION['user']))
                     echo "
                             <img src='/$data[domain]/images/shared/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                             <textarea id='inp_comment' class='form-control flex-grow-1 mx-2 rounded-pill scroll' placeholder='bình luận' style='height:50px;'></textarea>
-                            <button id='btn_comment' class='btn btn-outline-primary rounded-pill m-0' tybe='button'><i class='bi bi-send fs-4'></i></button>
+                            <button id='btn_comment' class='btn btn-dark rounded-pill m-0' tybe='button'><i class='bi bi-send fs-4'></i></button>
                         
                             ";
                 else
@@ -76,11 +75,11 @@ $id_user = @$_SESSION['user']['id'];
         </div>
     </div>
     <div class="col-6">
-        <h2><?php echo $name ?></h2>
-        <div class="card border-light mb-3" style="max-width: 100rem;">
+        <div class="card border-0 border-top mb-3" style="max-width: 100rem;">
             <div class="col-12 ">
+                <h2 class="fw-bold text-center text-warning p-2 m-0 bg-dark"><?php echo $name ?></h2>
                 <h5 class="card-header" style="background-color: #C6DEF7;">Tổng quan</h5>
-                <div class="card-body">
+                <div class="card-body" >
                     <div class="row">
                         <label class="card-title col-md-4 col-label">CPU</label>
                         <div class="col-md-8 ">
@@ -236,7 +235,9 @@ $id_user = @$_SESSION['user']['id'];
         var content = $("#inp_comment").val();
         $("#inp_comment").val('');
         console.log(content);
-        $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>' + content, {}, function(data) {
+        $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>', {
+            content: content
+        }, function(data) {
             $("#ListComment").html('');
             for (var i = 0; i <= vt; i++) {
                 load_Comments(i);

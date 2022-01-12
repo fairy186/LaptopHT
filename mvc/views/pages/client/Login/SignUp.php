@@ -65,7 +65,7 @@ if (!empty($_SESSION['Notification'])) {
         </div>
         <div>
             <center>
-                <button class="btn btn-outline-primary mt-3" name="sm" type="submit">
+                <button class="btn btn-outline-primary mt-3 disabled" name="sm" type="submit">
                     <h4 class="mx-3 my-1">Đăng ký</h4>
                 </button>
             </center>

@@ -1,9 +1,3 @@
-<?php
-if (!empty($_SESSION['Notification'])) {
-     echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-     unset($_SESSION['Notification']);
-}
-?>
 <Style>
     .signin {
         background-color: #d3d3d3;
@@ -13,6 +7,7 @@ if (!empty($_SESSION['Notification'])) {
         letter-spacing: 1px;
 
     }
+
     .login {
         color: white;
         position: relative;
@@ -20,7 +15,7 @@ if (!empty($_SESSION['Notification'])) {
         width: 405px;
         margin: auto;
         padding: 60px 60px;
-        background: url(<?php echo "/$data[domain]/images/shared/Sign_in.png"?>) no-repeat center center #505050;
+        background: url(<?php echo "/$data[domain]/images/shared/Sign_in.png" ?>) no-repeat center center #505050;
         background-size: cover;
         box-shadow: 0px 30px 60px -5px #FFF;
     }
@@ -32,6 +27,7 @@ if (!empty($_SESSION['Notification'])) {
     .active {
         border-bottom: 2px solid #1161ed;
     }
+
     h2 {
         padding-left: 12px;
         font-size: 22px;
@@ -41,6 +37,7 @@ if (!empty($_SESSION['Notification'])) {
         display: inline-block;
         font-weight: 100;
     }
+
     h2:first-child {
         padding-left: 0px;
     }
@@ -54,6 +51,7 @@ if (!empty($_SESSION['Notification'])) {
         top: -65px;
         transition: all 0.5s ease-in-out;
     }
+
     .text {
         border: none;
         width: 89%;
@@ -122,6 +120,7 @@ if (!empty($_SESSION['Notification'])) {
     .custom-checkbox:focus {
         outline: none;
     }
+
     label[for="checkbox-1-1"] {
         display: inline-block;
         padding-top: 1px;
@@ -179,23 +178,22 @@ if (!empty($_SESSION['Notification'])) {
         <span>username</span>
         <br>
         <br>
-        <input type="password" name ="password" class="text" name="password">
+        <input type="password" name="password" class="text" name="password">
         <span>password</span>
         <br>
         <button class="signin" type="submit" name="sm">
             Đăng nhập
         </button>
-        <a href='<?php echo "/$data[domain]/Login/SignUp";?>'>Chưa có tài khoản?</a>
+        <a href='<?php echo "/$data[domain]/Login/SignUp"; ?>'>Chưa có tài khoản?</a>
         <hr>
     </form>
-<script>
-    $("form").submit(function () {
-        if($("input[name='account']").val() =="" || $("input[name='password']").val() =="")
-            {
+    <script>
+        $("form").submit(function() {
+            if ($("input[name='account']").val() == "" || $("input[name='password']").val() == "") {
                 alert("Vui lòng nhập tài khoản & mật khẩu!")
                 return false;
             }
-        
-    })
-</script>
+
+        })
+    </script>
 </div>

@@ -2,7 +2,7 @@
 $dc = explode(", ", @$_SESSION['user']['dc']);
 ?>
 <div class="p-5">
-     <div class="card mb-3 rounded-pill p-5">
+     <div class="card mb-3 rounded-pill p-5 fs-5">
           <div class="row g-0">
                <div class="col-md-4">
                     <img src="<?php echo "/$data[domain]/images/shared/avatardefault.png" ?>" class="img-fluid rounded-start w-100 mt-5" alt="...">
@@ -34,7 +34,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
                               </div>
                               <div>
                                    <center>
-                                        <button class="btn btn-outline-primary mt-3" name="sm" type="submit">
+                                        <button class="btn btn-outline-primary mt-3 disabled"  name="sm" type="submit">
                                              <h4 class="mx-3 my-1">Cập nhật</h4>
                                         </button>
                                    </center>
@@ -98,8 +98,8 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
                               <label mess="address"></label>
                          </div>
                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="submit" name="sm_changeAddress" class="btn btn-primary">Save changes</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                              <button type="submit" name="sm_changeAddress" class="btn btn-primary px-4">Đổi</button>
                          </div>
                     </form>
 
@@ -112,7 +112,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
      <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
                <div class="modal-header">
-                    <h5 class="modal-title" id="changPasswordLabel">Cập nhật địa chỉ</h5>
+                    <h5 class="modal-title" id="changPasswordLabel">Đổi mật khẩu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                </div>
                <form action="" method="post" class="">
@@ -122,17 +122,17 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
                               <label mess=""></label>
                          </div>
                          <div>
-                              <input type="password" vali class="form-control" name="password" placeholder="Mật khẩu mới" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
+                              <input type="password" vali class="form-control" name="password" placeholder="Mật khẩu mới" required>
                               <label mess="password"></label>
                          </div>
                          <div>
-                              <input type="password" class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu mới" value='<?php if (isset($_POST["password"])) echo $_POST["password"] ?>' required>
+                              <input type="password" class="form-control" name="confirmPassword" placeholder="Xác nhận mật khẩu mới" required>
                               <label mess="confirmPassword"></label>
                          </div>
                     </div>
                     <div class="modal-footer">
-                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                         <button type="submit" name="sm_changePassword" class="btn btn-primary">Save changes</button>
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                         <button type="submit" name="sm_changePassword" class="btn btn-primary px-4"> Đổi</button>
                     </div>
           </div>
 
@@ -144,11 +144,13 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
 <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
 <script>
      $(document).ready(function() {
-          validate();
           $("input[vali]").keyup(function() {
                check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+               validate();
           }).change(function() {
+               validate();
                check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+
           });
           $("input[name='confirmPassword']").keyup(function() {
                if ($(this).val() == $("input[name='password']").val()) {
@@ -182,7 +184,6 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
                });
           });
      });
-
      function validate() {
           $("input[vali]").each(function() {
                check_Input(this, "<?php echo $data['domain'] ?>", "Customer");

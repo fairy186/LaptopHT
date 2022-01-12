@@ -43,8 +43,9 @@ class Ajax extends controller
           $md = $this->model("CartModel");
           echo json_encode($md->AddCart($id_lap, $id_cus), JSON_UNESCAPED_UNICODE);
      }
-     public function Comment($id_Lap, $id_Cus, $content)
+     public function Comment($id_Lap, $id_Cus)
      {
+          $content="".@$_POST['content'];
           $md = $this->model("CommentModel");
           $this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
      }
@@ -55,7 +56,7 @@ class Ajax extends controller
           foreach ($dCom as $key => $value) {
                $time_comm = $this->convert_time($value['Time_Comm']);
                echo "
-                    <div class='border rounded p-2 m-2 comment'>
+                    <div class='border rounded p-2 m-2 comment' style='background: #fff;'>
                          <div>
                               <img src='/$this->domain/images/shared/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                               <span class='fw-bold name_cm'>$value[First_Name] $value[Last_Name]</span>        
