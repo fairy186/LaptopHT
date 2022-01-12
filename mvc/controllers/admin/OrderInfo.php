@@ -20,7 +20,14 @@ class OrderInfo extends Controller
         $this->data['title'] = "Đơn hàng";
         $this->data['dOr_Cus'] = $this->dOrIn->GetFullInfo();
         $this->view("AdminLayout", $this->data);
-
+    }
+    function Search($info="")
+    {
+        $this->data["page"] = "OrderInfo";
+        $this->data['title'] = "Đơn hàng";
+        $this->data['dOr_Cus'] = $this->dOrIn->Search($info);
+        // print_r($this->data['dOr_Cus']);
+        $this->view("AdminLayout", $this->data);
     }
     function OrderDetails($id)
     {
@@ -32,10 +39,11 @@ class OrderInfo extends Controller
         $this->data["dOrDe"] = $this->dOrDe->GetByID($id);
         if (isset($_POST['sm'])) {
             if ($_POST['status'] >= 0 && $_POST['status'] <= 5)
-                if ($this->dOrIn->Edit($id, $_POST['status'])) 
+                if ($this->dOrIn->Edit($id, $_POST['status']))
                     $_SESSION['Notification'] = "Cập nhật thành công!";
-            else
-                $_SESSION['Notification'] = "Vui lòng kiểm tra lại dữ liệu nhập!";
+                else
+                    $_SESSION['Notification'] = "Vui lòng kiểm tra lại dữ liệu nhập!";
+            $this->data["dOrIn"] = $this->dOrIn->GetByID($id);
         }
         $this->view("AdminLayout", $this->data);
     }

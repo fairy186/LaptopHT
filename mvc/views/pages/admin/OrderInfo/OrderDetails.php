@@ -1,16 +1,10 @@
-<?php
-if (!empty($_SESSION['Notification'])) {
-     echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-     unset($_SESSION['Notification']);
-}
-?>
 <style>
      td{
           font-weight: bold;
           padding:2px 10px;
      }
 </style>
-<h2 style='color: blue;' align='center'>CHI TIẾT ĐƠN HÀNG</h2>
+<h1 class="text-center text-primary fw-bold p-5">Chi Tiết Đơn Hàng</h1>
 <form action="" method="post" class="col-12 col-xl-6 container">
      <div>
           <?php

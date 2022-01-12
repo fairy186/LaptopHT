@@ -21,6 +21,17 @@ class Laptop extends Controller
         $this->data['dLap'] = $this->dLap->GetFullInfo();
         $this->view("AdminLayout", $this->data);
     }
+    function Search($info = "")
+    {
+        if (empty($info)) {
+            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            return;
+        }
+        $this->data["page"] = "Laptop";
+        $this->data['title'] = "Laptop";
+        $this->data['dLap'] = $this->dLap->Search($info);
+        $this->view("AdminLayout", $this->data);
+    }
     function Add()
     {
         $this->data["page"] = "AddLaptop";

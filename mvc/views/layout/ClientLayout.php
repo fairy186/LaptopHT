@@ -179,8 +179,6 @@ if (isset($_SESSION['notify'])) {
                     window.location.href = '<?php echo "/$data[domain]/Search/" ?>' + search_info;
                }
           }
-     </script>
-     <script>
           if (window.history.replaceState) {
                window.history.replaceState(null, null, window.location.href);
           }

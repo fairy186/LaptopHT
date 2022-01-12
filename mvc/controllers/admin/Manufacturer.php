@@ -17,6 +17,18 @@ class Manufacturer extends Controller
           $this->data['dManu'] = $this->dManu->Get();
           $this->view("AdminLayout", $this->data);
      }
+     function Search($info = "")
+     {
+          if (empty($info)) {
+               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               return;
+          }
+          $this->data["page"] = "Manufacturer";
+          $this->data['title'] = "Hảng Laptop";
+          $this->data['dManu'] = $this->dManu->Search($info);
+          $this->view("AdminLayout", $this->data);
+     }
+
      function Add()
      {
           $this->data["page"] = "AddManufacturer";
@@ -42,9 +54,10 @@ class Manufacturer extends Controller
           $this->data['title'] = "Sửa Hảng";
           $this->data['action'] = "Edit";
           $this->data["dManu"] = $this->dManu->GetByID($id);;
-          if ($this->data["dManu"] == 0)
+          if ($this->data["dManu"] == 0) {
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
                return;
+          }
           if (isset($_POST['sm'])) {
                $check = $this->validate($this->dManu, $_POST);
                if ($check)
@@ -65,13 +78,13 @@ class Manufacturer extends Controller
           $this->data['title'] = "Xóa Hảng";
           $this->data['action'] = "Delete";
           $this->data["dManu"] = $this->dManu->GetByID($id);
-          if ($this->data["dManu"] == "")
+          if ($this->data["dManu"] == "") {
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
                return;
+          }
           if (isset($_POST['sm'])) {
                if ($this->dManu->Delete($id)) {
                     $_SESSION['Notification'] = "Xóa thành công!";
-                    $this->delFile($id);
                     header("Location: /$this->domain/Admin/" . $this->data['controller']);
                     return;
                } else

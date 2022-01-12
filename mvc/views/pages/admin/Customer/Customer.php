@@ -1,9 +1,10 @@
-<h1 align="center">Danh Sách Khách Hàng</h1>
-<?php
-if (isset($data['tb'])) {
-     echo $data['tb'];
-}
-?>
+<h1 class="text-center text-primary fw-bold m-3">Danh Sách Khách hàng</h1>
+<div class="container mb-3" style="max-width: 400px;">
+<div class="input-group">
+     <input id="search" class="form-control border-2 border-primary"  name="info" value="<?php echo @$data['info'] ?>" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
+     <button class="btn btn-dark border-2 border-primary"  type="button" onclick="search()"><i class="bi bi-search"></i></button>
+</div>
+</div>
 <?php
 $dcus = $data['dCus'];
 echo "<table align='center' class='table table-bordered table-striped' cellpadding='2' cellspacing='2'>

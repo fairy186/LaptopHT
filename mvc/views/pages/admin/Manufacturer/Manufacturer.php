@@ -1,10 +1,10 @@
-<h1 align="center">Danh Sách Hảng Laptop</h1>
-<?php
-if (isset($data['tb'])) {
-     echo $data['tb'];
-}
-?>
-<h3><a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add"?>'><i class="bi bi-plus-circle"></i></a></h3>
+<h1 class="text-center text-primary fw-bold m-3">Danh Sách Hảng Laptop <a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add" ?>'><i class="bi bi-plus-circle"></i></a></h1>
+<div class="container mb-3" style="max-width: 400px;">
+<div class="input-group">
+     <input id="search" class="form-control border-2 border-primary"  name="info" value="<?php echo @$data['info'] ?>" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
+     <button class="btn btn-dark border-2 border-primary"  type="button" onclick="search()"><i class="bi bi-search"></i></button>
+</div>
+</div>
 <?php
 $dmanu = $data['dManu'];
 echo "<table class='table table-bordered table-striped' align='center' cellpadding='2' cellspacing='2'>

@@ -17,4 +17,10 @@ class Cart extends Controller
         $this->data['dCart'] = $this->dCart->GetFullInfo();
         $this->view("AdminLayout", $this->data);
     }
+    function Search($info){
+        $this->data["page"] = "Cart";
+        $this->data['title'] = "Giỏ hàng";
+        $this->data['dCart'] = $this->dCart->Search($info);
+        $this->view("AdminLayout", $this->data);
+    }
 }
