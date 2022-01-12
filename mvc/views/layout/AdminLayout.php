@@ -45,9 +45,8 @@ function listitem($currentCtrl, $controller, $itemname)
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand navbar-dark bg-dark container p-0">
                <div class="container-fluid d-flex">
-                    <a class="navbar-brand text-danger fw-bold fst-italic border border-danger rounded px-2" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> Home</a>
+                    <a class="navbar-brand text-warning p-2 fs-2 fw-bold" href="<?php echo "/$data[domain]/Admin"; ?>"><i class="bi bi-laptop"></i> ADMIN</a>
                     <div class="mb-0 mx-auto">
-                         <span class="text-warning fs-1 fw-bold"> ADMIN</span>
                     </div>
                     <ul class="navbar-nav">
                          <?php if (isset($_SESSION['user'])) echo "<li class='nav-item dropdown border border-primary rounded px-2'>
