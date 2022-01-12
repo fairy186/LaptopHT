@@ -1,5 +1,4 @@
 <h1 align="center">Danh Sách Quản Trị Viên</h1>
-<h3><a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add" ?>'><i class="bi bi-plus-circle"></i></a></h3>
 <?php
 echo "<table align='center' class='table table-bordered rounded-3' cellpadding='2' cellspacing='2'>
 <thead class='table-primary' >
