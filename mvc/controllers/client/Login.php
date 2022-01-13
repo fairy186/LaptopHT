@@ -31,7 +31,6 @@ class Login extends Controller
             } else
                 $_SESSION['notify'] = "Tài khoản hoặc mật sai!";
         }
-
         $this->view("Login", $this->data);
     }
     function SignOut()

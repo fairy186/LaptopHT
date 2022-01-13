@@ -38,6 +38,12 @@ function listitem($currentCtrl, $controller, $itemname)
                color: blueviolet;
                font-weight: bolder;
           }
+
+          table th:hover {
+               cursor: pointer;
+               font-style: italic;
+               background-color: blueviolet;
+          }
      </style>
 </head>
 
@@ -108,14 +114,12 @@ function listitem($currentCtrl, $controller, $itemname)
      </div>
      <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
      <script>
-          $(document).ready(function() {
-               $("input[vali]").keyup(function() {
-                    check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
-                    <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
-               }).change(function() {
-                    check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
-                    <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
-               });
+          $("input[vali]").keyup(function() {
+               check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+               <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
+          }).change(function() {
+               check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+               <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
           });
 
           function validate() {
@@ -132,6 +136,46 @@ function listitem($currentCtrl, $controller, $itemname)
           }
           if (window.history.replaceState) {
                window.history.replaceState(null, null, window.location.href);
+          }
+          var i
+          $(document).ready(function() {
+               i = 0;
+          })
+          $("table th").click(function() {
+               i = $(this).index();
+               console.log(i);
+               if ($(this).find("i").length == 0) {
+                    console.log(i);
+                    $("table th").find("i").remove()
+                    $(this).append(' <i class="bi bi-chevron-down asc"></i>')
+                    $("table tr").not(":first").sort(asc_sort).appendTo('table')
+               } else {
+                    console.log(i);
+                    if ($(this).find(".asc").length > 0) {
+                         $("table th").find("i").remove()
+                         $(this).append(' <i class="bi bi-chevron-up desc"></i>')
+                         $("table tr").not(":first").sort(desc_sort).appendTo('table')
+
+                    } else {
+                         $("table th").find("i").remove()
+                         $(this).append(' <i class="bi bi-chevron-down asc"></i>')
+                         $("table tr").not(":first").sort(asc_sort).appendTo('table')
+                    }
+               }
+          })
+
+          function asc_sort(a, b) {
+               if ($("table th").eq(i).text() == "STT") {
+                    return parseInt($(a).find('td').eq(i).text()) > parseInt($(b).find('td').eq(i).text()) ? 1 : -1;
+               }
+               return ($(a).find('td').eq(i).text()) > ($(b).find('td').eq(i).text()) ? 1 : -1;
+          }
+
+          function desc_sort(a, b) {
+               if ($("table th").eq(i).text() == "STT") {
+                    return parseInt($(a).find('td').eq(i).text()) < parseInt($(b).find('td').eq(i).text()) ? 1 : -1;
+               }
+               return ($(a).find('td').eq(i).text()) < ($(b).find('td').eq(i).text()) ? 1 : -1;
           }
      </script>
      <script>
