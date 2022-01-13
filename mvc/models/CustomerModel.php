@@ -125,6 +125,8 @@ class CustomerModel extends DB
 
      public function Check_password($val)
      {
+          if(!preg_match("/[a-z]+/i", $val) || !preg_match("/[A-Z]+/i", $val) ||!preg_match("/[0-9]+/i", $val))
+               return "Mật khẩu phải chứa chữ thường, chữ hoa và chữ số";
           return $this->Check($val, 8, 32, 112);
      }
      public function Check_phone($val)
