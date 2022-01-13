@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 13, 2022 lúc 12:06 PM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Jan 13, 2022 at 03:52 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `laptop_db`
+-- Database: `laptop_db`
 --
 DROP DATABASE IF EXISTS `laptop_db`;
 CREATE DATABASE `laptop_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -26,7 +26,7 @@ USE `laptop_db`;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -38,16 +38,17 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`ID_Admin`, `First_Name`, `Last_Name`, `Account`, `Password`) VALUES
-(1, 'Ngô Xuân', 'Huy', 'admin', '$2y$10$flqeFAsVkJDY.ZSsK0XmNuR2lKMHgot3NrLBc5.Xje8ukpLuX3Axq	');
+(1, 'Ngô Xuân', 'Huy', 'huy', '$2y$10$JQRZ2.Uh4iG5bc26vD0b6uv/x9izaCNzdl2sqsK1rdKhkhsU7MtmK'),
+(2, 'Võ Bá', 'Toàn', 'toan', '$2y$10$JQRZ2.Uh4iG5bc26vD0b6uv/x9izaCNzdl2sqsK1rdKhkhsU7MtmK');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart`
+-- Table structure for table `cart`
 --
 
 CREATE TABLE `cart` (
@@ -57,17 +58,26 @@ CREATE TABLE `cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `cart`
+-- Dumping data for table `cart`
 --
 
 INSERT INTO `cart` (`ID_Lap`, `ID_Cus`, `Quantity`) VALUES
 ('LT001', 15, 5),
-('LT002', 15, 4);
+('LT002', 15, 4),
+('LT022', 16, 1),
+('LT023', 16, 1),
+('LT025', 16, 1),
+('LT026', 16, 1),
+('LT027', 16, 1),
+('LT028', 16, 1),
+('LT028', 19, 1),
+('LT029', 16, 2),
+('LT030', 19, 1);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -79,7 +89,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`ID_Comm`, `ID_Lap`, `ID_Cus`, `Time_Comm`, `Content`) VALUES
@@ -98,12 +108,14 @@ INSERT INTO `comment` (`ID_Comm`, `ID_Lap`, `ID_Cus`, `Time_Comm`, `Content`) VA
 (13, 'LT001', 16, '2022-01-09 17:32:57', '@@'),
 (14, 'LT001', 16, '2022-01-09 17:34:55', '123'),
 (15, 'LT030', 16, '2022-01-12 09:46:12', '12'),
-(16, 'LT030', 16, '2022-01-12 09:48:50', '12/01');
+(16, 'LT030', 16, '2022-01-12 09:48:50', '12/01'),
+(17, 'LT028', 19, '2022-01-13 21:51:05', 'Ngon'),
+(18, 'LT030', 19, '2022-01-13 21:51:15', 'nice');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -118,19 +130,20 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`ID_Cus`, `First_Name`, `Last_Name`, `Address`, `Phone`, `Email`, `Account`, `Password`) VALUES
 (15, 'Nguyễn Thị ', 'Dũng', 'ola ola, Xã Ba Trại, Huyện Ba Vì, Hà Nội', '0785423698', 'hsajhsajshaj@gmail.com', 'tranvanlong', '$2y$10$s2Tdm3FxE1JHCDMeIwJW.Ojo0payS7cf/4HKScMlYb0ZhRYhTBaHS'),
 (16, 'Ngô Xuân', 'Huy', 'Xã Ninh Thượng, Thị xã Ninh Hòa, Khánh Hòa', '0362495771', 'ngoxuanhuy186@gmail.com', 'fairy186', '$2y$10$uZfCsWEREFX9IHlHvUs.SOkY8/AWjAYNX3cDJ.DbC7aqdPrtO/K9q'),
 (17, 'Ngo', 'Huy', '12, Phường Cống Vị, Quận Ba Đình, Hà Nội', '0123456789', 'huy@gmail.com', 'nxhuy123', '$2y$10$8AMlwi.J0r7mVuoHoVmiSO0TcnNiXN6jKrz/eanMJt8nsiV8sh5ZO'),
-(18, 'Võ Bá ', 'Toàn', '12, Xã An Phú Tây, Huyện Bình Chánh, Hồ Chí Minh', '0123456789', 'toan@gmail.com', 'toan1234', '$2y$10$7Jmhd1ascia9NfZE96YPie0I0moqm7ea0a9JL4fybS4BZMmeYHs9i');
+(18, 'Võ Bá ', 'Toàn', '12, Xã An Phú Tây, Huyện Bình Chánh, Hồ Chí Minh', '0123456789', 'toan@gmail.com', 'toan1234', '$2y$10$7Jmhd1ascia9NfZE96YPie0I0moqm7ea0a9JL4fybS4BZMmeYHs9i'),
+(19, 'A', 'B', 'thôn Tân Lâm, Xã An Phú Tây, Huyện Bình Chánh, Hồ Chí Minh', '0123698745', 'ab@gmail.com', 'abc123456', '$2y$10$rEyTIUGhBoyso2JhYVpD..58BRKez8jNR5L.kWVo1VIt6ECYsJRPO');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `district`
+-- Table structure for table `district`
 --
 
 CREATE TABLE `district` (
@@ -141,7 +154,7 @@ CREATE TABLE `district` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `district`
+-- Dumping data for table `district`
 --
 
 INSERT INTO `district` (`id`, `_name`, `_prefix`, `_province_id`) VALUES
@@ -858,7 +871,7 @@ INSERT INTO `district` (`id`, `_name`, `_prefix`, `_province_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `laptop`
+-- Table structure for table `laptop`
 --
 
 CREATE TABLE `laptop` (
@@ -886,23 +899,23 @@ CREATE TABLE `laptop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `laptop`
+-- Dumping data for table `laptop`
 --
 
 INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID_Manu`, `Images`, `CPU`, `GPU`, `RAM`, `Storage`, `Screen`, `Audio`, `Connection`, `Other_Feature`, `Dimen_Wei`, `Material`, `Battery`, `OS`, `Release_Time`, `Add_Time`) VALUES
 ('LT001', 'Laptop Acer Nitro 5 Gaming AN515 57 727J', 29900000, '3 năm', 'LT01', 'LM005', '[\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-1-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-2-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-3-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-4-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-5-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-6-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-7-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-8-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-9-org.jpg\",\"acer-nitro-gaming-an515-57-727j-i7-nhqd9sv005-10-600x600.jpg\"]', 'i7-11800H', 'NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\"8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe rời)\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)  Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB)  Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Acer ComfyView,  LED Backlit,  Tấm nền IPS\"}', 'Acer TrueHarmony, DTS X:Ultra Audio', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), USB Type-C\",\"wireless\":\"Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"Đèn bàn phím chuyển màu RGB\"}', 'Dài 363.4 mm - Rộng 255 mm - Dày 23.9 mm - Nặng 2.2 kg', ' Vỏ nhựa', ' 4-cell Li-ion, 57 Wh', ' Windows 10 Home SL', 2021, '2021-12-24 12:46:21'),
-('LT002', 'Laptop HP 15s fq2559TU', 17990000, '24 tháng', 'LT03', 'LM004', '[\"hp-15s-fq2559tu-i5-46m27pa-1-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-2-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-3-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-4-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-5-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-6-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-7-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-8-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-9-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-10-org.jpg\"]', 'I5-1135G7', 'Card tích hợp Intel Iris Xe', '{\"memRAM\":\"8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 4GB + 1 khe 4GB)\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"16 GB\"}', '512 GB SSD NVMe PCIe', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\"60 Hz\",\"techSC\":\"Wled-backlit,  Tấm nền IPS,  Chống chói Anti Glare\"}', 'Realtek High Definition Audio', '{\"port\":\" Jack tai nghe 3.5 mm,  HDMI,  2 x USB 3.1,  USB Type-C\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 802.11\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\"không\",\"otherF\":\"\"}', 'Dài 358.5 mm - Rộng 242 mm - Dày 18 mm - Nặng 1.592 kg', 'Vỏ nhựa', ' 4-cell Li-ion, 57 Wh', 'Windows 10 Home SL', 2020, '2022-01-03 13:58:28'),
+('LT002', 'Laptop HP 15s fq2559TU', 17990000, '24 tháng', 'LT04', 'LM004', '[\"hp-15s-fq2559tu-i5-46m27pa-1-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-2-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-3-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-4-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-5-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-6-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-7-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-8-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-9-org.jpg\",\"hp-15s-fq2559tu-i5-46m27pa-10-org.jpg\"]', 'I5-1135G7', 'Card tích hợp Intel Iris Xe', '{\"memRAM\":\"8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 4GB + 1 khe 4GB)\",\"busRAM\":\"3200 Hz\",\"maxRAM\":\"16 GB\"}', '512 GB SSD NVMe PCIe', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\"60 Hz\",\"techSC\":\"Wled-backlit,  Tấm nền IPS,  Chống chói Anti Glare\"}', 'Realtek High Definition Audio', '{\"port\":\" Jack tai nghe 3.5 mm,  HDMI,  2 x USB 3.1,  USB Type-C\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 802.11\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\"không\",\"otherF\":\"\"}', 'Dài 358.5 mm - Rộng 242 mm - Dày 18 mm - Nặng 1.592 kg', 'Vỏ nhựa', ' 4-cell Li-ion, 57 Wh', 'Windows 10 Home SL', 2020, '2022-01-03 13:58:28'),
 ('LT003', 'Laptop Apple MacBook Pro M1', 38490000, '12 tháng', 'LT02', 'LM001', '[\"macbook-pro-m1-2020-silver-01-org.jpg\",\"macbook-pro-m1-2020-silver-02-org.jpg\",\"macbook-pro-m1-2020-silver-03-org.jpg\",\"macbook-pro-m1-2020-silver-04-org.jpg\",\"macbook-pro-m1-2020-silver-05-org.jpg\",\"macbook-pro-m1-2020-silver-06-org.jpg\"]', ' Apple M1', ' Card tích hợp - 8 nhân GPU', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"Not announced\",\"busRAM\":\"Not announced\",\"maxRAM\":\"Not announced\"}', ' 256 GB SSD', '{\"sizeSC\":\" 13.3 inch\",\"resoSC\":\" Retina (2560 x 1600)\",\"freSC\":\"Not announced\",\"techSC\":\"500 nits brightness, LED Backlit, Retina, True Tone Technology, Tấm nền IPS\"}', ' 3 microphones, Dolby Atmos, Loa kép (2 kênh)', '{\"port\":\" 2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 304.1 mm - Rộng 212.4 mm - Dày 15.6 mm - Nặng 1.4 kg', ' Vỏ kim loại nguyên khối', ' Khoảng 10 tiếng', ' Mac OS', 2020, '2022-01-07 14:46:25'),
 ('LT004', 'Laptop Acer Predator Triton 300 PT315', 45990000, '12 tháng', 'LT01', 'LM005', '[\"acer-predator-triton-300-pt315-53-71dj-i7-1-org.jpg\",\"acer-predator-triton-300-pt315-53-71dj-i7-2-org.jpg\",\"acer-predator-triton-300-pt315-53-71dj-i7-3-org.jpg\",\"acer-predator-triton-300-pt315-53-71dj-i7-4-org.jpg\",\"acer-predator-triton-300-pt315-53-71dj-i7-5-org.jpg\",\"acer-predator-triton-300-pt315-53-71dj-i7-6-org.jpg\",\"acer-predator-triton-300-pt315-53-71dj-i7-7-org.jpg\"]', ' Intel Core i7 Tiger Lake - 11800H', 'Card rời - NVIDIA GeForce RTX 3070, 8 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" QHD (2560 x 1440)\",\"freSC\":\"165 Hz\",\"techSC\":\"Acer ComfyView, Công nghệ IPS, LED Backlit, TFT, Độ sáng 300 nits\"}', ' DTS X:Ultra Audio', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Mini DisplayPort, Thunderbolt 4 USB-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"Công nghệ quạt AeroBlade 3D thế hệ 5 2 quạt tản nhiệt, Đèn bàn phím chuyển màu RGB\"}', 'Dài 353 mm - Rộng 255 mm - Dày 19.9 mm - Nặng 2 kg', ' Vỏ kim loại', ' 4-cell Li-ion, 59 Wh', ' Windows 10 Home SL', 2021, '2022-01-07 14:57:34'),
 ('LT005', 'Laptop Acer Nitro 5 AN515 45 R9SC', 38790000, '12 tháng', 'LT01', 'LM005', '[\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-1.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-2.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-3.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-4.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-5.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-6.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-7.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-8.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-11.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-12.jpg\"]', 'AMD Ryzen 7 - 5800H', 'Card rời - NVIDIA GeForce RTX 3070, 8 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe rời)\",\"busRAM\":\"3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB), Hỗ trợ khe cắm HDD SATA, Hỗ trợ khe cắm SSD M.2', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Acer ComfyView, Công nghệ IPS, LED Backlit, TFT\"}', ' Acer TrueHarmony, DTS X:Ultra Audio', '{\"port\":\" 3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), USB Type-C\",\"wireless\":\"Bluetooth 5.0Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Đèn bàn phím chuyển màu RGB\"}', 'Dài 363.4 mm - Rộng 255 mm - Dày 23.9 mm - Nặng 2.2 kg', ' Vỏ nhựa', '4-cell Li-ion, 57 Wh', ' Windows 10 Home SL', 2021, '2022-01-07 15:11:11'),
-('LT006', 'Laptop Acer Predator Helios PH315', 37990000, '12 tháng', 'LT01', 'LM005', '[\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-1.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-2.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-3.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-4.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-5.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-6.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-7.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-8.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-11.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-12.jpg\"]', ' Intel Core i7 Tiger Lake - 11800H', ' Card rời - NVIDIA GeForce RTX 3060, 6 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" QHD (2560 x 1440)\",\"freSC\":\" 165 Hz\",\"techSC\":\"Acer ComfyView, LED Backlit, Tấm nền IPS\"}', 'Acer TrueHarmony, DTS X:Ultra Audio', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Mini DisplayPort, USB Type-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Đèn bàn phím chuyển màu RGB\"}', 'Dài 363 mm - Rộng 255 mm - Dày 22.9 mm - Nặng 2.3 kg', ' Vỏ nhựa - nắp lưng bằng kim loại', ' 4-cell Li-ion, 59 Wh', ' Windows 10 Home SL', 2021, '2022-01-07 15:50:04'),
+('LT006', 'Laptop Acer Predator Helios PH315', 37990000, '12 tháng', 'LT05', 'LM005', '[\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-1.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-2.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-3.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-4.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-5.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-6.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-7.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-8.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-11.jpg\",\"acer-nitro-5-an515-45-r9sc-r7-nhqbrsv001-12.jpg\"]', ' Intel Core i7 Tiger Lake - 11800H', ' Card rời - NVIDIA GeForce RTX 3060, 6 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" QHD (2560 x 1440)\",\"freSC\":\" 165 Hz\",\"techSC\":\"Acer ComfyView, LED Backlit, Tấm nền IPS\"}', 'Acer TrueHarmony, DTS X:Ultra Audio', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Mini DisplayPort, USB Type-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Đèn bàn phím chuyển màu RGB\"}', 'Dài 363 mm - Rộng 255 mm - Dày 22.9 mm - Nặng 2.3 kg', ' Vỏ nhựa - nắp lưng bằng kim loại', ' 4-cell Li-ion, 59 Wh', ' Windows 10 Home SL', 2021, '2022-01-07 15:50:04'),
 ('LT007', 'Laptop Acer Aspire A514 54 53T8', 19790000, '1 năm', 'LT03', 'LM005', '[\"acer-aspire-a514-54-53t8-i5-nxa2asv006-1-1-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-2-2-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-3-1-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-4-2-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-5-2-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-6-2-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-7-2-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-8-3-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-13-org.jpg\",\"acer-aspire-a514-54-53t8-i5-nxa2asv006-14-org.jpg\"]', ' Intel Core i5 Tiger Lake - 1135G7', 'Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 (On board 4GB +1 khe 4GB)\",\"busRAM\":\"2666 MHz\",\"maxRAM\":\" 20 GB\"}', '1 TB SSD M.2 PCIe, Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2TB)', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\" Acer ComfyView, Tấm nền IPS\"}', 'Acer TrueHarmony', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), USB Type-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', ' Dài 328 mm - Rộng 223 mm - Dày 17.95 mm - Nặng 1.46 kg', 'Vỏ nhựa - nắp lưng bằng kim loại', 'Li-ion, 48 Wh', ' Windows 10 Home SL', 2021, '2022-01-07 16:32:36'),
 ('LT008', 'Laptop Apple MacBook Air M1', 37990000, '1 năm', 'LT02', 'LM001', '[\"apple-macbook-air-m1-2020-8-core-gpu-vang-1.jpg\",\"apple-macbook-air-m1-2020-8-core-gpu-vang-2.jpg\",\"apple-macbook-air-m1-2020-8-core-gpu-vang-3.jpg\",\"apple-macbook-air-m1-2020-8-core-gpu-vang-4.jpg\",\"apple-macbook-air-m1-2020-8-core-gpu-vang-5.jpg\",\"apple-macbook-air-m1-2020-8-core-gpu-vang-6.jpg\",\"apple-macbook-air-m1-2020-8-core-gpu-vang-7.jpg\"]', 'Apple M1', ' Card tích hợp - 8 nhân GPU', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"Not announced\",\"busRAM\":\"Not announced\",\"maxRAM\":\"Not announced\"}', ' 512 GB SSD', '{\"sizeSC\":\" 13.3 inch\",\"resoSC\":\" Retina (2560 x 1600)\",\"freSC\":\"Not announced\",\"techSC\":\"400 nits, Công nghệ IPS, LED Backlit, True Tone Technology\"}', '3 microphones, Headphones, Loa kép (2 kênh)', '{\"port\":\" 2 x Thunderbolt 3 (USB-C), Jack tai nghe 3.5 mm\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" 720p FaceTime Camera\",\"ledKB\":\" Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 304.1 mm - Rộng 212.4 mm - Dày 4.1 mm đến 16.1 mm - Nặng 1.29 kg', ' Vỏ kim loại nguyên khối', 'Khoảng 10 tiếng', ' Mac OS', 2020, '2022-01-07 17:15:24'),
 ('LT009', 'Laptop Asus ROG Zephyrus G14 Alan Walker GA401QEC', 44490000, '2 năm', 'LT01', 'LM002', '[\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-1-org.jpg\",\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-5-org.jpg\",\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-6-org.jpg\",\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-7-org.jpg\",\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-8-org.jpg\",\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-9-org.jpg\",\"asus-rog-zephyrus-gaming-g14-ga401qec-r9-k2064t-11-org.jpg\"]', ' AMD Ryzen 9 - 5900HS', ' Card rời - NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"DDR4 2 khe (8GB onboard+ 1 khe 8GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"24 GB\"}', ' 1 TB SSD M.2 PCIe 3.0 (Có thể tháo ra, lắp thanh khác dung lượng không giới hạn), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe 3.0 mở rộng (nâng cấp dung lượng không giới hạn)', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" QHD (2560 x 1440)\",\"freSC\":\"120 Hz\",\"techSC\":\" 100% DCI-P3, Chống chói Anti Glare, Công nghệ IPS, Độ sáng 300 nits\"}', 'Công nghệ Smart AMP, Dolby Atmos', '{\"port\":\" 1x USB 3.2 Gen 2 Type-C support DisplayPort / power delivery / G-SYNC, 2 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\"Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" Không tích hợp\",\"ledKB\":\" Có\",\"otherF\":\" Bảo mật vân tay\"}', ' Dài 324 mm - Rộng 220 mm - Dày 19.9 mm - Nặng 1.7 kg', 'Vỏ nhựa - nắp lưng bằng kim loại', ' 4-cell Li-ion, 76 Wh', ' Windows 10 Home SL', 2021, '2022-01-07 17:22:59'),
 ('LT010', 'Laptop Asus TUF Gaming FX516PM', 31490000, '2 năm', 'LT01', 'LM002', '[\"asus-tuf-gaming-fx516pm-i7-hn002t-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-2-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-3-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-4-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-5-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-6-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-7-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-8-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-9-1-org.jpg\",\"asus-tuf-gaming-fx516pm-i7-hn002t-10-1-org.jpg\"]', ' Intel Core i7 Tiger Lake - 11370H', 'Card rời - NVIDIA GeForce RTX 3060, 6 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB onboard + 1 khe trống)\",\"busRAM\":\"3200 MHz\",\"maxRAM\":\" 32 GB\"}', 'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB), 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\"Adaptive-Sync, Chống chói Anti Glare, Tấm nền IPS\"}', 'DTS Audio', '{\"port\":\"3 x USB 3.2, HDMI 2.0, Jack tai nghe 3.5 mm, LAN (RJ45), Thunderbolt 4 USB-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\"Không tích hợp\",\"ledKB\":\" Có\",\"otherF\":\"\"}', 'Dài 360 mm - Rộng 252 mm - Dày 19.9 mm - Nặng 2 kg', ' Vỏ nhựa - nắp lưng bằng kim loại', ' 4-cell Li-ion, 76 Wh', ' Windows 10 Home SL', 2021, '2022-01-08 14:43:40'),
-('LT011', 'Laptop Asus ZenBook Duo UX482EA', 38490000, '2 năm', 'LT01', 'LM002', '[\"asus-zenbook-duo-ux482ea-i7-ka268t-1.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-2.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-3.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-4.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-5.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-6.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-10.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-11.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-15.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-16.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', ' Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" LPDDR4X (On board)\",\"busRAM\":\" 4267 MHz\",\"maxRAM\":\"No support\"}', '1 TB SSD M.2 PCIe', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"100% sRGB, 400 nits, Chống chói Anti Glare, LED Backlit, Tấm nền IPS\"}', ' Audio by Harman/Kardon', '{\"port\":\"1 x USB 3.2, 2 x Thunderbolt 4 USB-C, HDMI, Jack tai nghe 3.5 mm\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" Camera IR, HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Mở khóa khuôn mặt, ScreenPad Plus 12.65 inch (1920 x 515 IPS Panel), Độ bền chuẩn quân đội MIL STD 810H\"}', 'Dài 324 mm - Rộng 222 mm - Dày 17.3 mm - Nặng 1.62 kg', 'Vỏ kim loại', ' 4-cell Li-ion, 70 Wh', ' Windows 10 Home SL', 2021, '2022-01-08 15:05:41'),
-('LT012', 'Laptop Asus VivoBook A515EA OLED', 19190000, '2 năm', 'LT03', 'LM002', '[\"asus-vivobook-a515ea-oled-i5-l12032w-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-2-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-3.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-4-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-5-1.jpg\"]', 'Intel Core i5 Tiger Lake - 1135G7', 'Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB onboard + 1 khe trống)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 24 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080) OLED\",\"freSC\":\" 60 Hz\",\"techSC\":\"0.2ms response time, 100% DCI-P3, OLED, SGS Eye Care Display\"}', ' Micro SD', '{\"port\":\"1 x USB 3.2, 2 x USB 2.0, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"\",\"otherF\":\" Bảo mật vân tay\"}', ' Dài 359 mm - Rộng 235 mm - Dày 17.9 mm - Nặng 1.8 kg', ' Vỏ nhựa - nắp lưng bằng kim loại', ' 3-cell Li-ion, 42 Wh', ' Windows 11 Home SL', 2021, '2022-01-08 15:21:38'),
-('LT013', 'Laptop HP Omen 15 ek0078TX', 56990000, '1 năm', 'LT01', 'LM004', '[\"hp-omen-15-ek0078tx-i7-26y68pa-1-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-2-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-3-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-4-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-5-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-6-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-7-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-12-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-13-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-14-org.jpg\"]', ' Intel Core i7 Comet Lake - 10750H', ' Card rời - NVIDIA GeForce RTX2070 With Max-Q Design, 8 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 2933 MHz\",\"maxRAM\":\" 32 GB\"}', ' 1 TB SSD M.2 PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 300 Hz\",\"techSC\":\"Tấm nền IPS, Chống chói Anti Glare, LED Backlit, 100% sRGB\"}', 'HP Audio Boost, Bang & Olufsen audio, DTS X:Ultra Audio', '{\"port\":\"Jack tai nghe 3.5 mm, HDMI, LAN (RJ45), Thunderbolt 3, Mini DisplayPort, 3x SuperSpeed USB A\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', 'Dài 357.9 mm - Rộng 239.7 mm - Dày 22.5 mm - Nặng 2.36 kg', 'Kim loại và polycarbonate', ' 6-cell Li-ion, 70.9 Wh', ' Windows 10 Home SL + Office Home & Student 2019 vĩnh viễn', 2020, '2022-01-09 09:29:25'),
+('LT011', 'Laptop Asus ZenBook Duo UX482EA', 38490000, '2 năm', 'LT05', 'LM002', '[\"asus-zenbook-duo-ux482ea-i7-ka268t-1.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-2.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-3.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-4.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-5.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-6.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-10.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-11.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-15.jpg\",\"asus-zenbook-duo-ux482ea-i7-ka268t-16.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', ' Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" LPDDR4X (On board)\",\"busRAM\":\" 4267 MHz\",\"maxRAM\":\"No support\"}', '1 TB SSD M.2 PCIe', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"100% sRGB, 400 nits, Chống chói Anti Glare, LED Backlit, Tấm nền IPS\"}', ' Audio by Harman/Kardon', '{\"port\":\"1 x USB 3.2, 2 x Thunderbolt 4 USB-C, HDMI, Jack tai nghe 3.5 mm\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" Camera IR, HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Mở khóa khuôn mặt, ScreenPad Plus 12.65 inch (1920 x 515 IPS Panel), Độ bền chuẩn quân đội MIL STD 810H\"}', 'Dài 324 mm - Rộng 222 mm - Dày 17.3 mm - Nặng 1.62 kg', 'Vỏ kim loại', ' 4-cell Li-ion, 70 Wh', ' Windows 10 Home SL', 2021, '2022-01-08 15:05:41'),
+('LT012', 'Laptop Asus VivoBook A515EA OLED', 19190000, '2 năm', 'LT04', 'LM002', '[\"asus-vivobook-a515ea-oled-i5-l12032w-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-2-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-3.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-4-1.jpg\",\"asus-vivobook-a515ea-oled-i5-l12032w-5-1.jpg\"]', 'Intel Core i5 Tiger Lake - 1135G7', 'Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB onboard + 1 khe trống)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 24 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080) OLED\",\"freSC\":\" 60 Hz\",\"techSC\":\"0.2ms response time, 100% DCI-P3, OLED, SGS Eye Care Display\"}', ' Micro SD', '{\"port\":\"1 x USB 3.2, 2 x USB 2.0, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"\",\"otherF\":\" Bảo mật vân tay\"}', ' Dài 359 mm - Rộng 235 mm - Dày 17.9 mm - Nặng 1.8 kg', ' Vỏ nhựa - nắp lưng bằng kim loại', ' 3-cell Li-ion, 42 Wh', ' Windows 11 Home SL', 2021, '2022-01-08 15:21:38'),
+('LT013', 'Laptop HP Omen 15 ek0078TX', 56990000, '1 năm', 'LT05', 'LM004', '[\"hp-omen-15-ek0078tx-i7-26y68pa-1-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-2-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-3-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-4-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-5-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-6-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-7-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-12-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-13-org.jpg\",\"hp-omen-15-ek0078tx-i7-26y68pa-14-org.jpg\"]', ' Intel Core i7 Comet Lake - 10750H', ' Card rời - NVIDIA GeForce RTX2070 With Max-Q Design, 8 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 2933 MHz\",\"maxRAM\":\" 32 GB\"}', ' 1 TB SSD M.2 PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 300 Hz\",\"techSC\":\"Tấm nền IPS, Chống chói Anti Glare, LED Backlit, 100% sRGB\"}', 'HP Audio Boost, Bang & Olufsen audio, DTS X:Ultra Audio', '{\"port\":\"Jack tai nghe 3.5 mm, HDMI, LAN (RJ45), Thunderbolt 3, Mini DisplayPort, 3x SuperSpeed USB A\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', 'Dài 357.9 mm - Rộng 239.7 mm - Dày 22.5 mm - Nặng 2.36 kg', 'Kim loại và polycarbonate', ' 6-cell Li-ion, 70.9 Wh', ' Windows 10 Home SL + Office Home & Student 2019 vĩnh viễn', 2020, '2022-01-09 09:29:25'),
 ('LT014', 'Laptop HP Gaming VICTUS 16 e0170AX', 24990000, '1 năm', 'LT01', 'LM004', '[\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-1.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-2.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-3.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-4.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-5.jpg\",\"hp-gaming-victus-16-e0170ax-r7-4r0u7pa-6.jpg\"]', ' AMD Ryzen 7 - 5800H', ' Card rời - NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 4GB + 1 khe 4GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 16.1 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', 'Bang & Olufsen audio', '{\"port\":\"1x USB 3.1 Gen 1 Type-A ( HP Sleep and Charge), 1x USB 3.1 Gen 1 Type-C (support Power Delivery, DisplayPort, HP Sleep and Charge), 2 x USB 3.1, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45)\",\"wireless\":\"Bluetooth 5.2, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', ' Dài 370 mm - Rộng 260 mm - Dày 23.5 mm - Nặng 2.41 kg', ' Vỏ nhựa', ' 4-cell Li-ion, 70 Wh', ' Windows 11 Home SL', 2021, '2022-01-09 09:36:03'),
 ('LT015', 'Laptop HP ZBook Firefly 14 G8', 41590000, '1 năm', 'LT03', 'LM004', '[\"hp-zbook-firefly-14-g8-i7-275w0av-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-1-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-2-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-3.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-4-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-5-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-6-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-7-1.jpg\",\"hp-zbook-firefly-14-g8-i7-275w0av-8-1.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', ' Card rời - NVIDIA QuadroT500, 4GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', ' 1 TB SSD M.2 PCIe', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', ' Bang & Olufsen audio', '{\"port\":\"2 x Thunderbolt 4 USB-C, 2x SuperSpeed USB A, HDMI, Jack tai nghe 3.5 mm\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 323 mm - Rộng 214.6 mm - Dày 17.9 mm - Nặng 1.35 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 53 Wh', ' Windows 10 Pro', 2021, '2022-01-09 09:41:35'),
 ('LT016', 'Laptop Lenovo IdeaPad Gaming 3 15IMH05', 22990000, '2 năm', 'LT01', 'LM003', '[\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-1-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-2-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-3-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-4-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-5-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-6-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-7-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-13-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-14-org.jpg\",\"lenovo-ideapad-gaming-3-15imh05-i5-81y4013vvn-15-org.jpg\"]', ' Intel Core i5 Comet Lake - 10300H', ' Card rời - NVIDIA GeForce GTX 1650Ti 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 (2 khe)\",\"busRAM\":\"2933 MHz\",\"maxRAM\":\" 16 GB\"}', '512 GB SSD NVMe PCIe, Hỗ trợ khe cắm HDD SATA', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\"120 Hz\",\"techSC\":\"Tấm nền IPS, Chống chói Anti-Glare, 250 nits\"}', ' Dolby AudioPremium', '{\"port\":\"Jack tai nghe 3.5 mm, HDMI, LAN (RJ45), 2 x USB 3.1, USB Type-C\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Công tắc khóa camera\"}', 'Dài 351 mm - Rộng 240 mm - Dày 24.9 mm - Nặng 2.2 kg', ' Vỏ nhựa', ' 3-cell Polymer, 45 Wh', ' Windows 10 Home SL', 2020, '2022-01-09 09:49:27'),
@@ -911,20 +924,20 @@ INSERT INTO `laptop` (`ID_Lap`, `Name_Lap`, `Price`, `Insurance`, `ID_Type`, `ID
 ('LT019', 'Laptop Lenovo YOGA Slim 7 Carbon 13ITL5', 34290000, '2 năm', 'LT03', 'LM003', '[\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-1-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-2-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-3-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-4-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-5-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-6-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-10-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-11-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-12-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-13-org.jpg\",\"lenovo-yoga-slim-7-carbon-13itl5-i7-82ev0017vn-14-org.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', ' Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" LPDDR4X (On board)\",\"busRAM\":\" 4266 MHz\",\"maxRAM\":\"No support\"}', ' 1 TB SSD M.2 PCIe', '{\"sizeSC\":\" 13.3 inch\",\"resoSC\":\" QHD (2560 x 1600)\",\"freSC\":\"Not announced\",\"techSC\":\"100% sRGB, 300 nits Glossy, Chống chói Anti Glare, Dolby Vision, Tấm nền IPS\"}', ' Audio by Harman/Kardon, Dolby Atmos', '{\"port\":\"2 x Thunderbolt 4 USB-C, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\"Bluetooth 5.0Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" Camera IR, HD webcam\",\"ledKB\":\"Có\",\"otherF\":\"Bản lề mở 180 độ, Mở khóa khuôn mặt, Tiêu chuẩn Nền Intel Evo, Độ bền chuẩn quân đội MIL STD 810G\"}', 'Dài 295.88 mm - Rộng 208.85 mm - Dày 15 mm - Nặng 0.966 kg', ' Mặt lưng Carbon - Chiếu nghỉ tay bằng Nhôm Magie', ' Li-Polymer, 50 Wh', ' Windows 10 Home SL', 2020, '2022-01-09 10:13:56'),
 ('LT020', 'Laptop Dell Gaming G3 15', 31990000, '1 năm', 'LT01', 'LM006', '[\"dell-g3-15-i7-p89f002bwh-1-org.jpg\",\"dell-g3-15-i7-p89f002bwh-2-org.jpg\",\"dell-g3-15-i7-p89f002bwh-3-org.jpg\",\"dell-g3-15-i7-p89f002bwh-4-org.jpg\",\"dell-g3-15-i7-p89f002bwh-5-org.jpg\",\"dell-g3-15-i7-p89f002bwh-6-org.jpg\",\"dell-g3-15-i7-p89f002bwh-7-org.jpg\",\"dell-g3-15-i7-p89f002bwh-8-org.jpg\",\"dell-g3-15-i7-p89f002bwh-13-org.jpg\",\"dell-g3-15-i7-p89f002bwh-14-org.jpg\",\"dell-g3-15-i7-p89f002bwh-15-org.jpg\"]', ' Intel Core i7 Comet Lake - 10750H', 'Card rời - NVIDIA GeForce GTX 1660Ti, 6 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 2933 MHz\",\"maxRAM\":\"16 GB\"}', ' 512 GB SSD NVMe PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 120 Hz\",\"techSC\":\" LED, WVA\"}', ' Nahimic 3', '{\"port\":\"1 x USB 3.2, 2 x USB 2.0, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Mini DisplayPort, Thunderbolt 3\",\"wireless\":\" Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 364.46 mm - Rộng 254 mm - Dày 30.96 mm - Nặng 2.58 kg', ' Vỏ nhựa', ' 4-cell Li-ion, 68 Wh', ' Windows 10 Home SL', 2020, '2022-01-09 10:18:45'),
 ('LT021', 'Laptop Dell XPS 17 9710', 82990000, '1 năm', 'LT03', 'LM006', '[\"dell-xps-17-9710-i7-xps7i7001w1-01.jpg\",\"dell-xps-17-9710-i7-xps7i7001w1-02.jpg\",\"dell-xps-17-9710-i7-xps7i7001w1-03.jpg\",\"dell-xps-17-9710-i7-xps7i7001w1-04.jpg\",\"dell-xps-17-9710-i7-xps7i7001w1-05.jpg\",\"dell-xps-17-9710-i7-xps7i7001w1-06.jpg\"]', 'Intel Core i7 Tiger Lake - 11800H', ' Card rời - NVIDIA GeForce RTX3050, 4 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\"DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"64 GB\"}', '1 TB SSD M.2 PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB)', '{\"sizeSC\":\"17 inch\",\"resoSC\":\" 4K/UHD+ (3840 x 2400)\",\"freSC\":\" 60 Hz\",\"techSC\":\"500 nits brightness, Anti-Reflective, WVA\"}', ' Realtek Audio', '{\"port\":\"4 x Thunderbolt 4, Jack tai nghe 3.5 mm\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Bảo mật vân tay\"}', ' Dài 374,.48 - Rộng 248.08 mm - Dày 13.15 mm - Nặng 2.53 kg', 'Vỏ kim loại', ' 6-cell Li-ion, 97Wh', ' Windows 11 Home SL + Office Home & Student 2021 vĩnh viễn', 2021, '2022-01-09 10:23:40'),
-('LT022', 'Laptop Dell Inspiron 7501', 30490000, '1 năm', 'LT01', 'LM006', '[\"dell-inspiron-7501-i5-n5i5012w-1-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-2-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-3-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-4-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-5-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-6-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-7-org.jpg\"]', ' Intel Core i5 Comet Lake - 10300H', ' Card rời - NVIDIA GeForce GTX 1650Ti 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB onboard + 1 khe trống)\",\"busRAM\":\" 2933 MHz\",\"maxRAM\":\" 24 GB\"}', '512 GB SSD NVMe PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng Màn hình', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"LED Backlight - AntiGlare, 100% sRGB, Độ sáng 300 nits, WVA\"}', 'Realtek High Definition Audio', '{\"port\":\"Jack tai nghe 3.5 mm, 2 x USB 3.2, HDMI, USB Type-C\",\"wireless\":\" Wi-Fi 6 (802.11ax), Bluetooth 5.1\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 356.1 mm - Rộng 234.5 mm - Dày 18.9 mm - Nặng 1.9 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 56 Wh', ' Windows 10 Home SL', 2020, '2022-01-09 10:29:09'),
+('LT022', 'Laptop Dell Inspiron 7501', 30490000, '1 năm', 'LT05', 'LM006', '[\"dell-inspiron-7501-i5-n5i5012w-1-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-2-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-3-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-4-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-5-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-6-org.jpg\",\"dell-inspiron-7501-i5-n5i5012w-7-org.jpg\"]', ' Intel Core i5 Comet Lake - 10300H', ' Card rời - NVIDIA GeForce GTX 1650Ti 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB onboard + 1 khe trống)\",\"busRAM\":\" 2933 MHz\",\"maxRAM\":\" 24 GB\"}', '512 GB SSD NVMe PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng Màn hình', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"LED Backlight - AntiGlare, 100% sRGB, Độ sáng 300 nits, WVA\"}', 'Realtek High Definition Audio', '{\"port\":\"Jack tai nghe 3.5 mm, 2 x USB 3.2, HDMI, USB Type-C\",\"wireless\":\" Wi-Fi 6 (802.11ax), Bluetooth 5.1\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"Có\",\"otherF\":\" Bảo mật vân tay\"}', 'Dài 356.1 mm - Rộng 234.5 mm - Dày 18.9 mm - Nặng 1.9 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 56 Wh', ' Windows 10 Home SL', 2020, '2022-01-09 10:29:09'),
 ('LT023', 'Laptop Dell Latitude 3520', 30990000, '1 năm', 'LT03', 'LM006', '[\"dell-latitude-3520-i7-70261780-1.jpg\",\"dell-latitude-3520-i7-70261780-2-1.jpg\",\"dell-latitude-3520-i7-70261780-3.jpg\",\"dell-latitude-3520-i7-70261780-4-1.jpg\",\"dell-latitude-3520-i7-70261780-5-1.jpg\",\"dell-latitude-3520-i7-70261780-6-1.jpg\",\"dell-latitude-3520-i7-70261780-7-1.jpg\",\"dell-latitude-3520-i7-70261780-11-1.jpg\",\"dell-latitude-3520-i7-70261780-12.jpg\",\"dell-latitude-3520-i7-70261780-13.jpg\",\"dell-latitude-3520-i7-70261780-14.jpg\"]', ' Intel Core i7 Tiger Lake - 1165G7', 'Card tích hợp - Intel Iris Xe Graphics', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe rời)\",\"busRAM\":\"3200 MHz\",\"maxRAM\":\"32 GB\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB), Hỗ trợ thêm 1 khe cắm HDD SATA (nâng cấp tối đa 1TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"Chống chói Anti, GlareWVA\"}', 'Realtek ALC3204', '{\"port\":\"2 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), USB Type-C\",\"wireless\":\"Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" Micro SD\",\"ledKB\":\" Có\",\"otherF\":\"\"}', 'Dài 361 mm - Rộng 240.9 mm - Dày 18 mm - Nặng 1.79 kg', ' Vỏ nhựa', ' 4-cell Li-ion, 54 Wh', ' Windows 10 Pro', 2021, '2022-01-09 10:34:14'),
 ('LT024', 'Laptop MSI Gaming GE66 Raider 11UH', 77990000, '2 năm', 'LT01', 'LM007', '[\"msi-gaming-ge66-raider-11uh-i7-259vn-1-1-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-2-2-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-3-1-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-4-2-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-5-2-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-6-2-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-7-2-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-12-2-org.jpg\",\"msi-gaming-ge66-raider-11uh-i7-259vn-13-1-org.jpg\"]', 'Intel Core i7 Tiger Lake - 11800H', ' Card rời - NVIDIA GeForce RTX 3080, 16 GB', '{\"memRAM\":\" 32 GB\",\"typeRAM\":\"DDR4 2 khe (1 khe 16GB + 1 khe 16GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 64 GB\"}', '2 TB SSD NVMe PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\"QHD (2560 x 1440)\",\"freSC\":\" 240 Hz\",\"techSC\":\" 100% DCI-P3, Chống chói Anti Glare, Tấm nền IPS\"}', 'Hi-Res Audio, Nahimic Audio, Sound by Dynaudio', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Mini DisplayPort, Thunderbolt 4 USB-C  USB Type-C\",\"wireless\":\" Bluetooth 5.2, Wi-Fi 6E (802.11ax)\"}', '{\"webcam\":\"FHD (30fps@1080p)\",\"ledKB\":\"Có\",\"otherF\":\" Đèn bàn phím chuyển màu RGB\"}', 'Dài 358 mm - Rộng 267 mm - Dày 23.4 mm - Nặng 2.38 Kg', ' Vỏ kim loại', ' 4-cell, 99.9 Wh', ' Windows 10 Home SL', 2021, '2022-01-09 10:43:01'),
 ('LT025', 'Laptop MSI Gaming Pulse GL66 11UDK', 33990000, '2 năm', 'LT01', 'LM007', '[\"msi-gaming-pulse-gl66-11udk-i7-816vn-1.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-2-1.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-3.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-4-1.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-5-1.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-6.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-7-1.jpg\",\"msi-gaming-pulse-gl66-11udk-i7-816vn-8-1.jpg\"]', ' Intel Core i7 Tiger Lake - 11800H', ' Card rời - NVIDIA GeForce RTX3050Ti, 4 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\"3200 MHz\",\"maxRAM\":\" 64 GB\"}', '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB), Không hỗ trợ khe cắm HDD', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 144 Hz\",\"techSC\":\"100% sRGB, Chống chói Anti Glare, Công nghệ IPS\"}', ' Hi-Res Audio, Nahimic Audio', '{\"port\":\"2 x USB 3.2, HDMI, LAN (RJ45), USB 2.0, USB Type-C\",\"wireless\":\"Bluetooth 5.2, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\" Đèn bàn phím chuyển màu RGB\"}', 'Dài 359 mm - Rộng 259 mm - Dày 23.95 mm - Nặng 2.25 kg', 'Nắp lưng và chiếu nghỉ tay bằng kim loại', ' 3 cell, 53.5 Wh', 'Windows 10 Home SL', 2021, '2022-01-09 11:08:54'),
-('LT026', 'Laptop MSI Modern 14 B11SBU', 22990000, '1 năm', 'LT03', 'LM007', '[\"msi-gaming-modern-14-b11sbu-i5-669vn-1-1.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-2-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-3-1.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-4-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-5-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-6-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-7-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-12-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-13-1.jpg\"]', ' Intel Core i5 Tiger Lake - 1155G7', 'Card rời - NVIDIA GeForce MX450, 2 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 (1 khe)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"32 GB\"}', '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB)', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', ' Hi-Res Audio, Nahimic Audio', '{\"port\":\"2 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', ' Dài 319 mm - Rộng 219 mm - Dày 16.9 mm - Nặng 1.3 Kg', ' Vỏ kim loại', ' 3-cell Li-ion, 39 Wh', ' Windows 10 Home SL', 2021, '2022-01-09 11:14:13'),
+('LT026', 'Laptop MSI Modern 14 B11SBU', 22990000, '1 năm', 'LT04', 'LM007', '[\"msi-gaming-modern-14-b11sbu-i5-669vn-1-1.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-2-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-3-1.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-4-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-5-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-6-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-7-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-12-2.jpg\",\"msi-gaming-modern-14-b11sbu-i5-669vn-13-1.jpg\"]', ' Intel Core i5 Tiger Lake - 1155G7', 'Card rời - NVIDIA GeForce MX450, 2 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 (1 khe)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"32 GB\"}', '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB)', '{\"sizeSC\":\" 14 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\" Chống chói Anti Glare, Công nghệ IPS\"}', ' Hi-Res Audio, Nahimic Audio', '{\"port\":\"2 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\" Bluetooth 5.1, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', ' Dài 319 mm - Rộng 219 mm - Dày 16.9 mm - Nặng 1.3 Kg', ' Vỏ kim loại', ' 3-cell Li-ion, 39 Wh', ' Windows 10 Home SL', 2021, '2022-01-09 11:14:13'),
 ('LT027', 'Laptop MSI Gaming GS66 Stealth 11UG', 61490000, '2 năm', 'LT01', 'LM007', '[\"msi-gaming-gs66-stealth-11ug-i7-219vn-1-1-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-2-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-3-1-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-4-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-5-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-6-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-7-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-13-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-14-2-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-15-1-org.jpg\",\"msi-gaming-gs66-stealth-11ug-i7-219vn-16-org.jpg\"]', ' Intel Core i7 Tiger Lake - 11800H', ' Card rời - NVIDIA GeForce RTX 3070 Max-Q, 8 GB', '{\"memRAM\":\" 32 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 16GB + 1 khe 16GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 64 GB\"}', '2 TB SSD NVMe PCIe, Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2TB)', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 360 Hz\",\"techSC\":\"100% sRGB, Chống chói Anti Glare, Tấm nền IPS\"}', ' Hi-Res Audio, Nahimic Audio', '{\"port\":\"3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), Thunderbolt 4 USB-C, USB Type-C\",\"wireless\":\"Bluetooth 5.2, Wi-Fi 6E (802.11ax)\"}', '{\"webcam\":\" Camera IR\",\"ledKB\":\" Có\",\"otherF\":\"Mở khóa khuôn mặt, Đèn bàn phím chuyển màu RGB\"}', ' Dài 358.3 mm - Rộng 248 mm - Dày 19.8 mm - Nặng 2.1 Kg', ' Vỏ kim loại', ' 4-cell, 99.9 Wh', 'Windows 10 Home SL', 2021, '2022-01-09 11:39:44'),
 ('LT028', 'Laptop Asus VivoBook Pro 15 OLED', 25590000, '2 năm', 'LT03', 'LM002', '[\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-1.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-2.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-3.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-4.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-5.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-6.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-7.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-12.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-13.jpg\",\"asus-vivobook-pro-15-oled-m3500qc-r5-l1105t-14.jpg\"]', 'AMD Ryzen 5 - 5600H', ' Card rời - NVIDIA GeForce RTX3050, 4 GB', '{\"memRAM\":\" 8 GB\",\"typeRAM\":\" DDR4 (On board)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"No support\"}', ' 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB)', '{\"sizeSC\":\"15.6 inch\",\"resoSC\":\"Full HD (1920 x 1080) OLED\",\"freSC\":\"60 Hz\",\"techSC\":\"0.2ms response time, 100% DCI-P3, OLED, SGS Eye Care Display\"}', ' Audio by Harman/Kardon', '{\"port\":\"1 x USB 3.2, 2 x USB 2.0, HDMI, Jack tai nghe 3.5 mm, USB Type-C\",\"wireless\":\"Bluetooth 5.0, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\"Có\",\"otherF\":\"Bảo mật vân tay, Công tắc khóa camera\"}', ' Dài 359.8 mm - Rộng 235.3 mm - Dày 19.9 mm - Nặng 1.65 kg', 'Vỏ nhựa - nắp lưng bằng kim loại', ' 3-cell Li-ion, 63 Wh', ' Windows 10 Home SL', 2021, '2022-01-09 11:49:42'),
 ('LT029', 'Laptop Dell Gaming G15 5515', 28990000, '1 năm', 'LT01', 'LM006', '[\"dell-gaming-g15-5515-r5-p105f004dgr-1.jpg\",\"dell-gaming-g15-5515-r5-p105f004dgr-2.jpg\",\"dell-gaming-g15-5515-r5-p105f004dgr-3.jpg\",\"dell-gaming-g15-5515-r5-p105f004dgr-4.jpg\",\"dell-gaming-g15-5515-r5-p105f004dgr-5.jpg\",\"dell-gaming-g15-5515-r5-p105f004dgr-6.jpg\"]', ' AMD Ryzen 5 - 5600H', ' Card rời - NVIDIA GeForce RTX3050, 4 GB', '{\"memRAM\":\" 16 GB\",\"typeRAM\":\" DDR4 2 khe (1 khe 8GB + 1 khe 8GB)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\" 32 GB\"}', '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2TB (2280) / 1TB (2230)), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng, Không hỗ trợ khe cắm HDD', '{\"sizeSC\":\" 15.6 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 120 Hz\",\"techSC\":\"250 nits  Chống chói Anti Glare  LED Backlit  WVA\"}', ' Nahimic Audio', '{\"port\":\"1 x USB 3.2, 2 x USB 2.0, HDMI, Jack tai nghe 3.5 mm, LAN (RJ45), USB Type-C\",\"wireless\":\" Bluetooth 5.2,Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\" HD webcam\",\"ledKB\":\" Có\",\"otherF\":\"\"}', 'Dài 357.26 mm - Rộng 272.11 mm - Dày 26.9 mm - Nặng 2.8 kg', 'Vỏ nhựa', '3-cell Li-ion, 56 Wh', 'Windows 11 Home SL + Office Home & Student 2021 vĩnh viễn', 2021, '2022-01-09 11:54:56'),
-('LT030', 'Laptop HP Envy x360 Convert 13 ay1057AU', 25790000, '1 năm', 'LT03', 'LM004', '[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]', ' AMD Ryzen 5 - 5600U', ' Card tích hợp - AMD Radeon Graphics', '{\"memRAM\":\"8 GB\",\"typeRAM\":\" DDR4 (On board)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"No support\"}', '256 GB SSD NVMe PCIe', '{\"sizeSC\":\" 13.3 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"100% sRGB, 400 nits, Công nghệ IPS\"}', ' Bang & Olufsen audio', '{\"port\":\"2x SuperSpeed USB A, Jack tai nghe 3.5 mm, USB Type-C (Power Delivery and DisplayPort)\",\"wireless\":\" Bluetooth 5.2, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\"Có\",\"otherF\":\" Bảo mật vân tay, Màn hình gập 360 độ\"}', 'Dài 306.5 mm - Rộng 194.6 mm - Dày 16.4 mm - Nặng 1.3 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 51 Wh', ' Windows 11 Home SL', 2021, '2022-01-09 12:07:43');
+('LT030', 'Laptop HP Envy x360 Convert 13 ay1057AU', 25790000, '1 năm', 'LT04', 'LM004', '[\"1.jpg\",\"2.jpg\",\"3.jpg\",\"4.jpg\",\"5.jpg\"]', ' AMD Ryzen 5 - 5600U', ' Card tích hợp - AMD Radeon Graphics', '{\"memRAM\":\"8 GB\",\"typeRAM\":\" DDR4 (On board)\",\"busRAM\":\" 3200 MHz\",\"maxRAM\":\"No support\"}', '256 GB SSD NVMe PCIe', '{\"sizeSC\":\" 13.3 inch\",\"resoSC\":\" Full HD (1920 x 1080)\",\"freSC\":\" 60 Hz\",\"techSC\":\"100% sRGB, 400 nits, Công nghệ IPS\"}', ' Bang & Olufsen audio', '{\"port\":\"2x SuperSpeed USB A, Jack tai nghe 3.5 mm, USB Type-C (Power Delivery and DisplayPort)\",\"wireless\":\" Bluetooth 5.2, Wi-Fi 6 (802.11ax)\"}', '{\"webcam\":\"HD webcam\",\"ledKB\":\"Có\",\"otherF\":\" Bảo mật vân tay, Màn hình gập 360 độ\"}', 'Dài 306.5 mm - Rộng 194.6 mm - Dày 16.4 mm - Nặng 1.3 kg', ' Vỏ kim loại', ' 3-cell Li-ion, 51 Wh', ' Windows 11 Home SL', 2021, '2022-01-09 12:07:43');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `laptop_type`
+-- Table structure for table `laptop_type`
 --
 
 CREATE TABLE `laptop_type` (
@@ -933,19 +946,20 @@ CREATE TABLE `laptop_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `laptop_type`
+-- Dumping data for table `laptop_type`
 --
 
 INSERT INTO `laptop_type` (`ID_Type`, `Name_Type`) VALUES
 ('LT01', 'Gaming'),
 ('LT02', 'Macbook'),
 ('LT03', 'Văn phòng'),
-('LT04', 'Mỏng nhẹ');
+('LT04', 'Mỏng nhẹ'),
+('LT05', 'Đồ họa');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `manufacturer`
+-- Table structure for table `manufacturer`
 --
 
 CREATE TABLE `manufacturer` (
@@ -954,7 +968,7 @@ CREATE TABLE `manufacturer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `manufacturer`
+-- Dumping data for table `manufacturer`
 --
 
 INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
@@ -969,7 +983,7 @@ INSERT INTO `manufacturer` (`ID_Manu`, `Name_Manu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_details`
+-- Table structure for table `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -980,7 +994,7 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `order_details`
+-- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`ID_Order`, `ID_Lap`, `Quantity`, `Price`) VALUES
@@ -1024,7 +1038,7 @@ INSERT INTO `order_details` (`ID_Order`, `ID_Lap`, `Quantity`, `Price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_info`
+-- Table structure for table `order_info`
 --
 
 CREATE TABLE `order_info` (
@@ -1036,7 +1050,7 @@ CREATE TABLE `order_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `order_info`
+-- Dumping data for table `order_info`
 --
 
 INSERT INTO `order_info` (`ID_Order`, `ID_Cus`, `Time_Order`, `Status_Order`, `Cost`) VALUES
@@ -1070,12 +1084,12 @@ INSERT INTO `order_info` (`ID_Order`, `ID_Cus`, `Time_Order`, `Status_Order`, `C
 (28, 16, '2022-01-12 11:38:07', 1, 113070000),
 (29, 16, '2022-01-12 11:39:16', 1, 28990000),
 (30, 16, '2022-01-12 11:39:30', 1, 77370000),
-(31, 16, '2022-01-12 11:41:53', 1, 80570000);
+(31, 16, '2022-01-12 11:41:53', 5, 80570000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `province`
+-- Table structure for table `province`
 --
 
 CREATE TABLE `province` (
@@ -1085,7 +1099,7 @@ CREATE TABLE `province` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `province`
+-- Dumping data for table `province`
 --
 
 INSERT INTO `province` (`id`, `_name`, `_code`) VALUES
@@ -1156,7 +1170,7 @@ INSERT INTO `province` (`id`, `_name`, `_code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `slider`
+-- Table structure for table `slider`
 --
 
 CREATE TABLE `slider` (
@@ -1167,7 +1181,7 @@ CREATE TABLE `slider` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `slider`
+-- Dumping data for table `slider`
 --
 
 INSERT INTO `slider` (`ID_Slider`, `Title`, `Image`, `Status`) VALUES
@@ -1178,7 +1192,7 @@ INSERT INTO `slider` (`ID_Slider`, `Title`, `Image`, `Status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `ward`
+-- Table structure for table `ward`
 --
 
 CREATE TABLE `ward` (
@@ -1189,7 +1203,7 @@ CREATE TABLE `ward` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `ward`
+-- Dumping data for table `ward`
 --
 
 INSERT INTO `ward` (`id`, `_name`, `_prefix`, `_district_id`) VALUES
@@ -12484,17 +12498,17 @@ INSERT INTO `ward` (`id`, `_name`, `_prefix`, `_district_id`) VALUES
 (11283, 'Trung Phúc', 'Xã', 709);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID_Admin`);
 
 --
--- Chỉ mục cho bảng `cart`
+-- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`ID_Lap`,`ID_Cus`),
@@ -12502,7 +12516,7 @@ ALTER TABLE `cart`
   ADD KEY `ID_Lap` (`ID_Lap`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`ID_Comm`),
@@ -12510,21 +12524,21 @@ ALTER TABLE `comment`
   ADD KEY `ID_Cus` (`ID_Cus`);
 
 --
--- Chỉ mục cho bảng `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`ID_Cus`),
   ADD UNIQUE KEY `Account` (`Account`);
 
 --
--- Chỉ mục cho bảng `district`
+-- Indexes for table `district`
 --
 ALTER TABLE `district`
   ADD PRIMARY KEY (`id`),
   ADD KEY `_province_id` (`_province_id`);
 
 --
--- Chỉ mục cho bảng `laptop`
+-- Indexes for table `laptop`
 --
 ALTER TABLE `laptop`
   ADD PRIMARY KEY (`ID_Lap`),
@@ -12532,19 +12546,19 @@ ALTER TABLE `laptop`
   ADD KEY `ID_Manu` (`ID_Manu`);
 
 --
--- Chỉ mục cho bảng `laptop_type`
+-- Indexes for table `laptop_type`
 --
 ALTER TABLE `laptop_type`
   ADD PRIMARY KEY (`ID_Type`);
 
 --
--- Chỉ mục cho bảng `manufacturer`
+-- Indexes for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`ID_Manu`);
 
 --
--- Chỉ mục cho bảng `order_details`
+-- Indexes for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`ID_Lap`,`ID_Order`),
@@ -12552,7 +12566,7 @@ ALTER TABLE `order_details`
   ADD KEY `ID_Order` (`ID_Order`);
 
 --
--- Chỉ mục cho bảng `order_info`
+-- Indexes for table `order_info`
 --
 ALTER TABLE `order_info`
   ADD PRIMARY KEY (`ID_Order`),
@@ -12560,116 +12574,116 @@ ALTER TABLE `order_info`
   ADD KEY `ID_Cus` (`ID_Cus`);
 
 --
--- Chỉ mục cho bảng `province`
+-- Indexes for table `province`
 --
 ALTER TABLE `province`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `slider`
+-- Indexes for table `slider`
 --
 ALTER TABLE `slider`
   ADD PRIMARY KEY (`ID_Slider`);
 
 --
--- Chỉ mục cho bảng `ward`
+-- Indexes for table `ward`
 --
 ALTER TABLE `ward`
   ADD PRIMARY KEY (`id`),
   ADD KEY `_province_id` (`_district_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID_Admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_Admin` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `ID_Comm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_Comm` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT cho bảng `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID_Cus` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT cho bảng `district`
+-- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=710;
 
 --
--- AUTO_INCREMENT cho bảng `province`
+-- AUTO_INCREMENT for table `province`
 --
 ALTER TABLE `province`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT cho bảng `slider`
+-- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
   MODIFY `ID_Slider` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT cho bảng `ward`
+-- AUTO_INCREMENT for table `ward`
 --
 ALTER TABLE `ward`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11284;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `cart`
+-- Constraints for table `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`);
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`),
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
 
 --
--- Các ràng buộc cho bảng `district`
+-- Constraints for table `district`
 --
 ALTER TABLE `district`
   ADD CONSTRAINT `district_ibfk_1` FOREIGN KEY (`_province_id`) REFERENCES `province` (`id`);
 
 --
--- Các ràng buộc cho bảng `laptop`
+-- Constraints for table `laptop`
 --
 ALTER TABLE `laptop`
   ADD CONSTRAINT `laptop_ibfk_1` FOREIGN KEY (`ID_Type`) REFERENCES `laptop_type` (`ID_Type`),
   ADD CONSTRAINT `laptop_ibfk_2` FOREIGN KEY (`ID_Manu`) REFERENCES `manufacturer` (`ID_Manu`);
 
 --
--- Các ràng buộc cho bảng `order_details`
+-- Constraints for table `order_details`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`ID_Order`) REFERENCES `order_info` (`ID_Order`),
   ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`ID_Lap`) REFERENCES `laptop` (`ID_Lap`);
 
 --
--- Các ràng buộc cho bảng `order_info`
+-- Constraints for table `order_info`
 --
 ALTER TABLE `order_info`
   ADD CONSTRAINT `order_info_ibfk_2` FOREIGN KEY (`ID_Cus`) REFERENCES `customer` (`ID_Cus`);
 
 --
--- Các ràng buộc cho bảng `ward`
+-- Constraints for table `ward`
 --
 ALTER TABLE `ward`
   ADD CONSTRAINT `ward_ibfk_1` FOREIGN KEY (`_district_id`) REFERENCES `district` (`id`);
