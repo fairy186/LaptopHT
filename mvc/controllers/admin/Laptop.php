@@ -14,11 +14,15 @@ class Laptop extends Controller
         $this->data["domain"] = $this->domain;
         $this->data["controller"] = get_class($this);
     }
-    function DefaultAction()
+    function DefaultAction($page = 1)
     {
+        $numonpage = 10;
         $this->data["page"] = "Laptop";
         $this->data['title'] = "Laptop";
         $this->data['dLap'] = $this->dLap->GetFullInfo();
+        $this->data["np"] = $page;
+        $this->data["tp"] = ceil(count($this->data['dLap']) / $numonpage);
+        $this->data['dLap'] = array_splice($this->data['dLap'], ($page - 1) * $numonpage, $numonpage);
         $this->view("AdminLayout", $this->data);
     }
     function Search($info = "")
@@ -27,9 +31,9 @@ class Laptop extends Controller
             header("Location: /$this->domain/Admin/" . $this->data['controller']);
             return;
         }
-        $this->data["page"] = "Laptop";
+        $this->data["page"] = "Search";
         $this->data['title'] = "Laptop";
-        $this->data['dLap'] = $this->dLap->Search($info);
+        $this->data['info'] = $info;
         $this->view("AdminLayout", $this->data);
     }
     function Add()

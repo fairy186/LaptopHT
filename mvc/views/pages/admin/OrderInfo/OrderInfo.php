@@ -6,7 +6,8 @@
      </div>
 </div>
 <?php
-$dorcus = $data['dOr_Cus'];
+$prev = @$data['np'] - 1;
+$next = @$data['np'] + 1;
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2'>
 <thead class='table-primary'>
 <tr align='center' style='font-size:20px'>
@@ -20,22 +21,41 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
      </tr>
      </thead>";
 
-for ($i = 0; $i < count($dorcus); $i++) {
-     $dfull = $dorcus[$i];
-     $time_order = $this->format_date($dfull['Time_Order']);
-     $stt = $i + 1;
+foreach ($this->data['dOrd'] as $key => $value) {
+     $time_order = $this->format_date($value['Time_Order']);
+     $stt = $key + 1;
      echo "<tr align='center'>
                <td>$stt</td>
-               <td>$dfull[ID_Order]</td>
-               <td>$dfull[First_Name]</td>
-               <td>$dfull[Last_Name]</td>
+               <td>$value[ID_Order]</td>
+               <td>$value[First_Name]</td>
+               <td>$value[Last_Name]</td>
                <td>$time_order </td>
-               <td>$dfull[Status_Order]</td>
+               <td>$value[Status_Order]</td>
                <td>
-                    <a class='fs-5 btn btn-outline-dark py-0' href='/$data[domain]/Admin/$data[controller]/OrderDetails/$dfull[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
+                    <a class='fs-5 btn btn-outline-dark py-0' href='/$data[domain]/Admin/$data[controller]/OrderDetails/$value[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
                </td>
           </tr>";
 }
 echo "</table>";
-
 ?>
+<nav aria-label="Page navigation">
+     <ul class="pagination d-flex justify-content-center fs-5">
+          <li id="prev" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$prev" ?>'>Previous</a></li>
+          <?php
+          for ($i = 1; $i <= $data['tp']; $i++) {
+               echo "<li class='page-item'><a class='page-link' href='/$data[domain]/Admin/$data[controller]/$i'>$i</a></li>";
+          }
+          ?>
+          <li id="next" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$next" ?>'>Next</a></li>
+     </ul>
+</nav>
+<script>
+     $(document).ready(function() {
+          <?php
+          if ($prev <= 0)
+               echo ("$('#prev').addClass('invisible')");
+          if ($next > $data['tp'])
+               echo ("$('#next').addClass('invisible')");
+          ?>
+     })
+</script>

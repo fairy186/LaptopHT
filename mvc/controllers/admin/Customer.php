@@ -12,18 +12,26 @@ class Customer extends Controller
         $this->data["controller"] = get_class($this);
     }
     // action mặc định
-    function DefaultAction()
+    function DefaultAction($page = 1)
     {
+        $numonpage = 10;
         $this->data["page"] = "Customer";
         $this->data['title'] = "Khách hàng";
         $this->data['dCus'] = $this->dCus->Get();
+        $this->data["np"] = $page;
+        $this->data["tp"] = ceil(count($this->data['dCus']) / $numonpage);
+        $this->data['dCus'] = array_splice($this->data['dCus'], ($page - 1) * $numonpage, $numonpage);
         $this->view("AdminLayout", $this->data);
     }
     function Search($info)
     {
-        $this->data["page"] = "Customer";
-        $this->data['title'] = "Khách hàng";
-        $this->data['dCus'] = $this->dCus->Search($info);
+        if (empty($info)) {
+            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            return;
+        }
+        $this->data["page"] = "Search";
+        $this->data['title'] = "Customer";
+        $this->data['info'] = $info;
         $this->view("AdminLayout", $this->data);
     }
 

@@ -24,7 +24,7 @@ class controller
                if (preg_match($pattern, $value)) {
                     $param = explode("_", $value, 2);
                     if (!empty($data[$param[1]]))
-                         if (call_user_func([$model, $value], $data[$param[1]]) == 0)
+                         if (call_user_func([$model, $value], $data[$param[1]]) != 1)
                               return 0;
                }
           }

@@ -9,21 +9,26 @@ class LaptopType extends Controller
           $this->data["domain"] = $this->domain;
           $this->data["controller"] = get_class($this);
      }
-     function DefaultAction()
-     {
-          $this->data["page"] = "LaptopType";
-          $this->data['title'] = "Loại laptop";
-          $this->data['dType'] = $this->dType->Get();
-          $this->view("AdminLayout", $this->data);
-     }
+     function DefaultAction($page = 1)
+    {
+        $numonpage = 10;
+        $this->data["page"] = "LaptopType";
+        $this->data['title'] = "Laptop Type";
+        $this->data['dType'] = $this->dType->Get();
+        $this->data["np"] = $page;
+        $this->data["tp"] = ceil(count($this->data['dType']) / $numonpage);
+        $this->data['dType'] = array_splice($this->data['dType'], ($page - 1) * $numonpage, $numonpage);
+        $this->view("AdminLayout", $this->data);
+    }
      function Search($info = "")
      {
           if (empty($info)) {
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
                return;
           }
-          $this->data["page"] = "LaptopType";
+          $this->data["page"] = "Search";
           $this->data['title'] = "Loại laptop";
+          $this->data['info']=$info;
           $this->data['dType'] = $this->dType->Search($info);
           $this->view("AdminLayout", $this->data);
      }

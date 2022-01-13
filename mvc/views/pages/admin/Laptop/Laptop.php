@@ -1,4 +1,3 @@
-
 <h1 class="text-center text-primary fw-bold m-3">Danh Sách Laptop <a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add" ?>'><i class="bi bi-plus-circle"></i></a></h1>
 <div class="container mb-3" style="max-width: 400px;">
      <div class="input-group">
@@ -8,6 +7,8 @@
 </div>
 
 <?php
+$prev = @$data['np'] - 1;
+$next = @$data['np'] + 1;
 echo "<table align='center' class='table table-bordered' cellpadding='2' cellspacing='2' id='list_data'>
           <tr class='table-primary' align='center' style='vertical-align: middle; font-size:20px;' id='tt' >
                <th>STT</th>
@@ -43,8 +44,25 @@ foreach ($data['dLap'] as $key => $value) {
           </tr>";
 }
 echo "</table>";
-
 ?>
+<nav aria-label="Page navigation">
+     <ul class="pagination d-flex justify-content-center fs-5">
+          <li id="prev" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$prev" ?>'>Previous</a></li>
+          <?php
+          for ($i = 1; $i <= $data['tp']; $i++) {
+               echo "<li class='page-item'><a class='page-link' href='/$data[domain]/Admin/$data[controller]/$i'>$i</a></li>";
+          }
+          ?>
+          <li id="next" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$next" ?>'>Next</a></li>
+     </ul>
+</nav>
 <script>
-     
+      $(document).ready(function() {
+          <?php
+          if ($prev <= 0)
+               echo ("$('#prev').addClass('invisible');");
+          if ($next > $data['tp'])
+               echo ("$('#next').addClass('invisible');");
+          ?>
+     })
 </script>

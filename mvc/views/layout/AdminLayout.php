@@ -115,10 +115,10 @@ function listitem($currentCtrl, $controller, $itemname)
      <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
      <script>
           $("input[vali]").keyup(function() {
-               check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+               check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
           }).change(function() {
-               check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+               check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
                <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
           });
 
@@ -137,20 +137,18 @@ function listitem($currentCtrl, $controller, $itemname)
           if (window.history.replaceState) {
                window.history.replaceState(null, null, window.location.href);
           }
-          var i
+          var tti
+          var regexNum = new RegExp('^[0-9]+$');
           $(document).ready(function() {
-               i = 0;
+               tti = 0;
           })
           $("table th").click(function() {
-               i = $(this).index();
-               console.log(i);
+               tti = $(this).index();
                if ($(this).find("i").length == 0) {
-                    console.log(i);
                     $("table th").find("i").remove()
                     $(this).append(' <i class="bi bi-chevron-down asc"></i>')
                     $("table tr").not(":first").sort(asc_sort).appendTo('table')
                } else {
-                    console.log(i);
                     if ($(this).find(".asc").length > 0) {
                          $("table th").find("i").remove()
                          $(this).append(' <i class="bi bi-chevron-up desc"></i>')
@@ -165,17 +163,18 @@ function listitem($currentCtrl, $controller, $itemname)
           })
 
           function asc_sort(a, b) {
-               if ($("table th").eq(i).text() == "STT") {
-                    return parseInt($(a).find('td').eq(i).text()) > parseInt($(b).find('td').eq(i).text()) ? 1 : -1;
+               if (regexNum.test($(a).find('td').eq(tti).text())) {
+                    return parseInt($(a).find('td').eq(tti).text()) >= parseInt($(b).find('td').eq(tti).text()) ? 1 : -1;
                }
-               return ($(a).find('td').eq(i).text()) > ($(b).find('td').eq(i).text()) ? 1 : -1;
+               return ($(a).find('td').eq(tti).text()) > ($(b).find('td').eq(tti).text()) ? 1 : -1;
           }
 
           function desc_sort(a, b) {
-               if ($("table th").eq(i).text() == "STT") {
-                    return parseInt($(a).find('td').eq(i).text()) < parseInt($(b).find('td').eq(i).text()) ? 1 : -1;
+               if (regexNum.test($(a).find('td').eq(tti).text())) {
+
+                    return parseInt($(a).find('td').eq(tti).text()) < parseInt($(b).find('td').eq(tti).text()) ? 1 : -1;
                }
-               return ($(a).find('td').eq(i).text()) < ($(b).find('td').eq(i).text()) ? 1 : -1;
+               return ($(a).find('td').eq(tti).text()) < ($(b).find('td').eq(tti).text()) ? 1 : -1;
           }
      </script>
      <script>

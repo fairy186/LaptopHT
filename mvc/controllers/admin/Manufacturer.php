@@ -10,11 +10,15 @@ class Manufacturer extends Controller
           $this->data["controller"] = get_class($this);
      }
      // action mặc định
-     function DefaultAction()
+     function DefaultAction($page = 1)
      {
+          $numonpage = 10;
           $this->data["page"] = "Manufacturer";
           $this->data['title'] = "Hảng Laptop";
           $this->data['dManu'] = $this->dManu->Get();
+          $this->data["np"] = $page;
+          $this->data["tp"] = ceil(count($this->data['dManu']) / $numonpage);
+          $this->data['dManu'] = array_splice($this->data['dManu'], ($page - 1) * $numonpage, $numonpage);
           $this->view("AdminLayout", $this->data);
      }
      function Search($info = "")
@@ -23,9 +27,9 @@ class Manufacturer extends Controller
                header("Location: /$this->domain/Admin/" . $this->data['controller']);
                return;
           }
-          $this->data["page"] = "Manufacturer";
+          $this->data["page"] = "Search";
           $this->data['title'] = "Hảng Laptop";
-          $this->data['dManu'] = $this->dManu->Search($info);
+          $this->data['info'] = $info;
           $this->view("AdminLayout", $this->data);
      }
 

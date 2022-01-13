@@ -6,30 +6,48 @@
 </div>
 </div>
 <?php
-$dcart = $data['dCart'];
+$prev = @$data['np'] - 1;
+$next = @$data['np'] + 1;
 echo "<table align='center' class='table table-bordered ' cellpadding='2' cellspacing='2'>
-<thead class='table-primary'>
-<tr align='center' style='font-size:20px'>
-     <th width='150px'>STT</th>
-     <th>Họ</th>
-     <th>Tên</th>
-     <th>Tên laptop</th>
-     <th>Số lượng</th>
-     </tr>
-     </thead>";
+          <tr class='table-primary' align='center' style='font-size:20px'>
+               <th width='150px'>STT</th>
+               <th>Họ</th>
+               <th>Tên</th>
+               <th>Tên laptop</th>
+               <th>Số lượng</th>
+          </tr>";
 
-for ($i = 0; $i < count($dcart); $i++) {
-     $dct = $dcart[$i];
-     $stt = $i + 1;
+foreach($data['dCart'] as $key => $value) {
+     $stt = $key + 1;
      echo "<tr align='center'>
                <td>$stt</td>
-               <td>$dct[First_Name]</td>
-               <td> $dct[Last_Name]</td>
-               <td>$dct[Name_Lap]</td>
-               <td>$dct[Quantity]</td>
-
+               <td>$value[First_Name]</td>
+               <td> $value[Last_Name]</td>
+               <td>$value[Name_Lap]</td>
+               <td>$value[Quantity]</td>
           </tr>";
 }
 echo "</table>";
 
 ?>
+<nav aria-label="Page navigation">
+     <ul class="pagination d-flex justify-content-center fs-5">
+          <li id="prev" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$prev" ?>'>Previous</a></li>
+          <?php
+          for ($i = 1; $i <= $data['tp']; $i++) {
+               echo "<li class='page-item'><a class='page-link' href='/$data[domain]/Admin/$data[controller]/$i'>$i</a></li>";
+          }
+          ?>
+          <li id="next" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$next" ?>'>Next</a></li>
+     </ul>
+</nav>
+<script>
+      $(document).ready(function() {
+          <?php
+          if ($prev <= 0)
+               echo ("$('#prev').addClass('invisible');");
+          if ($next > $data['tp'])
+               echo ("$('#next').addClass('invisible');");
+          ?>
+     })
+</script>

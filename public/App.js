@@ -12,6 +12,7 @@ function check_Input(input, domain, md) {
           },
           function (data) {
                var d = JSON.parse(data);
+               console.log(d);
                $("label[mess=" + n + "]").html(d[0]);
                if (d.length == 1) {
                     inp.removeClass("border-danger").addClass("border-primary").addClass("inp1").removeClass("inp0");

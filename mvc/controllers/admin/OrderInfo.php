@@ -14,19 +14,26 @@ class OrderInfo extends Controller
         $this->data["controller"] = get_class($this);
     }
     // action mặc định
-    function DefaultAction()
+    function DefaultAction($page=1)
     {
+        $numonpage = 10;
         $this->data["page"] = "OrderInfo";
         $this->data['title'] = "Đơn hàng";
-        $this->data['dOr_Cus'] = $this->dOrIn->GetFullInfo();
+        $this->data["np"] = $page;
+        $this->data['dOrd'] = $this->dOrIn->GetFullInfo();
+        $this->data["tp"] = ceil(count($this->data['dOrd']) / $numonpage);
+        $this->data['dOrd'] = array_splice($this->data['dOrd'], ($page - 1) * $numonpage, $numonpage);
         $this->view("AdminLayout", $this->data);
     }
-    function Search($info="")
+    function Search($info = "")
     {
-        $this->data["page"] = "OrderInfo";
+        if (empty($info)) {
+            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            return;
+        }
+        $this->data["page"] = "Search";
         $this->data['title'] = "Đơn hàng";
-        $this->data['dOr_Cus'] = $this->dOrIn->Search($info);
-        // print_r($this->data['dOr_Cus']);
+        $this->data['info'] = $info;
         $this->view("AdminLayout", $this->data);
     }
     function OrderDetails($id)
