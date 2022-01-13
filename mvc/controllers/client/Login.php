@@ -31,7 +31,6 @@ class Login extends Controller
             } else
                 $_SESSION['notify'] = "Tài khoản hoặc mật sai!";
         }
-
         $this->view("Login", $this->data);
     }
     function SignOut()
@@ -54,8 +53,8 @@ class Login extends Controller
         if (isset($_POST['sm'])) {
             $check = $this->validate($this->dCus, $_POST);
             $address = $this->dAddress->GetAddress($_POST['province'], $_POST['district'], $_POST['ward']);
+            $address = $_POST['spe']  . ", " . $address;
             if ($check && $_POST['password'] == $_POST['confirmPassword']) {
-                $address = $_POST['spe']  . ", " . $address;
                 $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
                 $u = $this->dCus->Login($_POST['account'], $_POST['password']);
                 $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]", 'sdt' => "$u[Phone]"];

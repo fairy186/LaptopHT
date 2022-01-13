@@ -58,7 +58,7 @@ class LaptopModel extends DB
                     }
                }
           }
-          $d = array_splice($kq, $vt, 12);
+          $d = array_splice($kq, $vt);
           return $d;
      }
      public function GetFullInfoByID($id)

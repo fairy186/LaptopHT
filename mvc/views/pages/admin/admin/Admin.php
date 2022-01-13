@@ -1,4 +1,4 @@
-<h1 align="center">Danh Sách Quản Trị Viên</h1>
+<h1 class="text-center text-primary fw-bold p-5">Danh Sách Admin</h1>
 <?php
 echo "<table align='center' class='table table-bordered rounded-3' cellpadding='2' cellspacing='2'>
 <thead class='table-primary' >

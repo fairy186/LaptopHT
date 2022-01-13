@@ -24,6 +24,26 @@ class CartModel extends DB
           }
           return $kq;
      }
+     public function Search($info, $vt = 0)
+     {
+          $sarr = ['Name_Lap', 'First_Name', 'Last_Name'];
+          $vt = $vt * 12;
+          $data = $this->GetFullInfo();
+          $kq = [];
+          foreach ($data as $key => $value) {
+               foreach ($value as $k => $val) {
+                    if (in_array($k, $sarr)) {
+                         $pattern = "/$info/u";
+                         if (preg_match($pattern, $val)) {
+                              $kq[] = $value;
+                              break;
+                         }
+                    }
+               }
+          }
+          // $d = array_splice($kq, $vt, 12);
+          return $kq;
+     }
      public function GetByID_Cus($id_Cus)
      {
           $qr = "SELECT * FROM `cart`,`laptop` WHERE cart.ID_Lap = laptop.ID_Lap and `ID_Cus`='$id_Cus'";

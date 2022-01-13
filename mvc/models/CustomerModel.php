@@ -23,6 +23,23 @@ class CustomerModel extends DB
                $row = mysqli_fetch_array($sql);
           return $row;
      }
+     public function Search($info,$vt=0)
+     {
+          $vt=$vt*12;
+          $data = $this->Get();
+          $kq = [];
+          foreach ($data as $key => $value) {
+               foreach ($value as $key => $val){
+                    $pattern = "/$info/i";
+                    if(preg_match($pattern, $val)){
+                         $kq[]=$value;
+                         break;
+                    }
+               }
+          }
+          // $d = array_splice($kq, $vt, 12);
+          return $kq;
+     }
      function updateBaseInfo($id, $first_name, $last_name, $phone, $email)
      {
           $qr = "UPDATE `customer` SET `First_Name`='$first_name',`Last_Name`='$last_name',`Phone`='$phone',`Email`='$email'

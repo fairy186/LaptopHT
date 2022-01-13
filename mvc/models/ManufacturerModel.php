@@ -21,6 +21,23 @@ class ManufacturerModel extends DB
                return mysqli_fetch_array($sql);
           return 0;
      }
+     public function Search($info, $vt = 0)
+     {
+          $vt = $vt * 12;
+          $data = $this->Get();
+          $kq = [];
+          foreach ($data as $key => $value) {
+               foreach ($value as $key => $val) {
+                    $pattern = "/$info/i";
+                    if (preg_match($pattern, $val)) {
+                         $kq[] = $value;
+                         break;
+                    }
+               }
+          }
+          $d = array_splice($kq, $vt, 12);
+          return $d;
+     }
 
      public function Add($id, $name)
      {
