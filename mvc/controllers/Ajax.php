@@ -38,14 +38,18 @@ class Ajax extends controller
           else
                echo 0;
      }
-     public function AddCart($id_lap, $id_cus)
+     public function AddCart($id_lap)
      {
+          if (!isset($_SESSION['user'])) {
+               echo json_encode("vui lòng đăng nhập để thêm hàng vào giỏ", JSON_UNESCAPED_UNICODE);
+               return;
+          }
           $md = $this->model("CartModel");
-          echo json_encode($md->AddCart($id_lap, $id_cus), JSON_UNESCAPED_UNICODE);
+          echo json_encode($md->AddCart($id_lap, $_SESSION['user']['id']), JSON_UNESCAPED_UNICODE);
      }
      public function Comment($id_Lap, $id_Cus)
      {
-          $content="".@$_POST['content'];
+          $content = "" . @$_POST['content'];
           $md = $this->model("CommentModel");
           $this->convert_time($md->AddComment($id_Lap, $id_Cus, $content));
      }
@@ -80,10 +84,10 @@ class Ajax extends controller
           if ($md->Delete($id_lap, $_SESSION['user']['id']))
                echo "Deleted";
      }
-     public function Get_Laptop($vt,$a="Add_Time", $o="DESC")
+     public function Get_Laptop($vt, $a = "Add_Time", $o = "DESC")
      {
           $md = $this->model("LaptopModel");
-          $dLap = $md->GetForHome($vt,$a,$o);
+          $dLap = $md->GetForHome($vt, $a, $o);
           foreach ($dLap as $key => $value) {
                $id = $value['ID_Lap'];
                $images = json_decode($value['Images']);

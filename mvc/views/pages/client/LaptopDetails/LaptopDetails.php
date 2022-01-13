@@ -10,7 +10,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
 $price = $this->num_to_price($data['dLap']['Price']);
 $id_user = @$_SESSION['user']['id'];
 ?>
-<div class="container-fruit row bg-light bg-gradient g-0" >
+<div class="container-fruit row bg-light bg-gradient g-0">
     <div class="col-6 ">
         <div id="carouselExampleInterval" class="carousel slide " data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -50,7 +50,7 @@ $id_user = @$_SESSION['user']['id'];
                 </form>
             </div>
         </div>
-        <div class="border border-primary rounded p-2 mt-5 mx-2" >
+        <div class="border border-primary rounded p-2 mt-5 mx-2">
             <h2 class="fs-3 text-center text-primary">Bình luận</h2>
             <div class="d-flex flex-row mb-3 rounded-pill bg-primary bg-gradient bg-opacity-25 badge p-2 m-2 justify-content-center">
                 <?php
@@ -79,7 +79,7 @@ $id_user = @$_SESSION['user']['id'];
             <div class="col-12 ">
                 <h2 class="fw-bold text-center text-warning p-2 m-0 bg-dark"><?php echo $name ?></h2>
                 <h5 class="card-header" style="background-color: #C6DEF7;">Tổng quan</h5>
-                <div class="card-body" >
+                <div class="card-body">
                     <div class="row">
                         <label class="card-title col-md-4 col-label">CPU</label>
                         <div class="col-md-8 ">
@@ -257,7 +257,7 @@ $id_user = @$_SESSION['user']['id'];
     }
 
     function addCart() {
-        $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id/" . @$_SESSION['user']['id']; ?>', {}, function(data) {
+        $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id"; ?>', {}, function(data) {
             $(".toast-body").html(JSON.parse(data));
         })
     };

@@ -18,6 +18,7 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
                <th>Tên loại laptop</th>
                <th>Tên hảng</th>
                <th>Thời điểm ra mắt</th>
+               <th>Thời điểm nhập</th>
                <th width='150px'>Tùy chọn</th>
           </tr>
      </table>";

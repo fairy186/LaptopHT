@@ -34,9 +34,10 @@ class LaptopModel extends DB
      }
      public function GetForHome($vt=0,$a="Add_Time",$o="DESC")
      {
-          $vt=$vt*12;
+          $numonpage=8;
+          $vt=$vt*$numonpage;
           $qr = "SELECT * FROM `laptop` JOIN `manufacturer` ON laptop.ID_Manu = manufacturer.ID_Manu
-                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `$a` $o LIMIT $vt,12 ";
+                                        JOIN `laptop_type` ON laptop.ID_Type = laptop_type.ID_Type Order By `$a` $o LIMIT $vt,$numonpage";
           $sql = mysqli_query($this->con, $qr);
           $kq = array();
           while ($row = mysqli_fetch_array($sql)) {
@@ -46,7 +47,8 @@ class LaptopModel extends DB
      }
      public function Search($info,$vt=0, $a="Add_Time",$o="DESC")
      {
-          $vt=$vt*12;
+          $numonpage=8;
+          $vt=$vt*$numonpage;
           $data = $this->GetFullInfo($a,$o);
           $kq = [];
           foreach ($data as $key => $value) {
@@ -58,7 +60,7 @@ class LaptopModel extends DB
                     }
                }
           }
-          $d = array_splice($kq, $vt);
+          $d = array_splice($kq, $vt, $numonpage);
           return $d;
      }
      public function GetFullInfoByID($id)

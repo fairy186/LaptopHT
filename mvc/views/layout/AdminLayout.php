@@ -116,11 +116,14 @@ function listitem($currentCtrl, $controller, $itemname)
      <script>
           $("input[vali]").keyup(function() {
                check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
-               <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
           }).change(function() {
                check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
-               <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
           });
+          $("form").children().change(function(){
+               <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
+          }).keyup(function(){
+               <?php if (@$data['action'] == 'Edit') echo 'validate();' ?>
+          })
 
           function validate() {
                $("input[vali]").each(function() {

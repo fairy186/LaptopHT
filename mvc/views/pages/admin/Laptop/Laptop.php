@@ -20,6 +20,7 @@ echo "<table align='center' class='table table-bordered' cellpadding='2' cellspa
                <th>Tên loại laptop</th>
                <th>Tên hảng</th>
                <th>Thời điểm ra mắt</th>
+               <th>Thời điểm nhập</th>
                <th width='150px'>Tùy chọn</th>
           </tr>
           ";
@@ -27,6 +28,7 @@ foreach ($data['dLap'] as $key => $value) {
      $images = json_decode($value['Images']);
      $stt = $key + 1;
      $price = $this->num_to_price($value['Price']);
+     $time_add = $this->format_date($value['Add_Time']);
      echo "<tr align='center' id_lap='$value[ID_Lap]'>
                <td>$stt</td>
                <td >$value[ID_Lap]</td>
@@ -37,6 +39,7 @@ foreach ($data['dLap'] as $key => $value) {
                <td class='text-primary fw-bold'>$value[Name_Type]</td>
                <td class='text-success fw-bold'>$value[Name_Manu]</td>
                <td>$value[Release_Time]</td>
+               <td>$time_add</td>
                <td>
                     <a href='/$data[domain]/Admin/$data[controller]/Edit/$value[ID_Lap]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
                     <a href='/$data[domain]/Admin/$data[controller]/Delete/$value[ID_Lap]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>  
@@ -57,7 +60,7 @@ echo "</table>";
      </ul>
 </nav>
 <script>
-      $(document).ready(function() {
+     $(document).ready(function() {
           <?php
           if ($prev <= 0)
                echo ("$('#prev').addClass('invisible');");

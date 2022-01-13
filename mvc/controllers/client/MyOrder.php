@@ -29,32 +29,7 @@ class MyOrder extends Controller
                $this->data['dOrder'][$key]['Details'] = $this->dOrDe->GetMyOrderDetails($value['ID_Order']);
           }
           foreach ($this->data['dOrder'] as $key => $value) {
-               switch ($value['Status_Order']) {
-                    case 1: {
-                              $this->data['dOrder'][$key]['Status_Order'] = "chờ xác nhận";
-                              break;
-                         }
-                    case 2: {
-                              $this->data['dOrder'][$key]['Status_Order'] = "xác nhận , đóng gói";
-                              break;
-                         }
-                    case 3: {
-                              $this->data['dOrder'][$key]['Status_Order'] = "đang vận chuyển";
-                              break;
-                         }
-                    case 4: {
-                              $this->data['dOrder'][$key]['Status_Order'] = "Đang đang giao hàng";
-                              break;
-                         }
-                    case 5: {
-                              $this->data['dOrder'][$key]['Status_Order'] = "đã giao hàng";
-                              break;
-                         }
-                    default: {
-                              $this->data['dOrder'][$key]['Status_Order'] = "đơn hàng bị hủy";
-                              break;
-                         }
-               };
+               $this->data['dOrder'][$key]['Status_Order']=$this->num_to_status($value['Status_Order']);
           }
           $this->view("ClientLayout", $this->data);
      }

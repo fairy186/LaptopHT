@@ -30,6 +30,29 @@ class controller
           }
           return 1;
      }
+     function num_to_status($num)
+     {
+          switch ($num) {
+               case 1: {
+                         return  "chờ xác nhận";
+                    }
+               case 2: {
+                         return  "xác nhận , đóng gói";
+                    }
+               case 3: {
+                         return  "đang vận chuyển";
+                    }
+               case 4: {
+                         return  "Đang đang giao hàng";
+                    }
+               case 5: {
+                         return  "đã giao hàng";
+                    }
+               default: {
+                         return  "đơn hàng bị hủy";
+                    }
+          };
+     }
      function upSlide()
      {
           $target_dir = "images/slider/";

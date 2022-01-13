@@ -9,16 +9,20 @@ class Ajax extends controller
           $vt = $vt * $numonpage;
           $md = $this->model("LaptopModel");
           $data = $md->GetFullInfo();
+          $sa = ["ID_Lap", "Name_Lap", "Insurance", "Price", "Name_Type", "Name_Type", "Release_Time", "Add_Time"]; // các thuộc tính sẽ kiểm tra
           foreach ($data as $key => $value) {
+               $data[$key]['Add_Time'] = $this->format_date($value['Add_Time']);
                $data[$key]['Price'] = $this->num_to_price($value['Price']);
           }
           $kq = [];
           foreach ($data as $key => $value) {
                foreach ($value as $key => $val) {
-                    $pattern = "/$info/i";
-                    if (preg_match($pattern, $val)) {
-                         $kq[] = $value;
-                         break;
+                    if (in_array($key, $sa)) {
+                         $pattern = "/$info/i";
+                         if (preg_match($pattern, $val)) {
+                              $kq[] = $value;
+                              break;
+                         }
                     }
                }
           }
@@ -38,6 +42,7 @@ class Ajax extends controller
                          <td class='text-primary fw-bold'>$value[Name_Type]</td>
                          <td class='text-success fw-bold'>$value[Name_Manu]</td>
                          <td>$value[Release_Time]</td>
+                         <td>$value[Add_Time]</td>
                          <td>
                               <a href='/$this->domain/Admin/Laptop/Edit/$value[ID_Lap]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
                               <a href='/$this->domain/Admin/Laptop/Delete/$value[ID_Lap]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>  
@@ -54,16 +59,20 @@ class Ajax extends controller
           $vt = $vt * $numonpage;
           $md = $this->model("OrderInfoModel");
           $data = $md->GetFullInfo();
+          $sa = ["ID_Order", "First_Name", "Last_Name", "Time_Order"];
           foreach ($data as $key => $value) {
                $data[$key]['Time_Order'] = $this->format_date($value['Time_Order']);
+               $data[$key]['Status_Order'] = $this->num_to_status($value['Status_Order']);
           }
           $kq = [];
           foreach ($data as $key => $value) {
                foreach ($value as $key => $val) {
-                    $pattern = "/$info/i";
-                    if (preg_match($pattern, $val)) {
-                         $kq[] = $value;
-                         break;
+                    if (in_array($key, $sa)) {
+                         $pattern = "/$info/i";
+                         if (preg_match($pattern, $val)) {
+                              $kq[] = $value;
+                              break;
+                         }
                     }
                }
           }

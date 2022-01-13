@@ -21,6 +21,9 @@ class OrderInfo extends Controller
         $this->data['title'] = "Đơn hàng";
         $this->data["np"] = $page;
         $this->data['dOrd'] = $this->dOrIn->GetFullInfo();
+        foreach ($this->data['dOrd'] as $key => $value) {
+            $this->data['dOrd'][$key]['Status_Order']=$this->num_to_status($value['Status_Order']);
+       }
         $this->data["tp"] = ceil(count($this->data['dOrd']) / $numonpage);
         $this->data['dOrd'] = array_splice($this->data['dOrd'], ($page - 1) * $numonpage, $numonpage);
         $this->view("AdminLayout", $this->data);
