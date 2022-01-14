@@ -64,7 +64,7 @@
             </div>
             <div class="col-6 mb-3">
                 <select id="ward" class="form-select" name="ward" required>
-                <?php
+                    <?php
                     if (!isset($_POST["ward"])) {
                         echo "<option selected disabled value=''>xã, phường</option>";
                         foreach ($data['dWard'] as $key => $value) {
@@ -148,7 +148,8 @@
         $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
             var d = JSON.parse(data);
             var dt = $("#district");
-            dt.html("<option disabled selected> quận, huyện</option>");
+            $("#ward").html("<option disabled selected value=''> xã, phường</option>");
+            dt.html("<option disabled selected value=''> quận, huyện</option>");
             d.forEach(element => {
                 $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(dt);
             });
@@ -159,7 +160,7 @@
         $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
             var d = JSON.parse(data);
             var w = $("#ward");
-            w.html("<option disabled selected> xã, phường</option>");
+            w.html("<option disabled selected value=''> xã, phường</option>");
             d.forEach(element => {
                 $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(w);
             });

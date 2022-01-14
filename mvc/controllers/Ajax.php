@@ -239,7 +239,8 @@ class Ajax extends controller
                $mail->send();
                echo "Đã gửi mã xác nhận vui lòng kiểm tra lại email đã nhập";
           } catch (Exception $e) {
-               echo "$mail->ErrorInfo";
+               unset($_SESSION['verify']);
+               echo "Vui lòng nhập chính xác email";
           }
      }
 }
