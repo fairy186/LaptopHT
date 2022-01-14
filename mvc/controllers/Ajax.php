@@ -1,4 +1,9 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class Ajax extends controller
 {
      function __construct()
@@ -38,6 +43,9 @@ class Ajax extends controller
           else
                echo 0;
      }
+
+
+
      public function AddCart($id_lap)
      {
           if (!isset($_SESSION['user'])) {
@@ -184,6 +192,54 @@ class Ajax extends controller
                     </div>
                </a>
                ";
+          }
+     }
+
+     public function SendMail()
+     {
+          $email = $_POST['em'];
+          require './lib/PHPMailer/src/Exception.php';
+          require './lib/PHPMailer/src/PHPMailer.php';
+          require './lib/PHPMailer/src/SMTP.php';
+          date_default_timezone_set("Asia/Ho_Chi_Minh");
+          if (isset($_SESSION['verify'])) {
+               $now = strtotime(date('Y-m-d H:i:s'));
+               $dt = strtotime($_SESSION['verify']['time']);
+               if ($now - $dt >= 60)
+                    unset($_SESSION['verify']);
+               else
+                    {
+                         echo "vui lòng thử lại sau 1 phút";
+                         return;
+                    }
+          }
+          $_SESSION['verify']['code'] = "";
+          $_SESSION['verify']['email'] = $email;
+          $_SESSION['verify']['time'] = date('Y-m-d H:i:s');
+          for ($i = 1; $i <= 6; $i++) {
+               $_SESSION['verify']['code'] .= rand(0, 9);
+          }
+          $mail = new PHPMailer(true);
+          try {
+               $mail->SMTPDebug = 0;                      //Enable verbose debug output
+               $mail->isSMTP();                                            //Send using SMTP
+               $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+               $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+               $mail->Username   = 'laptopht18062910@gmail.com';                     //SMTP username
+               $mail->Password   = 'LaptopHT18062910';                               //SMTP password
+               $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+               $mail->Port       = 465;
+               $mail->CharSet  = 'UTF-8';                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+               $mail->setFrom('LaptopHT@gmal.com', 'LaptopHT');
+               $mail->addAddress("$email");     //Add a recipient
+               //Content
+               $mail->isHTML(true);                                  //Set email format to HTML
+               $mail->Subject = 'Mã Xác nhận';
+               $mail->Body    = '<h1>Mã xác nhận của bạn là: <b style="color:red">' . $_SESSION['verify']['code'] . '</b></h1> <p> Mã tồn tại trong 5 phút</p><p>Vui lòng không tiết lộ thông tin này với bất kì ai</p>';
+               $mail->send();
+               echo "Đã gửi mã xác nhận vui lòng kiểm tra lại email đã nhập";
+          } catch (Exception $e) {
+               echo "$mail->ErrorInfo";
           }
      }
 }

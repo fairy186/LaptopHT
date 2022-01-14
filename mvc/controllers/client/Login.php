@@ -51,18 +51,33 @@ class Login extends Controller
         $this->data['action'] = "SignUp";
         $this->data['dProvince'] = $this->dAddress->GetProvince();
         if (isset($_POST['sm'])) {
+            if (isset($_POST['province']))
+                $this->data['dDistrict'] = $this->dAddress->GetDistrict($_POST['province']);
+            if (isset($_POST['district']))
+                $this->data['dWard'] = $this->dAddress->GetWard($_POST['district']);
+            $this->data['dProvince'] = $this->dAddress->GetProvince();
             $check = $this->validate($this->dCus, $_POST);
             $address = $this->dAddress->GetAddress($_POST['province'], $_POST['district'], $_POST['ward']);
             $address = $_POST['spe']  . ", " . $address;
             if ($check && $_POST['password'] == $_POST['confirmPassword']) {
-                $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
-                $u = $this->dCus->Login($_POST['account'], $_POST['password']);
-                $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]", 'sdt' => "$u[Phone]"];
-                $_SESSION['notify'] = "<p>Chào $u[Last_Name]!</p><p>Chúc mưng bạn vừa tạo tài khoản</p>";
-                header("Location: /$this->domain");
-                return;
+                if (isset($_SESSION['verify'])) {
+                    if ($_POST['verify'] == $_SESSION['verify']['code']) {
+                        if ($_POST['email'] == $_SESSION['verify']['email']) {
+                            $this->dCus->Add($_POST['firstname'], $_POST['lastname'], $address, $_POST['phone'], $_POST['email'], $_POST['account'], $_POST['password']);
+                            $u = $this->dCus->Login($_POST['account'], $_POST['password']);
+                            $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]", 'sdt' => "$u[Phone]"];
+                            $_SESSION['notify'] = "<p>Chào $u[Last_Name]!</p><p>Chúc mừng bạn vừa tạo tài khoản</p>";
+                            unset($_SESSION['verify']);
+                            header("Location: /$this->domain");
+                            return;
+                        } else
+                            $_SESSION['notify'] = "Email đã thay đổi! vui lòng nhập đúng email nhận mã";
+                    } else
+                        $_SESSION['notify'] = "Mã xác thực sai";
+                } else
+                    $_SESSION['notify'] = "Vui lòng gửi mail để lấy mã xác thực";
             } else
-                $this->data["tb"] = "Lỗi";
+                $_SESSION['notify'] = "Có lỗi xảy ra! vui lòng thử lại";
         }
         $this->view("Login", $this->data);
     }

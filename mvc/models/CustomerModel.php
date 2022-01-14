@@ -136,6 +136,8 @@ class CustomerModel extends DB
 
      public function Check_email($val)
      {
+          if(!preg_match("/[\S]{6,}@[\S]+\.[\S]+$/i", $val))
+               return "Sai định dạng mail";
           return $this->Check($val, 8, 32);
      }
 }

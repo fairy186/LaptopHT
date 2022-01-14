@@ -1,9 +1,3 @@
-<?php
-if (!empty($_SESSION['Notification'])) {
-    echo "<script>$(document).ready(function(){alert('$_SESSION[Notification]');})</script>";
-    unset($_SESSION['Notification']);
-}
-?>
 <h2 class="my-5 text-primary fs-1 fw-bold" align='center'>ĐĂNG KÝ</h2>
 <div class="container my-5 bg-dark bg-opacity-50 py-5 rounded" style="max-width: 600px;">
     <form action="" method="post" class="row">
@@ -30,38 +24,83 @@ if (!empty($_SESSION['Notification'])) {
         <div class="row m-0 p-0">
             <div class="col-6 mb-3">
                 <select id="province" class="form-select" name="province" required>
-                    <option selected disabled value="">Tỉnh</option>
                     <?php
-                    $dprovince = $data['dProvince'];
-                    for ($i = 0; $i < count($dprovince); $i++) {
-                        $pv = $dprovince[$i];
-                        echo "<option value='$pv[id]'>$pv[_name]</option>";
+                    if (!isset($_POST["province"])) {
+                        echo "<option selected disabled value=''>Tỉnh</option>";
+                        foreach ($data['dProvince'] as $key => $value) {
+                            echo "<option value='$value[id]'>$value[_name]</option>";
+                        }
+                    } else {
+                        echo "<option disabled value=''>Tỉnh</option>";
+                        foreach ($data['dProvince'] as $key => $value) {
+                            if ($_POST["province"] == $value['id'])
+                                echo "<option value='$value[id]' selected>$value[_name]</option>";
+                            else
+                                echo "<option value='$value[id]'>$value[_name]</option>";
+                        }
                     }
                     ?>
                 </select>
             </div>
             <div class="col-6 mb-3">
                 <select id="district" class="form-select" name="district" required>
-                    <option disabled selected> quận, huyện</option>
+                    <?php
+                    if (!isset($_POST["district"])) {
+                        echo "<option selected disabled value=''>quận, huyện</option>";
+                        foreach ($data['dDistrict'] as $key => $value) {
+                            echo "<option value='$value[id]'>$value[_prefix] $value[_name]</option>";
+                        }
+                    } else {
+                        echo "<option disabled value=''>quận, huyện</option>";
+                        foreach ($data['dDistrict'] as $key => $value) {
+                            if ($_POST["district"] == $value['id'])
+                                echo "<option value='$value[id]' selected >$value[_prefix] $value[_name]</option>";
+                            else
+                                echo "<option value='$value[id]'> $value[_prefix] $value[_name]</option>";
+                        }
+                    }
+                    ?>
                 </select>
             </div>
             <div class="col-6 mb-3">
                 <select id="ward" class="form-select" name="ward" required>
-                    <option disabled selected> xã, phường</option>
+                <?php
+                    if (!isset($_POST["ward"])) {
+                        echo "<option selected disabled value=''>xã, phường</option>";
+                        foreach ($data['dWard'] as $key => $value) {
+                            echo "<option value='$value[id]'>$value[_prefix] $value[_name]</option>";
+                        }
+                    } else {
+                        echo "<option disabled value=''>xã, phường</option>";
+                        foreach ($data['dWard'] as $key => $value) {
+                            if ($_POST["ward"] == $value['id'])
+                                echo "<option value='$value[id]' selected >$value[_prefix] $value[_name]</option>";
+                            else
+                                echo "<option value='$value[id]'>$value[_prefix] $value[_name]</option>";
+                        }
+                    }
+                    ?>
                 </select>
             </div>
             <div class="col-6 mb-3">
-                <input type="text" vali class="form-control" name="spe" placeholder="Số nhà, đường" value='<?php if (isset($_POST["address"])) echo $_POST["address"] ?>'>
+                <input type="text" vali class="form-control" name="spe" placeholder="Số nhà, đường" value='<?php if (isset($_POST["spe"])) echo $_POST["spe"] ?>'>
             </div>
-            <label mess="address"></label>
+            <label mess="spe"></label>
         </div>
         <div>
             <input type="text" vali class="form-control" name="phone" placeholder="Số điện thoại" value='<?php if (isset($_POST["phone"])) echo $_POST["phone"] ?>'>
             <label mess="phone"></label>
         </div>
         <div>
-            <input type="email" vali class="form-control" name="email" placeholder="Email" value='<?php if (isset($_POST["email"])) echo $_POST["email"] ?>'>
+            <div class="input-group">
+                <input id="email" type="email" vali value='<?php if (isset($_POST["email"])) echo $_POST["email"] ?>' name="email" placeholder="Email" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text p-0" id="basic-addon2"><button id="sendmail" type="button" class="btn btn-primary">Lấy mã</button></span>
+            </div>
             <label mess="email"></label>
+        </div>
+        <div>
+            <input type="text" class="form-control" name="verify" placeholder="Mã xác thực" value='<?php if (isset($_POST["verify"])) echo $_POST["verify"] ?>'>
+            <label mess=""></label>
         </div>
         <div>
             <center>
@@ -80,40 +119,49 @@ if (!empty($_SESSION['Notification'])) {
         });
     }
     $(document).ready(function() {
-        $("input[vali]").keyup(function() {
-            check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
-        }).change(function() {
-            check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
-        });
-        $("input[name='confirmPassword']").keyup(function() {
-            if ($(this).val() == $("input[name='password']").val()) {
-                $("label[mess='confirmPassword']").html("<i class='bi bi-check2-circle'></i>").css("color", "blue");
-                $("button[name='sm']").removeClass("disabled");
-            } else {
-                $("label[mess='confirmPassword']").html('Mật khẩu không khớp').css("color", "red");
-                $("button[name='sm']").addClass("disabled");
-            }
-        });
-        $("#province").change(function() {
-            var id = $(this).val();
-            $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
-                var d = JSON.parse(data);
-                var dt = $("#district");
-                dt.html("<option disabled selected> quận, huyện</option>");
-                d.forEach(element => {
-                    $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(dt);
-                });
+        <?php if (isset($_POST['sm'])) echo "validate();" ?>
+    })
+    $("#sendmail").click(function() {
+        em = $("#email").val();
+        $.post('<?php echo "/$data[domain]/Ajax/sendmail" ?>', {
+            em: em
+        }, function(data) {
+            alert(data);
+        })
+    })
+    $("input[vali]").keyup(function() {
+        check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+    }).change(function() {
+        check_Input(this, "<?php echo $data['domain'] ?>", "Customer");
+    });
+    $("input[name='confirmPassword']").keyup(function() {
+        if ($(this).val() == $("input[name='password']").val()) {
+            $("label[mess='confirmPassword']").html("<i class='bi bi-check2-circle'></i>").css("color", "blue");
+            $("button[name='sm']").removeClass("disabled");
+        } else {
+            $("label[mess='confirmPassword']").html('Mật khẩu không khớp').css("color", "red");
+            $("button[name='sm']").addClass("disabled");
+        }
+    });
+    $("#province").change(function() {
+        var id = $(this).val();
+        $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
+            var d = JSON.parse(data);
+            var dt = $("#district");
+            dt.html("<option disabled selected> quận, huyện</option>");
+            d.forEach(element => {
+                $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(dt);
             });
         });
-        $("#district").change(function() {
-            var id = $(this).val();
-            $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
-                var d = JSON.parse(data);
-                var w = $("#ward");
-                w.html("<option disabled selected> xã, phường</option>");
-                d.forEach(element => {
-                    $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(w);
-                });
+    });
+    $("#district").change(function() {
+        var id = $(this).val();
+        $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
+            var d = JSON.parse(data);
+            var w = $("#ward");
+            w.html("<option disabled selected> xã, phường</option>");
+            d.forEach(element => {
+                $($.parseHTML('<option>')).attr('value', element['id']).html(element['_prefix'] + ' ' + element['_name']).appendTo(w);
             });
         });
     });

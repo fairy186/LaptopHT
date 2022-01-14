@@ -54,6 +54,7 @@ class App
           // print_r($this->params);
           // print_r($_SESSION);
           $this->BlockAccessAdmin();
+          $this->VerifyTimeOut();
           $this->controller = new $this->controller;
           call_user_func_array([$this->controller, $this->action], $this->params);
      }
@@ -81,5 +82,15 @@ class App
           $url = @$_GET['url'];
           if (strlen(strstr($url, "Ajax")) <= 0  && strlen(strstr($url, "Login")) <= 0)
                $_SESSION['url'] = $url;
+     }
+     function VerifyTimeOut()
+     {
+          if (isset($_SESSION['verify'])) {
+               date_default_timezone_set("Asia/Ho_Chi_Minh");
+               $now = strtotime(date('Y-m-d H:i:s'));
+               $dt = strtotime($_SESSION['verify']['time']);
+               if($now - $dt>=300)
+                  unset($_SESSION['verify']);  
+          }
      }
 }
