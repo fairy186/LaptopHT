@@ -7,11 +7,11 @@ class MyOrder extends Controller
      function __construct()
      {
           if (!isset($_SESSION['user'])) {
-               header("Location: /$this->domain/Login");
+               header("Location: $this->domain/Login");
                return;
           }
           if (isset($_SESSION['user']['ad'])) {
-               header("Location: /$this->domain");
+               header("Location: $this->domain");
                return;
           }
           $this->dOrIn = $this->model("OrderInfoModel");

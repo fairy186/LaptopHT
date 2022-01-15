@@ -30,8 +30,8 @@ foreach ($data['dCus'] as $key => $value){
                <td>$value[Email]</td>
                <td>$value[Account]</td>
                <td>
-                    <a href='/$data[domain]/Admin/$data[controller]/Edit/$value[ID_Cus]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
-                    <a href='/$data[domain]/Admin/$data[controller]/Delete/$value[ID_Cus]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
+                    <a href='$data[domain]/Admin/$data[controller]/Edit/$value[ID_Cus]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                    <a href='$data[domain]/Admin/$data[controller]/Delete/$value[ID_Cus]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
                </td>
           </tr>";
 }
@@ -40,13 +40,13 @@ echo "</table>";
 ?>
 <nav aria-label="Page navigation">
      <ul class="pagination d-flex justify-content-center fs-5">
-          <li id="prev" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$prev" ?>'>Previous</a></li>
+          <li id="prev" class="page-item"><a class="page-link" href='<?php echo "$data[domain]/Admin/$data[controller]/$prev" ?>'>Previous</a></li>
           <?php
           for ($i = 1; $i <= $data['tp']; $i++) {
-               echo "<li class='page-item'><a class='page-link' href='/$data[domain]/Admin/$data[controller]/$i'>$i</a></li>";
+               echo "<li class='page-item'><a class='page-link' href='$data[domain]/Admin/$data[controller]/$i'>$i</a></li>";
           }
           ?>
-          <li id="next" class="page-item"><a class="page-link" href='<?php echo "/$data[domain]/Admin/$data[controller]/$next" ?>'>Next</a></li>
+          <li id="next" class="page-item"><a class="page-link" href='<?php echo "$data[domain]/Admin/$data[controller]/$next" ?>'>Next</a></li>
      </ul>
 </nav>
 <script>

@@ -18,11 +18,11 @@ $id_user = @$_SESSION['user']['id'];
                 foreach ($images as $key => $value) {
                     if ($key == 0) {
                         echo "<div class='carousel-item active'>
-                                <img src='/$data[domain]/images/$id/$value' class='d-block w-100'>
+                                <img src='$data[domain]/images/$id/$value' class='d-block w-100'>
                             </div>";
                     } else {
                         echo "<div class='carousel-item'>
-                                <img src='/$data[domain]/images/$id/$value' class='d-block w-100'>
+                                <img src='$data[domain]/images/$id/$value' class='d-block w-100'>
                             </div>";
                     }
                 }
@@ -44,7 +44,7 @@ $id_user = @$_SESSION['user']['id'];
             <div class="col ml-4 d-flex">
                 <button id="addCart" class="btn btn-success text-light" type="button"><span style="font-size:20px;"><i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng</span></button>
                 <div class="mx-auto"></div>
-                <form action="<?php echo "/$data[domain]/Order" ?>" method="post" class="m-o p-o">
+                <form action="<?php echo "$data[domain]/Order" ?>" method="post" class="m-o p-o">
                     <input type="text" name="id_lap" value="<?php echo $id; ?>" style="display:none;" />
                     <button name="sm_BuyNow" type="submit" class="btn btn-danger"> <span style="color:#FFFFFF; font-size:20px;">Mua ngay</span></button>
                 </form>
@@ -56,7 +56,7 @@ $id_user = @$_SESSION['user']['id'];
                 <?php
                 if (isset($_SESSION['user']))
                     echo "
-                            <img src='/$data[domain]/images/shared/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
+                            <img src='$data[domain]/images/shared/avatardefault.png' class='rounded-circle' style='width:50px; height:50px;' />
                             <textarea id='inp_comment' class='form-control flex-grow-1 mx-2 rounded-pill scroll' placeholder='bình luận' style='height:50px;'></textarea>
                             <button id='btn_comment' class='btn btn-dark rounded-pill m-0' tybe='button'><i class='bi bi-send fs-4'></i></button>
                         
@@ -220,10 +220,10 @@ $id_user = @$_SESSION['user']['id'];
     });
 
     function load_Comments(v) {
-        $.post('<?php echo "/$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
+        $.post('<?php echo "$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
             $("#ListComment").append(data);
             v = v + 1;
-            $.post('<?php echo "/$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
+            $.post('<?php echo "$data[domain]/Ajax/Load_Comments/" . $data['dLap']['ID_Lap'] . "/" ?>' + v, {}, function(data) {
                 if (data == "")
                     $("#XemThem").remove();
             })
@@ -235,7 +235,7 @@ $id_user = @$_SESSION['user']['id'];
         var content = $("#inp_comment").val();
         $("#inp_comment").val('');
         console.log(content);
-        $.post('<?php echo "/$data[domain]/Ajax/Comment/$id/$id_user/" ?>', {
+        $.post('<?php echo "$data[domain]/Ajax/Comment/$id/$id_user/" ?>', {
             content: content
         }, function(data) {
             $("#ListComment").html('');
@@ -257,7 +257,7 @@ $id_user = @$_SESSION['user']['id'];
     }
 
     function addCart() {
-        $.post('<?php echo "/$data[domain]/Ajax/AddCart/$id"; ?>', {}, function(data) {
+        $.post('<?php echo "$data[domain]/Ajax/AddCart/$id"; ?>', {}, function(data) {
             $(".toast-body").html(JSON.parse(data));
         })
     };

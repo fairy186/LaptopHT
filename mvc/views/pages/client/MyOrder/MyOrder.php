@@ -18,7 +18,7 @@
                     $c = $this->num_to_price($value1['Price'] * $value1['Quantity']);
                     echo "
                     <div class='d-flex rounded border p-3'>
-                    <img class='me-3' src='/$data[domain]/images/$value1[ID_Lap]/$img' style='height:120px'/>
+                    <img class='me-3' src='$data[domain]/images/$value1[ID_Lap]/$img' style='height:120px'/>
                     <div>
                             <div class='text-warning fw-bold p-1'>$value1[Name_Lap]</div>
                             <div class='p-1'><span >Số lượng:</span> $value1[Quantity]</div>
@@ -40,7 +40,7 @@
      else
           echo "<div class='text-center mt-5 fs-5'> 
                     <div>Bạn chưa đặt đơn hàng nào !</div>
-                    <a class='btn btn-primary mt-5' href='/$data[domain]/" . $_SESSION['url'][0] . "'> Quay lại</a>
+                    <a class='btn btn-primary mt-5' href='$data[domain]/" . $_SESSION['url'][0] . "'> Quay lại</a>
                </div>"
      ?>
 </div>

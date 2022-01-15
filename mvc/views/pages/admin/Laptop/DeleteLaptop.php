@@ -4,7 +4,7 @@ $folder = $data['dLap']['ID_Lap'];
 ?>
 <div class="container" align="center">
 	<div class='card fs-5' style=" max-width: 600px;">
-		<img src='<?php echo "/$data[domain]/images/$folder/$images[0]" ?>' class='card-img-top' alt='...'>
+		<img src='<?php echo "$data[domain]/images/$folder/$images[0]" ?>' class='card-img-top' alt='...'>
 		<div class='card-body'>
 			<h5 class='card-title'><?php echo $data['dLap']['Name_Lap'] ?></h5>
 			<p class='card-text text-danger fw-bold'>Giá: <?php echo $this->num_to_price($data['dLap']['Price']) ?></p>

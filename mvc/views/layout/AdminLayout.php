@@ -1,10 +1,10 @@
 <?php
-function listitem($currentCtrl, $controller, $itemname)
+function listitem($domain, $currentCtrl, $controller, $itemname)
 {
      $item = "<li class='nav-item border-bottom'>";
      if ($currentCtrl == $controller)
           $item = "<li class='nav-item border border-dark bg-primary bg-opacity-10'>";
-     echo $item . "<a class='nav-link' aria-current='page' href='/LaptopHT/Admin/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
+     echo $item . "<a class='nav-link' aria-current='page' href='$domain/Admin/$controller'><i class='bi bi-caret-right-fill'></i> $itemname</a></li>";
 }
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ function listitem($currentCtrl, $controller, $itemname)
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href='<?php echo "/$data[domain]/images/shared/icon.jpg" ?>' type="image/x-icon">
+     <link rel="icon" href='<?php echo "$data[domain]/images/shared/icon.jpg" ?>' type="image/x-icon">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -51,7 +51,7 @@ function listitem($currentCtrl, $controller, $itemname)
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand navbar-dark bg-dark container p-0">
                <div class="container-fluid d-flex">
-                    <a class="navbar-brand text-warning p-2 fs-2 fw-bold" href="<?php echo "/$data[domain]/Admin"; ?>"><i class="bi bi-laptop"></i> ADMIN</a>
+                    <a class="navbar-brand text-warning p-2 fs-2 fw-bold" href="<?php echo "$data[domain]/Admin"; ?>"><i class="bi bi-laptop"></i> ADMIN</a>
                     <div class="mb-0 mx-auto">
                     </div>
                     <ul class="navbar-nav">
@@ -61,13 +61,13 @@ function listitem($currentCtrl, $controller, $itemname)
                                    </a>
                                    <ul class='dropdown-menu bg-dark' aria-labelledby='navbarDropdown'>
                                         <li class='nav-item bg-dark'>
-                                             <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
+                                             <a class='nav-link' href='$data[domain]/Login/SignOut'>Đăng xuất</a>
                                         </li>
                                    </ul>
                               </li>";
                          else {
                               echo "<li class='nav-item'>
-                                   <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
+                                   <a class='nav-link py-0' href='$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
                                         </li>";
                          }
                          ?>
@@ -79,14 +79,14 @@ function listitem($currentCtrl, $controller, $itemname)
           <p></p>
           <div class="border m-0 p-0" style="min-width: 150px !important; ">
                <ul class="nav flex-column d-block" style="font-weight:bold;">
-                    <?php listitem($data['controller'], "Laptop", "Laptop") ?>
-                    <?php listitem($data['controller'], "LaptopType", "Loại laptop") ?>
-                    <?php listitem($data['controller'], "Manufacturer", "Hảng laptop") ?>
-                    <?php listitem($data['controller'], "OrderInfo", "Đơn hàng") ?>
-                    <?php listitem($data['controller'], "Customer", "Khách hàng") ?>
-                    <?php listitem($data['controller'], "Cart", "Giỏ hàng") ?>
-                    <?php listitem($data['controller'], "Slider", "Slide") ?>
-                    <?php listitem($data['controller'], "Admin", "Quản trị") ?>
+                    <?php listitem($data['domain'], $data['controller'], "Laptop", "Laptop") ?>
+                    <?php listitem($data['domain'], $data['controller'], "LaptopType", "Loại laptop") ?>
+                    <?php listitem($data['domain'], $data['controller'], "Manufacturer", "Hảng laptop") ?>
+                    <?php listitem($data['domain'], $data['controller'], "OrderInfo", "Đơn hàng") ?>
+                    <?php listitem($data['domain'], $data['controller'], "Customer", "Khách hàng") ?>
+                    <?php listitem($data['domain'], $data['controller'], "Cart", "Giỏ hàng") ?>
+                    <?php listitem($data['domain'], $data['controller'], "Slider", "Slide") ?>
+                    <?php listitem($data['domain'], $data['controller'], "Admin", "Quản trị") ?>
                </ul>
           </div>
           <div class="flex-grow-1 border p-1">
@@ -112,7 +112,7 @@ function listitem($currentCtrl, $controller, $itemname)
                <label> @Copyright: LaptopHT</label>
           </div>
      </div>
-     <script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
+     <script src='<?php echo "$data[domain]/public/App.js" ?>'></script>
      <script>
           $("input[vali]").keyup(function() {
                check_Input(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
@@ -134,7 +134,7 @@ function listitem($currentCtrl, $controller, $itemname)
           function search() {
                search_info = $("#search").val();
                if (search_info !== "") {
-                    window.location.href = '<?php echo "/$data[domain]/Admin/$data[controller]/Search/" ?>' + search_info;
+                    window.location.href = '<?php echo "$data[domain]/Admin/$data[controller]/Search/" ?>' + search_info;
                }
           }
           if (window.history.replaceState) {

@@ -16,7 +16,7 @@ class Login extends Controller
     function DefaultAction()
     {
         if (isset($_SESSION['user'])) {
-            header("Location: /$this->domain/" . @$_SESSION['url']);
+            header("Location: $this->domain/" . @$_SESSION['url']);
             return;
         }
         $this->data["page"] = "Login";
@@ -26,7 +26,7 @@ class Login extends Controller
             $u = $this->dCus->Login($_POST['account'], $_POST['password']);
             if ($u != 0) {
                 $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'sdt' => "$u[Phone]", 'email' => "$u[Email]"];
-                header("Location: /$this->domain/" . @$_SESSION['url']);
+                header("Location: $this->domain/" . @$_SESSION['url']);
                 return;
             } else
                 $_SESSION['notify'] = "Tài khoản hoặc mật sai!";
@@ -36,14 +36,14 @@ class Login extends Controller
     function SignOut()
     {
         unset($_SESSION['user']);
-        header("Location: /$this->domain/" . @$_SESSION['url']);
+        header("Location: $this->domain/" . @$_SESSION['url']);
         return;
     }
     function SignUp()
     {
         if (isset($_SESSION['user'])) {
 
-            header("Location: /$this->domain/" . @$_SESSION['url']);
+            header("Location: $this->domain/" . @$_SESSION['url']);
             return;
         }
         $this->data["page"] = "SignUp";
@@ -68,7 +68,7 @@ class Login extends Controller
                             $_SESSION['user'] = ['id' => "$u[ID_Cus]", 'ho' => "$u[First_Name]", 'ten' => "$u[Last_Name]", 'dc' => "$u[Address]", 'email' => "$u[Email]", 'sdt' => "$u[Phone]"];
                             $_SESSION['notify'] = "<p>Chào $u[Last_Name]!</p><p>Chúc mừng bạn vừa tạo tài khoản</p>";
                             unset($_SESSION['verify']);
-                            header("Location: /$this->domain");
+                            header("Location: $this->domain");
                             return;
                         } else
                             $_SESSION['notify'] = "Email đã thay đổi! vui lòng nhập đúng email nhận mã";

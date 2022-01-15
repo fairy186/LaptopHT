@@ -12,7 +12,7 @@ if (isset($_SESSION['notify'])) {
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title><?php echo $data['title']; ?></title>
-     <link rel="icon" href='<?php echo "/$data[domain]/images/shared/icon.jpg" ?>' type="image/x-icon">
+     <link rel="icon" href='<?php echo "$data[domain]/images/shared/icon.jpg" ?>' type="image/x-icon">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -56,11 +56,11 @@ if (isset($_SESSION['notify'])) {
      </style>
 </head>
 
-<body class="container-fruilt" style='min-width:640px; background: url(<?php echo "/$data[domain]/images/shared/bg.jpg" ?>) top center no-repeat black'>
+<body class="container-fruilt" style='min-width:640px; background: url(<?php echo "$data[domain]/images/shared/bg.jpg" ?>) top center no-repeat black'>
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand navbar-dark bg-dark container-md">
                <div class="container-fluid d-flex">
-                    <a class="navbar-brand text-danger fw-bold fst-italic" href="<?php echo "/$data[domain]"; ?>"><i class="bi bi-laptop"></i> LaptopHT</a>
+                    <a class="navbar-brand text-danger fw-bold fst-italic" href="<?php echo "$data[domain]"; ?>"><i class="bi bi-laptop"></i> LaptopHT</a>
                     <div class="collapse navbar-collapse">
                          <div class="mb-0 mx-auto">
                               <div class="input-group">
@@ -70,7 +70,7 @@ if (isset($_SESSION['notify'])) {
                          </div>
                          <ul class="navbar-nav">
                               <li class="nav-item">
-                                   <a class="nav-link py-0 " href='<?php echo "/$data[domain]/Cart"; ?>'>
+                                   <a class="nav-link py-0 " href='<?php echo "$data[domain]/Cart"; ?>'>
                                         <button class="btn btn-outline-success p-2" style="width: 130px; color: rgb(120, 240, 0);" type="button">
                                              <i class="bi bi-cart4"></i> Giỏ hàng( <span id="NumP" class="text-danger"></span> )
                                         </button>
@@ -88,21 +88,21 @@ if (isset($_SESSION['notify'])) {
                                    if (!isset($_SESSION['user']['ad']))
                                         echo " 
                                              <li class='nav-item bg-dark'>
-                                                  <a class='nav-link' href='/$data[domain]/MyOrder'>Đơn hàng của tôi</a>
+                                                  <a class='nav-link' href='$data[domain]/MyOrder'>Đơn hàng của tôi</a>
                                              </li>
                                              <li class='nav-item bg-dark'>
-                                                  <a class='nav-link' href='/$data[domain]/Info'>Thông tin cá nhân</a>
+                                                  <a class='nav-link' href='$data[domain]/Info'>Thông tin cá nhân</a>
                                              </li>
                                    ";
                                    echo "
                                         <li class='nav-item bg-dark'>
-                                             <a class='nav-link' href='/$data[domain]/Login/SignOut'>Đăng xuất</a>
+                                             <a class='nav-link' href='$data[domain]/Login/SignOut'>Đăng xuất</a>
                                         </li>
                                    </ul>
                                    </li>";
                               } else {
                                    echo "<li class='nav-item'>
-                                   <a class='nav-link py-0' href='/$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
+                                   <a class='nav-link py-0' href='$data[domain]/Login'> <button class='btn btn-outline-primary p-2' type='button'> Đăng nhập</button></a>
                                         </li>";
                               }
                               ?>
@@ -148,7 +148,7 @@ if (isset($_SESSION['notify'])) {
                <label> @Copyright: LaptopHT</label>
           </div>
      </div>
-     <script src='<?php echo "/$data[domain]/public/App.js"; ?>'></script>
+     <script src='<?php echo "$data[domain]/public/App.js"; ?>'></script>
      <script>
           $(document).ready(function() {
                update_cart();
@@ -167,7 +167,7 @@ if (isset($_SESSION['notify'])) {
           });
 
           function update_cart() {
-               $.post('<?php echo "/$data[domain]/Ajax/GetNumPro" ?>', {},
+               $.post('<?php echo "$data[domain]/Ajax/GetNumPro" ?>', {},
                     function(data) {
                          $("#NumP").html(data);
                     })
@@ -176,7 +176,7 @@ if (isset($_SESSION['notify'])) {
           function search() {
                search_info = $("#search").val();
                if (search_info !== "") {
-                    window.location.href = '<?php echo "/$data[domain]/Search/" ?>' + search_info;
+                    window.location.href = '<?php echo "$data[domain]/Search/" ?>' + search_info;
                }
           }
           if (window.history.replaceState) {

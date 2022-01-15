@@ -4,7 +4,7 @@ function check_Input(input, domain, md) {
      var val = $(input).val();
      var n = $(input).attr("name");
      $.post(
-          "/" + domain + "/Ajax/Check_Input/",
+          domain + "/Ajax/Check_Input/",
           {
                val: val,
                md: md,

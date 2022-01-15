@@ -19,7 +19,7 @@ class Search extends Controller
           $this->data['dType'] = $this->dType->Get();
           $this->data['info'] = $info;
           if (empty($info)) {
-               header("Location: /$this->domain");
+               header("Location: $this->domain");
                return;
           } else
                $this->view("ClientLayout", $this->data);

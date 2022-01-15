@@ -1,4 +1,4 @@
-<h1 class="text-center text-primary fw-bold m-3">Danh Sách Hảng Laptop <a href='<?php echo "/$data[domain]/Admin/$data[controller]/Add" ?>'><i class="bi bi-plus-circle"></i></a></h1>
+<h1 class="text-center text-primary fw-bold m-3">Danh Sách Hảng Laptop <a href='<?php echo "$data[domain]/Admin/$data[controller]/Add" ?>'><i class="bi bi-plus-circle"></i></a></h1>
 <div class="container mb-3" style="max-width: 400px;">
      <div class="input-group">
           <input id="search" class="form-control border-2 border-primary" name="info" value="<?php echo @$data['info'] ?>" type="search" onsearch="search()" placeholder="Tìm kiếm" aria-label="Search">
@@ -29,7 +29,7 @@ echo "<table class='table table-bordered table-striped' align='center' cellpaddi
      })
 
      function getData() {
-          $.post('<?php echo "/$data[domain]/Admin/Ajax/Get_Search_Manufacturer"; ?>', {
+          $.post('<?php echo "$data[domain]/Admin/Ajax/Get_Search_Manufacturer"; ?>', {
                info: '<?php echo "$data[info]" ?>',
                vt: vt,
           }, function(data) {
@@ -37,7 +37,7 @@ echo "<table class='table table-bordered table-striped' align='center' cellpaddi
                data = JSON.parse(data);
                $("table").append(data[0]);
                $("#numkq").html(data[1]);
-               $.post('<?php echo "/$data[domain]/Admin/Ajax/Get_Search_Manufacturer"; ?>', {
+               $.post('<?php echo "$data[domain]/Admin/Ajax/Get_Search_Manufacturer"; ?>', {
                     info: '<?php echo "$data[info]" ?>',
                     vt: vt,
                }, function(data) {

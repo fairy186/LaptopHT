@@ -114,7 +114,7 @@ $screen = json_decode($data['dLap']['Screen'], 1);
                 <?php
                 foreach ($images as $value) {
 
-                    echo "<div class='p-1 col p-1'><img src='/$data[domain]/images/$folder/$value' style='width:100%'/></div>";
+                    echo "<div class='p-1 col p-1'><img src='$data[domain]/images/$folder/$value' style='width:100%'/></div>";
                 }
                 ?>
             </div>

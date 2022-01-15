@@ -23,7 +23,7 @@ class LaptopType extends Controller
      function Search($info = "")
      {
           if (empty($info)) {
-               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               header("Location: $this->domain/Admin/" . $this->data['controller']);
                return;
           }
           $this->data["page"] = "Search";
@@ -42,7 +42,7 @@ class LaptopType extends Controller
                if ($check)
                     if ($this->dType->Add($_POST['id'], $_POST['name'])) {
                          $_SESSION['Notification'] = "Thêm thành công!";
-                         header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         header("Location: $this->domain/Admin/" . $this->data['controller']);
                          return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
@@ -58,7 +58,7 @@ class LaptopType extends Controller
           $this->data['action'] = "Edit";
           $this->data['dType'] = $this->dType->GetByID($id);
           if ($this->data['dType'] == 0) {
-               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               header("Location: $this->domain/Admin/" . $this->data['controller']);
                return;
           }
           if (isset($_POST['sm'])) {
@@ -66,7 +66,7 @@ class LaptopType extends Controller
                if ($check) {
                     if ($this->dType->Edit($id, $_POST['name'])) {
                          $_SESSION['Notification'] = "Cập nhật thành công!";
-                         header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         header("Location: $this->domain/Admin/" . $this->data['controller']);
                          return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
@@ -82,13 +82,13 @@ class LaptopType extends Controller
           $this->data['action'] = "Delete";
           $this->data['dType'] = $this->dType->GetByID($id);
           if ($this->data['dType'] == 0) {
-               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               header("Location: $this->domain/Admin/" . $this->data['controller']);
                return;
           }
           if (isset($_POST['sm'])) {
                if ($this->dType->Delete($id)) {
                     $_SESSION['Notification'] = "Xóa thành công!";
-                    header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    header("Location: $this->domain/Admin/" . $this->data['controller']);
                     return;
                } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";

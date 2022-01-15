@@ -9,7 +9,7 @@
                 $c = $this->num_to_price($value['Price'] * $value['Quantity']);
                 echo "
                     <div class='d-flex rounded border mb-3'>
-                        <img class='me-3' src='/$data[domain]/images/$value[ID_Lap]/$img' style='height:120px'/>
+                        <img class='me-3' src='$data[domain]/images/$value[ID_Lap]/$img' style='height:120px'/>
                         <div>
                             <div class='text-warning fw-bold p-1'>$value[Name_Lap]</div>
                             <div class='p-1'><span >Số lượng:</span> $value[Quantity]</div>
@@ -28,7 +28,7 @@
                 <h5 class='fst-italic'>
                     Ko có sản phẩm nào !
                 </h5>
-                <a class='btn btn-primary mt-5' href='/$data[domain]/Cart'>Quay lại</a>
+                <a class='btn btn-primary mt-5' href='$data[domain]/Cart'>Quay lại</a>
                 </center>
             ";
         }

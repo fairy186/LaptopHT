@@ -35,7 +35,7 @@ class Ajax extends controller
                $list_laptop .= "<tr align='center' id_lap='$value[ID_Lap]'>
                          <td>$stt</td>
                          <td >$value[ID_Lap]</td>
-                         <td><img class='col' src='/$this->domain/images/$value[ID_Lap]/$images[0]' style='max-height:80px;'/></td>
+                         <td><img class='col' src='$this->domain/images/$value[ID_Lap]/$images[0]' style='max-height:80px;'/></td>
                          <td class='fw-bold'>$value[Name_Lap]</td>
                          <td class='text-danger'>$value[Price]</td>
                          <td '>$value[Insurance]</td>
@@ -44,8 +44,8 @@ class Ajax extends controller
                          <td>$value[Release_Time]</td>
                          <td>$value[Add_Time]</td>
                          <td>
-                              <a href='/$this->domain/Admin/Laptop/Edit/$value[ID_Lap]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
-                              <a href='/$this->domain/Admin/Laptop/Delete/$value[ID_Lap]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>  
+                              <a href='$this->domain/Admin/Laptop/Edit/$value[ID_Lap]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                              <a href='$this->domain/Admin/Laptop/Delete/$value[ID_Lap]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>  
                          </td>
                     </tr>";
           }
@@ -89,7 +89,7 @@ class Ajax extends controller
                          <td>$value[Time_Order]</td>
                          <td>$value[Status_Order]</td>
                          <td>
-                              <a class='fs-5 btn btn-outline-dark py-0' href='/$this->domain/Admin/OrderInfo/OrderDetails/$value[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
+                              <a class='fs-5 btn btn-outline-dark py-0' href='$this->domain/Admin/OrderInfo/OrderDetails/$value[ID_Order]'><i class='bi bi-ticket-detailed-fill' style='color:red'></i></a>
                          </td>
                     </tr>";
           }
@@ -123,8 +123,8 @@ class Ajax extends controller
                               <td>$value[ID_Type]</td>
                               <td>$value[Name_Type]</td>
                               <td>
-                                   <a href='/$this->domain/Admin/LaptopType/Edit/$value[ID_Type]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
-                                   <a href='/$this->domain/Admin/LaptopType/Delete/$value[ID_Type]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
+                                   <a href='$this->domain/Admin/LaptopType/Edit/$value[ID_Type]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                                   <a href='$this->domain/Admin/LaptopType/Delete/$value[ID_Type]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
                               </td>
                          </tr>";
           }
@@ -158,8 +158,8 @@ class Ajax extends controller
                          <td>$value[ID_Manu]</td>
                          <td>$value[Name_Manu]</td>
                          <td>
-                              <a href='/$this->domain/Admin/Manufacturer/Edit/$value[ID_Manu]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a> 
-                              <a href='/$this->domain/Admin/Manufacturer/Delete/$value[ID_Manu]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
+                              <a href='$this->domain/Admin/Manufacturer/Edit/$value[ID_Manu]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a> 
+                              <a href='$this->domain/Admin/Manufacturer/Delete/$value[ID_Manu]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
                          </td>
                     </tr>";
           }
@@ -230,8 +230,8 @@ class Ajax extends controller
                               <td>$value[Email]</td>
                               <td>$value[Account]</td>
                               <td>
-                                   <a href='/$this->domain/Admin/Customer/Edit/$value[ID_Cus]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
-                                   <a href='/$this->domain/Admin/Customer/Delete/$value[ID_Cus]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
+                                   <a href='$this->domain/Admin/Customer/Edit/$value[ID_Cus]'><i class='bi bi-pencil-square btn btn-success rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>
+                                   <a href='$this->domain/Admin/Customer/Delete/$value[ID_Cus]'><i class='bi bi-trash-fill btn btn-danger rounded-circle shadow-lg' style='color:white; font-size: 20px;'></i></a>               
                               </td>
                          </tr>";
           }

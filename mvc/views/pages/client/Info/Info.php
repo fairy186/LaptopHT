@@ -5,7 +5,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
      <div class="card mb-3 rounded-pill p-5 fs-5">
           <div class="row g-0">
                <div class="col-md-4">
-                    <img src="<?php echo "/$data[domain]/images/shared/avatardefault.png" ?>" class="img-fluid rounded-start w-100 mt-5" alt="...">
+                    <img src="<?php echo "$data[domain]/images/shared/avatardefault.png" ?>" class="img-fluid rounded-start w-100 mt-5" alt="...">
 
                </div>
                <div class="col-md-8">
@@ -141,7 +141,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
 </div>
 </div>
 </div>
-<script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
+<script src='<?php echo "$data[domain]/public/App.js" ?>'></script>
 <script>
      $(document).ready(function() {
           $("input[vali]").keyup(function() {
@@ -163,7 +163,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
           });
           $("#province").change(function() {
                var id = $(this).val();
-               $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
+               $.post('<?php echo "$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
                     var d = JSON.parse(data);
                     var dt = $("#district");
                     dt.html("<option disabled selected> quận, huyện</option>");
@@ -174,7 +174,7 @@ $dc = explode(", ", @$_SESSION['user']['dc']);
           });
           $("#district").change(function() {
                var id = $(this).val();
-               $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
+               $.post('<?php echo "$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
                     var d = JSON.parse(data);
                     var w = $("#ward");
                     w.html("<option disabled selected> xã, phường</option>");

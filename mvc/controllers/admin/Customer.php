@@ -26,7 +26,7 @@ class Customer extends Controller
     function Search($info)
     {
         if (empty($info)) {
-            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            header("Location: $this->domain/Admin/" . $this->data['controller']);
             return;
         }
         $this->data["page"] = "Search";
@@ -80,7 +80,7 @@ class Customer extends Controller
         if (isset($_POST['sm'])) {
             if ($this->dCus->Delete($id)) {
                 $_SESSION['Notification'] = "Xóa thành công!";
-                header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                header("Location: $this->domain/Admin/" . $this->data['controller']);
                 return;
             } else
                 $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";

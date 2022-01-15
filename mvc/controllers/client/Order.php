@@ -9,11 +9,11 @@ class Order extends Controller
     function __construct()
     {
         if (!isset($_SESSION['user'])) {
-            header("Location: /$this->domain/Login");
+            header("Location: $this->domain/Login");
             return;
         }
         if (isset($_SESSION['user']['ad'])) {
-            header("Location: /$this->domain/");
+            header("Location: $this->domain/");
             return;
         }
         $this->dOrIn = $this->model("OrderInfoModel");
@@ -60,7 +60,7 @@ class Order extends Controller
                     $_SESSION['notify'] = "Đặt hàng thành công!";
                     unset($_SESSION['order']);
                     unset($_SESSION['cost']);
-                    header("Location: /$this->domain/MyOrder");
+                    header("Location: $this->domain/MyOrder");
                     return;
                 } else {
                     unset($_SESSION['order']);

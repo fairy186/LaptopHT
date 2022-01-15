@@ -111,7 +111,7 @@
         </div>
     </form>
 </div>
-<script src='<?php echo "/$data[domain]/public/App.js" ?>'></script>
+<script src='<?php echo "$data[domain]/public/App.js" ?>'></script>
 <script>
     function validate() {
         $("input[vali]").each(function() {
@@ -123,7 +123,7 @@
     })
     $("#sendmail").click(function() {
         em = $("#email").val();
-        $.post('<?php echo "/$data[domain]/Ajax/sendmail" ?>', {
+        $.post('<?php echo "$data[domain]/Ajax/sendmail" ?>', {
             em: em
         }, function(data) {
             alert(data);
@@ -145,7 +145,7 @@
     });
     $("#province").change(function() {
         var id = $(this).val();
-        $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
+        $.post('<?php echo "$data[domain]"; ?>/' + 'Ajax/GetDistrict/' + id, {}, function(data) {
             var d = JSON.parse(data);
             var dt = $("#district");
             $("#ward").html("<option disabled selected value=''> xã, phường</option>");
@@ -157,7 +157,7 @@
     });
     $("#district").change(function() {
         var id = $(this).val();
-        $.post('<?php echo "/$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
+        $.post('<?php echo "$data[domain]"; ?>/' + 'Ajax/GetWard/' + id, {}, function(data) {
             var d = JSON.parse(data);
             var w = $("#ward");
             w.html("<option disabled selected value=''> xã, phường</option>");

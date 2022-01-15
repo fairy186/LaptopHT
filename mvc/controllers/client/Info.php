@@ -18,11 +18,11 @@ class Info extends Controller
           $this->data['title'] = "Thông tin cá nhân";
           $this->data['dProvince'] = $this->dAddress->GetProvince();
           if (!isset($_SESSION['user'])) {
-               header("Location: /$this->domain/login");
+               header("Location: $this->domain/login");
                return;
           }
           if (isset($_SESSION['user']['ad'])) {
-               header("Location: /$this->domain");
+               header("Location: $this->domain");
                return;
           }
           if (isset($_POST['sm'])) {

@@ -23,7 +23,7 @@ class Cart extends Controller
                     $this->data['dCart'] = $this->dCart->GetCart();
                }
           } else {
-               header("Location: /$this->domain/Login");
+               header("Location: $this->domain/Login");
                return;
           }
           $this->view("ClientLayout", $this->data);

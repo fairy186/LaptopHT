@@ -27,10 +27,10 @@ class App
                          $this->controller = $arr[0];
                     else
                          if ($this->area != "Admin") {
-                         header("Location: /$this->domain");
+                         header("Location: $this->domain");
                          return;
                     } else {
-                         header("Location: /$this->domain/Admin/Laptop");
+                         header("Location: $this->domain/Admin/Laptop");
                          return;
                     }
                }
@@ -68,11 +68,11 @@ class App
      {
           if ($this->area == "Admin" && $this->controller != "Login") {
                if (!isset($_SESSION['user']['ad']) && !isset($_SESSION['user'])) {
-                    header("Location: /$this->domain/Admin/Login");
+                    header("Location: $this->domain/Admin/Login");
                     return;
                }
                if (!isset($_SESSION['user']['ad']) && isset($_SESSION['user'])) {
-                    header("Location: /$this->domain");
+                    header("Location: $this->domain");
                     return;
                }
           }

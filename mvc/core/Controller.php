@@ -1,7 +1,7 @@
 <?php
 class controller
 {
-     public $domain = "LaptopHT";
+     public $domain = "/LaptopHT";
      function model($model)
      {
           require_once "./mvc/models/" . $model . ".php";

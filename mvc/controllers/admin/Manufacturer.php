@@ -24,7 +24,7 @@ class Manufacturer extends Controller
      function Search($info = "")
      {
           if (empty($info)) {
-               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               header("Location: $this->domain/Admin/" . $this->data['controller']);
                return;
           }
           $this->data["page"] = "Search";
@@ -43,7 +43,7 @@ class Manufacturer extends Controller
                if ($check)
                     if ($this->dManu->Add($_POST['id'], $_POST['name'])) {
                          $_SESSION['Notification'] = "Thêm thành công!";
-                         header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         header("Location: $this->domain/Admin/" . $this->data['controller']);
                          return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
@@ -59,7 +59,7 @@ class Manufacturer extends Controller
           $this->data['action'] = "Edit";
           $this->data["dManu"] = $this->dManu->GetByID($id);;
           if ($this->data["dManu"] == 0) {
-               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               header("Location: $this->domain/Admin/" . $this->data['controller']);
                return;
           }
           if (isset($_POST['sm'])) {
@@ -67,7 +67,7 @@ class Manufacturer extends Controller
                if ($check)
                     if ($this->dManu->Edit($id, $_POST['name'])) {
                          $_SESSION['Notification'] = "Cập nhật thành công!";
-                         header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                         header("Location: $this->domain/Admin/" . $this->data['controller']);
                          return;
                     } else
                          $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
@@ -83,13 +83,13 @@ class Manufacturer extends Controller
           $this->data['action'] = "Delete";
           $this->data["dManu"] = $this->dManu->GetByID($id);
           if ($this->data["dManu"] == "") {
-               header("Location: /$this->domain/Admin/" . $this->data['controller']);
+               header("Location: $this->domain/Admin/" . $this->data['controller']);
                return;
           }
           if (isset($_POST['sm'])) {
                if ($this->dManu->Delete($id)) {
                     $_SESSION['Notification'] = "Xóa thành công!";
-                    header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    header("Location: $this->domain/Admin/" . $this->data['controller']);
                     return;
                } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";

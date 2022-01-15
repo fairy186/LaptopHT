@@ -29,7 +29,7 @@ class Slider extends Controller
                     $_POST['status'] = 0;
                 if ($this->dSlider->Add($_POST['title'], $img, $_POST['status']) && $img != 0) {
                     $_SESSION['Notification'] = "Thêm thành công!";
-                    header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                    header("Location: $this->domain/Admin/" . $this->data['controller']);
                     return;
                 } else
                     $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
@@ -45,19 +45,25 @@ class Slider extends Controller
         $this->data['action'] = "Edit";
         $this->data['dSlider'] = $this->dSlider->GetByID($id);
         if ($this->data['dSlider'] == 0) {
-            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            header("Location: $this->domain/Admin/" . $this->data['controller']);
             return;
         }
         if (isset($_POST['sm'])) {
-            if (!empty(@$_FILES['img_slider']['name'])) {
+            if (!is_numeric($_POST['status']))
+                $_POST['status'] = 0;
+            $change_img = !empty($_FILES['img_slider']['name']);
+            if ($change_img)
                 $img = $this->upSlide();
-                if (!is_numeric($_POST['status']))
-                    $_POST['status'] = 0;
-                if ($this->dSlider->Edit($id, $_POST['title'], $img, $_POST['status']) && $img != 0) {
-                    $_SESSION['Notification'] = "Thêm thành công!";
-                    header("Location: /$this->domain/Admin/" . $this->data['controller']);
-                } else
-                    $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
+            else
+                $img = $this->data['dSlider']['Image'];
+            if ($this->dSlider->Edit($id, $_POST['title'], $img, $_POST['status']) && $img != 0) {
+                $_SESSION['Notification'] = "Sửa thành công!";
+                if($change_img)
+                    $this->delSlider($this->data['dSlider']['Image']);
+                header("Location: $this->domain/Admin/" . $this->data['controller']);
+                return;
+            } else {
+                $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";
             }
         }
         $this->view("AdminLayout", $this->data);
@@ -69,7 +75,7 @@ class Slider extends Controller
         $this->data['action'] = "Delete";
         $this->data['dSlider'] = $this->dSlider->GetByID($id);
         if ($this->data['dSlider'] == 0) {
-            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            header("Location: $this->domain/Admin/" . $this->data['controller']);
             return;
         }
         if (isset($_POST['sm'])) {
@@ -77,8 +83,7 @@ class Slider extends Controller
                 $img = $this->data['dSlider']['Image'];
                 $this->delSlider($img);
                 $_SESSION['Notification'] = "Xóa thành công!";
-                $this->delFile($id);
-                header("Location: /$this->domain/Admin/" . $this->data['controller']);
+                header("Location: $this->domain/Admin/" . $this->data['controller']);
                 return;
             } else
                 $_SESSION['Notification'] = "Có lỗi xảy ra! Vui lòng thử lại";

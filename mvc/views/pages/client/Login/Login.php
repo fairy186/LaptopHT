@@ -15,7 +15,7 @@
         width: 405px;
         margin: auto;
         padding: 60px 60px;
-        background: url(<?php echo "/$data[domain]/images/shared/Sign_in.png" ?>) no-repeat center center #505050;
+        background: url(<?php echo "$data[domain]/images/shared/Sign_in.png" ?>) no-repeat center center #505050;
         background-size: cover;
         box-shadow: 0px 30px 60px -5px #FFF;
     }
@@ -184,7 +184,7 @@
         <button class="signin" type="submit" name="sm">
             Đăng nhập
         </button>
-        <a href='<?php echo "/$data[domain]/Login/SignUp"; ?>'>Chưa có tài khoản?</a>
+        <a href='<?php echo "$data[domain]/Login/SignUp"; ?>'>Chưa có tài khoản?</a>
         <hr>
     </form>
     <script>

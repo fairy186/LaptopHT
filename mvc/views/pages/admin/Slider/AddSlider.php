@@ -9,7 +9,7 @@
           </div>
           <div class="input-group mb-4">
                <span class="input-group-text bg-transparent border-0 fs-5" id="basic-addon2">Hình ảnh</span>
-               <input name="img_slider" accept="image/*" type="file" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
+               <input name="img_slider" accept="image/*" type="file" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2" required>
           </div>
           <div class="input-group mb-4">
                <span class="input-group-text fs-5" id="basic-addon3">Trạng thái</span>

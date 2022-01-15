@@ -31,7 +31,7 @@ class OrderInfo extends Controller
     function Search($info = "")
     {
         if (empty($info)) {
-            header("Location: /$this->domain/Admin/" . $this->data['controller']);
+            header("Location: $this->domain/Admin/" . $this->data['controller']);
             return;
         }
         $this->data["page"] = "Search";

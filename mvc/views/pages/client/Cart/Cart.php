@@ -41,8 +41,8 @@
                                 <input checked class='form-check-input p-2' name='id_lap[]' type='checkbox' value='$id'>
                             </div>
                             <div class='col-3 '>
-                                <a href='/$data[domain]/LaptopDetails/$id'>
-                                    <img src='/$data[domain]/images/$id/$images[2]' style='max-height:90px;'>
+                                <a href='$data[domain]/LaptopDetails/$id'>
+                                    <img src='$data[domain]/images/$id/$images[2]' style='max-height:90px;'>
                                     <label class='text-warning fw-bold fst-italic link_LaptopDetail'>$name</label>
                                 </a>
                             </div>
@@ -120,7 +120,7 @@ s                </div>
         $(".Q_incre").click(function() {
             var id_lap = $(this).attr("id_lap");
             var val = parseInt($(".quantity[id_lap=" + id_lap + "]").val()) + 1;
-            $.post('<?php echo "/$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {
+            $.post('<?php echo "$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {
                 if (JSON.parse(data))
                     $(".quantity[id_lap=" + id_lap + "]").val(val);
                 updateCost();
@@ -130,7 +130,7 @@ s                </div>
         $(".Q_reduc").click(function() {
             var id_lap = $(this).attr("id_lap");
             var val = parseInt($(".quantity[id_lap=" + id_lap + "]").val()) - 1;
-            $.post('<?php echo "/$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {
+            $.post('<?php echo "$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {
                 if (JSON.parse(data))
                     $(".quantity[id_lap=" + id_lap + "]").val(val);
                 updateCost();
@@ -140,11 +140,11 @@ s                </div>
             var val = $(this).val();
             var id_lap = $(this).attr("id_lap");
             updateCost();
-            $.post('<?php echo "/$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {});
+            $.post('<?php echo "$data[domain]/Ajax/Update_Cart/" ?>' + id_lap + '/' + val, {}, function(data) {});
         })
         $(".remove_from_cart").click(function() {
             var id_lap = $(this).attr("id_lap");
-            $.post('<?php echo "/$data[domain]/Ajax/Remove_Form_Cart/" ?>' + id_lap, {}, function(data) {
+            $.post('<?php echo "$data[domain]/Ajax/Remove_Form_Cart/" ?>' + id_lap, {}, function(data) {
                 $("div[id_lap=" + id_lap + "]").remove();
                 updateCost();
             })

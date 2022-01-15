@@ -33,7 +33,7 @@ echo "<table align='center' class='table table-bordered table-striped' cellpaddi
      })
 
      function getData() {
-          $.post('<?php echo "/$data[domain]/Admin/Ajax/Get_Search_Customer"; ?>', {
+          $.post('<?php echo "$data[domain]/Admin/Ajax/Get_Search_Customer"; ?>', {
                info: '<?php echo "$data[info]" ?>',
                vt: vt,
           }, function(data) {
@@ -41,7 +41,7 @@ echo "<table align='center' class='table table-bordered table-striped' cellpaddi
                data = JSON.parse(data);
                $("table").append(data[0]);
                $("#numkq").html(data[1]);
-               $.post('<?php echo "/$data[domain]/Admin/Ajax/Get_Search_Customer"; ?>', {
+               $.post('<?php echo "$data[domain]/Admin/Ajax/Get_Search_Customer"; ?>', {
                     info: '<?php echo "$data[info]" ?>',
                     vt: vt,
                }, function(data) {
