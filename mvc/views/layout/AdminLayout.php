@@ -103,7 +103,7 @@ function listitem($domain, $currentCtrl, $controller, $itemname)
                     </div>
                </div>
                <?php
-               require_once "./mvc/views/pages/Admin/$data[controller]/" . $data['page'] . ".php"
+               require_once "./mvc/views/pages/admin/$data[controller]/" . $data['page'] . ".php"
                ?>
           </div>
      </div>
