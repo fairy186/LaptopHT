@@ -47,7 +47,7 @@ function listitem($domain, $currentCtrl, $controller, $itemname)
      </style>
 </head>
 
-<body class="container-fruilt m-0 p-0" style="min-height: 100vh;">
+<body class="container-fruilt m-0 p-0" style="min-height: 100vh; min-width: 1080px;">
      <div id="header" class="bg-dark">
           <nav class="navbar navbar-expand navbar-dark bg-dark container p-0">
                <div class="container-fluid d-flex">
