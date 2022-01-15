@@ -159,11 +159,6 @@ if (isset($_SESSION['notify'])) {
                if ($("#notify_body").html() != '') {
                     notify.show();
                }
-               $("input[vali]").keyup(function() {
-                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
-               }).change(function() {
-                    check(this, "<?php echo $data['domain'] ?>", "<?php echo $data['controller'] ?>");
-               });
           });
 
           function update_cart() {

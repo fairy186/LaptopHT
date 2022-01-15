@@ -24,13 +24,16 @@ class MyOrder extends Controller
      {
           $this->data["page"] = "MyOrder";
           $this->data['title'] = "Đơn hàng của tôi";
+          if (isset($_POST['id_order']))
+               if ($this->dOrIn->edit($_POST['id_order'], 0))
+                    $_SESSION['notify']    = "Hủy thành công";
+               else
+                    $_SESSION['notify']    = "Có lỗi xảy ra! vui lòng thử lại";
           $this->data['dOrder'] = $this->dOrIn->getMyOrder($_SESSION['user']['id']);
           foreach ($this->data['dOrder'] as $key => $value) {
                $this->data['dOrder'][$key]['Details'] = $this->dOrDe->GetMyOrderDetails($value['ID_Order']);
           }
-          foreach ($this->data['dOrder'] as $key => $value) {
-               $this->data['dOrder'][$key]['Status_Order']=$this->num_to_status($value['Status_Order']);
-          }
+
           $this->view("ClientLayout", $this->data);
      }
 }

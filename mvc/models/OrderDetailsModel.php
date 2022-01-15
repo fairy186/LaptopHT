@@ -25,13 +25,11 @@ class OrderDetailsModel extends DB
      }
      public function GetMyOrderDetails($id)
      {
-          $qr = "SELECT * FROM `order_details` JOIN `LapTop` ON order_details.ID_Lap=laptop.ID_Lap WHERE `ID_Order` ='$id'";
+          $qr = "SELECT * FROM `order_details` JOIN `laptop` ON order_details.ID_Lap=laptop.ID_Lap WHERE `ID_Order` ='$id'";
           $sql = mysqli_query($this->con, $qr);
-          $kq=[];
-          if($sql != false){
-               while ($row=mysqli_fetch_assoc($sql)) {
-                    $kq[]= $row;
-               }
+          $kq = [];
+          while ($row = mysqli_fetch_assoc($sql)) {
+               $kq[] = $row;
           }
           return $kq;
      }
