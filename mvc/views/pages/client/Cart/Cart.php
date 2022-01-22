@@ -3,7 +3,7 @@
         cursor: pointer;
     }
 </style>
-<form action='/<?php echo $data['domain'] ?>/Order' name="order" class="py-3 bg-dark bg-opacity-75 fs-5 text-light" method='post'>
+<form action='<?php echo $data['domain'] ?>/Order' name="order" class="py-3 bg-dark bg-opacity-75 fs-5 text-light" method='post'>
     <div class="row border text-center fw-bold">
         <div class="row col-12 mb-3">
             <div class='col-1 mt-3'>
